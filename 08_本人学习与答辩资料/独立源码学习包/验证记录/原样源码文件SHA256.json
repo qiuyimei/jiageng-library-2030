@@ -1,0 +1,158 @@
+[
+  {
+    "path": "01_现有项目原样保存/02_可视化设计展示.pdf",
+    "bytes": 9897554,
+    "sha256": "cb519430201e8da5b73714fcf9edd8103dc1fd809fffc14aef2ce261a9d4f24f",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/index.html",
+    "bytes": 27408,
+    "sha256": "0b189b47a00bb713b5f02c197cd1845479afd5f6391e8db871340e2aad022d38",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/区域输入示例.json",
+    "bytes": 203,
+    "sha256": "fc8f8470a4461271d0c9bf9361d9c023b044dad9c4edcdd32048ccaeb9deee16",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/原型实际操作演示.mp4",
+    "bytes": 16110160,
+    "sha256": "9f890a3992ee943555b78071e31b4c383627ba382acb46a9534de6943b14c040",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/本人录音与视频使用说明.txt",
+    "bytes": 1740,
+    "sha256": "538cf048039f950fc555626446f280f52b2c70d554db7c46dbe5dfc2a0de3be6",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/本人录音用_分段时间表.txt",
+    "bytes": 1256,
+    "sha256": "1623a7dfc6792e6c78b047af153903655d527b4ea2006369953f51cf31b762c8",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/本人录音用_口语讲解稿.txt",
+    "bytes": 6338,
+    "sha256": "8b8b87a0379b73e2c4f498e9b2b01dcb13276ca6e05ed51d8e8fa5396ede99a0",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/演示视频播放.html",
+    "bytes": 21487068,
+    "sha256": "2eb2124559da79f35d0e233a9249c54dbce99845a8d916767c49020acaf230b2",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/详细演示字幕.srt",
+    "bytes": 9284,
+    "sha256": "2fecb0bbe1f985fcd0e9a6e7b314500b3732f2ce80853acb5a42a4e2cc89ad73",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/详细解说稿.txt",
+    "bytes": 5295,
+    "sha256": "9d57e422a36a654d5e9dee70c234d08f0fa23837f40a65d544e0fa495f882b14",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/运行说明.txt",
+    "bytes": 2608,
+    "sha256": "96e5f35d8ced7fac529f100954dc70e5f1aed5b59d250d02d48790f46de08f7e",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/音视频验证详情.json",
+    "bytes": 1505,
+    "sha256": "05af1df2ec6342ffa369821631a1410572a552e9a5f8279446381dc2b89e1a08",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/03_技术原型Demo/验证记录.txt",
+    "bytes": 1228,
+    "sha256": "2f40d2e6695fc9a53a665e35aef8fdf44b4ef3cf0482f76de35d1dde38e04efc",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/三维模型说明与参考.txt",
+    "bytes": 2238,
+    "sha256": "218cb60d671fd0300ef1e49de7e9086442efc3ea0e90fedf5a31f5ad4ec07ee0",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/三维空间交互展示.html",
+    "bytes": 649328,
+    "sha256": "dd144487706f411f11713cba41f8ea29080798f8cd8ef6aabe1ae3c2cbb36b1e",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/效果图_五层整体剖切.png",
+    "bytes": 313716,
+    "sha256": "7a57f3148335dcf5bb15a460d63579b789c799a2229c1cd44b37d952567dec5e",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/模型源码/architecture.js",
+    "bytes": 12935,
+    "sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/模型源码/build.cjs",
+    "bytes": 569,
+    "sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/模型源码/floor-pilots.js",
+    "bytes": 5826,
+    "sha256": "3a8cc3e127b2b58cb805fa97d95c38b59ba8bdfd71f09d1080b4e35dbe962e18",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/模型源码/library-environment.js",
+    "bytes": 3498,
+    "sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/模型源码/library-layout.js",
+    "bytes": 10092,
+    "sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/模型源码/package.json",
+    "bytes": 253,
+    "sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/模型源码/scene.js",
+    "bytes": 28235,
+    "sha256": "265a4cf4912713ba62764e36c5b0fa3ce7b03cd205cc745a2f16f99caee3bf7e",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/模型源码/viewer-template.html",
+    "bytes": 15526,
+    "sha256": "bc251503ad2478b336d7e292b4077944ae1d64b3759ebb419cc606a05ad4d71b",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/模型源码/源码使用说明.txt",
+    "bytes": 682,
+    "sha256": "f6c7b2bdad65373067dde9d10e6893abd2e278449f9683fb1c4cfdc4db2a03b6",
+    "originalMatch": true
+  },
+  {
+    "path": "01_现有项目原样保存/06_三维空间设计/第三方许可_Three.js.txt",
+    "bytes": 1081,
+    "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+    "originalMatch": true
+  }
+]

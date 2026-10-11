@@ -1,0 +1,7 @@
+观看HTML无需安装依赖。修改源码时，安装Node.js，在本目录执行npm install，再执行npm run build。构建覆盖上一级三维空间交互展示.html，请先保存个人版本。
+scene.js：楼群、图书馆、剖切、俯瞰与分层状态。
+architecture.js：完整纵深楼群、主三前部及后部馆舍。
+library-layout.js：2025馆藏参照与五层几何。
+library-environment.js：湖畔环境、平台、标识和步道。
+floor-pilots.js：每层拟议试点设施、常态/启用动作和保护说明。
+viewer-template.html：页面界面。Three.js与esbuild版本固定。GLB可以另行编辑，修改GLB不会自动改变HTML。

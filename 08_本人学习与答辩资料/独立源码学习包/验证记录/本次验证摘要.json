@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-11",
+  "teachingTests": {
+    "runner": "Node.js v24.19.0 / node:test",
+    "tests": 31,
+    "passed": 31,
+    "failed": 0,
+    "scope": "仅新增教学状态机函数；与原项目浏览器核对不同",
+    "resultSource": "本次真实运行工具输出；整理时未重复运行已通过测试。"
+  },
+  "browser": {
+    "splitRule": {
+      "approve": true,
+      "staleInvalidated": true,
+      "consent": true,
+      "clearTopic": true
+    },
+    "annotatedRule": {
+      "runtime": "passed"
+    },
+    "annotatedModel": {
+      "floors": 5,
+      "conditions": true,
+      "protectedPositions": true,
+      "fifthFloorNoMoving": true,
+      "restoreAndCooldown": true
+    },
+    "manualWeb": {
+      "chapters": 26,
+      "search": "passed"
+    },
+    "sourceWeb": {
+      "files": 15,
+      "search": "passed",
+      "functions": 70
+    },
+    "errors": []
+  },
+  "pdf": {
+    "pages": 66,
+    "renderedPages": 66,
+    "outlineChapters": 26,
+    "questionsPresent": 68,
+    "pageNumbers": "passed",
+    "textBounds": "passed",
+    "visualInspection": "passed",
+    "visuallyInspectedPages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66
+    ],
+    "visualMethod": "105 dpi 完整页面渲染，17张联系表覆盖全部66页；逐页检查文字、表格、图片和图线。"
+  },
+  "rawCopiesVerified": 26,
+  "original3DBuild": {
+    "result": "byte-identical",
+    "sha256": "dd144487706f411f11713cba41f8ea29080798f8cd8ef6aabe1ae3c2cbb36b1e",
+    "bytes": 649328
+  },
+  "relativeHTMLLinks": {
+    "checked": 52,
+    "missing": []
+  },
+  "limits": [
+    "不代表馆内现场验收",
+    "没有真实AI准确率、声学、安全通行或节能实测"
+  ]
+}

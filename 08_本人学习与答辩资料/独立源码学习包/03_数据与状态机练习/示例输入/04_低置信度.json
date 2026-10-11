@@ -1,0 +1,12 @@
+{
+  "zone": "B",
+  "people": 4,
+  "confidence": 0.4,
+  "durationSec": 150,
+  "vacancySec": 0,
+  "acoustic": true,
+  "available": true,
+  "objection": false,
+  "sensorFault": false,
+  "reserved": false
+}

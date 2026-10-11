@@ -1,0 +1,16 @@
+# 本仓库只版本化项目交付与源码，排除本机依赖、私密凭据和重复压缩包。
+node_modules/
+__pycache__/
+*.pyc
+work/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.zip
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-11",
+  "version": "本人实录准备版，已移除合成配音",
+  "full_video_decode": "passed",
+  "width": 1920,
+  "height": 1080,
+  "duration_seconds": 325.28,
+  "video_codec": "H.264",
+  "audio_stream_count": 0,
+  "no_audio_is_intentional": true,
+  "chapter_count": 17,
+  "subtitle_count": 132,
+  "recording_preview_software_checks": [
+    {
+      "browser": "Edge",
+      "status": "passed",
+      "isolatedHTML": true,
+      "video": {
+        "duration": 325.28,
+        "w": 1920,
+        "h": 1080
+      },
+      "ownRecordingPreview": {
+        "duration": 20,
+        "synchronization": true,
+        "seek": true,
+        "pause": true
+      },
+      "chapters": 17,
+      "scriptErrors": [],
+      "scope": "同步与解码的软件检查；使用本地测试信号，未作为用户配音。"
+    },
+    {
+      "browser": "QQBrowser",
+      "status": "passed",
+      "isolatedHTML": true,
+      "video": {
+        "duration": 325.28,
+        "w": 1920,
+        "h": 1080
+      },
+      "ownRecordingPreview": {
+        "duration": 20,
+        "synchronization": true,
+        "seek": true,
+        "pause": true
+      },
+      "chapters": 17,
+      "scriptErrors": [],
+      "scope": "同步与解码的软件检查；使用本地测试信号，未作为用户配音。"
+    }
+  ],
+  "scope": "录音预览使用本地测试信号检查同步与暂停，不代表已经录制用户讲解或试听实际设备。"
+}

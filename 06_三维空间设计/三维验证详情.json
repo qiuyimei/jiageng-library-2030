@@ -1,0 +1,430 @@
+{
+  "date": "2026-10-11",
+  "version": "lakeside environment and integrated five-floor proposed pilots",
+  "browsers": [
+    {
+      "browser": "Edge",
+      "errors": [],
+      "files": [
+        {
+          "file": "嘉庚建筑意象.glb",
+          "bytes": 24601596,
+          "nodes": 6530,
+          "meshes": 6439,
+          "chairs": 0,
+          "embedded": true
+        },
+        {
+          "file": "主三背面_图书馆外观.glb",
+          "bytes": 4418928,
+          "nodes": 1282,
+          "meshes": 1230,
+          "chairs": 0,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_五层整体剖切.glb",
+          "bytes": 6909024,
+          "nodes": 3961,
+          "meshes": 3713,
+          "chairs": 67,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_五层展开.glb",
+          "bytes": 6909004,
+          "nodes": 3961,
+          "meshes": 3713,
+          "chairs": 67,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_1楼_空间剖切.glb",
+          "bytes": 166572,
+          "nodes": 89,
+          "meshes": 85,
+          "chairs": 0,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_1楼_试点常态.glb",
+          "bytes": 183648,
+          "nodes": 101,
+          "meshes": 94,
+          "chairs": 0,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_1楼_试点启用.glb",
+          "bytes": 194624,
+          "nodes": 107,
+          "meshes": 100,
+          "chairs": 0,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_2楼_空间剖切.glb",
+          "bytes": 1785848,
+          "nodes": 1011,
+          "meshes": 964,
+          "chairs": 2,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_2楼_试点常态.glb",
+          "bytes": 1857868,
+          "nodes": 1057,
+          "meshes": 1003,
+          "chairs": 6,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_2楼_试点启用.glb",
+          "bytes": 1859712,
+          "nodes": 1058,
+          "meshes": 1004,
+          "chairs": 6,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_3楼_空间剖切.glb",
+          "bytes": 1390836,
+          "nodes": 789,
+          "meshes": 749,
+          "chairs": 2,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_3楼_试点常态.glb",
+          "bytes": 1523492,
+          "nodes": 876,
+          "meshes": 821,
+          "chairs": 10,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_3楼_试点启用.glb",
+          "bytes": 1523564,
+          "nodes": 876,
+          "meshes": 821,
+          "chairs": 10,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_4楼_空间剖切.glb",
+          "bytes": 2005952,
+          "nodes": 1141,
+          "meshes": 1082,
+          "chairs": 3,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_4楼_试点常态.glb",
+          "bytes": 2078084,
+          "nodes": 1187,
+          "meshes": 1121,
+          "chairs": 7,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_4楼_试点启用.glb",
+          "bytes": 2079932,
+          "nodes": 1188,
+          "meshes": 1122,
+          "chairs": 7,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_5楼_空间剖切.glb",
+          "bytes": 1534900,
+          "nodes": 930,
+          "meshes": 833,
+          "chairs": 60,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_5楼_试点常态.glb",
+          "bytes": 1544460,
+          "nodes": 936,
+          "meshes": 838,
+          "chairs": 60,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_5楼_试点启用.glb",
+          "bytes": 1572888,
+          "nodes": 951,
+          "meshes": 853,
+          "chairs": 60,
+          "embedded": true
+        },
+        {
+          "file": "图书馆_五层试点总览.glb",
+          "bytes": 7214784,
+          "nodes": 4158,
+          "meshes": 3877,
+          "chairs": 83,
+          "embedded": true
+        }
+      ],
+      "mobile": {
+        "width": 390,
+        "scroll": 390
+      },
+      "checks": [
+        "four companions equal Main3 longitudinal extent",
+        "lake, terraces and embedded signs",
+        "5 floors same model for cutaway/pilot/top",
+        "approval and invalidation",
+        "reservation and objection blocks",
+        "protected collections and structure unchanged",
+        "5F no furniture movement",
+        "restore and cooldown",
+        "whole pilot exploded",
+        "mobile no horizontal overflow"
+      ]
+    },
+    {
+      "browser": "QQBrowser",
+      "errors": [],
+      "files": [],
+      "mobile": {
+        "width": 390,
+        "scroll": 390
+      },
+      "checks": [
+        "four companions equal Main3 longitudinal extent",
+        "lake, terraces and embedded signs",
+        "5 floors same model for cutaway/pilot/top",
+        "approval and invalidation",
+        "reservation and objection blocks",
+        "protected collections and structure unchanged",
+        "5F no furniture movement",
+        "restore and cooldown",
+        "whole pilot exploded",
+        "mobile no horizontal overflow"
+      ]
+    }
+  ],
+  "focus": [
+    {
+      "browser": "QQBrowser",
+      "focusedFiveFloors": true,
+      "errors": [],
+      "mobile": {
+        "scroll": 390,
+        "width": 390
+      }
+    }
+  ],
+  "models": [
+    {
+      "file": "主三背面_图书馆外观.glb",
+      "bytes": 4418928,
+      "nodes": 1282
+    },
+    {
+      "file": "嘉庚建筑意象.glb",
+      "bytes": 24601596,
+      "nodes": 6530
+    },
+    {
+      "file": "图书馆_1楼_空间剖切.glb",
+      "bytes": 166572,
+      "nodes": 89
+    },
+    {
+      "file": "图书馆_1楼_试点启用.glb",
+      "bytes": 169436,
+      "nodes": 93
+    },
+    {
+      "file": "图书馆_1楼_试点常态.glb",
+      "bytes": 158464,
+      "nodes": 87
+    },
+    {
+      "file": "图书馆_2楼_空间剖切.glb",
+      "bytes": 1785848,
+      "nodes": 1011
+    },
+    {
+      "file": "图书馆_2楼_试点启用.glb",
+      "bytes": 1834352,
+      "nodes": 1044
+    },
+    {
+      "file": "图书馆_2楼_试点常态.glb",
+      "bytes": 1832508,
+      "nodes": 1043
+    },
+    {
+      "file": "图书馆_3楼_空间剖切.glb",
+      "bytes": 1390836,
+      "nodes": 789
+    },
+    {
+      "file": "图书馆_3楼_试点启用.glb",
+      "bytes": 1498200,
+      "nodes": 862
+    },
+    {
+      "file": "图书馆_3楼_试点常态.glb",
+      "bytes": 1498128,
+      "nodes": 862
+    },
+    {
+      "file": "图书馆_4楼_空间剖切.glb",
+      "bytes": 2005952,
+      "nodes": 1141
+    },
+    {
+      "file": "图书馆_4楼_试点启用.glb",
+      "bytes": 2054540,
+      "nodes": 1174
+    },
+    {
+      "file": "图书馆_4楼_试点常态.glb",
+      "bytes": 2052692,
+      "nodes": 1173
+    },
+    {
+      "file": "图书馆_5楼_空间剖切.glb",
+      "bytes": 1534900,
+      "nodes": 930
+    },
+    {
+      "file": "图书馆_5楼_试点启用.glb",
+      "bytes": 1547452,
+      "nodes": 937
+    },
+    {
+      "file": "图书馆_5楼_试点常态.glb",
+      "bytes": 1519024,
+      "nodes": 922
+    },
+    {
+      "file": "图书馆_五层展开.glb",
+      "bytes": 6909004,
+      "nodes": 3961
+    },
+    {
+      "file": "图书馆_五层整体剖切.glb",
+      "bytes": 6909024,
+      "nodes": 3961
+    },
+    {
+      "file": "图书馆_五层试点总览.glb",
+      "bytes": 7087500,
+      "nodes": 4088
+    },
+    {
+      "file": "早期概念参考_非现状布局/空间常态阅读.glb",
+      "bytes": 1305484,
+      "nodes": 713
+    },
+    {
+      "file": "早期概念参考_非现状布局/空间研讨配置.glb",
+      "bytes": 1370816,
+      "nodes": 741
+    }
+  ],
+  "images": [
+    "效果图_1楼俯瞰.png",
+    "效果图_1楼剖切.png",
+    "效果图_1楼试点俯瞰.png",
+    "效果图_1楼试点启用.png",
+    "效果图_1楼试点启用近景.png",
+    "效果图_1楼试点常态.png",
+    "效果图_1楼试点常态近景.png",
+    "效果图_2楼俯瞰.png",
+    "效果图_2楼剖切.png",
+    "效果图_2楼试点俯瞰.png",
+    "效果图_2楼试点启用.png",
+    "效果图_2楼试点启用近景.png",
+    "效果图_2楼试点常态.png",
+    "效果图_2楼试点常态近景.png",
+    "效果图_3楼俯瞰.png",
+    "效果图_3楼剖切.png",
+    "效果图_3楼试点俯瞰.png",
+    "效果图_3楼试点启用.png",
+    "效果图_3楼试点启用近景.png",
+    "效果图_3楼试点常态.png",
+    "效果图_3楼试点常态近景.png",
+    "效果图_4楼俯瞰.png",
+    "效果图_4楼剖切.png",
+    "效果图_4楼试点俯瞰.png",
+    "效果图_4楼试点启用.png",
+    "效果图_4楼试点启用近景.png",
+    "效果图_4楼试点常态.png",
+    "效果图_4楼试点常态近景.png",
+    "效果图_5楼俯瞰.png",
+    "效果图_5楼剖切.png",
+    "效果图_5楼试点俯瞰.png",
+    "效果图_5楼试点启用.png",
+    "效果图_5楼试点启用近景.png",
+    "效果图_5楼试点常态.png",
+    "效果图_5楼试点常态近景.png",
+    "效果图_中庭回廊.png",
+    "效果图_五层展开.png",
+    "效果图_五层整体剖切.png",
+    "效果图_五层试点展开.png",
+    "效果图_图书馆入口标识.png",
+    "效果图_图书馆檐角.png",
+    "效果图_图书馆湖畔全景.png",
+    "效果图_图书馆背面.png",
+    "效果图_图书馆西侧.png",
+    "效果图_屋顶檐角.png",
+    "效果图_建筑意象.png",
+    "效果图_建筑正面.png",
+    "效果图_柱梁骨架.png",
+    "效果图_楼群背面.png",
+    "效果图_湖畔平台.png"
+  ],
+  "scope": "离线交互与GLB验证；非实测、真实AI、声学或结构验收",
+  "sourceRebuild": {
+    "publishedSourceBuild": "passed",
+    "bytes": 649328,
+    "exactHTMLMatch": true,
+    "sha256": "dd144487706f411f11713cba41f8ea29080798f8cd8ef6aabe1ae3c2cbb36b1e"
+  },
+  "finalUI": [
+    {
+      "browser": "Edge",
+      "errors": [],
+      "focusChangesToPerspective": true,
+      "wholeFromPlanReturnsToCutaway": true,
+      "renderOnChangeWorks": true
+    },
+    {
+      "browser": "QQBrowser",
+      "errors": [],
+      "focusChangesToPerspective": true,
+      "wholeFromPlanReturnsToCutaway": true,
+      "renderOnChangeWorks": true
+    }
+  ],
+  "finalRender": {
+    "errors": [],
+    "files": [
+      "图书馆_1楼_试点常态.glb",
+      "图书馆_1楼_试点启用.glb",
+      "图书馆_2楼_试点常态.glb",
+      "图书馆_2楼_试点启用.glb",
+      "图书馆_3楼_试点常态.glb",
+      "图书馆_3楼_试点启用.glb",
+      "图书馆_4楼_试点常态.glb",
+      "图书馆_4楼_试点启用.glb",
+      "图书馆_5楼_试点常态.glb",
+      "图书馆_5楼_试点启用.glb",
+      "图书馆_五层试点总览.glb"
+    ],
+    "protectedSignaturesUnchanged": true,
+    "overheadBeamsHiddenForClarity": true
+  },
+  "pdf": {
+    "visualPages": 12,
+    "innovationPages": 9,
+    "renderedAndVisuallyChecked": true
+  }
+}
