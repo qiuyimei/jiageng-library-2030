@@ -1,0 +1,2 @@
+视觉工具使用MediaPipe官方EfficientDet Lite0预训练模型，不是本项目训练的模型。权重通过download_model.py从官方地址下载；models/model-manifest.json记录已验证来源及SHA256。许可入口：https://github.com/google-ai-edge/mediapipe/blob/master/LICENSE。模型与训练数据的具体使用条件以官方说明为准。
+只完成模型加载及空白图unknown输出，未测真人或馆内准确率。安装依赖产生的第三方代码不属于本人原创成果。

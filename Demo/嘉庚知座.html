@@ -1,0 +1,1448 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>嘉庚知座 · 分层选座与到座登记</title><style>
+:root{--ink:#193c3d;--muted:#607773;--green:#216b59;--line:#d6e2d9;--paper:#f2f4ee;--gold:#ae7e25}*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;color:var(--ink);background:var(--paper);font:15px/1.65 'Microsoft YaHei',sans-serif}button,input,select{font:inherit}a{color:var(--green);text-underline-offset:4px}button{border:1px solid #b8cec2;border-radius:8px;background:white;color:var(--ink);padding:9px 15px;cursor:pointer}button:hover{background:#e5f0e7}button:disabled{opacity:.45;cursor:default}button.active,.primary{background:var(--green);color:white;border-color:var(--green)}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}h1{font-size:32px;margin:5px 0}h2{font-size:22px;margin:0 0 12px}h3{font-size:17px;margin:0 0 8px}p{margin:8px 0}.muted,small{color:var(--muted)}.small,small{font-size:12px}.eyebrow{font-size:11px;letter-spacing:2px;color:#8a744e}.top{background:#fff;border-bottom:1px solid var(--line)}.top-inner,main{max-width:1440px;margin:auto;padding:22px 32px}.topnav{display:flex;justify-content:space-between;gap:20px;font-size:13px}.topnav a{text-decoration:none}.heading{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:20px}.mode-link{display:inline-block;text-decoration:none;border:1px solid #b8cec2;border-radius:8px;padding:10px 16px}.notice{border-left:4px solid #b69758;background:#fff7e8;padding:13px 18px;font-size:13px}.panel{background:white;border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}.floor-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px;margin:24px 0}.floor-tile{text-align:left;min-height:180px;padding:23px;display:flex;flex-direction:column;gap:9px}.floor-tile strong{font-size:35px}.floor-tile span{display:block;font-size:13px}.floor-tile small{margin-top:auto}.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.toolbar h2{margin-right:auto;margin-bottom:0}.floorbar{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.stats{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}.stats span{padding:6px 10px;background:#edf2ed;border-radius:6px;font-size:13px}.filters{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:18px;align-items:end}.filters label{display:block;font-size:13px}.filters select{display:block;width:100%;border:1px solid var(--line);padding:9px;border-radius:6px;background:white;margin-top:5px}.checks{display:flex;flex-direction:column;gap:6px}.checks label{display:block}.results{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}.result{padding:16px;border:1px solid #d6c28d;border-radius:8px;background:#fff9e9}.result strong{display:block;color:#896521}.result h3{margin-top:6px}.result p{font-size:12px}.result button{padding:6px 10px;font-size:13px}.legend{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0;font-size:12px}.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px}.board{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;margin-top:18px}.seat{min-height:86px;padding:10px 5px;border:1px solid #cbd6d1;background:#f0f3f3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.seat strong{font-size:17px}.seat small{font-size:11px;color:inherit}.seat[data-kind=available]{background:#e0efe6;color:#256149}.seat[data-kind=occupied]{background:#f5e4df;color:#914c40}.seat[data-kind=away]{background:#f7eed7;color:#846824}.seat[data-kind=items]{background:#eee5f0;color:#796482}.seat[data-kind=protected]{background:#e9e5db;color:#6a614e}.seat.selected{outline:3px solid var(--green);outline-offset:2px}.seat.ranked{border:2px solid #bd8b2d;box-shadow:0 0 14px #c3973b65;background:#fff2bf}.list-head{display:flex;align-items:center;justify-content:space-between;gap:16px}.seat-pages{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:22px}.seat-detail{margin:18px 0 0;padding:20px;border-radius:9px;background:#eaf1eb;border:1px solid #c7dacf}.detail-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.detail-actions a{border:1px solid #b8cec2;border-radius:7px;padding:8px 12px;text-decoration:none;background:white}.map-stage{overflow:auto;max-height:720px;min-height:380px;border:1px solid var(--line);border-radius:8px;background:#f4f1e7;overscroll-behavior:contain;margin-top:15px}.plan{display:block;max-width:none}.plan [role=button]{cursor:pointer}.plan [role=button]:focus{outline:none;stroke:#f1b42f;stroke-width:.18}.check-form{max-width:800px}.check-form select{padding:9px;border:1px solid var(--line);border-radius:7px}.check-confirm{display:block;padding:14px;background:#fff7e8;margin-top:16px}.check-confirm input{width:19px;height:19px;vertical-align:middle}.check-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.check-buttons button{padding:14px 10px}.help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.help-grid article{padding:18px;background:#edf2ed;border-radius:8px}.flash{position:sticky;bottom:14px;background:#173e36;color:white;border-radius:8px;padding:12px 18px;box-shadow:0 5px 20px #183d3b20;z-index:3}.empty{padding:22px;color:var(--muted);border:1px dashed #cbd8cc;border-radius:8px}.summary{display:flex;justify-content:space-between;align-items:center;gap:14px}footer{padding:20px 0;font-size:12px;color:var(--muted)}
+@media(max-width:1000px){.floor-grid{grid-template-columns:repeat(3,1fr)}.filters{grid-template-columns:repeat(2,1fr)}.board{grid-template-columns:repeat(6,1fr)}.results{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.top-inner,main{padding:18px}.heading{display:block}.mode-link{margin-top:12px}.floor-grid{grid-template-columns:repeat(2,1fr)}.floor-tile{min-height:145px;padding:16px}.board{grid-template-columns:repeat(3,1fr);gap:10px}.panel{padding:17px}.filters,.help-grid{grid-template-columns:1fr}.results{grid-template-columns:1fr}.check-buttons{grid-template-columns:repeat(2,1fr)}.list-head,.summary{display:block}.plan{touch-action:pan-x pan-y}h1{font-size:28px}.topnav{font-size:12px;flex-wrap:wrap}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* 选座工作区保持有限高度，完整清单通过分页访问。 */
+.top-inner,main{max-width:1240px}.panel{padding:18px;margin-bottom:16px}.top-inner{padding-top:14px;padding-bottom:14px}.heading{margin-top:12px}h1{font-size:28px}.stats{margin:8px 0}.legend{margin:10px 0}.board{grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;margin-top:12px}.seat{min-height:62px;padding:7px 3px}.seat strong{font-size:15px}.seat-pages{margin-top:12px}.view-switch{margin-bottom:14px}.view-switch span{margin-left:auto}.list-head h2{font-size:18px}.list-head p{font-size:12px}.map-stage{height:clamp(300px,49vh,460px);min-height:0;max-height:460px;overflow:auto}.plan{max-width:none;min-width:100%;min-height:100%;background:#e8e5d8}.plan-pane h2{font-size:18px}.results:has(>.small){display:flex;align-items:center}.result{padding:10px 12px}.result p{margin:4px 0}.notice{padding:9px 14px}.floor-tile{min-height:135px;padding:18px}.floor-grid{gap:10px;margin:16px 0}.floor-tile strong{font-size:28px}.seat-detail{padding:14px}.check-form{max-width:none}
+@media(max-width:650px){.board{grid-template-columns:repeat(4,1fr)}.map-stage{height:360px}.view-switch span{display:none}.filters{gap:10px}.result{padding:12px}}
+.priority-tools{margin:14px 0;padding:12px;background:#fff8e7;border:1px solid #e3d2a2;border-radius:8px}.priority-tools .toolbar{gap:7px}.priority-tools button{padding:6px 10px;font-size:13px}.priority-tools p{margin:0 0 8px}.priority-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.voice-box{background:#f3f6f0;border:1px solid var(--line);border-radius:9px;padding:14px;margin:0 0 18px}.voice-box label{display:block;font-weight:600;margin-bottom:6px}.voice-box textarea{font:inherit;width:100%;resize:vertical;min-height:66px;max-height:150px;padding:9px;border:1px solid #bdcec2;border-radius:6px;background:white}.voice-box .toolbar{margin-top:8px}.voice-box .small{margin-bottom:0}.voice-chip{display:inline-block;background:#e2ece1;border:1px solid #c3d3bd;border-radius:5px;padding:3px 9px;margin:7px 6px 0 0;font-size:13px}.voice-box details{margin-top:8px;font-size:12px;color:var(--muted)}</style></head><body>
+<header class="top"><div class="top-inner"><nav class="topnav"><a href="../00_打开查看.html">← 答辩与材料总展示</a><a id="modelOverviewLink" href="建筑与五层展示.html">嘉庚图书馆三维空间 ↗</a></nav><div class="heading"><div><span class="eyebrow">JIAGENG / SEAT & RESOURCE / 2030</span><h1 id="pageTitle">嘉庚知座 · 分层选座</h1><p class="muted" id="pageLead">先选楼层，再看这一层的完整模型座位、登记状态和学习资源偏好。</p></div><a class="mode-link" id="modeLink" href="嘉庚知座.html?mode=checkin">我已到座，去登记 →</a></div></div></header>
+<main><p class="notice" id="scopeNotice">本机交互原型：状态来自读者主动登记或手动载入的示例，不接入监控。未连接全馆共享后台、真实预约和校内身份系统；模型座号不等于馆方正式座号。</p>
+<section id="landing"><div class="summary"><div><h2 style="margin:22px 0 0">从哪一层开始？</h2><p class="muted">先选楼层；座位图与列表切换查看，专座另作标记。</p></div><div class="toolbar"><button id="loadExample">重置演示状态</button><button id="clearExample">仅用本人登记</button></div></div><div id="floorCards" class="floor-grid"></div><div class="help-grid"><article><h3>1 · 分层查看</h3><p>一楼至五楼各自显示完整座位表，按北、南、东分区筛选；座位多时分页展示。</p></article><article><h3>2 · 比较位置</h3><p>近期离座登记可供初筛，再结合馆藏主题、模型桌型和临窗偏好显示四级优先。</p></article><article><h3>3 · 到座自助登记</h3><p>到现场后登记本人入座、暂离或离座；未登记、过期及有物的位置保留待核对。</p></article></div></section>
+<section id="floorView" hidden><div class="floorbar"><button id="backFloors">← 楼层总览</button><div id="floorNav" class="toolbar"></div><button id="exampleOnFloor">重置演示状态</button></div><div class="panel"><div class="toolbar"><h2 id="floorTitle"></h2><a id="floorModel" href="建筑与五层展示.html">查看本层三维</a></div><p class="muted" id="floorDescription"></p><div class="stats" id="floorStats"></div><div class="legend" id="legend"></div><p class="small">固定平面方向：左北、右南、上东。这里列出模型中的每把阅览椅；数量、坐标、馆内真实座号与插座仍需现场核对。</p></div>
+<section class="panel" id="recommendPanel"><h2>按本次学习需求比较位置</h2><form id="preferenceForm"><div class="voice-box"><label for="voiceText">说出今天的选座需求，也可以直接输入</label><textarea id="voiceText" rows="2" maxlength="500" placeholder="例如：我想在文学资料附近看书，喜欢靠窗，稍后需要打印。"></textarea><div class="toolbar"><button id="voiceStart" type="button" aria-pressed="false">开始说话</button><button id="voiceStop" type="button" disabled>结束录音</button><button id="voiceParse" type="button">解析这句话</button><button id="voiceApply" type="button" class="primary" disabled>确认条件并推荐</button></div><p id="voiceStatus" class="small" role="status" aria-live="polite">先检查转写文字，再确认条件；不会直接预约或替你登记。</p><div id="voicePreview" aria-live="polite"></div><p class="small">只说选座需求。浏览器语音模式可能使用在线服务；本地离线模式不上传或保存录音。安静阅览区建议输入文字。</p><details id="localVoiceHelp"><summary>本地离线语音入口</summary><p>完整解压本人包，双击“启动本地语音.cmd”，然后在弹出的页面使用录音。首次使用需允许麦克风。仅监听本机，十分钟无操作自动结束。</p><p><a href="http://127.0.0.1:8766/Demo/嘉庚知座.html#floor=2">打开已启动的本地语音页面</a> <button id="stopLocalVoice" type="button" hidden>结束本地语音服务</button></p></details></div><div class="filters"><label>资料或馆藏主题<select id="subject"><option value="own">自带资料 / 不限主题</option><option value="economy">经济与社科（2F示意）</option><option value="literature">文学与语言（3F示意）</option><option value="technology">计算机与工程（4F示意）</option><option value="periodicals">报刊与外文书（5F示意）</option></select></label><label>比较范围<select id="searchRange"><option value="current">仅当前楼层</option><option value="all">比较五层</option></select></label><div class="checks"><label><input id="windowPreference" type="checkbox">偏好两侧临窗桌排</label><label><input id="powerPreference" type="checkbox">仅带电源的模型桌型</label><label><input id="printPreference" type="checkbox">考虑顺路到一楼打印</label></div><button class="primary" type="submit">生成第1—4优先</button></div></form><div id="recommendations" class="results"></div><p class="small">只从有效的“离座登记”初筛；登记不是预约或空席保证。馆藏按主题楼层示意，未查询实时书目。排序是透明规则计算，不声称模型已学会个人偏好。</p></section>
+<section class="panel" id="seatWorkspace"><div class="toolbar view-switch"><button id="showMap" class="active">座位图</button><button id="showList">座位列表</button><span class="small">同一楼层，两种查看方式</span></div><div class="list-head"><div><h2 id="boardTitle">这一层的座位表</h2><p class="muted" id="boardDescription"></p></div><div class="toolbar"><label>区域 <select id="regionFilter"><option value="">全层</option><option value="北">北区（左侧）</option><option value="南">南区（右侧）</option><option value="东">东区（上方）</option></select></label><label>状态 <select id="stateFilter"><option value="">全部</option><option value="available">离座登记</option><option value="occupied">有人登记</option><option value="away">暂离登记</option><option value="items">有物待核对</option><option value="unknown">待核对</option><option value="protected">馆方专座</option></select></label></div></div><div id="priorityTools" class="priority-tools" hidden><p class="small" id="priorityHint">点击优先项，放大到座位附近</p><div class="toolbar"><button id="focusPriorityArea">放大推荐区域</button><div id="priorityJumps" class="toolbar" role="group" aria-label="推荐座位快捷定位"></div></div></div><div id="listContent" hidden><div id="seatCards" class="board"></div><div class="seat-pages"><button id="previousPage">上一页</button><span id="pagination"></span><button id="nextPage">下一页</button></div></div><div id="seatDetail" class="seat-detail" hidden aria-live="polite"></div><section class="plan-pane" id="planPanel"><div class="toolbar"><h2>本层座位图</h2><button id="zoomOut">缩小</button><span id="zoomText">100%</span><button id="zoomIn">放大</button><button id="resetZoom">适配窗口</button></div><p class="small">点击“放大推荐区域”或第1—4优先，直接查看推荐座位附近；“适配窗口”返回全层。也可选择分区查看，左右外围桌排均标为临窗带。</p><div class="map-stage" id="mapStage"><svg id="floorPlan" class="plan" role="group" aria-label="与三维布局同源的本层座位图"></svg></div></section></section>
+<section class="panel" id="checkinPanel" hidden><div class="check-form"><h2 id="checkinTitle">选择座位后办理到座登记</h2><p id="checkinExplanation">请先点上方座位卡，或下方平面图中的椅位。登记只说明本人现场申报，不赋予馆方使用权。</p><label>本次入座登记有效期 <select id="duration"><option value="30">30分钟</option><option value="60">1小时</option><option value="120" selected>2小时</option><option value="240">4小时</option></select></label><label class="check-confirm"><input id="physicalConfirm" type="checkbox"> 我已在现场核对这个座位，并按图书馆规则办理所需预约或签到。</label><div class="check-buttons"><button id="arrive" class="primary" disabled>我已入座</button><button id="away" disabled>本人暂离</button><button id="leave" disabled>本人已离座</button><button id="items" disabled>现场有物待核对</button></div><p class="small">暂离、有物登记及离座登记15分钟后过期。到期均转为待核对，不自动认定为空位；本机不能取消其他读者有效的在座或暂离登记。</p><div id="myReports"></div></div></section>
+</section>
+<details class="panel"><summary>登记方式、隐私与未来接入</summary><p>本版以读者主动登记为状态来源，不要求学生安装摄像头、不采集人脸，也不上传视频。浏览器只保存本机匿名标识、椅位、登记动作和时间。</p><p>同一浏览器同一文件可读取本机登记；换设备、浏览器或移动文件后不保证同步。全馆大屏与手机共享状态需要由馆方授权部署数据库、身份校验、并发控制和滥用申诉流程。</p><p>自助申报存在忘记登记、漏签、错误上报等限制。界面将来源与时间写明，不把无人上报等同无人。真实预约、暂离和专座规则仍以馆方系统为准。</p><p><a href="规则与感知技术演示.html">查看规则融合与可选视觉研究演示 ↗</a> · <a href="../00_打开查看.html#entries">返回完整答辩材料入口</a></p></details>
+<div id="message" class="flash" role="status" aria-live="polite" hidden></div><footer>嘉庚知座 · 智能选座为主，三维辅助定位。本页支持全部模型椅位的自主登记；单独的规则与感知技术演示保留60个可重复测试样本，两者的数据不混用。</footer>
+</main><script>(() => {
+  // src/spatial.js
+  var STAIR_LAYOUT = {
+    1: { kind: "lower", start: 19, end: 11.5, terraces: false, escalator: true },
+    2: { kind: "lower", start: 9.5, end: 2, terraces: true, escalator: false },
+    3: { kind: "upper", start: -1.2, end: -8.7 },
+    4: { kind: "upper", start: -10.7, end: -18.2 }
+  };
+  var EXHIBITION_LAYOUT = {
+    floor: 3,
+    x: 0,
+    z: -8,
+    width: 14.8,
+    depth: 20,
+    boards: [-14, -10, -6, -3].flatMap((z2) => [-3.3, 3.3].map((x) => ({ x, z: z2, rotation: x < 0 ? Math.PI / 2 : -Math.PI / 2 }))),
+    ceramics: { x: -0.4, z: -6.6 },
+    armillary: { x: -0.4, z: 0.4 },
+    smallExhibit: { x: 0, z: -15.8 },
+    access: { back: -1, front: 1.8 },
+    rearSeatingZ: -22.8,
+    rearShelvesZ: -27
+  };
+  var LIBRARY_FOOTPRINT = { axisX: 0, halfWidth: 34.4, front: 34, groundBack: -52.6, upperBack: -78.6 };
+  var TOILET_GRID = { w: 6.5, d: 6.2, columns: 2, rows: 2 };
+  var TOILET_LAYOUT = [-1, 1].map((side) => ({ x: side * (LIBRARY_FOOTPRINT.halfWidth - 0.15 - TOILET_GRID.w), z: LIBRARY_FOOTPRINT.front - 0.15 - TOILET_GRID.d, w: TOILET_GRID.w * 2, d: TOILET_GRID.d * 2, doorRotation: Math.PI }));
+  var GROUND_LAYOUT = {
+    windowX: -31.4,
+    deskZ: [-44, -36, -28, -20, -12, -4, 4, 12],
+    frontZ: 34,
+    hallZ: 20.5,
+    // 右侧柜群放到服务台后；左侧柜群保留。专座区与闭架书库是不同用途。
+    // 左侧柜群与窗边桌排一起向后补长；柜数只用于表现空间，不是现场资产清单。
+    // 左侧阅览和柜库向后接至上层相同纵深；只延展外形，不虚构真实座号与柜数。
+    compactBlocks: [{ x: -24, z: -18.7, w: 8, d: 66, columns: 6 }, { x: 0, z: -16.8, w: 7.2, d: 50.4, columns: 4 }],
+    // 本人2026-10-18补充：服务台后的中央黑色区域两侧为柱间实墙，不是敞开的柱廊。
+    // 两道墙沿x=±6.2的原柱线连接；前端停在服务台后，保留入口及中庭梯的接近空间。
+    partitions: [-6.2, 6.2].map((x) => ({ x, z: -20.6, w: 0.18, d: 63.2 })),
+    // 密集书库与后部收书室之间保留横向通道；小桌仅为收书区外形，不生成可选座位。
+    receivingTables: [-43.8, -47, -50.2].map((z2) => ({ x: -4.6, z: z2, w: 1.55, d: 0.9 })),
+    // 本人补充：打印和专座向大厅内侧移，原右翼长条区域用于咖啡厅。
+    dedicated: { x: 13.9, z: -14.75, w: 6.4, d: 55.5, rows: [-37, -31, -25, -19, -13, -7, -1, 5, 11] },
+    printers: [10.2, 12.4, 14.6, 16.8].map((x) => ({ x, z: 16 })),
+    printPoint: { x: 13.5, z: 18 },
+    rightBoundaryZ: LIBRARY_FOOTPRINT.groundBack,
+    // 一楼与上层读取同一四格尺寸和左侧角落坐标，避免各处单独修改。
+    toilet: { ...TOILET_LAYOUT[0] },
+    // 咖啡厅在一楼右侧，由本人确认且馆方2026活动通知证实存在；尺寸和陈设只作示意。
+    cafe: { x: 26.8, z: -8.9, w: 11.6, d: 49.2, label: "\u5496\u5561\u5385", verifiedUse: true },
+    // 房号与用途来自本人最新现场说明；门宽、家具和尺寸均为示意，工作室不参与选座。
+    rooms: [
+      { x: 26, z: 25.3, w: 13, d: 12.2, label: "107 \u7814\u8BA8\u5BA4", id: "107", staffOnly: false },
+      { x: 30.8, z: -38.3, w: 6.2, d: 6.2, label: "106 \u5DE5\u4F5C\u5BA4", id: "106", staffOnly: true },
+      { x: 2.3, z: -48.6, w: 6.8, d: 6.4, label: "\u6536\u4E66\u5BA4", id: "receiving", staffOnly: true, bookStorage: true }
+    ],
+    // 两侧休息组各整体向外移6.2模型单位，让中央入口及两侧楼梯前的直行通道敞开。
+    // 每组仍为两张沙发夹一个纵向书架；沙发向入口移，靠在前端墙的馆内一面。
+    loungeBackWalls: [-12.1, 12.1].map((x) => ({ x, z: 32, w: 11.8, d: 0.18 })),
+    sofas: [-9.6, -3.7, 3.7, 9.6].map((x) => ({ x: x + Math.sign(x) * 6.2, z: 31.15, rotation: Math.PI })),
+    // 竖向小书架向馆内错开，末端与背墙留缝，避免穿墙；横向仍夹在同组两张沙发中间。
+    smallShelves: [-6.65, 6.65].map((x) => ({ x: x + Math.sign(x) * 6.2, z: 30.1, w: 3.2, d: 0.5, rotation: Math.PI / 2 })),
+    serviceBypass: { x: 19.1, z: -41.7 }
+  };
+  var ELEVATOR_LAYOUT = { x: 13.9, z: -44.7, landing: { x: 16, z: -44.7 }, groundRotation: Math.PI / 2, groundLanding: { x: 16, z: -44.7 }, facadeScale: 2.4, facadeOffset: 1.9 };
+  var TRANSPORT_CORE = {
+    minFloor: 1,
+    left: 10.7,
+    right: 34.2,
+    back: -50.1,
+    front: -43,
+    // 右侧外围白墙接到侧墙；入口朝馆内前方走廊，拓宽不在井道外侧再造一个翼部。
+    entry: { x: 16, z: -43, width: 1.6, face: "front" },
+    // 电梯门前走廊两端均开口；并非给电梯轿厢另外复制一扇门。
+    exits: [{ x: 16, z: -43, width: 1.6, face: "front" }, { x: 16, z: -50.1, width: 1.6, face: "back" }],
+    approach: { x: 19.1, z: -41.7 },
+    corridorX: 16,
+    stair: { leftX: 29.45, rightX: 31.15, width: 1.4, front: -44.6, back: -49.4, landingBack: -49.95 }
+  };
+  function floorBounds(floor2) {
+    const { axisX, halfWidth, groundBack, upperBack } = LIBRARY_FOOTPRINT, left = axisX - halfWidth, right = axisX + halfWidth;
+    return { left, right, back: floor2 === 1 ? groundBack : upperBack, front: GROUND_LAYOUT.frontZ };
+  }
+  function upperFacilities(floor2) {
+    if (floor2 === 1) return { toilets: [], rooms: [], racks: [], lockers: null, culture: null, periodicals: [] };
+    const b = floorBounds(floor2), toilets = TOILET_LAYOUT.map((t) => ({ ...t }));
+    const culture = floor2 === 4 ? { x: b.right - 5, z: b.back + 5.5, w: 8, d: 9, label: "\u4E2D\u65E5\u6587\u5316\u4EA4\u6D41\u4E2D\u5FC3", verifiedUse: true } : null;
+    const rooms = floor2 < 5 ? [b.left + 4.2, b.right - 4.2].flatMap((x) => [b.back + 4, b.back + 10.5, b.back + 17].filter((z2) => !(floor2 === 4 && x > 0 && z2 < b.back + 14)).map((z2) => ({ x, z: z2, w: 6.2, d: 5.5, label: floor2 === 3 ? "\u7814\u8BA8 / \u529F\u80FD\u623F\u95F4\u5E26" : "\u5916\u56F4\u529F\u80FD\u623F\u95F4\u5E26", verifiedUse: false }))).filter((r) => !(r.x + r.w / 2 > TRANSPORT_CORE.left - 0.5 && r.z + r.d / 2 > TRANSPORT_CORE.back - 0.5 && r.z - r.d / 2 < TRANSPORT_CORE.front + 0.5) && !(culture && Math.abs(r.x - culture.x) < (r.w + culture.w) / 2 + 0.5 && Math.abs(r.z - culture.z) < (r.d + culture.d) / 2 + 0.5)) : [];
+    const racks = [];
+    if (floor2 < 5) for (let z2 = -55; z2 > floorBounds(floor2).back + 7; z2 -= 8) for (const x of [-4.8, 0, 4.8]) racks.push({ x, z: z2, w: 3.5 });
+    if (floor2 < 5) for (let z2 = -54; z2 > floorBounds(floor2).back + 22; z2 -= 8) for (const x of [-31.4, 31.4]) racks.push({ x, z: z2, w: 4.4 });
+    const periodicals = floor2 === 5 ? [
+      { x: -27, z: -12, w: 10, d: 3, label: "\u62A5\u7EB8", color: "#c9be68" },
+      { x: -27, z: -5, w: 10, d: 6, label: "\u73B0\u520A", color: "#d7c757" },
+      { x: -27, z: 4, w: 10, d: 6, label: "2019\u20142024 \u8FC7\u520A", color: "#83b7ac" },
+      { x: -27, z: 14, w: 10, d: 8, label: "\u5916\u6587\u539F\u7248\u4E66 YY/YW", color: "#759b84" },
+      { x: -13.9, z: 27, w: 13, d: 6, label: "2013\u20142018 \u8FC7\u520A", color: "#c8966c" },
+      { x: 1.5, z: 27, w: 15, d: 6, label: "2015\u5E74\u81F3\u4ECA\u8FC7\u62A5", color: "#84b7c7" }
+    ] : [];
+    for (const area of periodicals) {
+      const rows = Math.max(1, Math.floor(area.d / 3.3)), cols = area.w > 12 ? 4 : 2;
+      for (let row = 0; row < rows; row++) for (let col = 0; col < cols; col++) racks.push({ x: area.x + (col - (cols - 1) / 2) * Math.min(3.6, area.w / cols), z: area.z + (row - (rows - 1) / 2) * 2.6, w: 2.9, periodical: true });
+    }
+    if (floor2 < 5) {
+      for (const x of [-8, -3.5, 1, 5.5, 10]) for (const z2 of [23.5, 29.5]) racks.push({ x, z: z2, w: 3.5 });
+      for (const x of [-4.8, 0, 4.8]) for (const z2 of floor2 === 3 ? [-33, -35, -44] : [-26, -35, -44]) racks.push({ x, z: z2, w: 3.5 });
+      for (const side of [-1, 1]) for (const z2 of [-28, -22, -18, -12, -6, 0, 6, 12, 18, 24]) {
+        const x = side * (LIBRARY_FOOTPRINT.halfWidth - 3);
+        if (x > TRANSPORT_CORE.left && z2 > TRANSPORT_CORE.back - 0.5 && z2 < TRANSPORT_CORE.front + 0.5) continue;
+        racks.push({ x, z: z2, w: 4.4 });
+      }
+    }
+    return { toilets, rooms, racks, culture, periodicals, lockers: floor2 === 5 ? { x: (b.left + b.right) / 2, z: b.back + 0.65, w: b.right - b.left - 2, d: 0.75 } : null };
+  }
+  function deskChairPosition(desk, slot) {
+    const x = slot % 2 ? desk.dx : -desk.dx, z2 = slot < 2 ? -desk.dz : desk.dz, a = desk.rotation || 0;
+    return { x: desk.x + Math.cos(a) * x + Math.sin(a) * z2, z: desk.z - Math.sin(a) * x + Math.cos(a) * z2, rotation: (slot < 2 ? 0 : Math.PI) + a };
+  }
+  function atriumVoids(floor2) {
+    const ranges = { 2: [[-17, 9.5], [11.5, 16]], 3: [[2, 16]], 4: [[-20, -10.7], [-8.7, 16]], 5: [[-18.2, 16]] }[floor2] || [];
+    const holes = ranges.map(([back, front]) => ({ x: 0, z: (back + front) / 2, w: 12.2, d: front - back, back, front }));
+    if (floor2 > TRANSPORT_CORE.minFloor) {
+      const s = TRANSPORT_CORE.stair;
+      holes.push({ x: (s.leftX + s.rightX) / 2, z: (s.landingBack + s.front) / 2, w: 3.6, d: s.front - s.landingBack, back: s.landingBack, front: s.front, transport: true });
+    }
+    return holes;
+  }
+  function assignRegionalSamples(floor2, list) {
+    for (const d of list) d.sample = null;
+    const choose2 = (region, x, z2) => list.filter((d) => seatRegionAt(d.x, d.z, floor2) === region && (floor2 !== 5 || d.partition)).sort((a, b) => Math.abs(a.x - x) + Math.abs(a.z - z2) - Math.abs(b.x - x) - Math.abs(b.z - z2))[0];
+    [choose2("\u5317", -10.8, 0), choose2("\u5357", 10.8, 0), choose2("\u4E1C", -10.8, -55)].forEach((d, i) => {
+      if (d) d.sample = i;
+    });
+    return list;
+  }
+  var READING_BAY_LAYOUT = {
+    wingRows: [-35, -22, -8, 6],
+    wingRackOffsets: [-3, 0, 3],
+    rackXs: [16.2, 19, 21.8, 24.6],
+    rackWidth: 2.6,
+    innerDeskX: 10.8,
+    windowDeskX: 31.4,
+    deskOffsets: [-2.6, 2.6],
+    eastRackXs: [-21.8, -15.8, -9.8, -3.8, 3.8, 9.8, 15.8, 21.8],
+    eastRackZs: [-68.6, -72, -75.4],
+    eastRackWidth: 3.2,
+    eastDeskXs: [-23.7, -16.8, -10, -3.3, 3.3, 10, 16.8, 23.7],
+    eastDeskZs: [-55.8, -62.9],
+    outerAisleX: 27.4,
+    rearAisleX: 20.4,
+    eastShelfFront: -66.9
+  };
+  function deskFootprint(d) {
+    const x = Math.max(d.w / 2, d.dx + 0.38), z2 = Math.max(d.d / 2, d.dz + 0.6), a = d.rotation || 0;
+    return { x: d.x, z: d.z, hx: Math.abs(Math.cos(a)) * x + Math.abs(Math.sin(a)) * z2, hz: Math.abs(Math.sin(a)) * x + Math.abs(Math.cos(a)) * z2 };
+  }
+  function desksConflict(a, b, gap = 1.1) {
+    const p = deskFootprint(a), q = deskFootprint(b);
+    return Math.abs(p.x - q.x) < p.hx + q.hx + gap && Math.abs(p.z - q.z) < p.hz + q.hz + gap;
+  }
+  function groupedUpperDesks(floor2) {
+    const p = READING_BAY_LAYOUT, list = [];
+    const add = (x, z2, extra = {}) => list.push({ x, z: z2, w: 5, d: 1.65, dx: 1.15, dz: 1.3, sample: null, partition: false, rotation: 0, placementPriority: "\u5357\u5317", ...extra });
+    for (const side of [-1, 1]) for (const row of p.wingRows) for (const x of [p.innerDeskX, p.windowDeskX]) for (const dz of p.deskOffsets) {
+      add(side * x, row + dz, { wingBay: true, baySide: side, bayRow: row, windowBand: x === p.windowDeskX });
+    }
+    for (const side of [-1, 1]) {
+      add(side * p.innerDeskX, 20.5, { windowBand: false });
+      add(side * 17.6, 23.5, { windowBand: false });
+    }
+    if (floor2 === 5) {
+      const exam = { w: 3, d: 1.65, dx: 0.7, dz: 1.2, partition: true };
+      for (const x of [-3.8, 3.8]) for (const z2 of [-28, -36, -44, -50]) add(x, z2, exam);
+      for (const side of [-1, 1]) for (const x of [p.innerDeskX, p.windowDeskX]) for (const z2 of [-14.8, 13.2]) add(side * x, z2, { windowBand: x === p.windowDeskX });
+      for (const x of [16.8, 24]) for (const z2 of [-35, -23.5, -6.8, 6]) add(x, z2, exam);
+      for (const x of [-p.innerDeskX, -p.windowDeskX]) add(x, -42, { windowBand: x === -p.windowDeskX });
+    }
+    const addEast = (x, z2, extra = {}) => {
+      const d = { x, z: z2, w: 5, d: 1.65, dx: 1.15, dz: 1.3, sample: null, partition: floor2 === 5, rotation: Math.PI / 2, eastReadingEdge: true, placementPriority: "\u4E1C\u533A\u8865\u4F4D", ...extra };
+      if (!list.some((other) => desksConflict(d, other))) list.push(d);
+    };
+    if (floor2 === 3) {
+      for (const x of [-9.6, -3.2, 3.2, 9.6]) addEast(x, EXHIBITION_LAYOUT.rearSeatingZ, { w: 3.6, d: 1.2, dz: 0.86, rearRow: true, partition: false });
+      addEast(0, -33, { partition: false });
+    }
+    for (const x of p.eastDeskXs) for (const z2 of p.eastDeskZs) addEast(x, z2, floor2 === 5 ? { w: 3, dx: 0.7, dz: 1.2 } : {});
+    return assignRegionalSamples(floor2, list);
+  }
+  function deskLayouts(floor2) {
+    if (floor2 === 1) return [
+      ...GROUND_LAYOUT.deskZ.map((z2) => ({ x: GROUND_LAYOUT.windowX, z: z2, w: 4.8, d: 1.65, dx: 1.15, dz: 1.3, sample: [-12, -4, 4].includes(z2) ? [-12, -4, 4].indexOf(z2) : null, partition: false, windowBand: true })),
+      // 一楼固定专座以浅色长桌、蓝椅、书立表现。五楼十字挡板改造资料不能证明一楼桌型。
+      // 这些椅子只有外形，没有seatId和可用状态，不能被普通选座流程推荐。
+      ...[12.3, 15.5].flatMap((x) => GROUND_LAYOUT.dedicated.rows.map((z2) => ({ x, z: z2, w: 2.6, d: 1.4, dx: 0.65, dz: 1.15, sample: null, partition: false, dedicated: true })))
+    ];
+    return groupedUpperDesks(floor2);
+  }
+  var floorSeatLabelCache = /* @__PURE__ */ new Map();
+  function seatRegionAt(x, z2, floor2 = 2) {
+    return floor2 > 1 && z2 < TRANSPORT_CORE.back - 2 ? "\u4E1C" : x < 0 ? "\u5317" : "\u5357";
+  }
+  function floorSeatRecords(floor2) {
+    if (floorSeatLabelCache.has(floor2)) return floorSeatLabelCache.get(floor2);
+    const records = [];
+    for (const d of deskLayouts(floor2)) for (let slot = 0; slot < 4; slot++) {
+      const p = deskChairPosition(d, slot);
+      records.push({
+        ...p,
+        region: seatRegionAt(p.x, p.z, floor2),
+        dedicated: !!d.dedicated,
+        id: d.sample === null ? null : `S${floor2}-${String(d.sample * 4 + slot + 1).padStart(2, "0")}`
+      });
+    }
+    for (const region of ["\u5317", "\u5357", "\u4E1C"]) records.filter((r) => r.region === region).sort((a, b) => a.z - b.z || a.x - b.x).forEach((r, i) => r.label = region + (i + 1));
+    floorSeatLabelCache.set(floor2, records);
+    return records;
+  }
+
+  // src/seat-status.js
+  var STORE_KEY = "jiageng-zhizuo-reader-reports-v1";
+  var STATUS = {
+    unknown: { label: "\u5F85\u6838\u5BF9", color: "#7a8791", short: "\uFF1F" },
+    available: { label: "\u79BB\u5EA7\u767B\u8BB0", color: "#28785f", short: "\u7A7A" },
+    occupied: { label: "\u6709\u4EBA\u767B\u8BB0", color: "#b65b4b", short: "\u4EBA" },
+    away: { label: "\u6682\u79BB\u767B\u8BB0", color: "#b28b3e", short: "\u6682" },
+    items: { label: "\u6709\u7269\u5F85\u6838\u5BF9", color: "#927b9b", short: "\u7269" },
+    protected: { label: "\u9986\u65B9\u4E13\u5EA7", color: "#7a6d51", short: "\u4E13" }
+  };
+  var regionCode = { \u5317: "N", \u5357: "S", \u4E1C: "E" };
+  function createSeatCatalog() {
+    const result = [];
+    for (let floor2 = 1; floor2 <= 5; floor2++) {
+      const desks = deskLayouts(floor2);
+      for (const p of floorSeatRecords(floor2)) {
+        const desk = desks.find((d) => [0, 1, 2, 3].some((slot) => {
+          const q = deskChairPosition(d, slot);
+          return Math.abs(q.x - p.x) < 1e-3 && Math.abs(q.z - p.z) < 1e-3;
+        }));
+        result.push({
+          ...p,
+          floor: floor2,
+          sampleId: p.id,
+          id: `F${floor2}-${regionCode[p.region]}${p.label.slice(1).padStart(3, "0")}`,
+          signature: `${floor2}|${p.x.toFixed(3)}|${p.z.toFixed(3)}`,
+          deskKey: `${floor2}|${desk.x}|${desk.z}|${desk.rotation || 0}`,
+          // 模型两侧外围桌排均视为临窗带；按桌中心判定，避免同桌两侧椅子被分成两类。
+          window: Math.abs(desk.x) >= 23.5,
+          power: !!desk.partition,
+          partition: !!desk.partition
+        });
+      }
+    }
+    return result.sort((a, b) => a.floor - b.floor || ["\u5317", "\u5357", "\u4E1C"].indexOf(a.region) - ["\u5317", "\u5357", "\u4E1C"].indexOf(b.region) || Number(a.label.slice(1)) - Number(b.label.slice(1)));
+  }
+  function reportState(seat, record, now = Date.now()) {
+    if (seat.dedicated) return { ...STATUS.protected, kind: "protected", reason: "\u56FA\u5B9A\u4E13\u5EA7\u8D44\u683C\u7531\u9986\u65B9\u7BA1\u7406\uFF0C\u672C\u673A\u4E0D\u529E\u7406\u4F7F\u7528\u6743\u3002" };
+    if (!record || record.signature !== seat.signature || !Number.isFinite(record.at) || !Number.isFinite(record.until) || record.at > now + 5e3 || record.until <= now || record.until <= record.at)
+      return { ...STATUS.unknown, kind: "unknown", reason: record ? "\u767B\u8BB0\u5DF2\u8FC7\u671F\u6216\u4E0D\u5339\u914D\uFF0C\u987B\u73B0\u573A\u6838\u5BF9\uFF1B\u4E0D\u4F1A\u81EA\u52A8\u53D8\u4E3A\u7A7A\u4F4D\u3002" : "\u5C1A\u65E0\u6709\u6548\u767B\u8BB0\uFF0C\u4E0D\u80FD\u636E\u6B64\u8BA4\u5B9A\u65E0\u4EBA\u3002" };
+    if (!["occupied", "away", "items", "available"].includes(record.kind)) return { ...STATUS.unknown, kind: "unknown", reason: "\u767B\u8BB0\u72B6\u6001\u65E0\u6548\u3002" };
+    return {
+      ...STATUS[record.kind],
+      kind: record.kind,
+      at: record.at,
+      until: record.until,
+      owner: record.owner,
+      source: record.source,
+      reason: record.kind === "available" ? "\u8BFB\u8005\u8FD1\u671F\u767B\u8BB0\u5DF2\u79BB\u5EA7\uFF0C\u4ECD\u9700\u73B0\u573A\u6838\u5BF9\u53CA\u9075\u5B88\u9986\u65B9\u89C4\u5219\u3002" : "\u8BFB\u8005\u81EA\u884C\u767B\u8BB0\uFF0C\u672A\u7ECF\u4F20\u611F\u5668\u6216\u9986\u65B9\u7CFB\u7EDF\u6838\u9A8C\u3002"
+    };
+  }
+  function readReports(text2, catalog2, now = Date.now()) {
+    try {
+      if (typeof text2 !== "string" || text2.length > 15e5) return {};
+      const raw = JSON.parse(text2), known = new Map(catalog2.map((s) => [s.id, s]));
+      if (!raw || typeof raw !== "object" || Array.isArray(raw)) return {};
+      const out = {};
+      for (const [id, r] of Object.entries(raw)) {
+        const seat = known.get(id);
+        if (!seat || seat.dedicated || !r || !["occupied", "away", "available", "items"].includes(r.kind) || typeof r.owner !== "string" || r.owner.length > 90 || r.signature !== seat.signature) continue;
+        if (!Number.isFinite(r.at) || !Number.isFinite(r.until) || r.at > now + 5e3 || r.until <= r.at || r.until - r.at > 4 * 60 * 60 * 1e3) continue;
+        out[id] = { kind: r.kind, owner: r.owner, signature: r.signature, at: r.at, until: r.until, source: r.source === "example" ? "example" : "reader" };
+      }
+      return out;
+    } catch {
+      return {};
+    }
+  }
+  function changeReport(catalog2, reports2, { id, kind, owner: owner2, minutes = 120, confirmed = false }, now = Date.now()) {
+    const seat = catalog2.find((s) => s.id === id);
+    if (!seat || seat.dedicated) return { ok: false, message: "\u8BE5\u4F4D\u7F6E\u4E0D\u5B58\u5728\uFF0C\u6216\u5C5E\u4E8E\u987B\u6309\u9986\u65B9\u89C4\u5219\u529E\u7406\u7684\u4E13\u5EA7\u3002" };
+    if (!owner2 || typeof owner2 !== "string" || owner2.length > 90) return { ok: false, message: "\u672C\u673A\u767B\u8BB0\u6807\u8BC6\u65E0\u6548\u3002" };
+    if (!confirmed) return { ok: false, message: "\u8BF7\u5148\u786E\u8BA4\u4F60\u5DF2\u5728\u5EA7\u4F4D\u73B0\u573A\u6838\u5BF9\u3002" };
+    if (!["occupied", "away", "available", "items"].includes(kind)) return { ok: false, message: "\u4E0D\u652F\u6301\u7684\u767B\u8BB0\u64CD\u4F5C\u3002" };
+    const old = reports2[id], state = reportState(seat, old, now);
+    if (["occupied", "away", "items"].includes(state.kind) && old.owner !== owner2) return { ok: false, message: "\u8FD9\u91CC\u5DF2\u6709\u5176\u4ED6\u767B\u8BB0\uFF1B\u8BF7\u73B0\u573A\u6838\u5BF9\u6216\u8054\u7CFB\u5DE5\u4F5C\u4EBA\u5458\uFF0C\u4E0D\u80FD\u8986\u76D6\u5BF9\u65B9\u8BB0\u5F55\u3002" };
+    if (["away", "available"].includes(kind) && (!old || old.owner !== owner2 || !["occupied", "away"].includes(old.kind))) return { ok: false, message: "\u8BF7\u4F7F\u7528\u672C\u4EBA\u5DF2\u5165\u5EA7\u7684\u767B\u8BB0\u529E\u7406\u6682\u79BB\u6216\u79BB\u5EA7\u3002" };
+    const other = catalog2.find((s) => s.id !== id && reports2[s.id]?.owner === owner2 && ["occupied", "away"].includes(reportState(s, reports2[s.id], now).kind));
+    if (kind === "occupied" && other) return { ok: false, message: `\u672C\u673A\u4ECD\u6709${other.floor}F ${other.label}\u7684\u5728\u5EA7\u767B\u8BB0\uFF0C\u8BF7\u5148\u529E\u7406\u79BB\u5EA7\u3002` };
+    const ttl = kind === "available" ? 15 : kind === "away" ? 15 : kind === "items" ? 15 : [30, 60, 120, 240].includes(Number(minutes)) ? Number(minutes) : 120;
+    const record = { kind, owner: owner2, signature: seat.signature, at: now, until: now + ttl * 6e4, source: "reader" };
+    return { ok: true, reports: { ...reports2, [id]: record }, record, message: kind === "available" ? "\u5DF2\u8BB0\u5F55\u672C\u4EBA\u79BB\u5EA7\uFF1B15\u5206\u949F\u540E\u8F6C\u4E3A\u5F85\u6838\u5BF9\u3002" : kind === "away" ? "\u5DF2\u767B\u8BB0\u6682\u79BB\uFF1B15\u5206\u949F\u540E\u8F6C\u4E3A\u5F85\u6838\u5BF9\uFF0C\u4E0D\u81EA\u52A8\u91CA\u653E\u3002" : kind === "items" ? "\u5DF2\u767B\u8BB0\u6709\u7269\u5F85\u6838\u5BF9\uFF0C\u4E0D\u4F5C\u4E3A\u7A7A\u4F4D\u63A8\u8350\u3002" : "\u5DF2\u8BB0\u5F55\u672C\u4EBA\u5165\u5EA7\uFF1B\u5230\u671F\u540E\u8F6C\u4E3A\u5F85\u6838\u5BF9\uFF0C\u4E0D\u81EA\u52A8\u91CA\u653E\u3002" };
+  }
+  function makeExampleReports(catalog2, now = Date.now()) {
+    const out = {};
+    let i = 0;
+    for (const s of catalog2) {
+      if (s.dedicated) continue;
+      const n = i++ % 10, kind = n < 3 ? "available" : n < 6 ? "occupied" : n === 6 ? "away" : n === 7 ? "items" : null;
+      if (kind) out[s.id] = { kind, owner: "example-" + s.id, signature: s.signature, at: now, until: now + (kind === "occupied" ? 120 : 15) * 6e4, source: "example" };
+    }
+    return out;
+  }
+  function suggestSeats(catalog2, reports2, prefs, now = Date.now()) {
+    const target = { economy: 2, literature: 3, technology: 4, periodicals: 5 }[prefs.subject];
+    const ranked = catalog2.filter((s) => !s.dedicated && (!prefs.floor || s.floor === prefs.floor) && (!prefs.region || s.region === prefs.region) && (!prefs.power || s.power)).filter((s) => reportState(s, reports2[s.id], now).kind === "available").map((s) => {
+      const reasons = ["\u8FD1\u671F\u6709\u79BB\u5EA7\u767B\u8BB0\uFF0C\u9700\u5230\u573A\u590D\u6838"], tradeoffs = [];
+      let score = 100 - s.floor * 3;
+      if (target) {
+        if (s.floor === target) {
+          score += 35;
+          reasons.push("\u4E0E\u6240\u9009\u4E3B\u9898\u9986\u85CF\u540C\u5C42\u793A\u610F");
+        } else tradeoffs.push("\u6240\u9009\u4E3B\u9898\u4E3B\u8981\u5728\u53E6\u4E00\u697C\u5C42");
+      }
+      if (prefs.window) {
+        if (s.window) {
+          score += 18;
+          reasons.push("\u5339\u914D\u6A21\u578B\u9760\u7A97\u4F4D\u7F6E");
+        } else tradeoffs.push("\u672A\u5339\u914D\u9760\u7A97\u504F\u597D");
+      }
+      if (prefs.power) reasons.push("\u6A21\u578B\u91C7\u7528\u5E26\u7535\u6E90\u7684\u6321\u677F\u684C\u578B\uFF0C\u73B0\u573A\u4ECD\u9700\u6838\u5BF9");
+      if (prefs.print) {
+        score -= Math.abs(s.x - 13.5) * 0.05 + Math.abs(s.z - 18) * 0.05 + (s.floor - 1) * 5;
+        reasons.push("\u5C06\u4E0E\u4E00\u697C\u6253\u5370\u70B9\u7684\u793A\u610F\u8DDD\u79BB\u7EB3\u5165\u6BD4\u8F83");
+      }
+      return { seat: s, score, reasons, tradeoffs };
+    }).sort((a, b) => b.score - a.score || a.seat.id.localeCompare(b.seat.id));
+    const picked = [];
+    while (ranked.length && picked.length < 4) {
+      const previous = picked.at(-1)?.seat.region;
+      const opposite = { \u5317: "\u5357", \u5357: "\u5317" }[previous] || "\u5317";
+      const alternate = prefs.window && previous ? ranked.findIndex((r) => r.score === ranked[0].score && r.seat.window && r.seat.region === opposite) : -1;
+      picked.push(ranked.splice(alternate >= 0 ? alternate : 0, 1)[0]);
+    }
+    return picked.map((r, i) => ({ ...r, rank: i + 1 }));
+  }
+
+  // src/library-layout.js
+  var z = (label, x, depth, w, d, color, kind = "books") => ({ label, x, z: depth, w, d, color, kind });
+  var FLOOR_INFO = [
+    { n: 1, title: "\u9760\u7A97\u9605\u89C8 \xB7 \u56FA\u5B9A\u4E13\u5EA7 \xB7 \u524D\u5385\u670D\u52A1", summary: "\u672C\u4EBA\u786E\u8BA4\uFF1A\u5DE6\u4FA7\u7A97\u8FB9\u9605\u89C8\uFF0C\u53F3\u4FA7\u4E3A\u56FA\u5B9A\u4E13\u5EA7\uFF0C\u7535\u68AF\u5728\u4E13\u5EA7\u540E\u65B9\u7565\u9760\u5DE6\uFF0C\u9ED1\u8272\u95E8\u9762\u671D\u53F3\u4FA7\u901A\u9053\u3002\u5DE6\u4FA7\u4E66\u5E93\u4E94\u6392\uFF0C\u53F0\u540E\u4E66\u5E93\u4FDD\u7559\uFF1B\u524D\u5385\u6C99\u53D1\u671D\u9986\u5185\uFF0C\u5DE6\u53F3\u4E24\u533A\u5404\u4E24\u5F20\u6C99\u53D1\u3001\u4E2D\u95F4\u4E00\u4E2A\u6CBF\u5730\u7816\u7EBF\u7EB5\u5411\u4E66\u67B6\uFF0C\u5395\u6240\u95E8\u671D\u9605\u89C8\u684C\u3002\u6B63\u5F0F\u5750\u6807\u3001\u684C\u578B\u4E0E\u6570\u91CF\u672A\u6D4B\u7ED8\u3002", tags: ["\u9760\u7A97\u9605\u89C8", "\u56FA\u5B9A\u4E13\u5EA7", "\u670D\u52A1\u53F0\u540E\u4E66\u5E93", "\u524D\u5385\u4F11\u606F"], color: "#9ab8c1", verified: false, zones: [z("\u5DE6\u4FA7\u9760\u7A97\u9605\u89C8", -15, 0, 5.5, 32, "#c7ddd8", "study"), z("\u67DC\u5F0F\u5BC6\u96C6\u4E66\u5E93", -9, -2, 5, 30, "#b6c4cd", "storage"), z("\u53F0\u540E\u5BC6\u96C6\u4E66\u5E93", 0, 0.4, 7.2, 16, "#b6c4cd", "storage"), z("\u56FA\u5B9A\u4E13\u5EA7\u53C2\u8003\u533A", 10.9, 2.75, 6.4, 20.5, "#c5c7d8", "study"), z("\u524D\u5385\u4F11\u606F", 0, 26, 28, 12, "#e3dcc5", "service"), z("\u7535\u8111\u670D\u52A1\u53F0", 0, 13, 10, 4, "#9ab8c1", "service")] },
+    { n: 2, title: "A\u2014F \u7C7B\u9986\u85CF", summary: "\u63092025\u7248\u5BFC\u89C8\u56FE\uFF1A\u5317\u4FA7\u4E3AA\u3001B\u3001C\u3001D\u7C7B\uFF0C\u5357\u4FA7\u4EE5F\u7C7B\u7ECF\u6D4E\u4E3A\u4E3B\uFF0C\u897F\u4FA7\u8854\u63A5D\u3001E\u3001F\u7C7B\uFF1B\u4E2D\u592E\u53F0\u9636\u4F4D\u4E8E\u897F\u4FA7\u65B9\u5411\u3002", tags: ["\u5317\u4FA7 A/B/C/D", "\u5357\u4FA7 F \u7ECF\u6D4E", "\u897F\u4FA7 D/E/F"], color: "#c9bf72", verified: true, zones: [
+      z("A \u9A6C\u5217", -12, -19, 9, 2, "#d8674e"),
+      z("B \u54F2\u5B66\u5B97\u6559", -12, -14, 9, 6, "#d9c948"),
+      z("B \u54F2\u5B66\u5B97\u6559", -12, -4, 9, 5, "#d9c948"),
+      z("C \u793E\u79D1\u603B\u8BBA", -12, 2, 9, 4, "#d68848"),
+      z("D \u653F\u6CBB\u6CD5\u5F8B", -12, 8, 9, 6, "#99b95e"),
+      z("D \u653F\u6CBB\u6CD5\u5F8B", -3, 18, 16, 3, "#99b95e"),
+      z("E \u519B\u4E8B", 6.8, 18, 2.5, 3, "#b69d65"),
+      z("F \u7ECF\u6D4E", 12, -13, 9, 11, "#67abc0"),
+      z("F \u7ECF\u6D4E", 12, 4, 9, 14, "#67abc0"),
+      z("F \u7ECF\u6D4E", 11, 18, 5, 3, "#67abc0")
+    ] },
+    { n: 3, title: "G/H/I \u7C7B\u4E0E\u4E2D\u592E\u5C55\u5385", summary: "\u63092025\u7248\u5BFC\u89C8\u56FE\uFF1A\u5317\u4FA7G\u6587\u5316\u6559\u80B2\u53CAH\u8BED\u8A00\u6587\u5B57\uFF0CI\u6587\u5B66\u5206\u5E03\u4E8E\u4E1C\u3001\u5357\u53CA\u5317\u4FA7\u897F\u7AEF\uFF1B\u513F\u7AE5\u56FE\u4E66\u3001\u6559\u6750\u3001\u5DE5\u5177\u4E66\u5728\u4E1C\u5317\u4FA7\uFF0C\u897F\u4FA7\u4E3A\u5C55\u533A\u3002", tags: ["\u5317\u4FA7 G/H", "\u4E1C\u5357\u4FA7 I \u6587\u5B66", "\u4E1C\u5317\u4FA7\u513F\u7AE5/\u5DE5\u5177\u4E66", "\u4E09\u697C\u4E2D\u592E\u5C55\u5385"], color: "#87b9c5", verified: true, zones: [
+      z("\u513F\u7AE5/\u6559\u6750/\u5DE5\u5177\u4E66", -12, -19, 7, 4, "#d7c647"),
+      z("I \u6587\u5B66", -7, -19, 3.5, 4, "#77b5c9"),
+      z("I \u6587\u5B66", 0, -19, 4.5, 4, "#77b5c9"),
+      z("I \u6587\u5B66", 11, -19, 7, 4, "#77b5c9"),
+      z("G \u6587\u5316\u6559\u80B2", -12, -10, 8.5, 6, "#91b557"),
+      z("G \u6587\u5316\u6559\u80B2", -12, 1, 8.5, 3, "#91b557"),
+      z("H \u8BED\u8A00\u6587\u5B57", -12, 6, 8.5, 4.5, "#d96751"),
+      z("I \u6587\u5B66", -12, 12.5, 8.5, 4.5, "#77b5c9"),
+      z("I \u6587\u5B66", 12, -10, 8.5, 6, "#77b5c9"),
+      z("I \u6587\u5B66", 12, 7, 8.5, 14, "#77b5c9"),
+      z("\u897F\u4FA7\u5C55\u533A", 0, 20, 21, 4, "#d4c5a0", "exhibition")
+    ] },
+    { n: 4, title: "J/K \u4E0E\u81EA\u7136\u79D1\u5B66\u3001\u5DE5\u7A0B\u6280\u672F", summary: "\u63092025\u7248\u5BFC\u89C8\u56FE\uFF1A\u5317\u4FA7\u4E3AJ\u827A\u672F\u4E0EK\u5386\u53F2\u5730\u7406\uFF0C\u5357\u4FA7\u4E3A\u8BA1\u7B97\u673A\u3001\u5DE5\u7A0B\u548C\u6280\u672F\u7C7B\uFF1B\u897F\u4FA7\u4E3AK/N/O/P-R\u7C7B\uFF0C\u4E1C\u4FA7\u6709\u6280\u672F\u7C7B\u9986\u85CF\u53CA\u4E2D\u65E5\u6587\u5316\u4EA4\u6D41\u4E2D\u5FC3\u3002", tags: ["\u5317\u4FA7 J/K", "\u5357\u4FA7\u6280\u672F\u9986\u85CF", "\u897F\u4FA7 K/N/O/P-R", "\u4E1C\u4FA7\u6587\u5316\u4EA4\u6D41"], color: "#aaa6bd", verified: true, zones: [
+      z("U\u2014Z \u7EFC\u5408/\u4EA4\u901A", -13, -19, 4, 3, "#6d9b84"),
+      z("TU/TV \u5EFA\u7B51\u6C34\u5229", -8, -19, 3.5, 3, "#83b8c0"),
+      z("TU \u5EFA\u7B51\u79D1\u5B66", 0, -20, 4.5, 3, "#83b8c0"),
+      z("TP/TS \u6280\u672F", 8, -19, 4, 3, "#83b8c0"),
+      z("\u4E2D\u65E5\u6587\u5316\u4EA4\u6D41\u4E2D\u5FC3", 14, -19, 4.5, 3, "#c2c7b2", "room"),
+      z("J \u827A\u672F", -12, -10, 9, 9, "#d8cc53"),
+      z("J \u827A\u672F", -12, 0, 9, 3, "#d8cc53"),
+      z("K \u5386\u53F2\u5730\u7406", -12, 8, 9, 11, "#c46a68"),
+      z("K \u5386\u53F2\u5730\u7406", -12, 20, 4, 3, "#c46a68"),
+      z("N \u81EA\u7136\u79D1\u5B66\u603B\u8BBA", -7.5, 20, 3, 3, "#baa579"),
+      z("O \u6570\u7406\u5316", -1, 20, 8, 3, "#c48aa3"),
+      z("P\u2014R \u5929\u6587/\u751F\u7269/\u533B\u5B66", 8, 20, 8, 3, "#cc9569"),
+      z("TP \u8BA1\u7B97\u673A", 12, -9, 9, 8, "#83b8c0"),
+      z("TP \u8BA1\u7B97\u673A", 12, 0, 9, 3, "#83b8c0"),
+      z("T\u2014TN \u5DE5\u7A0B\u6280\u672F", 12, 7, 9, 7, "#b6b6ad"),
+      z("R\u2014S \u533B\u836F/\u519C\u4E1A", 12, 14, 9, 2.5, "#c69469")
+    ] },
+    { n: 5, title: "\u4E1C\u4FA7\u5907\u8003\u8054\u76DF\u4E0E\u5317\u897F\u4FA7\u62A5\u520A", summary: "\u63092025\u7248\u5BFC\u89C8\u56FE\uFF1A\u5907\u8003\u8054\u76DF\u5728\u4E1C\u4FA7\uFF1B\u5317\u4FA7\u6392\u5217\u62A5\u7EB8\u3001\u73B0\u520A\u30012019\u20142024\u8FC7\u520A\u548C\u5916\u6587\u539F\u7248\u4E66\uFF0C\u897F\u4FA7\u4E3A2013\u20142018\u8FC7\u520A\u53CA2015\u5E74\u81F3\u4ECA\u8FC7\u62A5\u3002\u5357\u4FA7\u7559\u767D\u8303\u56F4\u672A\u64C5\u81EA\u6307\u5B9A\u7528\u9014\u3002", tags: ["\u4E1C\u4FA7\u5907\u8003\u8054\u76DF", "\u5317\u4FA7\u73B0\u520A/\u5916\u6587\u4E66", "\u897F\u4FA7\u8FC7\u520A/\u8FC7\u62A5", "\u5357\u4FA7\u7528\u9014\u5F85\u6838\u5BF9"], color: "#bcae81", verified: true, zones: [
+      z("\u5907\u8003\u8054\u76DF\u533A", 0, -14, 27, 15, "#a9bc8b", "study"),
+      z("\u62A5\u7EB8", -12, -3.5, 8, 2, "#c9be68"),
+      z("\u73B0\u520A", -12, 1, 8, 5, "#d7c757"),
+      z("2019\u20142024 \u8FC7\u520A", -12, 6.5, 8, 5, "#83b7ac"),
+      z("\u5916\u6587\u539F\u7248\u4E66 YY/YW", -12, 13, 8, 6, "#759b84"),
+      z("2013\u20142018 \u8FC7\u520A", -5, 20, 9, 3, "#c8966c"),
+      z("2015\u5E74\u81F3\u4ECA\u8FC7\u62A5", 5, 20, 9, 3, "#84b7c7")
+    ] }
+  ];
+  for (const info of FLOOR_INFO) if (info.n > 1) {
+    info.summary += " \u4E8C\u81F3\u4E94\u697C\u5747\u8865\u8DB3\u6A2A\u5411\u548C\u540E\u90E8\u7A7A\u95F4\uFF0C\u53F3\u4FA7\u4E2D\u6BB5\u767D\u5899\u4EA4\u901A\u533A\u8D34\u4FA7\u5899\uFF0C\u897F\u7AEF\u4E24\u89D2\u4E3A\u5395\u6240\u3002\u5C3A\u5BF8\u3001\u684C\u6570\u4E0E\u623F\u95F4\u95E8\u4F4D\u672A\u6D4B\u7ED8\u3002";
+    if (info.n === 4) {
+      info.zones = info.zones.filter((v) => v.kind !== "room");
+      info.tags.push("\u4E1C\u5357\u4FA7\u4E2D\u65E5\u6587\u5316\u4EA4\u6D41\u4E2D\u5FC3");
+    }
+    if (info.n === 5) {
+      info.title = "\u5907\u8003\u8054\u76DF \xB7 \u62A5\u520A\u9605\u89C8 \xB7 \u5916\u6587\u4E66 \xB7 \u5B58\u5305\u67DC";
+      info.tags = ["\u4E1C\u4FA7\u5907\u8003\u8054\u76DF", "\u5317\u4FA7\u62A5\u7EB8/\u73B0\u520A/\u8FC7\u520A/\u5916\u6587\u4E66", "\u897F\u4FA7\u8FC7\u520A/\u8FC7\u62A5", "\u540E\u5899\u5B58\u5305\u67DC"];
+      info.zones = [z("\u5907\u8003\u8054\u76DF\u533A", 0, -36, 66, 29, "#a9bc8b", "study"), ...upperFacilities(5).periodicals.map((a) => ({ ...a, kind: "books" }))].map((v) => ({ ...v, perimeterPlacement: true }));
+    }
+  }
+  FLOOR_INFO[0].title = "\u9760\u7A97\u9605\u89C8 \xB7 \u4E13\u5EA7 \xB7 \u53F3\u4FA7\u5496\u5561\u5385";
+  FLOOR_INFO[0].summary = "\u4EE5\u524D\u53F0\u4E2D\u5FC3\u4E3A\u4E2D\u8F74\uFF0C\u5DE6\u53F3\u7B49\u5BBD\uFF1B\u5DE6\u4FA7\u7A97\u8FB9\u684C\u6392\u4E0E\u5BC6\u96C6\u4E66\u5E93\u5411\u540E\u5EF6\u81F3\u4E0A\u5C42\u76F8\u540C\u7EB5\u6DF1\u3002\u6253\u5370\u548C\u56FA\u5B9A\u4E13\u5EA7\u5185\u79FB\u81F3\u670D\u52A1\u53F0\u540E\u4E66\u5E93\u4E00\u4FA7\uFF0C\u5165\u53E3\u53F3\u524D\u4E3A107\u7814\u8BA8\u5BA4\uFF0C\u540E\u63A5\u957F\u6761\u5496\u5561\u5385\uFF0C\u518D\u7531106\u5DE5\u4F5C\u4EBA\u5458\u5BA4\u8854\u63A5\u53F3\u5899\u7535\u68AF\u4EA4\u901A\u533A\u3002\u7535\u68AF\u95E8\u524D\u8D70\u5ECA\u4E24\u7AEF\u5747\u6709\u5F00\u53E3\uFF1B\u4E95\u9053\u3001\u5395\u6240\u9010\u5C42\u5BF9\u9F50\u3002\u4E00\u81F3\u4E8C\u697C\u6709\u666E\u901A\u68AF\u4E0E\u6276\u68AF\uFF0C\u4E8C\u81F3\u4E09\u697C\u4EC5\u4FDD\u7559\u666E\u901A\u68AF\u3002\u4EE5\u4E0A\u76F8\u5BF9\u5173\u7CFB\u6765\u81EA\u672C\u4EBA\u8865\u5145\uFF0C\u5C3A\u5BF8\u3001\u9648\u8BBE\u53CA\u6570\u91CF\u5747\u4E3A\u793A\u610F\u3002";
+  FLOOR_INFO[0].summary += " \u670D\u52A1\u53F0\u540E\u4E2D\u592E\u9ED1\u8272\u533A\u57DF\u6CBF\u4E24\u4FA7\u67F1\u7EBF\u4EE5\u5B9E\u5899\u5206\u9694\uFF0C\u53F0\u540E\u5BC6\u96C6\u4E66\u5E93\u5EF6\u957F\u5E76\u7559\u51FA\u540E\u90E8\u901A\u9053\uFF1B\u53F3\u540E\u89D2\u4E3A\u6536\u4E66\u5BA4\uFF0C\u65C1\u8FB9\u6709\u6728\u8272\u5C0F\u684C\u3002\u5165\u53E3\u4E24\u7EC4\u6C99\u53D1\u8D34\u524D\u7AEF\u5899\uFF0C\u7EB5\u5411\u5C0F\u4E66\u67B6\u4ECD\u5728\u6BCF\u7EC4\u4E24\u5F20\u6C99\u53D1\u4E4B\u95F4\u3002";
+  FLOOR_INFO[0].tags = ["\u5DE6\u7A97\u9605\u89C8", "\u56FA\u5B9A\u4E13\u5EA7", "\u7535\u8111\u670D\u52A1\u53F0", "\u53F3\u4FA7\u5496\u5561\u5385", "\u524D\u53F0\u4E2D\u8F74"];
+  FLOOR_INFO[0].zones = [z("\u5DE6\u4FA7\u9760\u7A97\u9605\u89C8", GROUND_LAYOUT.windowX, -16, 5.5, 64, "#c7ddd8", "study"), ...GROUND_LAYOUT.compactBlocks.map((b) => z(b.x < 0 ? "\u67DC\u5F0F\u5BC6\u96C6\u4E66\u5E93" : "\u53F0\u540E\u5BC6\u96C6\u4E66\u5E93", b.x, b.z, b.w, b.d, "#b6c4cd", "storage")), z("\u56FA\u5B9A\u4E13\u5EA7\u53C2\u8003\u533A", GROUND_LAYOUT.dedicated.x, GROUND_LAYOUT.dedicated.z, GROUND_LAYOUT.dedicated.w, GROUND_LAYOUT.dedicated.d, "#c5c7d8", "study"), z("\u524D\u5385\u4F11\u606F", 0, 26, 28, 12, "#e3dcc5", "service"), z("\u7535\u8111\u670D\u52A1\u53F0", 0, 13, 10, 4, "#9ab8c1", "service"), z("\u5496\u5561\u5385", GROUND_LAYOUT.cafe.x, GROUND_LAYOUT.cafe.z, GROUND_LAYOUT.cafe.w, GROUND_LAYOUT.cafe.d, "#dcc7a8", "service"), ...GROUND_LAYOUT.rooms.map((r) => z(r.label, r.x, r.z, r.w, r.d, "#ccd6cd", "service"))];
+  function resolveRackPlacement(r, floor2) {
+    let { x, z: z2, w } = r;
+    if (floor2 === 4 && z2 === 20 && (Math.abs(x - 6.2) < 0.01 || Math.abs(x + 7.5) < 0.01)) z2 = 22;
+    if (floor2 === 4 && x === 8 && z2 === -19) x = 16.1;
+    if (x + w / 2 > TRANSPORT_CORE.left && x - w / 2 < TRANSPORT_CORE.right && z2 + 0.4 > TRANSPORT_CORE.back && z2 - 0.4 < TRANSPORT_CORE.front) return null;
+    return { ...r, x, z: z2, w };
+  }
+  function floorRackRecords(floor2) {
+    if (floor2 === 1) return [];
+    const info = FLOOR_INFO.find((i) => i.n === floor2), p = READING_BAY_LAYOUT, out = [];
+    for (const side of [-1, 1]) {
+      if (floor2 === 5 && side > 0) continue;
+      const sources = floor2 === 5 ? upperFacilities(5).periodicals : info.zones.filter((z2) => z2.kind === "books" && Math.sign(z2.x) === side);
+      for (const [rowIndex, bank] of p.wingRows.entries()) for (const offset of p.wingRackOffsets) for (const x of p.rackXs) {
+        const depth = bank + offset;
+        const label = floor2 === 5 ? sources[rowIndex % sources.length]?.label : sources.slice().sort((a, b) => Math.abs(a.z - depth) - Math.abs(b.z - depth))[0]?.label;
+        out.push({ x: side * x, z: depth, w: p.rackWidth, rotation: 0, label: label || "\u9986\u85CF\u4E66\u67B6", layoutRegion: side < 0 ? "\u5317" : "\u5357", bankRow: bank, shelfRow: depth });
+      }
+    }
+    for (const x of p.eastRackXs) for (const depth of p.eastRackZs) {
+      const sources = info.zones.filter((z2) => z2.kind === "books"), label = floor2 === 5 ? "\u62A5\u520A\u4E0E\u5916\u6587\u4E66\u793A\u610F" : sources.slice().sort((a, b) => Math.abs(a.x - x) - Math.abs(b.x - x))[0]?.label;
+      out.push({ x, z: depth, w: p.eastRackWidth, rotation: Math.PI / 2, label: label || "\u4E1C\u533A\u9986\u85CF", layoutRegion: "\u4E1C", bankRow: x });
+    }
+    if (floor2 === 5) {
+      for (const source of upperFacilities(5).racks.filter((r) => r.z > 23)) out.push({ ...source, rotation: 0, label: rackWestLabel(source), layoutRegion: "\u897F" });
+    } else {
+      for (const x of [-8, -3.5, 1, 5.5, 10]) for (const depth of [23.5, 29.5]) out.push({ x, z: depth, w: 3.5, rotation: 0, label: "\u897F\u4FA7\u9986\u85CF", layoutRegion: "\u897F" });
+    }
+    return out.map((r) => resolveRackPlacement(r, floor2)).filter(Boolean);
+  }
+  function rackWestLabel(r) {
+    return r.x < 0 ? "2013\u20142018 \u8FC7\u520A" : "2015\u5E74\u81F3\u4ECA\u8FC7\u62A5";
+  }
+
+  // src/seat-voice.js
+  function parseSeatDemand(input) {
+    const text2 = String(input || "").trim().slice(0, 500), s = text2.replace(/\s+/g, "");
+    const patch = {}, notes = [], topics = [];
+    const negative = /(?:不需要|不想要|不想|不要|不用|无需|不必|不看|不选|不靠|不在|不喜欢|不考虑|不)$/;
+    const mentioned = (words) => words.flatMap((word) => {
+      const out = [];
+      let at = s.indexOf(word);
+      while (at >= 0) {
+        out.push({ word, at, no: negative.test(s.slice(Math.max(0, at - 6), at)) });
+        at = s.indexOf(word, at + word.length);
+      }
+      return out;
+    });
+    const flag = (name, words) => {
+      const hits = mentioned(words);
+      if (hits.length) {
+        const yes = hits.some((h) => !h.no), no = hits.some((h) => h.no);
+        if (yes && no) notes.push("\u5BF9" + name + "\u540C\u65F6\u8868\u8FBE\u4E86\u9700\u8981\u548C\u4E0D\u9700\u8981\uFF0C\u8BF7\u624B\u52A8\u786E\u8BA4\u3002");
+        else return yes;
+      }
+      return void 0;
+    };
+    for (const [key, words] of [["own", ["\u81EA\u5E26\u8D44\u6599", "\u4E0D\u9650\u4E3B\u9898", "\u65E0\u6240\u8C13\u4E3B\u9898"]], ["literature", ["\u6587\u5B66", "\u5C0F\u8BF4", "\u6563\u6587", "\u8BD7\u6B4C", "\u8BED\u8A00\u8D44\u6599"]], ["economy", ["\u7ECF\u6D4E", "\u91D1\u878D", "\u4F1A\u8BA1", "\u7BA1\u7406\u5B66", "\u793E\u79D1"]], ["technology", ["\u8BA1\u7B97\u673A", "\u8F6F\u4EF6", "\u7F16\u7A0B", "\u5DE5\u7A0B", "\u6280\u672F\u8D44\u6599"]], ["periodicals", ["\u62A5\u520A", "\u671F\u520A", "\u6742\u5FD7", "\u5916\u6587\u4E66"]]])
+      if (mentioned(words).some((h) => !h.no)) topics.push(key);
+    if (topics.length === 1) patch.subject = topics[0];
+    else if (topics.length > 1) notes.push("\u63D0\u5230\u4E86\u591A\u4E2A\u9986\u85CF\u4E3B\u9898\uFF0C\u8BF7\u4ECE\u8868\u5355\u9009\u62E9\u4E00\u4E2A\u3002");
+    const window2 = flag("\u4E34\u7A97", ["\u9760\u7A97", "\u4E34\u7A97", "\u7A97\u8FB9"]);
+    if (window2 !== void 0) patch.window = window2;
+    const print = flag("\u6253\u5370", ["\u6253\u5370", "\u590D\u5370"]);
+    if (print !== void 0) patch.print = print;
+    const power = flag("\u7535\u6E90", ["\u7535\u6E90", "\u63D2\u5EA7", "\u5145\u7535"]);
+    if (power !== void 0) {
+      if (power && /(最好|尽量|优先|希望).{0,5}(电源|插座|充电)/.test(s)) notes.push("\u4F60\u628A\u7535\u6E90\u8BF4\u6210\u504F\u597D\uFF1B\u5F53\u524D\u7535\u6E90\u9009\u9879\u662F\u5FC5\u987B\u6761\u4EF6\uFF0C\u8BF7\u81EA\u884C\u786E\u8BA4\u662F\u5426\u52FE\u9009\u3002");
+      else patch.power = power;
+    }
+    const all = /(不限楼层|哪层都行|哪个楼层都行|全馆|所有楼层|比较五层|全部楼层)/.test(s);
+    if (all) patch.range = "all";
+    else {
+      const nums = { \u4E00: 1, \u4E8C: 2, \u4E09: 3, \u56DB: 4, \u4E94: 5 }, found = [...s.matchAll(/([一二三四五1-5])(?:楼|层)|([1-5])[fF]/g)].map((m) => nums[m[1]] || Number(m[1] || m[2]));
+      const floors = [...new Set(found)];
+      if (floors.length === 1) {
+        patch.floor = floors[0];
+        patch.range = "current";
+      } else if (floors.length > 1) notes.push("\u63D0\u5230\u4E86\u591A\u4E2A\u697C\u5C42\uFF0C\u8BF7\u624B\u52A8\u9009\u62E9\u6BD4\u8F83\u8303\u56F4\u3002");
+    }
+    if (/安静|静音|不吵/.test(s)) notes.push("\u5DF2\u8BFB\u5230\u5B89\u9759\u610F\u5411\uFF1B\u5F53\u524D\u6CA1\u6709\u5B9E\u65F6\u566A\u58F0\u6570\u636E\uFF0C\u4E0D\u4FDD\u8BC1\u73AF\u5883\u58F0\u91CF\u3002");
+    if (/[北南东]区/.test(s)) notes.push("\u5206\u533A\u65B9\u4F4D\u53EF\u5728\u5EA7\u4F4D\u56FE\u7B5B\u9009\u6838\u5BF9\uFF0C\u76EE\u524D\u4E0D\u4F5C\u4E3A\u63A8\u8350\u5FC5\u987B\u6761\u4EF6\u3002");
+    if (/相邻|连座|一起坐|轮椅|无障碍/.test(s)) notes.push("\u76F8\u90BB\u6216\u65E0\u969C\u788D\u7B49\u6761\u4EF6\u5C1A\u672A\u5B9E\u73B0\uFF0C\u4E0D\u80FD\u7531\u5F53\u524D\u63A8\u8350\u4FDD\u8BC1\u3002");
+    if (!Object.keys(patch).length) notes.push("\u672A\u63D0\u53D6\u5230\u53EF\u76F4\u63A5\u4F7F\u7528\u7684\u6761\u4EF6\uFF0C\u8BF7\u8865\u5145\u4E3B\u9898\u3001\u4E34\u7A97\u3001\u6253\u5370\u3001\u7535\u6E90\u6216\u697C\u5C42\u3002");
+    return { text: text2, patch, notes };
+  }
+  async function recordingToWav(blob) {
+    const AC = globalThis.AudioContext || globalThis.webkitAudioContext;
+    if (!AC) throw new Error("\u6D4F\u89C8\u5668\u4E0D\u80FD\u89E3\u7801\u5F55\u97F3\uFF0C\u8BF7\u8F93\u5165\u6587\u5B57\u3002");
+    const context = new AC();
+    try {
+      const audio = await context.decodeAudioData(await blob.arrayBuffer());
+      if (audio.duration > 30.5) throw new Error("\u5F55\u97F3\u8D85\u8FC730\u79D2\uFF0C\u8BF7\u8BF4\u77ED\u4E00\u70B9\u3002");
+      const rate = 16e3, n = Math.floor(audio.duration * rate), buffer = new ArrayBuffer(44 + n * 2), v = new DataView(buffer);
+      const str = (p, s) => {
+        for (let i = 0; i < s.length; i++) v.setUint8(p + i, s.charCodeAt(i));
+      };
+      str(0, "RIFF");
+      v.setUint32(4, 36 + n * 2, true);
+      str(8, "WAVE");
+      str(12, "fmt ");
+      v.setUint32(16, 16, true);
+      v.setUint16(20, 1, true);
+      v.setUint16(22, 1, true);
+      v.setUint32(24, rate, true);
+      v.setUint32(28, rate * 2, true);
+      v.setUint16(32, 2, true);
+      v.setUint16(34, 16, true);
+      str(36, "data");
+      v.setUint32(40, n * 2, true);
+      const channels = Array.from({ length: audio.numberOfChannels }, (_, i) => audio.getChannelData(i));
+      for (let i = 0; i < n; i++) {
+        const pos = i * audio.sampleRate / rate, a = Math.floor(pos), b = Math.min(a + 1, audio.length - 1), f = pos - a;
+        let value = 0;
+        for (const c of channels) value += (c[a] || 0) * (1 - f) + (c[b] || 0) * f;
+        value = Math.max(-1, Math.min(1, value / channels.length));
+        v.setInt16(44 + i * 2, value < 0 ? value * 32768 : value * 32767, true);
+      }
+      return new Blob([buffer], { type: "audio/wav" });
+    } finally {
+      await context.close();
+    }
+  }
+  function initSeatVoice({ get, onConfirm, getCurrent }) {
+    let pending = null, speech = null, recorder = null, stream = null, timer = null, busy = false, session = 0, localToken = null;
+    const status = (text2) => get("voiceStatus").textContent = text2;
+    const listening = (value) => {
+      busy = value;
+      get("voiceStart").disabled = value;
+      get("voiceStop").disabled = !value;
+      get("voiceStart").setAttribute("aria-pressed", String(value));
+    };
+    const release = () => {
+      clearTimeout(timer);
+      if (stream) {
+        stream.getTracks().forEach((t) => t.stop());
+        stream = null;
+      }
+    };
+    const invalidate = () => {
+      pending = null;
+      get("voiceApply").disabled = true;
+      get("voicePreview").replaceChildren();
+    };
+    function preview() {
+      pending = parseSeatDemand(get("voiceText").value);
+      const out = get("voicePreview");
+      out.replaceChildren();
+      const labels = { subject: { own: "\u81EA\u5E26\u8D44\u6599\uFF0F\u4E0D\u9650\u4E3B\u9898", literature: "\u6587\u5B66\u4E0E\u8BED\u8A00", economy: "\u7ECF\u6D4E\u4E0E\u793E\u79D1", technology: "\u8BA1\u7B97\u673A\u4E0E\u5DE5\u7A0B", periodicals: "\u62A5\u520A\u4E0E\u5916\u6587\u4E66" } };
+      const p = pending.patch, current = getCurrent();
+      const values = [p.subject !== void 0 ? "\u4E3B\u9898\uFF1A" + labels.subject[p.subject] : null, p.floor ? "\u697C\u5C42\uFF1A" + p.floor + "F" : null, p.range ? "\u8303\u56F4\uFF1A" + (p.range === "all" ? "\u6BD4\u8F83\u4E94\u5C42" : "\u6307\u5B9A\uFF0F\u5F53\u524D\u5C42") : null, ...[["window", "\u4E34\u7A97\u504F\u597D"], ["power", "\u4EC5\u5E26\u7535\u6E90"], ["print", "\u987A\u8DEF\u6253\u5370"]].map(([k, title]) => p[k] === void 0 ? null : title + "\uFF1A" + (p[k] ? "\u662F" : "\u5426"))].filter(Boolean);
+      for (const value of values) {
+        const e = document.createElement("span");
+        e.textContent = value;
+        e.className = "voice-chip";
+        out.append(e);
+      }
+      for (const note of pending.notes) {
+        const e = document.createElement("p");
+        e.textContent = note;
+        e.className = "small";
+        out.append(e);
+      }
+      const kept = [];
+      if (p.window === void 0 && current.window) kept.push("\u4E34\u7A97\u504F\u597D");
+      if (p.power === void 0 && current.power) kept.push("\u4EC5\u5E26\u7535\u6E90");
+      if (p.print === void 0 && current.print) kept.push("\u987A\u8DEF\u6253\u5370");
+      if (kept.length) {
+        const e = document.createElement("p");
+        e.textContent = "\u6CBF\u7528\u8868\u5355\uFF1A" + kept.join("\u3001") + "\u3002\u672A\u63D0\u5230\u7684\u5176\u4ED6\u6761\u4EF6\u4FDD\u6301\u539F\u503C\u3002";
+        e.className = "small";
+        out.append(e);
+      }
+      get("voiceApply").disabled = !values.length;
+      status(values.length ? "\u8BF7\u68C0\u67E5\u6587\u5B57\u4E0E\u6761\u4EF6\uFF0C\u786E\u8BA4\u540E\u518D\u63A8\u8350\u3002" : "\u8BF7\u8865\u5145\u6216\u4FEE\u6539\u6587\u5B57\uFF0C\u4E5F\u53EF\u76F4\u63A5\u4F7F\u7528\u4E0B\u65B9\u8868\u5355\u3002");
+    }
+    async function localReady() {
+      if (!["127.0.0.1", "localhost"].includes(globalThis.location?.hostname)) return false;
+      try {
+        const r = await fetch("/api/health");
+        const data = await r.json();
+        if (data.service !== "jiageng-local-voice" || !data.ready) return false;
+        localToken = data.token;
+        get("stopLocalVoice").hidden = false;
+        return true;
+      } catch {
+        return false;
+      }
+    }
+    async function startLocal() {
+      if (!navigator.mediaDevices?.getUserMedia || !globalThis.MediaRecorder) throw new Error("\u5F53\u524D\u6D4F\u89C8\u5668\u4E0D\u652F\u6301\u5F55\u97F3\uFF0C\u8BF7\u8F93\u5165\u6587\u5B57\u3002");
+      const thisSession = session, acquired = await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (thisSession !== session) {
+        acquired.getTracks().forEach((t) => t.stop());
+        return;
+      }
+      stream = acquired;
+      const chunks = [], activeRecorder = new MediaRecorder(stream);
+      recorder = activeRecorder;
+      activeRecorder.ondataavailable = (e) => {
+        if (e.data.size) chunks.push(e.data);
+      };
+      activeRecorder.onerror = () => {
+        acquired.getTracks().forEach((t) => t.stop());
+        if (thisSession === session) {
+          release();
+          listening(false);
+          status("\u5F55\u97F3\u5931\u8D25\uFF0C\u8BF7\u91CD\u8BD5\u6216\u8F93\u5165\u6587\u5B57\u3002");
+        }
+      };
+      activeRecorder.onstop = async () => {
+        const mime = activeRecorder.mimeType;
+        acquired.getTracks().forEach((t) => t.stop());
+        if (thisSession !== session) return;
+        recorder = null;
+        release();
+        get("voiceStop").disabled = true;
+        status("\u6B63\u5728\u672C\u673A\u8BC6\u522B\uFF0C\u8BF7\u7A0D\u5019\u2026\u2026");
+        try {
+          const wav = await recordingToWav(new Blob(chunks, { type: mime }));
+          const response = await fetch("/api/transcribe", { method: "POST", headers: { "Content-Type": "audio/wav", "X-Local-Token": localToken }, body: wav });
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error || "\u8BC6\u522B\u5931\u8D25");
+          if (thisSession !== session) return;
+          get("voiceText").value = data.text || "";
+          if (data.text) preview();
+          else status("\u6CA1\u6709\u8BC6\u522B\u5230\u6E05\u6670\u6587\u5B57\uFF0C\u8BF7\u91CD\u5F55\u6216\u8F93\u5165\u9700\u6C42\u3002");
+        } catch (error) {
+          if (thisSession === session) status(error.message || "\u672C\u673A\u8BC6\u522B\u5931\u8D25\uFF0C\u53EF\u8F93\u5165\u6587\u5B57\u3002");
+        } finally {
+          if (thisSession === session) listening(false);
+        }
+      };
+      activeRecorder.start();
+      status("\u6B63\u5728\u672C\u673A\u5F55\u97F3\uFF0C\u6700\u591A30\u79D2\u3002\u8BF4\u5B8C\u8BF7\u70B9\u201C\u7ED3\u675F\u5F55\u97F3\u201D\uFF1B\u4E0D\u4F1A\u4E0A\u4F20\u6216\u4FDD\u5B58\u5F55\u97F3\u3002");
+      timer = setTimeout(() => {
+        if (activeRecorder.state === "recording") activeRecorder.stop();
+      }, 29e3);
+    }
+    function startBrowser() {
+      const SR = globalThis.SpeechRecognition || globalThis.webkitSpeechRecognition;
+      if (!SR) {
+        listening(false);
+        status("\u5F53\u524D\u6D4F\u89C8\u5668\u6CA1\u6709\u8BED\u97F3\u8BC6\u522B\u63A5\u53E3\u3002\u53EF\u8F93\u5165\u6587\u5B57\uFF0C\u6216\u5C55\u5F00\u4E0B\u65B9\u7684\u672C\u5730\u79BB\u7EBF\u8BED\u97F3\u5165\u53E3\u3002");
+        get("localVoiceHelp").open = true;
+        return;
+      }
+      speech = new SR();
+      const thisSession = session;
+      speech.lang = "zh-CN";
+      speech.continuous = false;
+      speech.interimResults = true;
+      speech.onstart = () => status("\u6B63\u5728\u8BC6\u522B\uFF0C\u8BF7\u8BF4\u51FA\u9009\u5EA7\u9700\u6C42\u3002\u6B64\u6A21\u5F0F\u53EF\u80FD\u4F7F\u7528\u6D4F\u89C8\u5668\u7684\u5728\u7EBF\u8BED\u97F3\u670D\u52A1\u3002");
+      speech.onresult = (e) => {
+        if (thisSession !== session) return;
+        let text2 = "";
+        for (let n = 0; n < e.results.length; n++) text2 += e.results[n][0].transcript;
+        get("voiceText").value = text2;
+        if (Array.from(e.results).some((r) => r.isFinal)) preview();
+      };
+      speech.onerror = (e) => {
+        if (thisSession !== session) return;
+        const messages = { "not-allowed": "\u9EA6\u514B\u98CE\u6743\u9650\u672A\u5F00\u542F\uFF0C\u53EF\u5141\u8BB8\u9EA6\u514B\u98CE\u540E\u91CD\u8BD5\uFF0C\u6216\u8F93\u5165\u6587\u5B57\u3002", "audio-capture": "\u6CA1\u6709\u627E\u5230\u53EF\u7528\u9EA6\u514B\u98CE\uFF0C\u8BF7\u68C0\u67E5\u8BBE\u5907\u3002", "no-speech": "\u6CA1\u6709\u542C\u5230\u6E05\u6670\u8BED\u97F3\uFF0C\u8BF7\u91CD\u8BD5\u3002", network: "\u6D4F\u89C8\u5668\u8BED\u97F3\u670D\u52A1\u8FDE\u63A5\u5931\u8D25\uFF0C\u53EF\u4F7F\u7528\u672C\u5730\u79BB\u7EBF\u5165\u53E3\u6216\u8F93\u5165\u6587\u5B57\u3002", "service-not-allowed": "\u6D4F\u89C8\u5668\u672A\u5F00\u653E\u8BED\u97F3\u670D\u52A1\uFF0C\u53EF\u4F7F\u7528\u672C\u5730\u79BB\u7EBF\u5165\u53E3\u3002" };
+        status(messages[e.error] || "\u8BED\u97F3\u8BC6\u522B\u6682\u4E0D\u53EF\u7528\uFF0C\u8BF7\u91CD\u8BD5\u6216\u8F93\u5165\u6587\u5B57\u3002");
+        listening(false);
+        clearTimeout(timer);
+      };
+      speech.onend = () => {
+        if (thisSession !== session) return;
+        speech = null;
+        clearTimeout(timer);
+        listening(false);
+        if (!pending && get("voiceText").value.trim()) preview();
+      };
+      speech.start();
+      timer = setTimeout(() => speech?.stop(), 29e3);
+    }
+    get("voiceStart").onclick = async () => {
+      if (busy) return;
+      const ticket = ++session;
+      invalidate();
+      get("voiceText").value = "";
+      listening(true);
+      status("\u6B63\u5728\u51C6\u5907\u9EA6\u514B\u98CE\u2026\u2026");
+      try {
+        const local = await localReady();
+        if (ticket !== session) return;
+        if (local) await startLocal();
+        else startBrowser();
+      } catch (e) {
+        if (ticket !== session) return;
+        release();
+        listening(false);
+        status(e.name === "NotAllowedError" ? "\u9EA6\u514B\u98CE\u6743\u9650\u672A\u5F00\u542F\uFF0C\u53EF\u5141\u8BB8\u9EA6\u514B\u98CE\u540E\u91CD\u8BD5\u6216\u8F93\u5165\u6587\u5B57\u3002" : e.message || "\u65E0\u6CD5\u5F00\u59CB\u8BC6\u522B\uFF0C\u8BF7\u68C0\u67E5\u9EA6\u514B\u98CE\u6216\u8F93\u5165\u6587\u5B57\u3002");
+      }
+    };
+    get("voiceStop").onclick = () => {
+      if (recorder?.state === "recording") recorder.stop();
+      else speech?.stop();
+    };
+    get("voiceParse").onclick = preview;
+    get("voiceText").oninput = () => {
+      invalidate();
+      status("\u6587\u5B57\u5DF2\u4FEE\u6539\uFF0C\u8BF7\u91CD\u65B0\u89E3\u6790\u5E76\u786E\u8BA4\u3002");
+    };
+    get("voiceApply").onclick = () => {
+      if (!pending || get("voiceApply").disabled) return;
+      const parsed = pending;
+      if (busy) cancel();
+      invalidate();
+      onConfirm(parsed.patch);
+      status("\u5DF2\u6309\u786E\u8BA4\u7684\u6761\u4EF6\u751F\u6210\u63A8\u8350\uFF1B\u5B83\u4E0D\u662F\u9884\u7EA6\u6216\u9501\u5EA7\u3002");
+    };
+    get("stopLocalVoice").onclick = async () => {
+      if (busy) return;
+      try {
+        await fetch("/api/stop", { method: "POST", headers: { "X-Local-Token": localToken } });
+        get("stopLocalVoice").hidden = true;
+        status("\u672C\u5730\u8BED\u97F3\u670D\u52A1\u5DF2\u7ED3\u675F\u3002\u9875\u9762\u4ECD\u53EF\u7528\u6587\u5B57\u9009\u5EA7\uFF0C\u5237\u65B0\u524D\u8BF7\u91CD\u65B0\u542F\u52A8\u670D\u52A1\u3002");
+      } catch {
+        status("\u672C\u5730\u670D\u52A1\u5DF2\u65AD\u5F00\u3002");
+      }
+    };
+    const cancel = () => {
+      session++;
+      clearTimeout(timer);
+      speech?.abort();
+      speech = null;
+      if (recorder?.state === "recording") recorder.stop();
+      release();
+      listening(false);
+    };
+    document.addEventListener?.("visibilitychange", () => {
+      if (document.hidden && busy) {
+        cancel();
+        status("\u5DF2\u505C\u6B62\u5F55\u97F3\uFF0C\u8FD4\u56DE\u540E\u53EF\u91CD\u65B0\u5F00\u59CB\u3002");
+      }
+    });
+    globalThis.addEventListener?.("pagehide", cancel);
+    if (["127.0.0.1", "localhost"].includes(globalThis.location?.hostname)) localReady();
+    invalidate();
+    listening(false);
+    return { invalidate };
+  }
+
+  // src/seat-navigation.js
+  var choose = (v, allowed, fallback) => allowed.includes(v) ? v : fallback;
+  var number = (v, min, max, fallback) => Number.isFinite(v) ? Math.max(min, Math.min(max, v)) : fallback;
+  var text = (v, max = 160) => typeof v === "string" ? v.slice(0, max) : "";
+  function cleanSeatSnapshot(raw, knownSeats) {
+    if (!raw || typeof raw !== "object" || raw.version !== 1) return null;
+    const known = new Map(knownSeats.map((s) => [s.id, s]));
+    const selected2 = known.has(raw.selected) ? raw.selected : null;
+    const floor2 = selected2 ? known.get(selected2).floor : Math.round(number(raw.floor, 0, 5, 0));
+    const f = raw.form || {}, scroll = raw.scroll || {};
+    const candidates = [], seen = /* @__PURE__ */ new Set();
+    for (const row of Array.isArray(raw.candidates) ? raw.candidates.slice(0, 4) : []) {
+      if (!known.has(row?.id) || seen.has(row.id)) continue;
+      seen.add(row.id);
+      candidates.push({ id: row.id, score: number(row.score, -1e5, 1e5, 0), reasons: (Array.isArray(row.reasons) ? row.reasons : []).slice(0, 6).map((s) => text(s)), tradeoffs: (Array.isArray(row.tradeoffs) ? row.tradeoffs : []).slice(0, 6).map((s) => text(s)) });
+    }
+    let mapFocus2 = null;
+    if (raw.mapFocus && raw.mapFocus.floor === floor2 && Array.isArray(raw.mapFocus.ids)) {
+      const ids = [...new Set(raw.mapFocus.ids.filter((id) => known.get(id)?.floor === floor2))].slice(0, 4);
+      if (ids.length) mapFocus2 = { floor: floor2, ids, priority: raw.mapFocus.priority === true };
+    }
+    return {
+      version: 1,
+      checkin: raw.checkin === true,
+      floor: floor2,
+      selected: selected2,
+      page: Math.floor(number(raw.page, 0, 1e3, 0)),
+      zoom: number(raw.zoom, 1, 3, 1),
+      view: choose(raw.view, ["map", "list"], "map"),
+      attempted: raw.attempted === true,
+      mapFocus: mapFocus2,
+      candidates,
+      form: { subject: choose(f.subject, ["own", "economy", "literature", "technology", "periodicals"], "own"), searchRange: choose(f.searchRange, ["current", "all"], "current"), regionFilter: choose(f.regionFilter, ["", "\u5317", "\u5357", "\u4E1C"], ""), stateFilter: choose(f.stateFilter, ["", "unknown", "available", "occupied", "away", "items", "protected"], ""), windowPreference: f.windowPreference === true, powerPreference: f.powerPreference === true, printPreference: f.printPreference === true, duration: choose(String(f.duration), ["30", "60", "120", "240"], "120"), voiceText: text(f.voiceText, 500) },
+      scroll: { x: number(scroll.x, 0, 1e5, 0), y: number(scroll.y, 0, 1e5, 0), mapX: number(scroll.mapX, 0, 1e5, 0), mapY: number(scroll.mapY, 0, 1e5, 0) }
+    };
+  }
+  function encodeSeatSnapshot(snapshot) {
+    const json = JSON.stringify(snapshot);
+    if (json.length > 16e3) throw new Error("\u754C\u9762\u5FEB\u7167\u8FC7\u5927");
+    return btoa(Array.from(new TextEncoder().encode(json), (v) => String.fromCharCode(v)).join("")).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/, "");
+  }
+  function decodeSeatSnapshot(value, knownSeats) {
+    try {
+      if (typeof value !== "string" || value.length > 32e3 || !/^[\w-]+$/.test(value)) return null;
+      const raw = value.replaceAll("-", "+").replaceAll("_", "/"), bytes = Uint8Array.from(atob(raw), (c) => c.charCodeAt(0));
+      return cleanSeatSnapshot(JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes)), knownSeats);
+    } catch {
+      return null;
+    }
+  }
+  function modelNavigationURL(focusHash, snapshot) {
+    const hash = /^#(?:loc=[1-5],-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?|floor=[1-5])$/.test(focusHash) ? focusHash : "";
+    return "\u5EFA\u7B51\u4E0E\u4E94\u5C42\u5C55\u793A.html" + (hash || "#overview=1") + "&return=" + encodeSeatSnapshot(snapshot);
+  }
+  function restoreSeatCandidates(snapshot, catalog2, reports2, stateAt) {
+    const known = new Map(catalog2.map((s) => [s.id, s]));
+    return snapshot.candidates.filter((r) => {
+      const s = known.get(r.id);
+      return s && !s.dedicated && stateAt(s, reports2[s.id]).kind === "available";
+    }).map((r, i) => ({ seat: known.get(r.id), score: r.score, reasons: r.reasons, tradeoffs: r.tradeoffs, rank: i + 1 }));
+  }
+
+  // src/seat-page.js
+  var $ = (id) => document.getElementById(id);
+  var catalog = createSeatCatalog();
+  var params = new URLSearchParams(location.search);
+  var checkin = params.get("mode") === "checkin";
+  var floor = 0;
+  var selected = null;
+  var page = 0;
+  var zoom = 1;
+  var mapFocus = null;
+  var recommendations = [];
+  var storageOK = true;
+  var reports = {};
+  var messageTimer;
+  var lastStamp = "";
+  var view = "map";
+  var demo = true;
+  var attempted = false;
+  var pageSize = 16;
+  var clientKey = STORE_KEY + "-client";
+  var owner;
+  try {
+    owner = localStorage.getItem(clientKey);
+    if (!owner) {
+      owner = "local-" + (globalThis.crypto?.randomUUID?.() || Date.now() + "-" + Math.random().toString(36).slice(2));
+      localStorage.setItem(clientKey, owner);
+    }
+    reports = readReports(localStorage.getItem(STORE_KEY) || "{}", catalog);
+    demo = localStorage.getItem(STORE_KEY + "-demo") !== "off";
+  } catch {
+    storageOK = false;
+    owner = "memory-" + Date.now();
+  }
+  function el(tag, text2, cls) {
+    const n = document.createElement(tag);
+    if (text2 !== void 0) n.textContent = text2;
+    if (cls) n.className = cls;
+    return n;
+  }
+  function button(text2, run, cls) {
+    const b = el("button", text2, cls);
+    b.type = "button";
+    b.onclick = run;
+    return b;
+  }
+  function notify(text2) {
+    $("message").textContent = text2;
+    $("message").hidden = false;
+    clearTimeout(messageTimer);
+    messageTimer = setTimeout(() => $("message").hidden = true, 6500);
+  }
+  function load() {
+    if (storageOK) try {
+      reports = readReports(localStorage.getItem(STORE_KEY) || "{}", catalog);
+    } catch {
+      storageOK = false;
+    }
+  }
+  function save(next) {
+    reports = next;
+    if (storageOK) try {
+      localStorage.setItem(STORE_KEY, JSON.stringify(next));
+    } catch {
+      storageOK = false;
+      notify("\u6D4F\u89C8\u5668\u6CA1\u6709\u5141\u8BB8\u672C\u5730\u4FDD\u5B58\uFF0C\u767B\u8BB0\u4EC5\u4FDD\u7559\u5728\u5F53\u524D\u9875\u9762\u5185\u5B58\u3002");
+    }
+  }
+  function time(t) {
+    return new Date(t).toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" });
+  }
+  function currentSeats() {
+    return catalog.filter((s) => s.floor === floor && (!$("regionFilter").value || s.region === $("regionFilter").value) && (!$("stateFilter").value || reportState(s, reports[s.id]).kind === $("stateFilter").value));
+  }
+  function preferences() {
+    return { subject: $("subject").value, floor: $("searchRange").value === "all" ? 0 : floor, window: $("windowPreference").checked, power: $("powerPreference").checked, print: $("printPreference").checked };
+  }
+  function counts(n) {
+    const seats = catalog.filter((s) => s.floor === n), out = { total: seats.length };
+    for (const k of Object.keys(STATUS)) out[k] = seats.filter((s) => reportState(s, reports[s.id]).kind === k).length;
+    return out;
+  }
+  function navigationSnapshot() {
+    const form = {};
+    for (const id of ["subject", "searchRange", "regionFilter", "stateFilter", "duration", "voiceText"]) form[id] = $(id).value;
+    for (const id of ["windowPreference", "powerPreference", "printPreference"]) form[id] = $(id).checked;
+    return cleanSeatSnapshot({
+      version: 1,
+      checkin,
+      floor,
+      selected,
+      page,
+      zoom,
+      view,
+      attempted,
+      mapFocus,
+      form,
+      candidates: recommendations.map((r) => ({ id: r.seat.id, score: r.score, reasons: r.reasons, tradeoffs: r.tradeoffs })),
+      scroll: { x: window.scrollX || 0, y: window.scrollY || 0, mapX: $("mapStage").scrollLeft || 0, mapY: $("mapStage").scrollTop || 0 }
+    }, catalog);
+  }
+  function bindModelNavigation(link, focusHash = "") {
+    const update = () => {
+      const snapshot = navigationSnapshot();
+      link.href = modelNavigationURL(focusHash, snapshot);
+      try {
+        history.replaceState({ zhizuoSeatResume: snapshot }, "", location.href);
+      } catch {
+      }
+    };
+    link.target = "_self";
+    link.onpointerdown = update;
+    link.onclick = update;
+    update();
+  }
+  function writeURL() {
+    const p = new URLSearchParams();
+    if (checkin) p.set("mode", "checkin");
+    if (selected) p.set("seat", selected);
+    const url = "\u5609\u5E9A\u77E5\u5EA7.html" + (p.toString() ? "?" + p : "") + (floor ? "#floor=" + floor : "");
+    try {
+      history.replaceState({ zhizuoSeatResume: navigationSnapshot() }, "", url);
+    } catch {
+    }
+  }
+  function selectFloor(n, keepSelected = false) {
+    floor = n;
+    page = 0;
+    zoom = 1;
+    mapFocus = null;
+    recommendations = [];
+    attempted = false;
+    if (!keepSelected) selected = null;
+    $("regionFilter").value = "";
+    $("stateFilter").value = "";
+    $("physicalConfirm").checked = false;
+    writeURL();
+    draw();
+  }
+  function selectSeat(id, scroll = true) {
+    const s = catalog.find((s2) => s2.id === id);
+    if (!s) return;
+    if (floor !== s.floor) {
+      floor = s.floor;
+      page = 0;
+      $("regionFilter").value = "";
+      $("stateFilter").value = "";
+    }
+    if ($("regionFilter").value && $("regionFilter").value !== s.region) $("regionFilter").value = s.region;
+    if ($("stateFilter").value && $("stateFilter").value !== reportState(s, reports[s.id]).kind) $("stateFilter").value = "";
+    selected = id;
+    $("physicalConfirm").checked = false;
+    const index = currentSeats().findIndex((s2) => s2.id === id);
+    if (index >= 0) page = Math.floor(index / pageSize);
+    writeURL();
+    draw();
+    if (scroll) $("seatDetail").scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+  function locateSeat(id, targetView = "map", focusIds = [id], priority = false) {
+    const s = catalog.find((s2) => s2.id === id);
+    if (!s) return;
+    $("regionFilter").value = "";
+    $("stateFilter").value = "";
+    view = targetView;
+    zoom = 1;
+    mapFocus = targetView === "map" ? { floor: s.floor, ids: focusIds, priority } : null;
+    selectSeat(id, false);
+    const panel = $(targetView === "map" ? "planPanel" : "listContent");
+    if (targetView === "map") {
+      $("mapStage").scrollLeft = 0;
+      $("mapStage").scrollTop = 0;
+    }
+    panel.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (targetView === "list") Array.from($("seatCards").children).find((b) => b.dataset.seat === id)?.focus?.({ preventScroll: true });
+  }
+  function locatePriority(id, targetView = view) {
+    if (!recommendations.some((r) => r.seat.id === id)) return;
+    locateSeat(id, targetView, [id], true);
+  }
+  function focusPriorityArea() {
+    const local = recommendations.filter((r) => r.seat.floor === floor), first = local[0] || recommendations[0];
+    if (!first) return;
+    const ids = recommendations.filter((r) => r.seat.floor === first.seat.floor).map((r) => r.seat.id);
+    locateSeat(first.seat.id, "map", ids, true);
+  }
+  function refreshExamples() {
+    const next = makeExampleReports(catalog);
+    for (const [id, r] of Object.entries(reports)) if (r.source === "reader") next[id] = r;
+    save(next);
+  }
+  function setDemo(value) {
+    demo = value;
+    if (storageOK) try {
+      localStorage.setItem(STORE_KEY + "-demo", value ? "on" : "off");
+    } catch {
+    }
+    ;
+  }
+  function loadExamples() {
+    load();
+    setDemo(true);
+    refreshExamples();
+    recommendations = [];
+    attempted = false;
+    draw();
+    notify("\u5C55\u793A\u6A21\u5F0F\u5DF2\u5C31\u7EEA\uFF1A\u989C\u8272\u548C\u5019\u9009\u4F7F\u7528\u793A\u4F8B\u72B6\u6001\uFF0C\u672C\u4EBA\u767B\u8BB0\u4FDD\u7559\u3002");
+  }
+  function drawView() {
+    $("listContent").hidden = view !== "list";
+    $("planPanel").hidden = view !== "map";
+    $("showMap").className = view === "map" ? "active" : "";
+    $("showList").className = view === "list" ? "active" : "";
+    drawPriorityNavigation();
+  }
+  function drawPriorityNavigation() {
+    $("priorityTools").hidden = checkin || !recommendations.length;
+    $("focusPriorityArea").hidden = view !== "map";
+    $("priorityHint").textContent = view === "map" ? "\u70B9\u51FB\u4F18\u5148\u9879\uFF0C\u653E\u5927\u5230\u5EA7\u4F4D\u9644\u8FD1" : "\u70B9\u51FB\u4F18\u5148\u9879\uFF0C\u76F4\u63A5\u8DF3\u5230\u6240\u5728\u9875";
+    const out = $("priorityJumps");
+    out.replaceChildren();
+    for (const r of recommendations) {
+      const b = button(`\u7B2C${r.rank}\u4F18\u5148 \xB7 ${r.seat.floor}F ${r.seat.label}`, () => locatePriority(r.seat.id), r.seat.id === selected ? "active" : "");
+      b.setAttribute("aria-label", `\u7B2C${r.rank}\u4F18\u5148 ${r.seat.floor}\u697C ${r.seat.label}\uFF0C` + (view === "map" ? "\u653E\u5927\u5B9A\u4F4D" : "\u8DF3\u5230\u6240\u5728\u5217\u8868\u9875"));
+      b.setAttribute("aria-pressed", String(r.seat.id === selected));
+      out.append(b);
+    }
+  }
+  function drawOverview() {
+    $("floorCards").replaceChildren();
+    $("floorNav").replaceChildren();
+    for (let n = 1; n <= 5; n++) {
+      const c = counts(n), tile = button("", () => selectFloor(n), "floor-tile");
+      tile.append(el("strong", n + "F"), el("span", FLOOR_INFO[n - 1].title), el("span", `\u6A21\u578B\u6905\u4F4D ${c.total} \xB7 \u79BB\u5EA7\u767B\u8BB0 ${c.available}`), el("small", `\u6709\u4EBA/\u6682\u79BB ${c.occupied + c.away} \xB7 \u5F85\u6838\u5BF9 ${c.unknown} \xB7 \u4E13\u5EA7 ${c.protected}`));
+      $("floorCards").append(tile);
+      const tab = button(n + "F", () => selectFloor(n), n === floor ? "active" : "");
+      tab.setAttribute("aria-current", n === floor ? "page" : "false");
+      $("floorNav").append(tab);
+    }
+  }
+  function drawRecommendations() {
+    const out = $("recommendations");
+    out.replaceChildren();
+    if (!recommendations.length) {
+      out.append(el("p", attempted ? $("powerPreference").checked ? "\u5F53\u524D\u8303\u56F4\u6CA1\u6709\u5E26\u7535\u6E90\u4E14\u53EF\u521D\u7B5B\u7684\u6A21\u578B\u5EA7\u4F4D\u3002\u5DF2\u4FDD\u7559\u4F60\u7684\u6761\u4EF6\uFF0C\u53EF\u70B9\u51FB\u4E0B\u65B9\u6BD4\u8F83\u4E94\u5C42\u3002" : "\u5F53\u524D\u8303\u56F4\u6CA1\u6709\u7B26\u5408\u6761\u4EF6\u7684\u8FD1\u671F\u79BB\u5EA7\u8BB0\u5F55\u3002\u53EF\u5207\u6362\u5C55\u793A\u6A21\u5F0F\uFF0C\u6216\u8C03\u6574\u8303\u56F4\u3002" : "\u9009\u597D\u9700\u6C42\uFF0C\u70B9\u51FB\u751F\u6210\u3002\u5C55\u793A\u6A21\u5F0F\u5DF2\u51C6\u5907\u597D\u793A\u4F8B\u72B6\u6001\u3002", "small"));
+      if (attempted) out.append(button($("powerPreference").checked ? "\u4FDD\u7559\u6761\u4EF6\uFF0C\u6BD4\u8F83\u4E94\u5C42" : "\u8F7D\u5165\u6F14\u793A\u72B6\u6001", () => {
+        if ($("powerPreference").checked) {
+          $("searchRange").value = "all";
+          generate();
+        } else {
+          loadExamples();
+          generate();
+        }
+      }));
+      return;
+    }
+    for (const r of recommendations) {
+      const card = el("article", void 0, "result");
+      card.append(el("strong", "\u7B2C " + r.rank + " \u4F18\u5148"), el("h3", r.seat.floor + "F \xB7 " + r.seat.label));
+      for (const reason of r.reasons) card.append(el("p", reason));
+      for (const reason of r.tradeoffs) card.append(el("p", "\u53D6\u820D\uFF1A" + reason));
+      const actions = el("div", void 0, "priority-actions");
+      actions.append(button("\u56FE\u4E2D\u5B9A\u4F4D", () => locatePriority(r.seat.id, "map")), button("\u8DF3\u5230\u5217\u8868\u9875", () => locatePriority(r.seat.id, "list")));
+      card.append(actions);
+      out.append(card);
+    }
+  }
+  function drawCards() {
+    const rows = currentSeats(), pages = Math.max(1, Math.ceil(rows.length / pageSize));
+    page = Math.min(page, pages - 1);
+    $("boardTitle").textContent = floor + "F \xB7 " + ($("regionFilter").value || "\u5168\u5C42") + "\u5EA7\u4F4D\u8868";
+    $("boardDescription").textContent = `\u5F53\u524D\u6761\u4EF6\u5171 ${rows.length} \u628A\u6A21\u578B\u6905\u5B50\uFF0C\u6BCF\u9875\u6700\u591A ${pageSize} \u4E2A\uFF1B\u5404\u9875\u4F7F\u7528\u540C\u4E00\u4EFD\u5B8C\u6574\u6905\u4F4D\u6E05\u5355\u3002`;
+    const out = $("seatCards");
+    out.replaceChildren();
+    for (const s of rows.slice(page * pageSize, (page + 1) * pageSize)) {
+      const state = reportState(s, reports[s.id]), rank = recommendations.find((r) => r.seat.id === s.id)?.rank;
+      const b = button("", () => selectSeat(s.id), "seat" + (s.id === selected ? " selected" : "") + (rank ? " ranked" : ""));
+      b.dataset.kind = state.kind;
+      b.dataset.seat = s.id;
+      b.append(el("strong", s.label), el("small", rank ? "\u7B2C" + rank + "\u4F18\u5148 \xB7 " + state.label : state.label));
+      b.setAttribute("aria-label", floor + "\u697C " + s.label + " " + state.label + (rank ? " \u7B2C" + rank + "\u4F18\u5148" : ""));
+      b.setAttribute("aria-pressed", String(s.id === selected));
+      out.append(b);
+    }
+    if (!rows.length) out.append(el("p", "\u8FD9\u4E00\u5C42\u5728\u5F53\u524D\u533A\u57DF\u6216\u72B6\u6001\u6761\u4EF6\u4E0B\u6CA1\u6709\u5339\u914D\u5EA7\u4F4D\u3002", "empty"));
+    $("pagination").textContent = page + 1 + " / " + pages + " \u9875";
+    $("previousPage").disabled = page === 0;
+    $("nextPage").disabled = page >= pages - 1;
+  }
+  function drawDetail() {
+    const s = catalog.find((s2) => s2.id === selected), out = $("seatDetail");
+    out.hidden = !s;
+    out.replaceChildren();
+    for (const name of ["arrive", "away", "leave", "items"]) $(name).disabled = !s || s.dedicated;
+    if (!s) {
+      $("checkinTitle").textContent = "\u9009\u62E9\u5EA7\u4F4D\u540E\u529E\u7406\u5230\u5EA7\u767B\u8BB0";
+      return;
+    }
+    const r = reports[s.id], state = reportState(s, r), rank = recommendations.find((i) => i.seat.id === s.id)?.rank;
+    out.append(el("h3", s.floor + "F \xB7 " + s.label + (rank ? " \xB7 \u7B2C" + rank + "\u4F18\u5148" : "")), el("p", state.label + "\uFF1A" + state.reason));
+    out.append(el("p", "\u6765\u6E90\uFF1A" + (r?.source === "example" ? "\u5C55\u793A\u6A21\u5F0F\u7684\u793A\u4F8B\u767B\u8BB0" : r ? "\u8BFB\u8005\u4E3B\u52A8\u767B\u8BB0" : "\u6682\u65E0\u767B\u8BB0") + (state.at ? " \xB7 \u66F4\u65B0 " + time(state.at) + " \xB7 \u5230\u671F " + time(state.until) : ""), "small"));
+    const links = el("div", void 0, "detail-actions");
+    const locate = el("a", "\u5728\u5EA7\u4F4D\u56FE\u5B9A\u4F4D");
+    locate.href = "#planPanel";
+    locate.onclick = (e) => {
+      e.preventDefault();
+      locateSeat(s.id, "map");
+    };
+    const model = el("a", "\u5728\u4E09\u7EF4\u4E2D\u67E5\u770B\u8FD9\u4E2A\u4F4D\u7F6E \u2192");
+    bindModelNavigation(model, "#loc=" + [s.floor, s.x, s.z].join(","));
+    links.append(locate, model);
+    if (!checkin) {
+      const a = el("a", "\u6211\u5DF2\u5230\u5EA7\uFF0C\u529E\u7406\u767B\u8BB0 \u2192");
+      a.href = "\u5609\u5E9A\u77E5\u5EA7.html?mode=checkin&seat=" + s.id + "#floor=" + floor;
+      links.append(a);
+    } else links.append(button("\u5230\u5EA7\u767B\u8BB0\u64CD\u4F5C \u2193", () => $("checkinPanel").scrollIntoView({ behavior: "smooth", block: "center" })));
+    out.append(links);
+    $("checkinTitle").textContent = s.floor + "F \xB7 " + s.label + " \xB7 \u672C\u4EBA\u5230\u5EA7\u767B\u8BB0";
+    $("checkinExplanation").textContent = s.dedicated ? "\u8FD9\u91CC\u662F\u9986\u65B9\u56FA\u5B9A\u4E13\u5EA7\uFF0C\u672C\u673A\u4E0D\u529E\u7406\u8D44\u683C\u6216\u4F7F\u7528\u6743\u3002" : "\u9009\u62E9\u672C\u4EBA\u7684\u5B9E\u9645\u5230\u5EA7\u72B6\u6001\u3002\u767B\u8BB0\u4E0D\u4F1A\u66FF\u4EE3\u56FE\u4E66\u9986\u539F\u6709\u9884\u7EA6\u6216\u7B7E\u5230\uFF1B\u4E0D\u8981\u8FDC\u7A0B\u5360\u5EA7\u6216\u4EE3\u66FF\u522B\u4EBA\u767B\u8BB0\u3002";
+    const mine = catalog.filter((s2) => reports[s2.id]?.owner === owner && ["occupied", "away"].includes(reportState(s2, reports[s2.id]).kind));
+    $("myReports").replaceChildren();
+    for (const s2 of mine) $("myReports").append(button("\u672C\u673A\u5F53\u524D\u767B\u8BB0\uFF1A" + s2.floor + "F " + s2.label, () => selectSeat(s2.id)));
+  }
+  function svg(tag, attrs, text2) {
+    const n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, String(v));
+    if (text2 !== void 0) n.textContent = text2;
+    return n;
+  }
+  function drawPlan() {
+    const map = $("floorPlan"), b = floorBounds(floor), region = $("regionFilter").value, rows = catalog.filter((s) => s.floor === floor && (!region || s.region === region));
+    map.replaceChildren();
+    let left = b.left - 1, right = b.right + 1, back = b.back - 1, front = b.front + 1;
+    if (region && rows.length) {
+      left = Math.max(left, Math.min(...rows.map((s) => s.x)) - 5);
+      right = Math.min(right, Math.max(...rows.map((s) => s.x)) + 5);
+      back = Math.max(back, Math.min(...rows.map((s) => s.z)) - 4);
+      front = Math.min(front, Math.max(...rows.map((s) => s.z)) + 4);
+    }
+    if (mapFocus?.floor === floor) {
+      const targets = rows.filter((s) => mapFocus.ids.includes(s.id));
+      if (targets.length) {
+        left = Math.max(b.left - 1, Math.min(...targets.map((s) => s.x)) - 8);
+        right = Math.min(b.right + 1, Math.max(...targets.map((s) => s.x)) + 8);
+        back = Math.max(b.back - 1, Math.min(...targets.map((s) => s.z)) - 8);
+        front = Math.min(b.front + 1, Math.max(...targets.map((s) => s.z)) + 8);
+      }
+    }
+    const width = right - left, depth = front - back;
+    map.setAttribute("viewBox", `${left} ${back} ${width} ${depth}`);
+    map.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    map.style.width = zoom * 100 + "%";
+    map.style.height = zoom * 100 + "%";
+    $("zoomText").textContent = mapFocus ? zoom === 1 ? mapFocus.priority ? "\u63A8\u8350\u5C40\u90E8" : "\u5EA7\u4F4D\u5C40\u90E8" : "\u5C40\u90E8 \xB7 " + Math.round(zoom * 100) + "%" : zoom === 1 ? "\u9002\u914D\u7A97\u53E3" : Math.round(zoom * 100) + "%";
+    const rect = (x, z2, w, d, color, stroke, extra = {}) => map.append(svg("rect", { x: x - w / 2, y: z2 - d / 2, width: w, height: d, fill: color, ...stroke ? { stroke, "stroke-width": 0.06 } : {}, ...extra }));
+    const label = (x, z2, text2, size = 0.7, color = "#50675d") => map.append(svg("text", { x, y: z2, "font-size": size, "text-anchor": "middle", fill: color }, text2));
+    rect((b.left + b.right) / 2, (b.back + b.front) / 2, b.right - b.left, b.front - b.back, "#e9e6d9", "#a8b5aa");
+    for (const h of atriumVoids(floor)) rect(h.x, h.z, h.w, h.d, "#f7f6f0", "#a2ada7");
+    for (const r of floorRackRecords(floor)) rect(r.x, r.z, r.rotation ? 1.04 : r.w, r.rotation ? r.w : 1.04, "#78614f");
+    if (floor === 1) {
+      for (const r of GROUND_LAYOUT.compactBlocks) rect(r.x, r.z, r.w, r.d, "#b4c0c3", "#738685");
+      for (const r of [GROUND_LAYOUT.cafe, ...GROUND_LAYOUT.rooms]) {
+        rect(r.x, r.z, r.w, r.d, r.id ? "#d1ddd4" : "#ddc9ab", "#8c998e");
+        label(r.x, r.z, r.label, 0.72);
+      }
+      for (const w of [...GROUND_LAYOUT.partitions, ...GROUND_LAYOUT.loungeBackWalls]) rect(w.x, w.z, w.w, w.d, "#7d8982");
+      for (const p of GROUND_LAYOUT.receivingTables) rect(p.x, p.z, p.w, p.d, "#bd9567");
+      for (const p of GROUND_LAYOUT.sofas) rect(p.x, p.z, 3.3, 1.3, "#dedbd0", "#80664d");
+      for (const s of GROUND_LAYOUT.smallShelves) rect(s.x, s.z, s.d, s.w, "#7d624c");
+      for (const p of GROUND_LAYOUT.printers) rect(p.x, p.z, 1.45, 1.2, "#7d8b8e");
+      const t = GROUND_LAYOUT.toilet;
+      rect(t.x, t.z, t.w, t.d, "#c4d2c8", "#7f958b");
+      label(t.x, t.z, "WC");
+      rect(0, 13, 6.6, 1.8, "#985a45");
+      label(0, 16, "\u7535\u8111\u670D\u52A1\u53F0", 0.7);
+    } else {
+      const f = upperFacilities(floor);
+      for (const t of f.toilets) {
+        rect(t.x, t.z, t.w, t.d, "#c4d2c8", "#7f958b");
+        label(t.x, t.z, "WC");
+      }
+      for (const r of [...f.rooms, ...f.culture ? [f.culture] : []]) {
+        rect(r.x, r.z, r.w, r.d, "#d1ddd4", "#87988d");
+        label(r.x, r.z, r.label, 0.58);
+      }
+      if (f.lockers) rect(f.lockers.x, f.lockers.z, f.lockers.w, f.lockers.d, "#94aca0");
+    }
+    const c = TRANSPORT_CORE;
+    rect((c.left + c.right) / 2, (c.back + c.front) / 2, c.right - c.left, c.front - c.back, "#d5dbd1", "#71887b");
+    label(24, -46, "\u7535\u68AF / \u4FA7\u697C\u68AF", 0.7);
+    rect(ELEVATOR_LAYOUT.x, ELEVATOR_LAYOUT.z - ELEVATOR_LAYOUT.facadeOffset, 2.8, 2.7 * ELEVATOR_LAYOUT.facadeScale, "#6f8587");
+    const stair = STAIR_LAYOUT[floor];
+    if (stair) for (const side of [-1, 1]) {
+      rect(side * 4.65, (stair.start + stair.end) / 2, 1.45, stair.start - stair.end, "#8d9590");
+      label(side * 4.65, (stair.start + stair.end) / 2, "\u697C\u68AF", 0.5);
+    }
+    if (floor === 3) {
+      const e = EXHIBITION_LAYOUT;
+      for (const [point, name, color] of [[e.armillary, "\u91D1\u7403", "#b89b4d"], [e.ceramics, "\u767D\u74F7", "#dde1d5"], [e.smallExhibit, "\u6728\u96D5", "#9c7951"]]) {
+        rect(point.x, point.z, 2.5, 1.7, color, "#7c7d67");
+        label(point.x, point.z + 0.2, name, 0.5);
+      }
+    }
+    for (const d of deskLayouts(floor)) {
+      const a = d.rotation || 0;
+      rect(d.x, d.z, d.w, d.d, "#e1d4ad", "#aaa188", { transform: `rotate(${-a * 180 / Math.PI} ${d.x} ${d.z})` });
+    }
+    for (const s of rows) {
+      const state = reportState(s, reports[s.id]), rank = recommendations.find((r) => r.seat.id === s.id)?.rank, chosen = s.id === selected;
+      const g = svg("g", { "data-seat": s.id, role: "button", tabindex: 0, "aria-label": s.floor + "F " + s.label + " " + state.label });
+      g.append(svg("rect", { x: s.x - 0.6, y: s.z - 0.43, width: 1.2, height: 0.86, rx: 0.14, fill: rank ? "#f7d36c" : state.color, stroke: chosen ? "#112f29" : rank ? "#a77925" : "#ffffff", "stroke-width": chosen ? 0.16 : 0.06 }));
+      g.append(svg("text", { x: s.x, y: s.z + 0.15, "text-anchor": "middle", "font-size": 0.43, "font-weight": 700, fill: rank ? "#604312" : "#fff" }, s.label.slice(1)));
+      g.append(svg("title", {}, s.label + " \xB7 " + state.label + (rank ? " \xB7 \u7B2C" + rank + "\u4F18\u5148" : "")));
+      if (rank) g.append(svg("text", { x: s.x, y: s.z - 0.7, "text-anchor": "middle", "font-size": 0.48, "font-weight": 700, fill: "#80580f" }, "\u4F18" + rank));
+      const choose2 = () => selectSeat(s.id);
+      g.addEventListener("click", choose2);
+      g.addEventListener("keydown", (e) => {
+        if (["Enter", " "].includes(e.key)) {
+          e.preventDefault();
+          choose2();
+        }
+      });
+      map.append(g);
+    }
+    label(-20, b.front - 1.5, "\u5317\u533A \xB7 \u5DE6\u4FA7", 0.85);
+    label(20, b.front - 1.5, "\u5357\u533A \xB7 \u53F3\u4FA7", 0.85);
+    if (floor > 1) label(0, b.back + 2, "\u4E1C\u533A \xB7 \u4E0A\u65B9", 0.85);
+  }
+  function draw() {
+    if (mapFocus?.priority && mapFocus.ids.some((id) => !recommendations.some((r) => r.seat.id === id))) mapFocus = null;
+    bindModelNavigation($("modelOverviewLink"));
+    lastStamp = JSON.stringify(reports) + "|" + catalog.map((s) => reportState(s, reports[s.id]).kind).join(",");
+    drawOverview();
+    $("landing").hidden = !!floor;
+    $("floorView").hidden = !floor;
+    $("checkinPanel").hidden = !checkin;
+    $("recommendPanel").hidden = checkin;
+    $("scopeNotice").textContent = demo ? "\u5C55\u793A\u6A21\u5F0F \xB7 \u6709\u4EBA\u3001\u79BB\u5EA7\u7B49\u989C\u8272\u6765\u81EA\u793A\u4F8B\u8BB0\u5F55\uFF0C\u975E\u9986\u5185\u5B9E\u65F6\u6570\u636E\u3002\u53EF\u76F4\u63A5\u751F\u6210\u63A8\u8350\uFF1B\u672C\u4EBA\u767B\u8BB0\u4F1A\u4FDD\u7559\u3002" : "\u672C\u4EBA\u767B\u8BB0\u6A21\u5F0F \xB7 \u53EA\u6309\u672C\u673A\u6709\u6548\u767B\u8BB0\u521D\u7B5B\uFF1B\u6CA1\u6709\u8BB0\u5F55\u7684\u5EA7\u4F4D\u663E\u793A\u5F85\u6838\u5BF9\u3002\u672A\u8FDE\u63A5\u5168\u9986\u540E\u53F0\u6216\u6B63\u5F0F\u9884\u7EA6\u3002";
+    if (!floor) return;
+    $("floorTitle").textContent = floor + "F \xB7 " + FLOOR_INFO[floor - 1].title;
+    $("floorDescription").textContent = checkin ? "\u8FD9\u662F\u672C\u5C42\u5230\u5EA7\u767B\u8BB0\u754C\u9762\u3002\u5148\u9009\u62E9\u5EA7\u4F4D\uFF0C\u518D\u6838\u5BF9\u73B0\u573A\u548C\u767B\u8BB0\u52A8\u4F5C\u3002" : "\u5EA7\u4F4D\u56FE\u4E0E\u5217\u8868\u5207\u6362\u67E5\u770B\uFF1B\u6A21\u578B\u4E24\u4FA7\u4E34\u7A97\u684C\u6392\u5747\u53EF\u53C2\u4E0E\u504F\u597D\u6392\u5E8F\u3002";
+    bindModelNavigation($("floorModel"), "#floor=" + floor);
+    const c = counts(floor);
+    $("floorStats").replaceChildren(el("span", "\u6A21\u578B\u6905\u4F4D " + c.total), el("span", "\u79BB\u5EA7\u767B\u8BB0 " + c.available), el("span", "\u6709\u4EBA\u767B\u8BB0 " + c.occupied), el("span", "\u6682\u79BB " + c.away), el("span", "\u5F85\u6838\u5BF9 " + c.unknown), el("span", "\u9986\u65B9\u4E13\u5EA7 " + c.protected));
+    drawRecommendations();
+    drawCards();
+    drawDetail();
+    drawPlan();
+    drawView();
+    $("scopeNotice").textContent = demo ? "\u5C55\u793A\u6A21\u5F0F \xB7 \u6709\u4EBA\u3001\u79BB\u5EA7\u7B49\u989C\u8272\u6765\u81EA\u793A\u4F8B\u8BB0\u5F55\uFF0C\u975E\u9986\u5185\u5B9E\u65F6\u6570\u636E\u3002\u53EF\u76F4\u63A5\u751F\u6210\u63A8\u8350\uFF1B\u672C\u4EBA\u767B\u8BB0\u4F1A\u4FDD\u7559\u3002" : "\u672C\u4EBA\u767B\u8BB0\u6A21\u5F0F \xB7 \u53EA\u6309\u672C\u673A\u6709\u6548\u767B\u8BB0\u521D\u7B5B\uFF1B\u6CA1\u6709\u8BB0\u5F55\u7684\u5EA7\u4F4D\u663E\u793A\u5F85\u6838\u5BF9\u3002\u672A\u8FDE\u63A5\u5168\u9986\u540E\u53F0\u6216\u6B63\u5F0F\u9884\u7EA6\u3002";
+    if (!storageOK) $("scopeNotice").textContent = "\u5F53\u524D\u6D4F\u89C8\u5668\u672A\u5141\u8BB8\u672C\u5730\u5B58\u50A8\uFF1A\u767B\u8BB0\u53EA\u5728\u5F53\u524D\u9875\u9762\u5185\u5B58\u6709\u6548\uFF0C\u5173\u95ED\u5373\u4E22\u5931\u3002\u672C\u673A\u6F14\u793A\u4E0D\u63A5\u5165\u6444\u50CF\u5934\u3001\u5168\u9986\u5171\u4EAB\u540E\u53F0\u6216\u771F\u5B9E\u9884\u7EA6\u3002";
+  }
+  function act(kind) {
+    load();
+    const result = changeReport(catalog, reports, { id: selected, kind, owner, minutes: Number($("duration").value), confirmed: $("physicalConfirm").checked });
+    if (result.ok) {
+      save(result.reports);
+      recommendations = [];
+      $("physicalConfirm").checked = false;
+      draw();
+    }
+    notify(result.message);
+  }
+  if (checkin) {
+    $("pageTitle").textContent = "\u5609\u5E9A\u77E5\u5EA7 \xB7 \u5230\u5EA7\u81EA\u52A9\u767B\u8BB0";
+    $("pageLead").textContent = "\u5230\u73B0\u573A\u540E\uFF0C\u7531\u672C\u4EBA\u9009\u62E9\u5EA7\u4F4D\u5E76\u767B\u8BB0\u3002\u6765\u6E90\u548C\u65F6\u95F4\u516C\u5F00\u8BF4\u660E\uFF0C\u4E0D\u91C7\u96C6\u4EBA\u8138\u6216\u89C6\u9891\u3002";
+    $("modeLink").textContent = "\u8FD4\u56DE\u5206\u5C42\u9009\u5EA7 \u2192";
+    $("modeLink").href = "\u5609\u5E9A\u77E5\u5EA7.html";
+  }
+  for (const [kind, data] of Object.entries(STATUS)) {
+    const span = el("span"), dot = el("i");
+    dot.style.background = data.color;
+    span.append(dot, document.createTextNode(data.label));
+    $("legend").append(span);
+  }
+  $("loadExample").onclick = $("exampleOnFloor").onclick = loadExamples;
+  $("clearExample").onclick = () => {
+    load();
+    setDemo(false);
+    save(Object.fromEntries(Object.entries(reports).filter(([, r]) => r.source !== "example")));
+    recommendations = [];
+    attempted = false;
+    draw();
+    notify("\u5DF2\u5207\u6362\u672C\u4EBA\u767B\u8BB0\u6A21\u5F0F\uFF1B\u672A\u77E5\u4F4D\u7F6E\u4FDD\u6301\u5F85\u6838\u5BF9\u3002");
+  };
+  $("showMap").onclick = () => {
+    view = "map";
+    drawView();
+  };
+  $("showList").onclick = () => {
+    view = "list";
+    drawView();
+  };
+  $("backFloors").onclick = () => selectFloor(0);
+  for (const id of ["regionFilter", "stateFilter"]) $(id).onchange = () => {
+    page = 0;
+    zoom = 1;
+    mapFocus = null;
+    drawCards();
+    drawPlan();
+  };
+  $("previousPage").onclick = () => {
+    page--;
+    drawCards();
+  };
+  $("nextPage").onclick = () => {
+    page++;
+    drawCards();
+  };
+  function generate() {
+    load();
+    if (demo) refreshExamples();
+    attempted = true;
+    mapFocus = null;
+    zoom = 1;
+    recommendations = suggestSeats(catalog, reports, preferences());
+    draw();
+  }
+  $("preferenceForm").onsubmit = (e) => {
+    e.preventDefault();
+    generate();
+  };
+  for (const id of ["subject", "searchRange", "windowPreference", "powerPreference", "printPreference"]) $(id).onchange = () => {
+    voiceControl.invalidate();
+    recommendations = [];
+    attempted = false;
+    mapFocus = null;
+    zoom = 1;
+    drawRecommendations();
+    drawCards();
+    drawPlan();
+    drawPriorityNavigation();
+  };
+  $("zoomIn").onclick = () => {
+    zoom = Math.min(3, zoom + 0.25);
+    drawPlan();
+  };
+  $("zoomOut").onclick = () => {
+    zoom = Math.max(1, zoom - 0.25);
+    drawPlan();
+  };
+  $("resetZoom").onclick = () => {
+    zoom = 1;
+    mapFocus = null;
+    drawPlan();
+    $("mapStage").scrollLeft = 0;
+    $("mapStage").scrollTop = 0;
+  };
+  $("focusPriorityArea").onclick = focusPriorityArea;
+  for (const id of ["arrive", "away", "leave", "items"]) $(id).onclick = () => act({ arrive: "occupied", away: "away", leave: "available", items: "items" }[id]);
+  window.addEventListener("storage", (e) => {
+    if (e.key === STORE_KEY) {
+      load();
+      recommendations = [];
+      draw();
+    }
+  });
+  setInterval(() => {
+    if (document.hidden) return;
+    load();
+    const stamp = JSON.stringify(reports) + "|" + catalog.map((s) => reportState(s, reports[s.id]).kind).join(",");
+    if (stamp === lastStamp) return;
+    if (recommendations.length) recommendations = suggestSeats(catalog, reports, preferences());
+    draw();
+  }, 1e4);
+  var initial = catalog.find((s) => s.id === params.get("seat"));
+  var hashFloor = Number(location.hash.match(/^#floor=([1-5])$/)?.[1] || 0);
+  if (initial) {
+    selected = initial.id;
+    floor = initial.floor;
+    page = Math.floor(catalog.filter((s) => s.floor === floor).findIndex((s) => s.id === selected) / pageSize);
+  } else floor = hashFloor;
+  window.addEventListener("hashchange", () => {
+    const n = Number(location.hash.match(/^#floor=([1-5])$/)?.[1] || 0);
+    if (n !== floor) selectFloor(n);
+  });
+  var voiceControl = initSeatVoice({ get: $, getCurrent: preferences, onConfirm: (p) => {
+    if (p.floor && p.floor !== floor) selectFloor(p.floor);
+    if (p.subject !== void 0) $("subject").value = p.subject;
+    if (p.range !== void 0) $("searchRange").value = p.range;
+    for (const [key, id] of [["window", "windowPreference"], ["power", "powerPreference"], ["print", "printPreference"]]) if (p[key] !== void 0) $(id).checked = p[key];
+    generate();
+  } });
+  var restored = decodeSeatSnapshot(new URLSearchParams(location.hash.slice(1)).get("resume"), catalog);
+  if (!restored) try {
+    restored = cleanSeatSnapshot(history.state?.zhizuoSeatResume, catalog);
+  } catch {
+  }
+  if (restored && restored.checkin !== checkin) restored = null;
+  if (restored) {
+    ({ floor, selected, page, zoom, view, attempted, mapFocus } = restored);
+    for (const id of ["subject", "searchRange", "regionFilter", "stateFilter", "duration", "voiceText"]) $(id).value = restored.form[id];
+    for (const id of ["windowPreference", "powerPreference", "printPreference"]) $(id).checked = restored.form[id];
+    recommendations = restoreSeatCandidates(restored, catalog, reports, reportState);
+    $("physicalConfirm").checked = false;
+  } else if (demo && !checkin) refreshExamples();
+  draw();
+  if (restored) {
+    requestAnimationFrame(() => {
+      window.scrollTo(restored.scroll.x, restored.scroll.y);
+      $("mapStage").scrollLeft = restored.scroll.mapX;
+      $("mapStage").scrollTop = restored.scroll.mapY;
+    });
+    notify(recommendations.length < restored.candidates.length ? "\u5DF2\u8FD4\u56DE\u521A\u624D\u9009\u5EA7\uFF1B\u90E8\u5206\u5019\u9009\u72B6\u6001\u5DF2\u53D8\u5316\u6216\u8FC7\u671F\uFF0C\u5DF2\u64A4\u4E0B\uFF0C\u8BF7\u91CD\u65B0\u6BD4\u8F83\u3002" : "\u5DF2\u8FD4\u56DE\u521A\u624D\u9009\u5EA7\uFF0C\u697C\u5C42\u3001\u7B5B\u9009\u3001\u5019\u9009\u548C\u67E5\u770B\u4F4D\u7F6E\u5DF2\u6062\u590D\u3002");
+  }
+  window.zhizuoSeatPage = { parseDemand: parseSeatDemand, getState: () => ({ floor, selected, checkin, demo, view, seatCount: catalog.length, page, region: $("regionFilter").value, recommendations: recommendations.map((r) => r.seat.id), mapFocus: mapFocus ? { floor: mapFocus.floor, ids: [...mapFocus.ids] } : null, storageOK }) };
+})();
+</script></body></html>

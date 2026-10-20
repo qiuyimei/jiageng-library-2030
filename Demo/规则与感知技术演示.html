@@ -1,0 +1,1014 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>嘉庚知座 实占感知与学习资源联动</title><style>
+:root{--paper:#f1f2ea;--ink:#263e37;--green:#22765c;--line:#d5dcd0}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 'Microsoft YaHei',sans-serif}button,select,input{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:8px;padding:9px 14px;background:#fff;color:var(--ink)}button:hover{background:#e6efe2}button:disabled{opacity:.45;cursor:default}.primary{background:var(--green);color:white}.primary:hover{background:#1c624c}a{color:#20644e}header{background:#fff;padding:25px 4vw;display:flex;justify-content:space-between;gap:25px;border-bottom:1px solid var(--line)}h1{font-size:30px;margin:4px 0}h2{font-size:21px;margin:0 0 12px}h3{font-size:17px}.eyebrow{font-size:11px;letter-spacing:2px;color:#9d7f45}.muted,.small,small{color:#65756c}.small,small{font-size:12px}.badge{align-self:center;padding:10px 15px;border-radius:7px;background:#fff0d4;font-size:13px}.lead{margin:0;max-width:850px}.wrap{max-width:1550px;margin:auto;padding:22px 4vw}.floors{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}.floor-card{display:flex;flex-direction:column;align-items:flex-start;padding:15px;gap:4px}.floor-card strong{font-size:25px}.floor-card span{font-size:12px}.floor-card b{font-size:16px}.floor-card.active{outline:3px solid var(--green)}.workspace{display:grid;grid-template-columns:1fr 380px;gap:23px}.panel{background:#fff;padding:22px;border:1px solid var(--line);border-radius:12px}.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}.toolbar select{width:auto}.legend{display:flex;flex-wrap:wrap;gap:13px;font-size:12px;margin:10px 0}.legend span{display:flex;align-items:center;gap:5px}.dot{width:11px;height:11px;border-radius:50%;display:inline-block}.map{width:100%;height:auto}.map [role=button]{cursor:pointer}.map [role=button]:focus{outline:none;filter:brightness(1.2)}.detail{border-top:1px solid var(--line);padding-top:10px;min-height:120px}.detail button{margin:10px 5px 0 0}.detail small{display:block}.fields label{display:block;margin:13px 0 5px}.fields select{width:100%;padding:9px;border:1px solid var(--line);border-radius:6px;background:#fff}.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:17px 0}.checks label{margin:0;font-size:13px}.full{width:100%;margin:5px 0 12px}.result{border:1px solid var(--line);border-left:5px solid var(--green);border-radius:8px;padding:13px;margin:12px 0}.result h3{margin:0 0 7px}.result p{font-size:13px;margin:5px 0}.result small{display:block;margin:8px 0}.warning{background:#fff0d4;padding:12px;font-size:13px}.notice{background:#e5ede1;border-radius:8px;padding:12px;margin:18px 0;min-height:44px;font-size:13px}.model{margin:22px 0}.model iframe{width:100%;height:1080px;border:0}.route{font-size:13px;overflow-wrap:anywhere;margin:12px 0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0}.cards h3{margin:0 0 10px}.sources{display:flex;gap:12px;flex-wrap:wrap;font-size:12px}footer{border-top:1px solid var(--line);padding:20px 0;font-size:12px}input[type=file]{max-width:100%;font-size:12px}:focus-visible{outline:3px solid #a77f30;outline-offset:3px}[hidden]{display:none!important}@media(max-width:1100px){.workspace{grid-template-columns:1fr 330px}.wrap{padding:18px}.floors{gap:7px}.floor-card{padding:10px}}@media(max-width:760px){header{display:block;padding:18px}.badge{display:inline-block;margin-top:12px}.workspace{display:flex;flex-direction:column}.fields{order:-1}.floors{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:1fr}.panel{padding:16px}.model iframe{height:1450px}h1{font-size:25px}}
+.seat-board-row{display:grid;grid-template-columns:45px 1fr;gap:12px;align-items:center;margin:14px 0}.seat-board-chairs{display:grid;grid-template-columns:repeat(12,minmax(55px,1fr));gap:7px}.seat-light{min-height:72px;padding:6px 2px;font-size:10px;background:#eef1ea;border:1px solid #c4cdc1;color:#53645a}.seat-light b,.seat-light span{display:block}.seat-light span{margin-top:8px;font-size:11px}.seat-light[data-state=occupied]{background:#f0d9d3;color:#83463c}.seat-light[data-state=protected]{background:#eee4cb;color:#806026}.seat-light[data-state=unknown]{background:#e1e5e7;color:#596970}.seat-light[data-state=mine]{background:#d1e5f0;color:#285e83}.seat-light.ranked{border:2px solid #bb8732;background:#fff0b4;box-shadow:0 0 14px #d4a4338a;color:#5d4217}.seat-light.rank-1{background:#ffdf6c;box-shadow:0 0 18px #d4a433b0}.seat-light.chosen{outline:3px solid #22765c;outline-offset:2px}.seat-board-help{font-size:12px;color:#65756c}@media(max-width:1100px){.seat-board-chairs{grid-template-columns:repeat(6,minmax(55px,1fr))}}@media(max-width:600px){.seat-board-chairs{grid-template-columns:repeat(4,minmax(50px,1fr))}.seat-board-row{grid-template-columns:30px 1fr}}</style></head><body>
+<header><div><p><a href="../00_打开查看.html">← 答辩总展示</a> · <a href="嘉庚知座.html">打开完整模型分层选座</a></p><div class="eyebrow">JIAGENG / STUDY SPACE / 2030</div><h1>嘉庚知座规则与感知技术演示</h1><p class="lead">用60个可重复样本检验状态融合与学习资源规则。产品入口的完整模型自主登记在独立页面。</p></div><div class="badge">规则研究演示 · 60个模拟样本</div></header>
+<main class="wrap"><section class="panel" style="margin-bottom:20px"><h2>从入口开始，把座位和学习任务一起安排</h2><p>例：带电脑、找数据库资料、先打印。选择条件后比较最多四个优先位置，在平面与三维中看同一个位置和任务路线，到达前再复核。</p><p class="small">目标：减少跑空楼层与取书打印的重复往返，说明每个选择的理由。效果需要现场试点验证，不能保证到达后一定有座。</p></section><div class="floors" id="floors" aria-label="五层状态总览"></div><section class="panel" style="margin-bottom:22px"><h2>发光座位表与本次优先级</h2><p id="boardStatus" aria-live="polite"></p><div id="seatBoard" aria-label="五层模拟座位优先级表"></div><p class="seat-board-help">60个模拟状态样本使用北、南、东编号，方向为左北、右南、上东；模型编号与真实逐座坐标仍待核对，表格不是全馆真实平面。第1至4优先来自当前推荐结果，点击可联动平面、理由与三维。发光表示建议，不是锁座；数据过期、规则离线或条件改变时撤回优先灯。</p></section>
+<div class="workspace"><section class="panel"><div class="toolbar"><h2 id="mapTitle"></h2><button id="recheck">到达前复核</button><button id="clear">重置演示</button><button id="modelTab">展开三维辅助定位</button></div>
+<div class="legend"><span><i class="dot" style="background:#22765c"></i>可选候选</span><span><i class="dot" style="background:#b55246"></i>有人</span><span><i class="dot" style="background:#a57926"></i>保留</span><span><i class="dot" style="background:#687a88"></i>待核对</span><span><i class="dot" style="background:#7a6585"></i>条件不允许</span></div>
+<svg id="map" class="map" viewBox="0 0 680 430" aria-label="模拟座位平面图"></svg><div id="route" class="route"></div><div id="seatDetail" class="detail" aria-live="polite"></div>
+<div class="notice" id="notice" role="status" aria-live="polite">60个座位为演示样本；其他蓝椅仅供形态参考。编号、坐标、书目、设备状态和预约数据均为模拟。未知、暂离与专座不会被当作可选空座。</div>
+<details><summary>本机视觉测试结果导入</summary><p class="small">可导入本人保留包中的视觉脚本输出。本页仍未接入真实预约系统；无人员检测不代表空席。</p><input type="file" id="import" accept="application/json,.json"></details></section>
+<aside class="panel fields"><h2>今天怎样学习</h2><form id="form"><label for="resource">资料或主题</label><select id="resource"></select><label for="floorFilter">必须在哪一层</label><select id="floorFilter"><option value="0">不限楼层</option><option value="1">一楼</option><option value="2">二楼</option><option value="3">三楼</option><option value="4">四楼</option><option value="5">五楼</option></select>
+<div class="checks"><label><input type="checkbox" id="power" checked>必须有插座</label><label><input type="checkbox" id="accessible">演示少楼梯路线</label><label><input type="checkbox" id="quiet" checked>偏好静读区域</label><label><input type="checkbox" id="window">偏好临窗</label><label><input type="checkbox" id="print">顺路打印</label></div>
+<label for="priority">更看重什么</label><select id="priority"><option value="books">靠近相关馆藏</option><option value="walk">减少行走</option><option value="balanced">综合比较</option></select>
+<label for="scenario">人为设置的演示情境</label><select id="scenario"><option value="normal">常规状态</option><option value="conflict">当前选中或候选位置突然有人</option><option value="stale">摄像观测过期</option><option value="offline">使用规则接口离线</option><option value="full">普通区域全部有人</option></select>
+<button type="submit" class="primary full">生成优先座位</button></form><div id="results" aria-live="polite"></div><button id="download" disabled>保存演示任务卡</button></aside></div>
+<section class="panel model" id="modelPanel" hidden><div class="toolbar"><h2>在空间里比较候选，查看本次任务路线</h2><button id="sendFloor">查看当前选中楼层</button></div><p class="small">点击上方候选或下方三维标记，同步查看座位、取书点与打印路线。示意坐标未实测，正式使用仍需官方确认。</p><iframe id="modelFrame" title="按需展开的三维辅助定位"></iframe></section>
+<section class="cards"><article class="panel"><h3>座位权利与观测分开</h3><p>看起来无人，可能是合法暂离或专座。摄像头不负责取消预约或判断违规。</p></article><article class="panel"><h3>资料与位置一起考虑</h3><p>演示纸质书、已借出、位置未知和指定地点阅览情境。未连接真实库存与资料申请。</p></article><article class="panel"><h3>条件变化可以复核</h3><p>未确认候选失效时重新生成方案；本次模拟预约发生冲突时保留记录并提示核对。</p></article></section>
+<footer><p>已实现：模拟状态融合、条件筛选、通道图路径计算、候选解释、模拟预约、复核与视觉JSON导入。真实摄像、校内预约与馆藏接口、手机跨设备续接、拥挤预测属于后续接入或验证工作。</p><p>公共展示不显示现场视频。输入仅在本页内存处理，刷新或重置即结束。保存任务卡由你主动触发。</p><div id="sources" class="sources"></div></footer></main><script>(() => {
+  // src/engine.js
+  var STATE = {
+    candidate: { label: "\u53EF\u9009\u5019\u9009", color: "#22765c" },
+    occupied: { label: "\u5B9E\u9645\u6709\u4EBA", color: "#b55246" },
+    protected: { label: "\u4F7F\u7528\u6743\u4FDD\u7559", color: "#a57926" },
+    unknown: { label: "\u72B6\u6001\u5F85\u6838\u5BF9", color: "#687a88" },
+    unavailable: { label: "\u6761\u4EF6\u4E0D\u5141\u8BB8", color: "#7a6585" },
+    mine: { label: "\u672C\u6B21\u6A21\u62DF\u9884\u7EA6", color: "#286da0" }
+  };
+  var MAX_AGE = 9e4;
+  function classify(seat, now) {
+    if (seat.booking === "reserved" || seat.booking === "away")
+      return { kind: "protected", reason: seat.booking === "away" ? "\u5408\u6CD5\u6682\u79BB\uFF0C\u4FDD\u7559\u539F\u4F7F\u7528\u6743" : "\u5DF2\u6709\u9884\u7EA6\uFF0C\u4E0D\u5411\u4ED6\u4EBA\u63A8\u8350" };
+    if (seat.policy !== "ordinary")
+      return { kind: "protected", reason: "\u6A21\u62DF\u4E13\u5EA7\u6216\u9650\u5236\u533A\u57DF\uFF0C\u672C\u4F1A\u8BDD\u672A\u53D6\u5F97\u4F7F\u7528\u8D44\u683C" };
+    const fresh = (t) => Number.isFinite(t) && t <= now && now - t <= MAX_AGE;
+    if (!seat.ruleOnline || !fresh(seat.rulesAt))
+      return { kind: "unknown", reason: "\u4F7F\u7528\u89C4\u5219\u63A5\u53E3\u79BB\u7EBF\u6216\u8BB0\u5F55\u8FC7\u671F" };
+    if (!fresh(seat.obsAt) || !Number.isFinite(seat.quality) || seat.quality < 0.7 || seat.quality > 1 || seat.observed === "unknown")
+      return { kind: "unknown", reason: "\u89C2\u6D4B\u8FC7\u671F\u3001\u906E\u6321\u6216\u8D28\u91CF\u4E0D\u8DB3" };
+    if (seat.observed === "occupied")
+      return { kind: "occupied", reason: seat.booking === "mine" ? "\u672C\u6B21\u6A21\u62DF\u9884\u7EA6\u4E0E\u73B0\u573A\u89C2\u6D4B\u51B2\u7A81\uFF0C\u8BF7\u6838\u5BF9" : "\u68C0\u6D4B\u5230\u6709\u4EBA\uFF0C\u6682\u4E0D\u63A8\u8350" };
+    if (seat.observed === "items")
+      return { kind: "unknown", reason: "\u672A\u89C1\u4EBA\u4F46\u6709\u7269\u54C1\uFF0C\u4E0D\u80FD\u8BA4\u5B9A\u4E3A\u7A7A\u5EA7" };
+    if (seat.observed !== "clear") return { kind: "unknown", reason: "\u89C2\u6D4B\u72B6\u6001\u4E0D\u652F\u6301" };
+    if (seat.disabled) return { kind: "unavailable", reason: "\u6A21\u62DF\u8BBE\u65BD\u7EF4\u62A4\u4E2D" };
+    if (seat.booking === "mine") return { kind: "mine", reason: "\u4EC5\u6F14\u793A\u4E2D\u786E\u8BA4\uFF0C\u672A\u5728\u9986\u65B9\u7CFB\u7EDF\u9884\u7EA6" };
+    if (seat.booking !== "free") return { kind: "unknown", reason: "\u9884\u7EA6\u72B6\u6001\u4E0D\u652F\u6301" };
+    return { kind: "candidate", reason: "\u6F14\u793A\u89C2\u6D4B\u4E0E\u6A21\u62DF\u89C4\u5219\u5747\u5141\u8BB8\uFF0C\u771F\u5B9E\u4F7F\u7528\u4ECD\u9700\u5B98\u65B9\u786E\u8BA4" };
+  }
+  function shortest(graph, start, end, accessible = false) {
+    if (!graph[start] || !graph[end]) return null;
+    const distance = { [start]: 0 }, previous = {}, pending = new Set(Object.keys(graph));
+    while (pending.size) {
+      let u = null;
+      for (const n of pending) if (u === null || (distance[n] ?? Infinity) < (distance[u] ?? Infinity)) u = n;
+      if (!Number.isFinite(distance[u])) break;
+      pending.delete(u);
+      if (u === end) break;
+      for (const edge of graph[u]) {
+        if (accessible && !edge.accessible) continue;
+        if (!pending.has(edge.to) || !Number.isFinite(edge.weight) || edge.weight < 0) continue;
+        const alt = distance[u] + edge.weight;
+        if (alt < (distance[edge.to] ?? Infinity)) {
+          distance[edge.to] = alt;
+          previous[edge.to] = u;
+        }
+      }
+    }
+    if (!Number.isFinite(distance[end])) return null;
+    const path = [end];
+    while (path[0] !== start) {
+      if (!previous[path[0]]) return null;
+      path.unshift(previous[path[0]]);
+    }
+    return { cost: distance[end], path };
+  }
+  function route(graph, stops, target, accessible = false) {
+    const orders = stops.length === 2 ? [stops, [...stops].reverse()] : [stops];
+    let best = null;
+    for (const order of orders) {
+      const nodes = ["entry", ...order, target];
+      let cost = 0, path = ["entry"], valid = true;
+      for (let i = 1; i < nodes.length; i++) {
+        const part = shortest(graph, nodes[i - 1], nodes[i], accessible);
+        if (!part) {
+          valid = false;
+          break;
+        }
+        cost += part.cost;
+        path.push(...part.path.slice(1));
+      }
+      if (valid && (!best || cost < best.cost)) best = { cost, path, stops: order };
+    }
+    return best;
+  }
+  function recommend(seats, prefs2, graph, resources, now) {
+    const source = resources.find((r) => r.id === prefs2.resource) || resources[0];
+    const warnings = [];
+    if (source.mode === "loaned") return { items: [], warnings: ["\u6F14\u793A\u8D44\u6599\u5DF2\u501F\u51FA\u3002\u8BF7\u9009\u62E9\u81EA\u5E26\u6750\u6599\u6216\u53E6\u4E00\u6F14\u793A\u6761\u76EE\u3002"], source };
+    if (source.mode === "unknown") return { items: [], warnings: ["\u8D44\u6599\u4F4D\u7F6E\u672A\u786E\u8BA4\uFF0C\u65E0\u6CD5\u5F62\u6210\u53EF\u9760\u7684\u53D6\u4E66\u4E0E\u9009\u5EA7\u7EC4\u5408\u3002"], source };
+    if (source.mode === "request") warnings.push("\u6F14\u793A\u8D44\u6599\u9700\u8981\u7533\u8BF7\u8C03\u53D6\uFF1B\u4EE5\u4E0B\u5C55\u793A\u9605\u89C8\u4F4D\u7F6E\uFF0C\u4E0D\u4EE3\u8868\u8D44\u6599\u5DF2\u7ECF\u5230\u9986\u3002");
+    const stops = [];
+    if (source.mode === "shelf") stops.push(source.node);
+    if (prefs2.print) stops.push("print");
+    const items = [];
+    for (const seat of seats) {
+      const state = classify(seat, now);
+      if (!["candidate", "mine"].includes(state.kind)) continue;
+      if (prefs2.power && !seat.power) continue;
+      if (prefs2.floor && seat.floor !== prefs2.floor) continue;
+      if (source.allowedFloors && !source.allowedFloors.includes(seat.floor)) continue;
+      const trip = route(graph, stops, seat.node, prefs2.accessible);
+      if (!trip) continue;
+      const subject = source.subject === "none" || seat.subject === source.subject;
+      const reasons = [], tradeoffs = [];
+      let score = 100 - trip.cost * 1.2;
+      if (subject) {
+        score += prefs2.priority === "books" ? 35 : 15;
+        reasons.push(source.subject === "none" ? "\u672C\u6B21\u81EA\u5E26\u6750\u6599\uFF0C\u4E0D\u8981\u6C42\u9760\u8FD1\u7279\u5B9A\u4E66\u67B6" : "\u5339\u914D\u672C\u6B21\u9986\u85CF\u4E3B\u9898");
+      } else tradeoffs.push("\u4E0E\u672C\u6B21\u9986\u85CF\u4E3B\u9898\u4E0D\u5728\u540C\u4E00\u533A\u57DF");
+      if (seat.power) reasons.push("\u793A\u610F\u63D2\u5EA7\u53EF\u7528");
+      if (prefs2.window) {
+        if (seat.window) {
+          score += 18;
+          reasons.push("\u5339\u914D\u4E34\u7A97\u504F\u597D");
+        } else tradeoffs.push("\u4E0D\u662F\u4E34\u7A97\u4F4D\u7F6E");
+      }
+      if (prefs2.quiet) {
+        if (seat.quiet) {
+          score += 22;
+          reasons.push("\u6807\u6CE8\u4E3A\u9759\u8BFB\u533A\u57DF");
+        } else tradeoffs.push("\u672A\u6807\u6CE8\u4E3A\u9759\u8BFB\u533A\u57DF");
+      }
+      if (prefs2.priority === "walk") score -= trip.cost * 1.5;
+      reasons.push(`\u6A21\u62DF\u8DEF\u5F84\u4EE3\u4EF7 ${trip.cost}\uFF0C\u4E0D\u662F\u5B9E\u6D4B\u7C73\u6570\u6216\u5206\u949F`);
+      items.push({ seat, state, score, trip, reasons, tradeoffs });
+    }
+    items.sort((a, b) => b.score - a.score || a.seat.id.localeCompare(b.seat.id));
+    if (!items.length) warnings.push("\u6CA1\u6709\u6EE1\u8DB3\u5FC5\u987B\u6761\u4EF6\u7684\u5019\u9009\u3002\u8BF7\u4E3B\u52A8\u8C03\u6574\u6761\u4EF6\uFF0C\u7CFB\u7EDF\u4E0D\u4F1A\u653E\u5BBD\u4F7F\u7528\u6743\u89C4\u5219\u3002");
+    return { items: items.slice(0, 4).map((item, index) => ({ ...item, rank: index + 1 })), warnings, source };
+  }
+  function summarize(seats, now) {
+    return [1, 2, 3, 4, 5].map((floor2) => {
+      const row = { floor: floor2, total: 0, candidate: 0, occupied: 0, protected: 0, unknown: 0, unavailable: 0, mine: 0 };
+      for (const seat of seats.filter((s) => s.floor === floor2)) {
+        row.total++;
+        row[classify(seat, now).kind]++;
+      }
+      return row;
+    });
+  }
+  function reserveDemo(seats, id, now) {
+    const seat = seats.find((s) => s.id === id);
+    if (!seat || classify(seat, now).kind !== "candidate") return { ok: false, message: "\u72B6\u6001\u5DF2\u53D8\u5316\uFF0C\u6A21\u62DF\u786E\u8BA4\u5931\u8D25\uFF0C\u8BF7\u91CD\u65B0\u9009\u62E9\u3002" };
+    seat.booking = "mine";
+    return { ok: true, message: "\u672C\u6B21\u6A21\u62DF\u9884\u7EA6\u5DF2\u786E\u8BA4\uFF1B\u771F\u5B9E\u9884\u7EA6\u4ECD\u9700\u9986\u65B9\u7CFB\u7EDF\u529E\u7406\u3002" };
+  }
+  function recheck(seats, id, now) {
+    const seat = seats.find((s) => s.id === id);
+    if (!seat) return { kind: "unknown", reason: "\u5EA7\u4F4D\u4E0D\u5B58\u5728" };
+    const state = classify(seat, now);
+    if (seat.booking === "mine" && state.kind !== "mine")
+      return { ...state, reason: state.reason + "\u3002\u4FDD\u7559\u6A21\u62DF\u9884\u7EA6\u8BB0\u5F55\uFF0C\u4E0D\u81EA\u52A8\u53D6\u6D88\u6216\u5904\u7F5A\u3002", conflict: true };
+    return state;
+  }
+
+  // src/model-presentation.js
+  var EXPLODED_FLOOR_GAP = 18;
+
+  // src/spatial.js
+  var FLOOR_HEIGHT = 4.8;
+  var EXHIBITION_LAYOUT = {
+    floor: 3,
+    x: 0,
+    z: -8,
+    width: 14.8,
+    depth: 20,
+    boards: [-14, -10, -6, -3].flatMap((z) => [-3.3, 3.3].map((x) => ({ x, z, rotation: x < 0 ? Math.PI / 2 : -Math.PI / 2 }))),
+    ceramics: { x: -0.4, z: -6.6 },
+    armillary: { x: -0.4, z: 0.4 },
+    smallExhibit: { x: 0, z: -15.8 },
+    access: { back: -1, front: 1.8 },
+    rearSeatingZ: -22.8,
+    rearShelvesZ: -27
+  };
+  var LIBRARY_FOOTPRINT = { axisX: 0, halfWidth: 34.4, front: 34, groundBack: -52.6, upperBack: -78.6 };
+  var TOILET_GRID = { w: 6.5, d: 6.2, columns: 2, rows: 2 };
+  var TOILET_LAYOUT = [-1, 1].map((side) => ({ x: side * (LIBRARY_FOOTPRINT.halfWidth - 0.15 - TOILET_GRID.w), z: LIBRARY_FOOTPRINT.front - 0.15 - TOILET_GRID.d, w: TOILET_GRID.w * 2, d: TOILET_GRID.d * 2, doorRotation: Math.PI }));
+  var GROUND_LAYOUT = {
+    windowX: -31.4,
+    deskZ: [-44, -36, -28, -20, -12, -4, 4, 12],
+    frontZ: 34,
+    hallZ: 20.5,
+    // 右侧柜群放到服务台后；左侧柜群保留。专座区与闭架书库是不同用途。
+    // 左侧柜群与窗边桌排一起向后补长；柜数只用于表现空间，不是现场资产清单。
+    // 左侧阅览和柜库向后接至上层相同纵深；只延展外形，不虚构真实座号与柜数。
+    compactBlocks: [{ x: -24, z: -18.7, w: 8, d: 66, columns: 6 }, { x: 0, z: -16.8, w: 7.2, d: 50.4, columns: 4 }],
+    // 本人2026-10-18补充：服务台后的中央黑色区域两侧为柱间实墙，不是敞开的柱廊。
+    // 两道墙沿x=±6.2的原柱线连接；前端停在服务台后，保留入口及中庭梯的接近空间。
+    partitions: [-6.2, 6.2].map((x) => ({ x, z: -20.6, w: 0.18, d: 63.2 })),
+    // 密集书库与后部收书室之间保留横向通道；小桌仅为收书区外形，不生成可选座位。
+    receivingTables: [-43.8, -47, -50.2].map((z) => ({ x: -4.6, z, w: 1.55, d: 0.9 })),
+    // 本人补充：打印和专座向大厅内侧移，原右翼长条区域用于咖啡厅。
+    dedicated: { x: 13.9, z: -14.75, w: 6.4, d: 55.5, rows: [-37, -31, -25, -19, -13, -7, -1, 5, 11] },
+    printers: [10.2, 12.4, 14.6, 16.8].map((x) => ({ x, z: 16 })),
+    printPoint: { x: 13.5, z: 18 },
+    rightBoundaryZ: LIBRARY_FOOTPRINT.groundBack,
+    // 一楼与上层读取同一四格尺寸和左侧角落坐标，避免各处单独修改。
+    toilet: { ...TOILET_LAYOUT[0] },
+    // 咖啡厅在一楼右侧，由本人确认且馆方2026活动通知证实存在；尺寸和陈设只作示意。
+    cafe: { x: 26.8, z: -8.9, w: 11.6, d: 49.2, label: "\u5496\u5561\u5385", verifiedUse: true },
+    // 房号与用途来自本人最新现场说明；门宽、家具和尺寸均为示意，工作室不参与选座。
+    rooms: [
+      { x: 26, z: 25.3, w: 13, d: 12.2, label: "107 \u7814\u8BA8\u5BA4", id: "107", staffOnly: false },
+      { x: 30.8, z: -38.3, w: 6.2, d: 6.2, label: "106 \u5DE5\u4F5C\u5BA4", id: "106", staffOnly: true },
+      { x: 2.3, z: -48.6, w: 6.8, d: 6.4, label: "\u6536\u4E66\u5BA4", id: "receiving", staffOnly: true, bookStorage: true }
+    ],
+    // 两侧休息组各整体向外移6.2模型单位，让中央入口及两侧楼梯前的直行通道敞开。
+    // 每组仍为两张沙发夹一个纵向书架；沙发向入口移，靠在前端墙的馆内一面。
+    loungeBackWalls: [-12.1, 12.1].map((x) => ({ x, z: 32, w: 11.8, d: 0.18 })),
+    sofas: [-9.6, -3.7, 3.7, 9.6].map((x) => ({ x: x + Math.sign(x) * 6.2, z: 31.15, rotation: Math.PI })),
+    // 竖向小书架向馆内错开，末端与背墙留缝，避免穿墙；横向仍夹在同组两张沙发中间。
+    smallShelves: [-6.65, 6.65].map((x) => ({ x: x + Math.sign(x) * 6.2, z: 30.1, w: 3.2, d: 0.5, rotation: Math.PI / 2 })),
+    serviceBypass: { x: 19.1, z: -41.7 }
+  };
+  var ELEVATOR_LAYOUT = { x: 13.9, z: -44.7, landing: { x: 16, z: -44.7 }, groundRotation: Math.PI / 2, groundLanding: { x: 16, z: -44.7 }, facadeScale: 2.4, facadeOffset: 1.9 };
+  var elevatorLanding = (floor2) => ELEVATOR_LAYOUT.landing;
+  var TRANSPORT_CORE = {
+    minFloor: 1,
+    left: 10.7,
+    right: 34.2,
+    back: -50.1,
+    front: -43,
+    // 右侧外围白墙接到侧墙；入口朝馆内前方走廊，拓宽不在井道外侧再造一个翼部。
+    entry: { x: 16, z: -43, width: 1.6, face: "front" },
+    // 电梯门前走廊两端均开口；并非给电梯轿厢另外复制一扇门。
+    exits: [{ x: 16, z: -43, width: 1.6, face: "front" }, { x: 16, z: -50.1, width: 1.6, face: "back" }],
+    approach: { x: 19.1, z: -41.7 },
+    corridorX: 16,
+    stair: { leftX: 29.45, rightX: 31.15, width: 1.4, front: -44.6, back: -49.4, landingBack: -49.95 }
+  };
+  function floorBounds(floor2) {
+    const { axisX, halfWidth, groundBack, upperBack } = LIBRARY_FOOTPRINT, left = axisX - halfWidth, right = axisX + halfWidth;
+    return { left, right, back: floor2 === 1 ? groundBack : upperBack, front: GROUND_LAYOUT.frontZ };
+  }
+  function floorMapTransform(floor2) {
+    const b = floorBounds(floor2), xs = Math.min(12, 560 / (b.right - b.left)), zs = Math.min(5.4, 300 / (b.front - b.back));
+    return { ox: 340 - (b.left + b.right) / 2 * xs, oy: 211 - (b.back + b.front) / 2 * zs, xs, zs };
+  }
+  function upperFacilities(floor2) {
+    if (floor2 === 1) return { toilets: [], rooms: [], racks: [], lockers: null, culture: null, periodicals: [] };
+    const b = floorBounds(floor2), toilets = TOILET_LAYOUT.map((t) => ({ ...t }));
+    const culture = floor2 === 4 ? { x: b.right - 5, z: b.back + 5.5, w: 8, d: 9, label: "\u4E2D\u65E5\u6587\u5316\u4EA4\u6D41\u4E2D\u5FC3", verifiedUse: true } : null;
+    const rooms = floor2 < 5 ? [b.left + 4.2, b.right - 4.2].flatMap((x) => [b.back + 4, b.back + 10.5, b.back + 17].filter((z) => !(floor2 === 4 && x > 0 && z < b.back + 14)).map((z) => ({ x, z, w: 6.2, d: 5.5, label: floor2 === 3 ? "\u7814\u8BA8 / \u529F\u80FD\u623F\u95F4\u5E26" : "\u5916\u56F4\u529F\u80FD\u623F\u95F4\u5E26", verifiedUse: false }))).filter((r) => !(r.x + r.w / 2 > TRANSPORT_CORE.left - 0.5 && r.z + r.d / 2 > TRANSPORT_CORE.back - 0.5 && r.z - r.d / 2 < TRANSPORT_CORE.front + 0.5) && !(culture && Math.abs(r.x - culture.x) < (r.w + culture.w) / 2 + 0.5 && Math.abs(r.z - culture.z) < (r.d + culture.d) / 2 + 0.5)) : [];
+    const racks = [];
+    if (floor2 < 5) for (let z = -55; z > floorBounds(floor2).back + 7; z -= 8) for (const x of [-4.8, 0, 4.8]) racks.push({ x, z, w: 3.5 });
+    if (floor2 < 5) for (let z = -54; z > floorBounds(floor2).back + 22; z -= 8) for (const x of [-31.4, 31.4]) racks.push({ x, z, w: 4.4 });
+    const periodicals = floor2 === 5 ? [
+      { x: -27, z: -12, w: 10, d: 3, label: "\u62A5\u7EB8", color: "#c9be68" },
+      { x: -27, z: -5, w: 10, d: 6, label: "\u73B0\u520A", color: "#d7c757" },
+      { x: -27, z: 4, w: 10, d: 6, label: "2019\u20142024 \u8FC7\u520A", color: "#83b7ac" },
+      { x: -27, z: 14, w: 10, d: 8, label: "\u5916\u6587\u539F\u7248\u4E66 YY/YW", color: "#759b84" },
+      { x: -13.9, z: 27, w: 13, d: 6, label: "2013\u20142018 \u8FC7\u520A", color: "#c8966c" },
+      { x: 1.5, z: 27, w: 15, d: 6, label: "2015\u5E74\u81F3\u4ECA\u8FC7\u62A5", color: "#84b7c7" }
+    ] : [];
+    for (const area of periodicals) {
+      const rows = Math.max(1, Math.floor(area.d / 3.3)), cols = area.w > 12 ? 4 : 2;
+      for (let row = 0; row < rows; row++) for (let col = 0; col < cols; col++) racks.push({ x: area.x + (col - (cols - 1) / 2) * Math.min(3.6, area.w / cols), z: area.z + (row - (rows - 1) / 2) * 2.6, w: 2.9, periodical: true });
+    }
+    if (floor2 < 5) {
+      for (const x of [-8, -3.5, 1, 5.5, 10]) for (const z of [23.5, 29.5]) racks.push({ x, z, w: 3.5 });
+      for (const x of [-4.8, 0, 4.8]) for (const z of floor2 === 3 ? [-33, -35, -44] : [-26, -35, -44]) racks.push({ x, z, w: 3.5 });
+      for (const side of [-1, 1]) for (const z of [-28, -22, -18, -12, -6, 0, 6, 12, 18, 24]) {
+        const x = side * (LIBRARY_FOOTPRINT.halfWidth - 3);
+        if (x > TRANSPORT_CORE.left && z > TRANSPORT_CORE.back - 0.5 && z < TRANSPORT_CORE.front + 0.5) continue;
+        racks.push({ x, z, w: 4.4 });
+      }
+    }
+    return { toilets, rooms, racks, culture, periodicals, lockers: floor2 === 5 ? { x: (b.left + b.right) / 2, z: b.back + 0.65, w: b.right - b.left - 2, d: 0.75 } : null };
+  }
+  function projectFloorPoint(x, z, floor2) {
+    const t = floorMapTransform(floor2);
+    return { x: t.ox + x * t.xs, y: t.oy + z * t.zs };
+  }
+  function deskChairPosition(desk, slot) {
+    const x = slot % 2 ? desk.dx : -desk.dx, z = slot < 2 ? -desk.dz : desk.dz, a = desk.rotation || 0;
+    return { x: desk.x + Math.cos(a) * x + Math.sin(a) * z, z: desk.z - Math.sin(a) * x + Math.cos(a) * z, rotation: (slot < 2 ? 0 : Math.PI) + a };
+  }
+  function atriumVoids(floor2) {
+    const ranges = { 2: [[-17, 9.5], [11.5, 16]], 3: [[2, 16]], 4: [[-20, -10.7], [-8.7, 16]], 5: [[-18.2, 16]] }[floor2] || [];
+    const holes = ranges.map(([back, front]) => ({ x: 0, z: (back + front) / 2, w: 12.2, d: front - back, back, front }));
+    if (floor2 > TRANSPORT_CORE.minFloor) {
+      const s = TRANSPORT_CORE.stair;
+      holes.push({ x: (s.leftX + s.rightX) / 2, z: (s.landingBack + s.front) / 2, w: 3.6, d: s.front - s.landingBack, back: s.landingBack, front: s.front, transport: true });
+    }
+    return holes;
+  }
+  function assignRegionalSamples(floor2, list) {
+    for (const d of list) d.sample = null;
+    const choose = (region, x, z) => list.filter((d) => seatRegionAt(d.x, d.z, floor2) === region && (floor2 !== 5 || d.partition)).sort((a, b) => Math.abs(a.x - x) + Math.abs(a.z - z) - Math.abs(b.x - x) - Math.abs(b.z - z))[0];
+    [choose("\u5317", -10.8, 0), choose("\u5357", 10.8, 0), choose("\u4E1C", -10.8, -55)].forEach((d, i) => {
+      if (d) d.sample = i;
+    });
+    return list;
+  }
+  var READING_BAY_LAYOUT = {
+    wingRows: [-35, -22, -8, 6],
+    wingRackOffsets: [-3, 0, 3],
+    rackXs: [16.2, 19, 21.8, 24.6],
+    rackWidth: 2.6,
+    innerDeskX: 10.8,
+    windowDeskX: 31.4,
+    deskOffsets: [-2.6, 2.6],
+    eastRackXs: [-21.8, -15.8, -9.8, -3.8, 3.8, 9.8, 15.8, 21.8],
+    eastRackZs: [-68.6, -72, -75.4],
+    eastRackWidth: 3.2,
+    eastDeskXs: [-23.7, -16.8, -10, -3.3, 3.3, 10, 16.8, 23.7],
+    eastDeskZs: [-55.8, -62.9],
+    outerAisleX: 27.4,
+    rearAisleX: 20.4,
+    eastShelfFront: -66.9
+  };
+  function deskFootprint(d) {
+    const x = Math.max(d.w / 2, d.dx + 0.38), z = Math.max(d.d / 2, d.dz + 0.6), a = d.rotation || 0;
+    return { x: d.x, z: d.z, hx: Math.abs(Math.cos(a)) * x + Math.abs(Math.sin(a)) * z, hz: Math.abs(Math.sin(a)) * x + Math.abs(Math.cos(a)) * z };
+  }
+  function desksConflict(a, b, gap = 1.1) {
+    const p = deskFootprint(a), q = deskFootprint(b);
+    return Math.abs(p.x - q.x) < p.hx + q.hx + gap && Math.abs(p.z - q.z) < p.hz + q.hz + gap;
+  }
+  function groupedUpperDesks(floor2) {
+    const p = READING_BAY_LAYOUT, list = [];
+    const add = (x, z, extra = {}) => list.push({ x, z, w: 5, d: 1.65, dx: 1.15, dz: 1.3, sample: null, partition: false, rotation: 0, placementPriority: "\u5357\u5317", ...extra });
+    for (const side of [-1, 1]) for (const row of p.wingRows) for (const x of [p.innerDeskX, p.windowDeskX]) for (const dz of p.deskOffsets) {
+      add(side * x, row + dz, { wingBay: true, baySide: side, bayRow: row, windowBand: x === p.windowDeskX });
+    }
+    for (const side of [-1, 1]) {
+      add(side * p.innerDeskX, 20.5, { windowBand: false });
+      add(side * 17.6, 23.5, { windowBand: false });
+    }
+    if (floor2 === 5) {
+      const exam = { w: 3, d: 1.65, dx: 0.7, dz: 1.2, partition: true };
+      for (const x of [-3.8, 3.8]) for (const z of [-28, -36, -44, -50]) add(x, z, exam);
+      for (const side of [-1, 1]) for (const x of [p.innerDeskX, p.windowDeskX]) for (const z of [-14.8, 13.2]) add(side * x, z, { windowBand: x === p.windowDeskX });
+      for (const x of [16.8, 24]) for (const z of [-35, -23.5, -6.8, 6]) add(x, z, exam);
+      for (const x of [-p.innerDeskX, -p.windowDeskX]) add(x, -42, { windowBand: x === -p.windowDeskX });
+    }
+    const addEast = (x, z, extra = {}) => {
+      const d = { x, z, w: 5, d: 1.65, dx: 1.15, dz: 1.3, sample: null, partition: floor2 === 5, rotation: Math.PI / 2, eastReadingEdge: true, placementPriority: "\u4E1C\u533A\u8865\u4F4D", ...extra };
+      if (!list.some((other) => desksConflict(d, other))) list.push(d);
+    };
+    if (floor2 === 3) {
+      for (const x of [-9.6, -3.2, 3.2, 9.6]) addEast(x, EXHIBITION_LAYOUT.rearSeatingZ, { w: 3.6, d: 1.2, dz: 0.86, rearRow: true, partition: false });
+      addEast(0, -33, { partition: false });
+    }
+    for (const x of p.eastDeskXs) for (const z of p.eastDeskZs) addEast(x, z, floor2 === 5 ? { w: 3, dx: 0.7, dz: 1.2 } : {});
+    return assignRegionalSamples(floor2, list);
+  }
+  function deskLayouts(floor2) {
+    if (floor2 === 1) return [
+      ...GROUND_LAYOUT.deskZ.map((z) => ({ x: GROUND_LAYOUT.windowX, z, w: 4.8, d: 1.65, dx: 1.15, dz: 1.3, sample: [-12, -4, 4].includes(z) ? [-12, -4, 4].indexOf(z) : null, partition: false, windowBand: true })),
+      // 一楼固定专座以浅色长桌、蓝椅、书立表现。五楼十字挡板改造资料不能证明一楼桌型。
+      // 这些椅子只有外形，没有seatId和可用状态，不能被普通选座流程推荐。
+      ...[12.3, 15.5].flatMap((x) => GROUND_LAYOUT.dedicated.rows.map((z) => ({ x, z, w: 2.6, d: 1.4, dx: 0.65, dz: 1.15, sample: null, partition: false, dedicated: true })))
+    ];
+    return groupedUpperDesks(floor2);
+  }
+  function seatPosition(seat, expanded = false) {
+    const index = Number(seat.id.split("-")[1]) - 1;
+    const desk = deskLayouts(seat.floor).find((d) => d.sample === Math.floor(index / 4)), slot = index % 4;
+    const p = deskChairPosition(desk, slot);
+    return { x: p.x, y: (seat.floor - 1) * (expanded ? EXPLODED_FLOOR_GAP : FLOOR_HEIGHT) + 0.5, z: p.z, floor: seat.floor };
+  }
+  function mapPosition(seat) {
+    const p = seatPosition(seat);
+    return projectFloorPoint(p.x, p.z, seat.floor);
+  }
+  function nodePosition(node, seats, expanded = false) {
+    const seat = seats.find((s) => s.node === node);
+    if (seat) return seatPosition(seat, expanded);
+    let floor2 = 1, x = 7, z = 17;
+    if (node === "entry") {
+      x = 0;
+      z = GROUND_LAYOUT.frontZ - 2;
+    } else if (node === "print") {
+      ({ x, z } = GROUND_LAYOUT.printPoint);
+    } else if (/^elevator[1-5]$/.test(node)) {
+      floor2 = Number(node.slice(-1));
+      ({ x, z } = elevatorLanding(floor2));
+    } else if (/^hall[1-5]$/.test(node)) {
+      floor2 = Number(node.slice(-1));
+      if (floor2 === 1) z = GROUND_LAYOUT.hallZ;
+    } else if (/^books[1-5]$/.test(node)) {
+      floor2 = Number(node.slice(-1));
+      x = floor2 === 5 ? -13.4 : 13.4;
+      z = { 1: 13, 2: -13, 3: 7, 4: -9, 5: 21 }[floor2];
+    } else return null;
+    return { x, y: (floor2 - 1) * (expanded ? EXPLODED_FLOOR_GAP : FLOOR_HEIGHT) + 0.5, z, floor: floor2 };
+  }
+  function routePoints(path, seats, expanded = false) {
+    const points = [];
+    const add = (p) => {
+      const last = points.at(-1);
+      if (!last || last.x !== p.x || last.y !== p.y || last.z !== p.z) points.push(p);
+    };
+    for (const node of path) {
+      const b = nodePosition(node, seats, expanded);
+      if (!b) return [];
+      const a = points.at(-1);
+      if (!a) {
+        add(b);
+        continue;
+      }
+      if (a.floor !== b.floor) {
+        if (node.startsWith("elevator")) {
+          add({ ...a, x: ELEVATOR_LAYOUT.x, z: ELEVATOR_LAYOUT.z });
+          add({ ...b, x: ELEVATOR_LAYOUT.x, z: ELEVATOR_LAYOUT.z });
+        } else {
+          add({ ...a, x: 7, z: 17 });
+          add({ ...b, x: 7, z: 17 });
+        }
+      } else if (node.startsWith("elevator") || Math.abs(a.x - elevatorLanding(a.floor).x) < 0.01 && Math.abs(a.z - elevatorLanding(a.floor).z) < 0.01) {
+        const hallway = a.floor === 1 ? GROUND_LAYOUT.hallZ : 17, outsideX = a.floor === 1 ? TRANSPORT_CORE.approach.x : READING_BAY_LAYOUT.outerAisleX, entryZ = TRANSPORT_CORE.approach.z;
+        if (node.startsWith("elevator")) {
+          add({ ...a, z: hallway });
+          add({ ...a, x: outsideX, z: hallway });
+          add({ ...b, x: outsideX, z: entryZ });
+          add({ ...b, z: entryZ });
+        } else {
+          add({ ...a, z: entryZ });
+          add({ ...a, x: outsideX, z: entryZ });
+          add({ ...b, x: outsideX, z: hallway });
+          add({ ...b, z: hallway });
+        }
+      } else if (a.floor === 5 && (Math.abs(a.x) < 6.1 || Math.abs(b.x) < 6.1)) {
+        if (Math.abs(a.x) < 6.1) add({ ...a, x: 7 });
+        if (Math.abs(b.x) < 6.1) add({ ...b, x: 7 });
+        else add({ ...a, x: 7, z: b.z });
+      } else if (a.x * b.x < 0) {
+        const corridor = a.floor === 1 ? GROUND_LAYOUT.hallZ : 17;
+        add({ ...a, z: corridor });
+        add({ ...b, z: corridor });
+      } else if (Math.abs(a.x) > 7.01) {
+        add({ ...a, x: Math.sign(a.x) * 7 });
+        add({ ...b, x: Math.sign(b.x) * 7 });
+      } else if (a.x !== b.x && a.z !== b.z) add({ ...a, z: b.z });
+      add(b);
+    }
+    return points;
+  }
+  var floorSeatLabelCache = /* @__PURE__ */ new Map();
+  function seatRegionAt(x, z, floor2 = 2) {
+    return floor2 > 1 && z < TRANSPORT_CORE.back - 2 ? "\u4E1C" : x < 0 ? "\u5317" : "\u5357";
+  }
+  function floorSeatRecords(floor2) {
+    if (floorSeatLabelCache.has(floor2)) return floorSeatLabelCache.get(floor2);
+    const records = [];
+    for (const d of deskLayouts(floor2)) for (let slot = 0; slot < 4; slot++) {
+      const p = deskChairPosition(d, slot);
+      records.push({
+        ...p,
+        region: seatRegionAt(p.x, p.z, floor2),
+        dedicated: !!d.dedicated,
+        id: d.sample === null ? null : `S${floor2}-${String(d.sample * 4 + slot + 1).padStart(2, "0")}`
+      });
+    }
+    for (const region of ["\u5317", "\u5357", "\u4E1C"]) records.filter((r) => r.region === region).sort((a, b) => a.z - b.z || a.x - b.x).forEach((r, i) => r.label = region + (i + 1));
+    floorSeatLabelCache.set(floor2, records);
+    return records;
+  }
+  function seatLabel(value, withFloor = false) {
+    const id = typeof value === "string" ? value : value?.id, m = /^S([1-5])-(\d{2})$/.exec(id || "");
+    if (!m) return String(id || "");
+    const n = Number(m[2]);
+    if (n < 1 || n > 12) return id;
+    const name = floorSeatRecords(Number(m[1])).find((r) => r.id === id)?.label || id;
+    return withFloor ? m[1] + "F \xB7 " + name : name;
+  }
+  function readableNode(node) {
+    if (node === "entry") return "1F\u5165\u53E3";
+    if (node === "print") return "1F\u6253\u5370\u70B9";
+    if (node.startsWith("elevator")) return node.slice(-1) + "F\u7535\u68AF\u5165\u53E3";
+    if (node.startsWith("hall")) return node.slice(-1) + "F\u901A\u9053";
+    if (node.startsWith("books")) return node.slice(-1) + "F\u53D6\u4E66\u70B9";
+    return seatLabel(node.replace(/^seat/, ""), true);
+  }
+
+  // src/data.js
+  var SOURCES = [
+    ["\u6BD4\u8D5B\u8981\u6C42", "https://library.xujc.com/2026/0624/c4495a171029/page.htm"],
+    ["\u79EF\u5206\u4E13\u5EA7\u4F9D\u636E", "https://library.xujc.com/_t1901/2026/0901/c5024a172493/page.htm"],
+    ["\u9009\u5EA7\u89C4\u5219", "https://library.xujc.com/_t1901/zwyy/list.htm"],
+    ["\u5907\u8003\u8054\u76DF\u89C4\u5219", "https://library.xujc.com/2026/0909/c5024a172696/page.htm"],
+    ["\u9986\u85CF\u5E03\u5C40\u53C2\u8003", "https://library.xujc.com/2025/0901/c4536a161543/page.htm"],
+    ["\u9986\u65B9\u5EA7\u8C08", "https://library.xujc.com/2026/0616/c4495a170597/page.htm"],
+    ["\u54C8\u4F5B\u7A7A\u95F4\u7B5B\u9009", "https://library.harvard.edu/services-tools/find-space"],
+    ["\u5EB7\u5948\u5C14\u9986\u85CF\u4E0E\u697C\u5C42\u56FE", "https://olinuris.library.cornell.edu/olin-floor-maps/olin-fifth-floor"],
+    ["\u725B\u6D25\u8D44\u6599\u83B7\u53D6", "https://www.bodleian.ox.ac.uk/services/borrow/request"],
+    ["\u6606\u58EB\u5170\u62E5\u6324\u5EA6", "https://web.library.uq.edu.au/visit/using-library-study-spaces/study-space-availability"]
+  ];
+  var RESOURCES = [
+    { id: "own", title: "\u81EA\u5E26\u6750\u6599\u6216\u4F7F\u7528\u7535\u5B50\u8D44\u6599", subject: "none", mode: "own" },
+    { id: "literature", title: "\u6F14\u793A\u6761\u76EE \u6587\u5B66\u9605\u8BFB\u8D44\u6599", subject: "literature", mode: "shelf", node: "books3" },
+    { id: "software", title: "\u6F14\u793A\u6761\u76EE \u6570\u636E\u5E93\u5B66\u4E60\u8D44\u6599", subject: "software", mode: "shelf", node: "books4" },
+    { id: "economy", title: "\u6F14\u793A\u6761\u76EE \u7ECF\u6D4E\u5B66\u5B66\u4E60\u8D44\u6599", subject: "economy", mode: "shelf", node: "books2" },
+    { id: "special", title: "\u6F14\u793A\u6761\u76EE \u9650\u6307\u5B9A\u5730\u70B9\u9605\u89C8\u8D44\u6599", subject: "literature", mode: "request", allowedFloors: [3] },
+    { id: "loaned", title: "\u6F14\u793A\u6761\u76EE \u5DF2\u501F\u51FA\u7684\u8D44\u6599", subject: "software", mode: "loaned" },
+    { id: "unknown", title: "\u6F14\u793A\u6761\u76EE \u4F4D\u7F6E\u6B63\u5728\u8C03\u6574", subject: "software", mode: "unknown" }
+  ];
+  var SUBJECTS = ["service", "economy", "literature", "software", "periodicals"];
+  var FLOOR_NAMES = ["\u670D\u52A1\u533A\u57DF\u793A\u610F", "\u7ECF\u6D4E\u4E0E\u793E\u79D1\u793A\u610F", "\u6587\u5B66\u4E0E\u8BED\u8A00\u793A\u610F", "\u5DE5\u7A0B\u6280\u672F\u793A\u610F", "\u62A5\u520A\u4E0E\u4E13\u5EA7\u793A\u610F"];
+  function makeData(now) {
+    const graph = { entry: [], print: [] }, seats = [];
+    const edge = (a, b, weight, accessible = true) => {
+      graph[a] ?? (graph[a] = []);
+      graph[b] ?? (graph[b] = []);
+      graph[a].push({ to: b, weight, accessible });
+      graph[b].push({ to: a, weight, accessible });
+    };
+    const walk = (a, b) => {
+      const points = routePoints([a, b], seats);
+      return points.slice(1).reduce((sum, p, i) => sum + Math.abs(p.x - points[i].x) + Math.abs(p.z - points[i].z), 0);
+    };
+    for (let f = 1; f <= 5; f++) {
+      graph["hall" + f] = [];
+      graph["books" + f] = [];
+      edge("hall" + f, "books" + f, walk("hall" + f, "books" + f));
+      graph["elevator" + f] = [];
+      edge("hall" + f, "elevator" + f, walk("hall" + f, "elevator" + f));
+      if (f > 1) {
+        edge("hall" + (f - 1), "hall" + f, 12, false);
+        edge("elevator" + (f - 1), "elevator" + f, 18, true);
+      }
+      for (let i = 1; i <= 12; i++) {
+        const id = `S${f}-${String(i).padStart(2, "0")}`, node = "seat" + id;
+        const point = mapPosition({ id, floor: f });
+        seats.push({
+          id,
+          node,
+          floor: f,
+          ...point,
+          subject: SUBJECTS[f - 1],
+          policy: f === 5 ? "exclusive" : "ordinary",
+          booking: i === 3 ? "reserved" : i === 6 ? "away" : "free",
+          observed: i % 5 === 0 ? "occupied" : i === 8 ? "items" : i === 11 ? "unknown" : "clear",
+          quality: i === 11 ? 0.3 : 0.95,
+          obsAt: now,
+          rulesAt: now,
+          ruleOnline: true,
+          power: i % 3 !== 1,
+          window: f === 1 || i <= 4,
+          quiet: i % 4 !== 0,
+          disabled: i === 12
+        });
+        edge("hall" + f, node, walk("hall" + f, node));
+      }
+    }
+    edge("entry", "hall1", walk("entry", "hall1"));
+    edge("hall1", "print", walk("hall1", "print"));
+    return { seats, graph };
+  }
+  function setScenario(data2, name, now, selectedId = null) {
+    for (const s of data2.seats) {
+      s.obsAt = now;
+      s.rulesAt = now;
+      s.ruleOnline = true;
+    }
+    if (name === "stale") for (const s of data2.seats) s.obsAt = now - 12e4;
+    if (name === "offline") for (const s of data2.seats) s.ruleOnline = false;
+    if (name === "full") {
+      for (const s of data2.seats) if (s.policy === "ordinary" && s.booking === "free") s.observed = "occupied";
+    }
+    if (name === "conflict") {
+      const s = data2.seats.find((x) => x.id === selectedId) || data2.seats.find((x) => x.booking === "free" && x.observed === "clear" && !x.disabled);
+      if (s) s.observed = "occupied";
+    }
+    return data2;
+  }
+
+  // src/app.js
+  var $ = (id) => document.getElementById(id);
+  var data = makeData(Date.now());
+  var floor = 4;
+  var selected = null;
+  var plan = null;
+  function el(tag, text, cls) {
+    const n = document.createElement(tag);
+    if (text !== void 0) n.textContent = text;
+    if (cls) n.className = cls;
+    return n;
+  }
+  function prefs() {
+    return {
+      resource: $("resource").value,
+      power: $("power").checked,
+      window: $("window").checked,
+      quiet: $("quiet").checked,
+      accessible: $("accessible").checked,
+      print: $("print").checked,
+      floor: Number($("floorFilter").value),
+      priority: $("priority").value
+    };
+  }
+  function notify(text) {
+    $("notice").textContent = text;
+  }
+  function drawSummary() {
+    $("floors").replaceChildren();
+    for (const row of summarize(data.seats, Date.now())) {
+      const b = el("button", void 0, "floor-card" + (row.floor === floor ? " active" : ""));
+      b.append(
+        el("strong", row.floor + "F"),
+        el("span", FLOOR_NAMES[row.floor - 1]),
+        el("b", `${row.candidate} \u4E2A\u6A21\u62DF\u5019\u9009`),
+        el("small", `\u6709\u4EBA ${row.occupied} \xB7 \u4FDD\u7559 ${row.protected} \xB7 \u5F85\u6838\u5BF9 ${row.unknown}`)
+      );
+      b.setAttribute("aria-pressed", String(row.floor === floor));
+      b.onclick = () => {
+        floor = row.floor;
+        draw();
+      };
+      $("floors").append(b);
+    }
+  }
+  function svg(tag, attrs, text) {
+    const n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (const [k, v] of Object.entries(attrs || {})) n.setAttribute(k, v);
+    if (text !== void 0) n.textContent = text;
+    return n;
+  }
+  function drawMap() {
+    $("mapTitle").textContent = `${floor}F ${FLOOR_NAMES[floor - 1]}`;
+    const map = $("map");
+    map.replaceChildren();
+    const { ox, oy, xs, zs: ys } = floorMapTransform(floor), bounds = floorBounds(floor);
+    map.append(svg("rect", { x: 20, y: 20, width: 640, height: 390, rx: 18, fill: "#faf7ef", stroke: "#d4d9cb" }));
+    map.append(svg("text", { x: 35, y: 48, fill: "#64766b", "font-size": 15 }, "\u6A21\u62DF\u5EA7\u4F4D\u5E73\u9762  \u975E\u5B9E\u9645\u5750\u6807  \u4E0D\u7528\u4E8E\u771F\u5B9E\u5BFC\u822A"));
+    const contour = [[bounds.left, bounds.back], [bounds.right, bounds.back], [bounds.right, bounds.front], [bounds.left, bounds.front]];
+    map.append(svg("polygon", { points: contour.map(([x, z]) => `${ox + x * xs},${oy + z * ys}`).join(" "), fill: "#e9e4d7", stroke: "#b6c4b7" }));
+    if (floor !== 1) {
+      const facilities = upperFacilities(floor);
+      for (const area of facilities.periodicals) {
+        map.append(svg("rect", { x: ox + (area.x - area.w / 2) * xs, y: oy + (area.z - area.d / 2) * ys, width: area.w * xs, height: area.d * ys, fill: area.color, opacity: 0.4 }));
+        map.append(svg("text", { x: ox + area.x * xs, y: oy + (area.z + area.d / 2 + 0.8) * ys, "text-anchor": "middle", "font-size": 9, fill: "#3e6258" }, area.label));
+      }
+      for (const r of facilities.racks) map.append(svg("rect", { x: ox + (r.x - r.w / 2) * xs, y: oy + (r.z - 0.34) * ys, width: r.w * xs, height: 0.68 * ys, fill: "#674f46" }));
+      for (const r of [...facilities.toilets.map((r2) => ({ ...r2, label: "WC" })), ...facilities.rooms.map((r2) => ({ ...r2, label: "\u623F\u95F4\u5E26" })), ...facilities.culture ? [facilities.culture] : []]) {
+        map.append(svg("rect", { x: ox + (r.x - r.w / 2) * xs, y: oy + (r.z - r.d / 2) * ys, width: r.w * xs, height: r.d * ys, fill: "#d3ded6", stroke: "#668579" }));
+        map.append(svg("text", { x: ox + r.x * xs, y: oy + r.z * ys, "text-anchor": "middle", fill: "#355e50", "font-size": 10 }, r.label));
+      }
+      if (facilities.lockers) {
+        const l = facilities.lockers;
+        map.append(svg("rect", { x: ox + (l.x - l.w / 2) * xs, y: oy + (l.z - l.d / 2) * ys, width: l.w * xs, height: l.d * ys, fill: "#91aba2" }));
+        map.append(svg("text", { x: ox + l.x * xs, y: oy + (l.z + 2) * ys, "text-anchor": "middle", "font-size": 10, fill: "#355e50" }, "\u540E\u5899\u8FDE\u7EED\u5B58\u5305\u67DC\uFF08\u67DC\u6570\u793A\u610F\uFF09"));
+      }
+    } else {
+      map.append(svg("line", { x1: ox + (bounds.left + 0.15) * xs, y1: oy + (bounds.back + 0.5) * ys, x2: ox + (bounds.left + 0.15) * xs, y2: oy + (bounds.front - 0.5) * ys, stroke: "#5ba6bf", "stroke-width": 4 }));
+      for (const c of [GROUND_LAYOUT.cafe, ...GROUND_LAYOUT.rooms]) {
+        map.append(svg("rect", { x: ox + (c.x - c.w / 2) * xs, y: oy + (c.z - c.d / 2) * ys, width: c.w * xs, height: c.d * ys, fill: c.id ? "#ccd6cd" : "#dcc7a8", stroke: "#967959" }));
+        map.append(svg("text", { x: ox + c.x * xs, y: oy + c.z * ys, "text-anchor": "middle", fill: "#705942", "font-size": 10 }, c.label));
+      }
+      for (const w of [...GROUND_LAYOUT.partitions, ...GROUND_LAYOUT.loungeBackWalls]) map.append(svg("rect", { x: ox + (w.x - w.w / 2) * xs, y: oy + (w.z - w.d / 2) * ys, width: Math.max(2, w.w * xs), height: Math.max(2, w.d * ys), fill: "#a2ada4" }));
+      for (const t2 of GROUND_LAYOUT.receivingTables) map.append(svg("rect", { x: ox + (t2.x - t2.w / 2) * xs, y: oy + (t2.z - t2.d / 2) * ys, width: t2.w * xs, height: t2.d * ys, fill: "#bd9567", stroke: "#987348" }));
+      for (const b of GROUND_LAYOUT.compactBlocks) {
+        map.append(svg("rect", { x: ox + (b.x - b.w / 2) * xs, y: oy + (b.z - b.d / 2) * ys, width: b.w * xs, height: b.d * ys, fill: "#ccd2d1", stroke: "#879393" }));
+        for (let i = 0; i < 4; i++) map.append(svg("line", { x1: ox + (b.x - b.w / 2 + b.w * i / 4) * xs, y1: oy + (b.z - b.d / 2) * ys, x2: ox + (b.x - b.w / 2 + b.w * i / 4) * xs, y2: oy + (b.z + b.d / 2) * ys, stroke: "#929e9c" }));
+        const rows = Math.floor(b.d / 6);
+        for (let i = 1; i < rows; i++) map.append(svg("line", { x1: ox + (b.x - b.w / 2) * xs, y1: oy + (b.z - b.d / 2 + b.d * i / rows) * ys, x2: ox + (b.x + b.w / 2) * xs, y2: oy + (b.z - b.d / 2 + b.d * i / rows) * ys, stroke: "#7f8f91" }));
+        map.append(svg("text", { x: ox + b.x * xs, y: oy + b.z * ys, "text-anchor": "middle", fill: "#425550", "font-size": 11 }, "\u5BC6\u96C6\u4E66\u5E93"));
+      }
+      const t = GROUND_LAYOUT.toilet;
+      map.append(svg("rect", { x: ox + (t.x - t.w / 2) * xs, y: oy + (t.z - t.d / 2) * ys, width: t.w * xs, height: t.d * ys, fill: "#ccd8d2", stroke: "#6f8a7d" }));
+      map.append(svg("text", { x: ox + t.x * xs, y: oy + t.z * ys, "text-anchor": "middle", fill: "#3e6258", "font-size": 10 }, "WC"));
+      map.append(svg("line", { x1: ox + (t.x - 0.525) * xs, y1: oy + (t.z - t.d / 2) * ys, x2: ox + (t.x + 0.525) * xs, y2: oy + (t.z - t.d / 2) * ys, stroke: "#325e55", "stroke-width": 4 }));
+      for (const p of GROUND_LAYOUT.sofas) {
+        map.append(svg("rect", { x: ox + (p.x - 1.65) * xs, y: oy + (p.z - 0.63) * ys, width: 3.3 * xs, height: 1.26 * ys, fill: "#e0dbc9", stroke: "#76563e" }));
+        map.append(svg("line", { x1: ox + (p.x - 1.5) * xs, y1: oy + (p.z + 0.52) * ys, x2: ox + (p.x + 1.5) * xs, y2: oy + (p.z + 0.52) * ys, stroke: "#76563e", "stroke-width": 3 }));
+      }
+      for (const rack of GROUND_LAYOUT.smallShelves) {
+        const rw = Math.abs(Math.cos(rack.rotation)) * rack.w + Math.abs(Math.sin(rack.rotation)) * rack.d, rd = Math.abs(Math.sin(rack.rotation)) * rack.w + Math.abs(Math.cos(rack.rotation)) * rack.d;
+        map.append(svg("rect", { x: ox + (rack.x - rw / 2) * xs, y: oy + (rack.z - rd / 2) * ys, width: rw * xs, height: rd * ys, fill: "#76563e" }));
+      }
+      map.append(svg("text", { x: ox, y: oy + 29 * ys, "text-anchor": "middle", fill: "#6c7e70", "font-size": 11 }, "\u524D\u5385 \xB7 \u6C99\u53D1\u4E0E\u5C0F\u4E66\u67B6"));
+      map.append(svg("text", { x: ox + GROUND_LAYOUT.dedicated.x * xs, y: oy + GROUND_LAYOUT.dedicated.z * ys, "text-anchor": "middle", fill: "#64607b", "font-size": 10 }, "\u56FA\u5B9A\u4E13\u5EA7\uFF08\u8D44\u683C\u6309\u9986\u65B9\u89C4\u5219\uFF09"));
+      for (const p of GROUND_LAYOUT.printers) map.append(svg("rect", { x: ox + (p.x - 0.725) * xs, y: oy + (p.z - 0.6) * ys, width: 1.45 * xs, height: 1.2 * ys, fill: "#859093", stroke: "#56636a" }));
+      map.append(svg("text", { x: ox + GROUND_LAYOUT.printPoint.x * xs, y: oy + (GROUND_LAYOUT.printPoint.z + 2) * ys, "text-anchor": "middle", fill: "#53665d", "font-size": 10 }, "\u6253\u5370\u673A\u6392\uFF08\u6570\u91CF\u793A\u610F\uFF09"));
+      map.append(svg("line", { x1: ox + TRANSPORT_CORE.left * xs, y1: oy + GROUND_LAYOUT.rightBoundaryZ * ys, x2: ox + TRANSPORT_CORE.right * xs, y2: oy + GROUND_LAYOUT.rightBoundaryZ * ys, stroke: "#6d7772", "stroke-width": 3 }));
+      map.append(svg("text", { x: ox + (TRANSPORT_CORE.left + TRANSPORT_CORE.right) / 2 * xs, y: oy + (GROUND_LAYOUT.rightBoundaryZ - 1) * ys, "text-anchor": "middle", fill: "#53665d", "font-size": 9 }, "\u672C\u9986\u8FB9\u754C"));
+    }
+    if (floor >= TRANSPORT_CORE.minFloor) {
+      const c = TRANSPORT_CORE, s = c.stair;
+      map.append(svg("rect", { x: ox + c.left * xs, y: oy + c.back * ys, width: (c.right - c.left) * xs, height: (c.front - c.back) * ys, fill: "#e8e8df", stroke: "#657874", "stroke-width": 2 }));
+      for (const exit of c.exits) map.append(svg("line", { x1: ox + (exit.x - exit.width / 2) * xs, y1: oy + exit.z * ys, x2: ox + (exit.x + exit.width / 2) * xs, y2: oy + exit.z * ys, stroke: "#faf7ef", "stroke-width": 5 }));
+      for (const x of [s.leftX, s.rightX]) {
+        map.append(svg("rect", { x: ox + (x - s.width / 2) * xs, y: oy + s.back * ys, width: s.width * xs, height: (s.front - s.back) * ys, fill: "#b4bcbc", stroke: "#667776" }));
+        for (let i = 0; i < 10; i++) map.append(svg("line", { x1: ox + (x - s.width / 2) * xs, y1: oy + (s.back + (s.front - s.back) * i / 10) * ys, x2: ox + (x + s.width / 2) * xs, y2: oy + (s.back + (s.front - s.back) * i / 10) * ys, stroke: "#60706f" }));
+      }
+      map.append(svg("text", { x: ox + (c.left + c.right) / 2 * xs, y: oy + (c.back - 0.6) * ys, "text-anchor": "middle", fill: "#506963", "font-size": 9 }, "\u9760\u53F3\u4FA7\u5899 \xB7 \u72EC\u7ACB\u4EA4\u901A\u533A"));
+    }
+    map.append(svg("rect", { x: ox + (ELEVATOR_LAYOUT.x - 1.4) * xs, y: oy + (ELEVATOR_LAYOUT.z - ELEVATOR_LAYOUT.facadeOffset - 1.35 * ELEVATOR_LAYOUT.facadeScale) * ys, width: 2.8 * xs, height: 2.7 * ELEVATOR_LAYOUT.facadeScale * ys, fill: "#809694", stroke: "#3b625c" }));
+    map.append(svg("line", { x1: ox + ELEVATOR_LAYOUT.x * xs, y1: oy + ELEVATOR_LAYOUT.z * ys, x2: ox + (ELEVATOR_LAYOUT.x + 2) * xs, y2: oy + ELEVATOR_LAYOUT.z * ys, stroke: "#f4e8b8", "stroke-width": 3 }));
+    map.append(svg("text", { x: ox + ELEVATOR_LAYOUT.x * xs, y: oy + (ELEVATOR_LAYOUT.z + 0.3) * ys, "text-anchor": "middle", fill: "#fff", "font-size": 9 }, "\u7535\u68AF"));
+    for (const hole of atriumVoids(floor)) map.append(svg("rect", { x: ox + (hole.x - hole.w / 2) * xs, y: oy + (hole.z - hole.d / 2) * ys, width: hole.w * xs, height: hole.d * ys, rx: 1, fill: hole.transport ? "none" : "#faf7ef", stroke: "#57746a" }));
+    if (floor === 3) {
+      const hall = EXHIBITION_LAYOUT;
+      map.append(svg("rect", { x: ox - hall.width * xs / 2, y: oy + (hall.z - hall.depth / 2) * ys, width: hall.width * xs, height: hall.depth * ys, fill: "#d8e1de", stroke: "#849b94" }));
+      for (const board of hall.boards) map.append(svg("rect", { x: ox + board.x * xs - 2, y: oy + board.z * ys - 5, width: 4, height: 10, fill: "#4d8aaa" }));
+      for (const side of [-1, 1]) map.append(svg("rect", { x: ox + (side * 4.95 - 1.15) * xs, y: oy + EXHIBITION_LAYOUT.access.back * ys, width: 2.3 * xs, height: (EXHIBITION_LAYOUT.access.front - EXHIBITION_LAYOUT.access.back) * ys, fill: "#dadcd1" }));
+      for (const [name, p] of [["\u6D51\u4EEA", hall.armillary], ["\u9676\u74F7", hall.ceramics], ["\u6728\u96D5", hall.smallExhibit]]) {
+        map.append(svg("circle", { cx: ox + p.x * xs, cy: oy + p.z * ys, r: 5, fill: "#ad7358" }));
+        map.append(svg("text", { x: ox + 6 + p.x * xs, y: oy + p.z * ys, fill: "#5a6050", "font-size": 9 }, name));
+      }
+      map.append(svg("text", { x: 291, y: 204, fill: "#425d64", "font-size": 11 }, "3F\u4E2D\u592E\u5C55\u5385"));
+    }
+    map.append(svg("text", { x: 295, y: 62, fill: "#64766b", "font-size": 13 }, "\u4E2D\u5EAD/\u901A\u9053\u793A\u610F"));
+    map.append(svg("text", { x: 70, y: 395, fill: "#766345", "font-size": 13 }, floor === 1 ? "\u4E00\u697C\u524D\u5385\u3001\u4E13\u5EA7\u4E0E\u8BBE\u65BD\u793A\u610F \xB7 \u7F16\u53F7\u4E0E\u4E09\u7EF4\u5171\u7528" : "\u4E24\u4FA7\u9986\u85CF\u53C2\u8003\u533A \xB7 \u4E0E\u4E09\u7EF4\u4F7F\u7528\u540C\u4E00\u5EA7\u4F4D\u7F16\u53F7"));
+    for (const desk of deskLayouts(floor)) {
+      const x = ox + desk.x * xs, y = oy + desk.z * ys;
+      const a = desk.rotation || 0, w = Math.abs(Math.cos(a)) * desk.w + Math.abs(Math.sin(a)) * desk.d, d = Math.abs(Math.sin(a)) * desk.w + Math.abs(Math.cos(a)) * desk.d;
+      map.append(svg("rect", { x: x - w * xs / 2, y: y - d * ys / 2, width: w * xs, height: d * ys, rx: 2, fill: "#d5c8a8", stroke: "#a9987a" }));
+      if (desk.partition) map.append(svg("line", { x1: x - desk.w * xs / 2, y1: y, x2: x + desk.w * xs / 2, y2: y, stroke: "#576e77", "stroke-width": 2 }));
+      if (desk.sample === null) for (let j = 0; j < 4; j++) {
+        const p = deskChairPosition(desk, j);
+        map.append(svg("circle", { cx: ox + p.x * xs, cy: oy + p.z * ys, r: 5, fill: "#247796" }));
+      }
+    }
+    for (const seat of data.seats.filter((s) => s.floor === floor)) {
+      const state = classify(seat, Date.now()), meta = STATE[state.kind], rank = plan?.items.find((i) => i.seat.id === seat.id)?.rank, g = svg("g", { role: "button", tabindex: 0, "aria-label": `${seatLabel(seat, true)} ${rank ? "\u7B2C" + rank + "\u4F18\u5148 " : ""}${meta.label} ${state.reason}` });
+      if (rank) g.append(svg("circle", { cx: seat.x, cy: seat.y, r: 12, fill: "#f9cf67", opacity: 0.48, "pointer-events": "none" }));
+      g.append(svg("circle", { cx: seat.x, cy: seat.y, r: 7, fill: meta.color, stroke: selected === seat.id ? "#e4b33b" : "#ffffff", "stroke-width": selected === seat.id ? 4 : 1 }));
+      if (rank) g.append(svg("text", { x: seat.x, y: seat.y + 3.2, "text-anchor": "middle", "font-size": 9, fill: "#fff", "font-weight": 700, "pointer-events": "none" }, String(rank)));
+      const upper = (Number(seat.id.slice(-2)) - 1) % 4 < 2;
+      const rightSlot = (Number(seat.id.slice(-2)) - 1) % 2 === 1;
+      g.append(svg("text", { x: seat.x + (rightSlot ? 3 : -3), y: seat.y + (upper ? -10 : 17), fill: "#263e37", "font-size": 8.5, "font-weight": 700, "text-anchor": rightSlot ? "start" : "end" }, seatLabel(seat)));
+      const choose = () => {
+        selected = seat.id;
+        draw();
+      };
+      g.addEventListener("click", choose);
+      g.addEventListener("keydown", (e) => {
+        if (["Enter", " "].includes(e.key)) {
+          e.preventDefault();
+          choose();
+        }
+      });
+      map.append(g);
+    }
+    const item = plan?.items.find((i) => i.seat.id === selected);
+    if (item) {
+      const points = routePoints(item.trip.path, data.seats);
+      for (let i = 1; i < points.length; i++) if (points[i - 1].floor === floor && points[i].floor === floor)
+        map.append(svg("line", { x1: ox + points[i - 1].x * xs, y1: oy + points[i - 1].z * ys, x2: ox + points[i].x * xs, y2: oy + points[i].z * ys, stroke: "#d4a433", "stroke-width": 3, "pointer-events": "none" }));
+    }
+    for (const node of [plan?.source?.mode === "shelf" ? plan.source.node : null, prefs().print ? "print" : null]) {
+      if (!node) continue;
+      const p = nodePosition(node, data.seats);
+      if (p.floor !== floor) continue;
+      map.append(svg("circle", { cx: ox + p.x * xs, cy: oy + p.z * ys, r: 8, fill: node === "print" ? "#956daf" : "#3c87aa" }));
+      map.append(svg("text", { x: ox + 10 + p.x * xs, y: oy + p.z * ys, fill: "#263e37", "font-size": 11 }, readableNode(node)));
+    }
+  }
+  function drawSeatBoard() {
+    const out = $("seatBoard");
+    out.replaceChildren();
+    const ranks = new Map((plan?.items || []).map((item) => [item.seat.id, item.rank]));
+    $("boardStatus").textContent = plan?.items.length ? `\u672C\u6B21\u4EAE\u8D77 ${plan.items.length} \u4E2A\u4F18\u5148\u4F4D\u7F6E\u3002\u6570\u5B57\u8868\u793A\u5F53\u524D\u9700\u6C42\u7684\u6392\u5E8F\uFF0C\u70B9\u51FB\u67E5\u770B\u7406\u7531\u4E0E\u8DEF\u7EBF\u3002` : "\u5F53\u524D\u6CA1\u6709\u6709\u6548\u63A8\u8350\uFF0C\u4F18\u5148\u706F\u5DF2\u7184\u706D\u3002\u8C03\u6574\u9700\u6C42\u5E76\u751F\u6210\uFF0C\u6216\u6838\u5BF9\u6570\u636E\u3002";
+    for (let n = 1; n <= 5; n++) {
+      const row = el("section", void 0, "seat-board-row");
+      row.append(el("strong", n + "F"));
+      const chairs = el("div", void 0, "seat-board-chairs");
+      for (const seat of data.seats.filter((s) => s.floor === n)) {
+        const state = classify(seat, Date.now()), rank = ranks.get(seat.id), b = el("button", void 0, "seat-light" + (rank ? " ranked rank-" + rank : "") + (selected === seat.id ? " chosen" : ""));
+        b.dataset.seat = seat.id;
+        b.dataset.rank = rank ? String(rank) : "";
+        b.dataset.state = state.kind;
+        b.setAttribute("aria-label", `${seatLabel(seat, true)} ${rank ? "\u7B2C" + rank + "\u4F18\u5148\uFF0C" : ""}${STATE[state.kind].label}\uFF0C${state.reason}`);
+        b.setAttribute("aria-pressed", String(selected === seat.id));
+        b.append(el("b", rank ? "\u7B2C" + rank + "\u4F18\u5148" : STATE[state.kind].label), el("span", seatLabel(seat)));
+        b.onclick = () => {
+          selected = seat.id;
+          floor = seat.floor;
+          draw();
+        };
+        chairs.append(b);
+      }
+      row.append(chairs);
+      out.append(row);
+    }
+  }
+  function drawDetail() {
+    const out = $("seatDetail");
+    out.replaceChildren();
+    if (!selected) {
+      out.append(el("p", "\u70B9\u51FB\u5EA7\u4F4D\uFF0C\u67E5\u770B\u89C2\u6D4B\u4E0E\u4F7F\u7528\u6743\u4E3A\u4EC0\u4E48\u4F1A\u5F97\u51FA\u8FD9\u4E2A\u72B6\u6001\u3002"));
+      return;
+    }
+    const seat = data.seats.find((s) => s.id === selected), state = recheck(data.seats, selected, Date.now());
+    out.append(el("h3", `${seatLabel(seat, true)} \xB7 ${STATE[state.kind].label}`), el("p", state.reason));
+    out.append(el("small", `\u89C2\u6D4B\uFF1A${seat.observed} \xB7 \u89C4\u5219\uFF1A${seat.booking} \xB7 \u6765\u6E90\uFF1A\u6F14\u793A\u6216\u672C\u673A\u6D4B\u8BD5\u5BFC\u5165`));
+    out.append(el("small", `\u89C2\u6D4B\u65F6\u95F4\uFF1A${new Date(seat.obsAt).toLocaleTimeString()}\uFF1B\u89C4\u5219\u65F6\u95F4\uFF1A${new Date(seat.rulesAt).toLocaleTimeString()}\u3002\u4E24\u79CD\u8BB0\u5F55\u5206\u522B\u6838\u5BF9\u3002`));
+    if (state.kind === "candidate") {
+      const b = el("button", "\u786E\u8BA4\u6A21\u62DF\u9884\u7EA6", "primary");
+      b.onclick = () => {
+        const result = reserveDemo(data.seats, selected, Date.now());
+        notify(result.message);
+        plan = null;
+        draw();
+        generate();
+      };
+      out.append(b);
+    }
+    if (seat.booking === "mine") {
+      const b = el("button", "\u91CA\u653E\u672C\u6B21\u6A21\u62DF\u9884\u7EA6");
+      b.onclick = () => {
+        seat.booking = "free";
+        plan = null;
+        draw();
+        generate();
+        notify("\u6A21\u62DF\u9884\u7EA6\u5DF2\u91CA\u653E\u3002\u6CA1\u6709\u64CD\u4F5C\u771F\u5B9E\u5EA7\u4F4D\u7CFB\u7EDF\u3002");
+      };
+      out.append(b);
+    }
+    out.append(el("p", "\u771F\u5B9E\u5EA7\u4F4D\u987B\u901A\u8FC7\u9986\u65B9\u7CFB\u7EDF\u529E\u7406\u3002\u672C\u9875\u6309\u94AE\u53EA\u4FEE\u6539\u672C\u9875\u5047\u6570\u636E\u3002", "small"));
+  }
+  function drawResults() {
+    const out = $("results");
+    out.replaceChildren();
+    $("download").disabled = !plan;
+    if (!plan) {
+      out.append(el("p", "\u8BBE\u7F6E\u672C\u6B21\u9700\u6C42\u540E\u751F\u6210\u5019\u9009\u3002\u5FC5\u987B\u6761\u4EF6\u53D8\u5316\u65F6\uFF0C\u65E7\u5019\u9009\u81EA\u52A8\u6E05\u9664\u3002", "muted"));
+      return;
+    }
+    for (const warning of plan.warnings) out.append(el("p", warning, "warning"));
+    plan.items.forEach((item, index) => {
+      const card = el("article", void 0, "result");
+      card.append(el("h3", `${index + 1}. ${seatLabel(item.seat, true)}`));
+      for (const r of item.reasons) card.append(el("p", "\u2713 " + r));
+      for (const t of item.tradeoffs) card.append(el("p", "\u53D6\u820D\uFF1A" + t, "muted"));
+      card.append(el("small", "\u63A8\u8350\u4E0D\u7B49\u4E8E\u9501\u5EA7\uFF1B\u8DEF\u7EBF\u662F\u6A21\u62DF\u901A\u9053\u7684\u8BA1\u7B97\u7ED3\u679C\u3002"));
+      const b = el("button", "\u5728\u5EA7\u4F4D\u56FE\u4E2D\u67E5\u770B");
+      b.onclick = () => {
+        floor = item.seat.floor;
+        selected = item.seat.id;
+        draw();
+        $("map").scrollIntoView?.({ behavior: "smooth", block: "center" });
+      };
+      card.append(b);
+      out.append(card);
+    });
+  }
+  function sendModel() {
+    const frame = $("modelFrame");
+    if (!$("modelPanel").hidden && frame.dataset.loaded === "1" && frame.contentWindow) frame.contentWindow.postMessage({ type: "zhizuo-state", seats: data.seats, prefs: prefs(), selected, floor, generated: !!plan }, "*");
+  }
+  function draw() {
+    drawSummary();
+    drawSeatBoard();
+    drawMap();
+    drawDetail();
+    drawResults();
+    const item = plan?.items.find((i) => i.seat.id === selected);
+    $("route").textContent = item ? "\u672C\u6B21\u6A21\u62DF\u4EFB\u52A1\u8DEF\u7EBF\uFF1A" + item.trip.path.map(readableNode).join(" \u2192 ") : selected ? "\u6B64\u4F4D\u7F6E\u4E0D\u5728\u5F53\u524D\u5019\u9009\u4E2D\uFF1B\u8BF7\u6838\u5BF9\u72B6\u6001\u6216\u91CD\u65B0\u751F\u6210\u3002" : "\u9009\u62E9\u5019\u9009\u540E\uFF0C\u5E73\u9762\u548C\u4E09\u7EF4\u5C06\u663E\u793A\u540C\u4E00\u6761\u4EFB\u52A1\u8DEF\u7EBF\u3002";
+    sendModel();
+  }
+  function generate() {
+    plan = recommend(data.seats, prefs(), data.graph, RESOURCES, Date.now());
+    if (!selected && plan.items.length) {
+      selected = plan.items[0].seat.id;
+      floor = plan.items[0].seat.floor;
+    }
+    draw();
+  }
+  for (const resource of RESOURCES) {
+    const o = el("option", resource.title);
+    o.value = resource.id;
+    $("resource").append(o);
+  }
+  $("resource").value = "software";
+  $("print").checked = true;
+  $("form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    generate();
+    notify("\u5019\u9009\u5DF2\u66F4\u65B0\u3002\u6570\u636E\u4E0E\u4E66\u76EE\u5747\u4E3A\u6A21\u62DF\uFF0C\u5F53\u524D\u6CA1\u6709\u9986\u5185\u5B9E\u65F6\u63A5\u53E3\u3002");
+  });
+  for (const id of ["resource", "power", "window", "quiet", "accessible", "print", "floorFilter", "priority"]) $(id).addEventListener("change", () => {
+    plan = null;
+    draw();
+  });
+  $("scenario").onchange = () => {
+    const name = $("scenario").value;
+    if (name === "normal") {
+      data = makeData(Date.now());
+      selected = null;
+    } else setScenario(data, name, Date.now(), selected);
+    plan = null;
+    draw();
+    generate();
+    notify("\u5DF2\u5207\u6362\u4EBA\u4E3A\u8BBE\u7F6E\u7684\u6F14\u793A\u60C5\u5883\uFF1A" + $("scenario").selectedOptions[0].textContent);
+  };
+  $("recheck").onclick = () => {
+    const state = selected ? recheck(data.seats, selected, Date.now()) : null;
+    generate();
+    draw();
+    notify(state ? state.reason : "\u5DF2\u91CD\u65B0\u8BA1\u7B97\u3002\u6CA1\u6709\u4F2A\u9020\u6444\u50CF\u5934\u6216\u9884\u7EA6\u7CFB\u7EDF\u7684\u65B0\u6570\u636E\u3002");
+  };
+  $("clear").onclick = () => {
+    data = makeData(Date.now());
+    plan = null;
+    selected = null;
+    $("scenario").value = "normal";
+    $("route").textContent = "";
+    draw();
+    notify("\u6F14\u793A\u5DF2\u91CD\u7F6E\uFF1B\u6240\u6709\u8F93\u5165\u4EC5\u5728\u672C\u9875\u5185\u5B58\u4E2D\u3002");
+  };
+  $("modelTab").onclick = () => {
+    $("modelPanel").hidden = !$("modelPanel").hidden;
+    const frame = $("modelFrame");
+    if (!$("modelPanel").hidden) {
+      if (frame.dataset.loaded !== "1") {
+        frame.dataset.loaded = "1";
+        frame.src = "\u5EFA\u7B51\u4E0E\u4E94\u5C42\u5C55\u793A.html";
+      }
+      sendModel();
+      $("modelPanel").scrollIntoView?.({ behavior: "smooth", block: "start" });
+    } else {
+      frame.dataset.loaded = "0";
+      frame.src = "about:blank";
+    }
+  };
+  $("sendFloor").onclick = () => {
+    sendModel();
+  };
+  $("modelFrame").addEventListener("load", sendModel);
+  $("modelPanel").hidden = true;
+  $("modelFrame").dataset.loaded = "0";
+  window.addEventListener("message", (event) => {
+    if (event.source !== $("modelFrame").contentWindow) return;
+    if (event.data?.type === "zhizuo-ready") {
+      sendModel();
+      return;
+    }
+    if (event.data?.type !== "zhizuo-select") return;
+    const s = data.seats.find((s2) => s2.id === event.data.id);
+    if (s) {
+      selected = s.id;
+      floor = s.floor;
+      draw();
+    }
+  });
+  $("download").onclick = () => {
+    if (!plan) return;
+    const text = [
+      "\u5609\u5E9A\u77E5\u5EA7\u672C\u6B21\u6F14\u793A\u4EFB\u52A1\u5361",
+      "\u6570\u636E\u3001\u4E66\u76EE\u3001\u5EA7\u4F4D\u53CA\u8DEF\u7EBF\u5747\u4E3A\u6A21\u62DF\uFF1B\u975E\u5B9E\u9645\u9884\u7EA6\u3002",
+      RESOURCES.find((r) => r.id === prefs().resource).title,
+      ...plan.warnings,
+      ...plan.items.flatMap((i) => [`${seatLabel(i.seat, true)}`, ...i.reasons, ...i.tradeoffs, "\u6A21\u62DF\u8DEF\u7EBF\uFF1A" + i.trip.path.map(readableNode).join(" \u2192 ")])
+    ].join("\n");
+    const url = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" })), a = el("a");
+    a.href = url;
+    a.download = "\u5609\u5E9A\u77E5\u5EA7_\u6F14\u793A\u4EFB\u52A1\u5361.txt";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1e3);
+  };
+  $("import").onchange = async () => {
+    try {
+      const f = $("import").files[0];
+      if (!f) return;
+      if (f.size > 2e5) throw Error("\u6587\u4EF6\u8FC7\u5927");
+      const raw = JSON.parse(await f.text());
+      if (!Array.isArray(raw.observations)) throw Error("\u7F3A\u5C11 observations \u6570\u7EC4");
+      let count = 0;
+      for (const r of raw.observations) {
+        const s = data.seats.find((x) => x.id === r.id);
+        if (!s) continue;
+        if (!["occupied", "unknown", "items", "clear"].includes(r.observed)) continue;
+        s.observed = r.observed;
+        s.quality = Number.isFinite(r.quality) && r.quality >= 0 && r.quality <= 1 ? r.quality : 0;
+        s.obsAt = Number.isFinite(r.obsAt) ? r.obsAt : 0;
+        count++;
+      }
+      plan = null;
+      draw();
+      generate();
+      notify(`\u5BFC\u5165 ${count} \u4E2A\u672C\u673A\u6D4B\u8BD5\u89C2\u6D4B\u3002\u9884\u7EA6\u89C4\u5219\u4ECD\u4E3A\u6A21\u62DF\uFF0C\u4E0D\u80FD\u7528\u4E8E\u5B9E\u9645\u9009\u5EA7\u3002`);
+    } catch (error) {
+      notify("\u65E0\u6CD5\u5BFC\u5165\uFF1A" + error.message);
+    } finally {
+      $("import").value = "";
+    }
+  };
+  for (const [title, url] of SOURCES) {
+    const a = el("a", title);
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    $("sources").append(a);
+  }
+  draw();
+  generate();
+  window.zhizuo = { getData: () => data, getPlan: () => plan, getSelection: () => ({ selected, floor }), generate, selectFloor: (n) => {
+    floor = n;
+    draw();
+  }, classify };
+  setInterval(() => {
+    if (plan) plan = recommend(data.seats, prefs(), data.graph, RESOURCES, Date.now());
+    drawSummary();
+    drawDetail();
+    drawResults();
+    if (!$("seatBoard").contains(document.activeElement)) drawSeatBoard();
+    if (!document.getElementById("map").contains(document.activeElement)) drawMap();
+    sendModel();
+  }, 5e3);
+})();
+</script></body></html>

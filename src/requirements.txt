@@ -1,0 +1,4 @@
+# 不同时安装多个OpenCV发行包；MediaPipe会安装自己的opencv-contrib-python依赖。
+mediapipe==0.10.32
+opencv-contrib-python==5.0.0.93
+numpy==2.5.4

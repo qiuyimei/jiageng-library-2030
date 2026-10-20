@@ -1,0 +1,16 @@
+{
+  "name": "jiageng-library-2030",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node src/tests/run-core.mjs",
+    "build": "node src/build.cjs Demo",
+    "practice": "node src/exercises/build.cjs Demo/十座位复刻练习.html",
+    "export-scenes": "node src/export-scene.cjs .cache/geometry"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.10",
+    "three": "0.180.0"
+  }
+}

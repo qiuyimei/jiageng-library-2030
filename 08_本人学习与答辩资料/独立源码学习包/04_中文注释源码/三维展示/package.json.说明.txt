@@ -1,1 +1,0 @@
-﻿项目依赖与构建命令；固定three0.180.0与esbuild0.25.10，private:true避免误发布npm包。

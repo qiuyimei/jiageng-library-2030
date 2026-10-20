@@ -1,0 +1,11 @@
+{
+  "observations": [
+    {
+      "id": "S2-01",
+      "observed": "unknown",
+      "quality": 0,
+      "obsAt": 1791859269655
+    }
+  ],
+  "scope": "本机单帧技术测试；规则接口仍为模拟；不能用于实际选座"
+}
