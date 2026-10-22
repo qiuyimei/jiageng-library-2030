@@ -4,6 +4,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import {createHelpers} from './model-helpers.js';
+import {EXPLODED_FLOOR_GAP} from './model-presentation.js';
 import {buildExterior,buildLibraryFloors} from './architecture.js';
 import {buildLibraryEnvironment} from './library-environment.js';
 import {buildSeatLayer} from './space-layer.js';
@@ -45,7 +46,7 @@ for(const [key,floor,furniture,expanded,mode,selection]of [
  for(const g of layer.resources.children)g.visible=!floor||g.userData.floor===floor;
  for(const line of layer.route.children)line.visible=!floor||line.userData.floors.every(f=>f===floor);
  campus.visible=false;rear.visible=false;floorRoot.visible=true;overlay.visible=true;
- for(const f of floors.storeys){f.root.visible=!floor||f.info.n===floor;f.root.position.y=(f.info.n-1)*(expanded?9:floors.height);f.furniture.visible=furniture;for(const m of f.structural.children)if(m.name.includes('beam'))m.visible=!furniture&&key!=='floor4top';}
+ for(const f of floors.storeys){f.root.visible=!floor||f.info.n===floor;f.root.position.y=(f.info.n-1)*(expanded?EXPLODED_FLOOR_GAP:floors.height);f.furniture.visible=furniture;for(const m of f.structural.children)if(m.name.includes('beam'))m.visible=!furniture&&key!=='floor4top';}
  capture(key);checks.push({view:key,seat_markers:layer.markers.filter(m=>m.visible).length,route_segments:layer.route.children.filter(m=>m.visible).length,candidates:plan.items.map(i=>i.seat.id)});
 }
 // 单桌近景来自楼层内已经生成的实体桌与四把椅子，避免另画一套不一致的展示家具。

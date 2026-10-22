@@ -13,6 +13,7 @@ import {walkEntry,walkStairEntry,walkUpEntry,advanceWalk,EYE_HEIGHT,collectWalkO
 import {createWalkSurroundings} from './walk-surroundings.js';
 import {createSceneLighting,LIGHT_PRESETS} from './lighting.js';
 import {MODEL_TOUR_STOPS,nextTourStop,usesPointPicking} from './model-tour.js';
+import {EXPLODED_FLOOR_GAP,renderScale,explodedPose} from './model-presentation.js';
 const $=id=>document.getElementById(id);
 let data=makeData(Date.now()),selected=null,floor=0,expanded=false,view='campus',plan=null,linked=false;
 let generated=true;
@@ -76,7 +77,7 @@ compute();
 function initModel(){
  const host=$('viewport'),scene=new THREE.Scene();scene.background=new THREE.Color('#e9e7df');
  const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
- renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;host.prepend(renderer.domElement);
+ renderer.setPixelRatio(renderScale(host.clientWidth,host.clientHeight,devicePixelRatio));renderer.outputColorSpace=THREE.SRGBColorSpace;host.prepend(renderer.domElement);
  const camera=new THREE.PerspectiveCamera(38,1,.06,600),controls=new OrbitControls(camera,renderer.domElement);
  // 允许在中庭从低处仰看采光顶；近景可缩放到桌椅细节，不强制保持俯视。
  controls.enableDamping=true;controls.minPolarAngle=.05;controls.maxPolarAngle=Math.PI*.88;controls.minDistance=2.5;controls.maxDistance=360;
@@ -107,7 +108,7 @@ function initModel(){
   $('viewStatus').textContent=next.title+'。总览单击继续；放大后点选具体位置。';return true;
  }
  const labels=Array.from({length:90},()=>{const e=document.createElement('div');e.className='label';$('labels').append(e);return e;});
- const height=n=>(n-1)*(expanded?9:floors.height);
+ const height=n=>(n-1)*(expanded?EXPLODED_FLOOR_GAP:floors.height);
  function disposeOverlay(){
    // 观测同步后重建图层；释放专属于标记的几何体，保留重复使用的材质。
    overlay.traverse(o=>{if(o.geometry&&!o.geometry.userData.sharedGeometry)o.geometry.dispose();});overlay.clear();
@@ -133,6 +134,7 @@ function initModel(){
    if(v==='campus'){camera.position.set(0,82,280);controls.target.set(0,16,-28);}
    else if(v==='rear'){camera.position.set(78,58,-125);controls.target.set(0,8,-26);}
    else if(v==='top'){const b=floorBounds(floor||3),x=(b.left+b.right)/2,z=(b.back+b.front)/2,dist=Math.max((b.right-b.left)/Math.max(.6,camera.aspect),b.front-b.back)/(2*Math.tan(camera.fov*Math.PI/360))*1.12;camera.position.set(x,y+dist,z+.001);controls.target.set(x,y,z);}
+   else if(expanded&&!floor){const pose=explodedPose(floorBounds(3),camera.aspect,camera.fov);camera.position.fromArray(pose.eye);controls.target.fromArray(pose.target);}
    else{const b=floorBounds(floor||3),x=(b.left+b.right)/2,depth=b.front-b.back;camera.position.set(floor===1?80:x+depth*.68,y+(expanded&&!floor?90:floor===1?52:depth*.55),floor===1?104:(b.front+b.back)/2+depth*.88);controls.target.set(x,y+1,floor===1?6:(b.front+b.back)/2);}
    controls.update();overviewDistance=camera.position.distanceTo(controls.target);refreshTourHint();dirty=true;
  };
@@ -181,7 +183,12 @@ function initModel(){
  for(const id of Object.values(lightIds))$(id).oninput=applyLight;
  $('lightShadows').onchange=applyLight;$('lightPreset').onchange=()=>lightPreset($('lightPreset').value);
  $('lightReset').onclick=()=>{$('lightShadows').checked=true;lightPreset('daylight');};lightPreset('daylight');
- $('snapshot').onclick=()=>{renderer.render(scene,camera);renderer.domElement.toBlob(blob=>{if(!blob)return;const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=`嘉庚知座_${view}_${floor||'五层'}.png`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('viewStatus').textContent='已保存三维图层；右侧解释和DOM标签不包含在画布截图内。';});};
+ $('snapshot').onclick=()=>{
+  // 按当前画面比例直接重绘高清图，不把低分辨率截图插值放大。
+  const w=host.clientWidth,h=host.clientHeight,scale=Math.min(3840/Math.max(w,h),Math.sqrt(8000000/(w*h)));
+  renderer.setPixelRatio(1);renderer.setSize(Math.round(w*scale),Math.round(h*scale),false);renderer.render(scene,camera);
+  renderer.domElement.toBlob(blob=>{resize();dirty=true;if(!blob)return;const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=`嘉庚知座_${view}_${floor||'五层'}_高清.png`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('viewStatus').textContent='已直接重绘并保存高清三维图；DOM标签不包含在画布截图内。';});
+ };
  let walker=walkEntry(3),yaw=0,pitch=0,lookDrag=null,savedView=null;
  const held=new Set(),obstacles=[];
  // 包围盒取自已经生成的实体家具；不再手写一份与模型位置可能不同的碰撞地图。
@@ -268,7 +275,8 @@ function initModel(){
    }
  });
  renderer.domElement.addEventListener('wheel',()=>{dirty=true;refreshTourHint();});
- function resize(){renderer.setSize(host.clientWidth,host.clientHeight);camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();dirty=true;}
+ function resize(){renderer.setPixelRatio(renderScale(host.clientWidth,host.clientHeight,devicePixelRatio,$('renderQuality').value));renderer.setSize(host.clientWidth,host.clientHeight);camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();dirty=true;}
+ $('renderQuality').onchange=()=>{resize();$('viewStatus').textContent=$('renderQuality').value==='hd'?'高清观看：优先保持桌椅与书架边缘清楚。':'流畅观看：降低画布像素以减轻设备负担。';};
  new ResizeObserver(resize).observe(host);resize();setView('campus');
  // 按照片直接定位近景；内部相机高度随楼层改变，避免观察三楼时仍停在一楼。
  showPhotoDetail=id=>{

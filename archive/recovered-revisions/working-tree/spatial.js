@@ -1,5 +1,6 @@
 // 平面图、三维模型和路线共用的空间数据。单位仅为模型坐标，未经过现场测绘。
 // 座位的编号与使用权来自data.js；此模块只决定如何把相同编号放在示意空间里。
+import {EXPLODED_FLOOR_GAP} from './model-presentation.js';
 export const FLOOR_HEIGHT=4.8;
 // 普通直梯连接一至三楼；扶梯仅一至二楼，弧形小退台仅二至三楼。
 // 起止位置是照片关系的模型坐标，尚未用尺量过，不是馆内导航数据。
@@ -209,7 +210,7 @@ export function seatPosition(seat,expanded=false){
   // 编号对应实体桌椅模型里的一个椅子位置，而不是独立悬空点。
   const index=Number(seat.id.split('-')[1])-1;
   const desk=deskLayouts(seat.floor).find(d=>d.sample===Math.floor(index/4)),slot=index%4;
-  const p=deskChairPosition(desk,slot);return {x:p.x,y:(seat.floor-1)*(expanded?9:FLOOR_HEIGHT)+0.5,z:p.z,floor:seat.floor};
+  const p=deskChairPosition(desk,slot);return {x:p.x,y:(seat.floor-1)*(expanded?EXPLODED_FLOOR_GAP:FLOOR_HEIGHT)+0.5,z:p.z,floor:seat.floor};
 }
 export function mapPosition(seat){
   // SVG从同一个模型坐标投影，缩放与平移只影响画面，不改变座位编号和状态。
@@ -226,7 +227,7 @@ export function nodePosition(node,seats,expanded=false){
     floor=Number(node.slice(-1));x=floor===5?-13.4:13.4;
     z=({1:13,2:-13,3:7,4:-9,5:21})[floor];
   }else return null;
-  return {x,y:(floor-1)*(expanded?9:FLOOR_HEIGHT)+0.5,z,floor};
+  return {x,y:(floor-1)*(expanded?EXPLODED_FLOOR_GAP:FLOOR_HEIGHT)+0.5,z,floor};
 }
 export function routePoints(path,seats,expanded=false){
   // 将通道图的节点序列转成示意折线。两侧之间先经z=17的公共连廊，避开中央孔洞。
