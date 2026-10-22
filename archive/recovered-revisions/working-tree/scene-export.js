@@ -15,6 +15,7 @@ import {seatPosition,atriumVoids,EXHIBITION_LAYOUT,GROUND_LAYOUT,ELEVATOR_LAYOUT
 import {collectWalkObstacles,advanceWalk,walkStairEntry} from './walk.js';
 import {createWalkSurroundings} from './walk-surroundings.js';
 const folder=process.argv[2]||process.cwd(),H=createHelpers();
+fs.mkdirSync(folder,{recursive:true});
 const scene=new THREE.Group(),campus=H.group(scene,'campus'),details=buildExterior(campus,H);
 buildLibraryEnvironment(details.rearLibrary,H);const rear=details.rearLibrary.clone(true);rear.position.z=0;scene.add(rear);
 const floorRoot=H.group(scene,'floors'),floors=buildLibraryFloors(floorRoot,H),overlay=H.group(scene,'information');

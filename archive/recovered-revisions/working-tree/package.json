@@ -1,1 +1,17 @@
-{"name": "jiageng-zhizuo-learning-demo", "version": "1.0.0", "private": true, "type": "module", "scripts": {"test": "node tests.js", "build": "node build.cjs", "export-scenes": "node export-scene.cjs"}, "devDependencies": {"esbuild": "0.25.10", "three": "0.180.0"}}
+{
+  "name": "jiageng-zhizuo-learning-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests.js",
+    "build": "node build.cjs",
+    "export-scenes": "node export-scene.cjs",
+    "test:core": "node tests/run-core.mjs",
+    "practice": "node exercises/build.cjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.10",
+    "three": "0.180.0"
+  }
+}
