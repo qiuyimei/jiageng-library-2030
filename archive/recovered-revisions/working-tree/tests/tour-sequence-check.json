@@ -1,0 +1,18 @@
+{
+  "transitions_checked": 8,
+  "sequence": [
+    "校园楼群正面",
+    "图书馆外观",
+    "空间模型 · 整体",
+    "空间模型 · 分层展开",
+    "1楼 · 平面俯瞰",
+    "2楼 · 平面俯瞰",
+    "3楼 · 平面俯瞰",
+    "4楼 · 平面俯瞰",
+    "5楼 · 平面俯瞰"
+  ],
+  "whole_and_exploded_separate": true,
+  "first_plan_floor": 1,
+  "plans_through_floor": 5,
+  "scope": "纯状态和入口接线检查，未进行浏览器或WebGL实测"
+}
