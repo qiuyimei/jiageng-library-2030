@@ -1,6 +1,6 @@
-import * as THREE from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
-import {GLTFExporter} from 'three/examples/jsm/exporters/GLTFExporter.js';
+import * as THREE from '../model3d_deps/node_modules/three/build/three.module.js';
+import {OrbitControls} from '../model3d_deps/node_modules/three/examples/jsm/controls/OrbitControls.js';
+import {GLTFExporter} from '../model3d_deps/node_modules/three/examples/jsm/exporters/GLTFExporter.js';
 import {buildExterior,buildLibraryFloors,FLOOR_INFO} from './architecture.js';
 const $=id=>document.getElementById(id),host=$('viewport');
 const scene=new THREE.Scene();scene.background=new THREE.Color('#e9e7df');
