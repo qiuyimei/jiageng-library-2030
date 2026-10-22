@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {makeData,RESOURCES} from './data.js';
 import {recommend} from './engine.js';
+import {EXPLODED_FLOOR_GAP} from './model-presentation.js';
 import {seatPosition,seatLabel,seatRegionAt,mapPosition,nodePosition,routePoints,acceptSnapshot,atriumVoids,ELEVATOR_LAYOUT,GROUND_LAYOUT,elevatorLanding,floorBounds,upperFacilities,TRANSPORT_CORE} from './spatial.js';
 const now=1780000000000,d=makeData(now);let count=0;
 const test=(name,fn)=>{fn();count++;console.log('PASS '+name);};
@@ -16,7 +17,8 @@ test('60座位平面与三维同源、各层坐标不重复',()=>{
  }
 });
 test('五层展开只改变高度，编号与平面位置保留',()=>{
- for(const s of d.seats){const a=seatPosition(s),b=seatPosition(s,true);assert.equal(a.x,b.x);assert.equal(a.z,b.z);assert.equal(b.y,(s.floor-1)*9+.5);}
+ assert.equal(EXPLODED_FLOOR_GAP,18,'展示层间距应为当前的18，不能回退到早期9');
+ for(const s of d.seats){const a=seatPosition(s),b=seatPosition(s,true);assert.equal(a.x,b.x);assert.equal(a.z,b.z);assert.equal(b.y,(s.floor-1)*EXPLODED_FLOOR_GAP+.5);}
 });
 test('所有候选图路径均有有限坐标',()=>{
  for(const resource of ['own','software','literature','economy','special']){
