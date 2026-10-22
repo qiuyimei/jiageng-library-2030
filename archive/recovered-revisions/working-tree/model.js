@@ -14,7 +14,10 @@ import {createWalkSurroundings} from './walk-surroundings.js';
 import {createSceneLighting,LIGHT_PRESETS} from './lighting.js';
 import {MODEL_TOUR_STOPS,nextTourStop,usesPointPicking} from './model-tour.js';
 import {EXPLODED_FLOOR_GAP,renderScale,explodedPose} from './model-presentation.js';
+import {seatReturnNavigation} from './seat-navigation.js';
 const $=id=>document.getElementById(id);
+const modelHash=(window.location?.hash||'').split('&')[0],returnToSeat=seatReturnNavigation(window.location?.hash);
+for(const id of ['returnSeatLink','wideReturnSeatLink'])if(returnToSeat){$(id).hidden=false;$(id).href=returnToSeat;}
 let data=makeData(Date.now()),selected=null,floor=0,expanded=false,view='campus',plan=null,linked=false;
 let generated=true;
 let showInformation=false;
@@ -289,12 +292,12 @@ function initModel(){
   camera.position.set(ref.eye[0],ref.eye[1]+y,ref.eye[2]);controls.target.set(ref.target[0],ref.target[1]+y,ref.target[2]);controls.update();dirty=true;
   photoPanel(ref);$('viewStatus').textContent=ref.description+' 位置与尺寸为照片参考示意。';
  };
- const initialDetail=window.location?.hash?.match(/^#detail=([a-z]+)$/)?.[1];if(initialDetail)showPhotoDetail(initialDetail);
- const initialFloor=window.location?.hash?.match(/^#floor=([1-5])$/)?.[1];if(initialFloor){floor=Number(initialFloor);setView('cut');}
+ const initialDetail=modelHash.match(/^#detail=([a-z]+)$/)?.[1];if(initialDetail)showPhotoDetail(initialDetail);
+ const initialFloor=modelHash.match(/^#floor=([1-5])$/)?.[1];if(initialFloor){floor=Number(initialFloor);setView('cut');}
  // 新分层座位页只传模型位置进行定位，不把自主登记伪装成原60样本的传感观测。
- const initialLocation=window.location?.hash?.match(/^#loc=([1-5]),(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/);
+ const initialLocation=modelHash.match(/^#loc=([1-5]),(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/);
  if(initialLocation){const n=Number(initialLocation[1]),x=Number(initialLocation[2]),z=Number(initialLocation[3]),b=floorBounds(n);if(x>=b.left&&x<=b.right&&z>=b.back&&z<=b.front){floor=n;showInformation=false;setView('cut');focusPoint(new THREE.Vector3(x,height(n)+.2,z),n);}}
- const initialFacility=window.location?.hash?.match(/^#facility=(entrance|cafe|culture|periodicals)$/)?.[1];if(initialFacility)showFacility(initialFacility);
+ const initialFacility=modelHash.match(/^#facility=(entrance|cafe|culture|periodicals)$/)?.[1];if(initialFacility)showFacility(initialFacility);
  let lastFrame=performance.now();
  function animate(){
    const nowFrame=performance.now(),dt=Math.min(.05,Math.max(0,(nowFrame-lastFrame)/1000));lastFrame=nowFrame;tickWalk(dt);

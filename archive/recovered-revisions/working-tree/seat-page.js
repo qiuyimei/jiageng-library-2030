@@ -3,6 +3,7 @@ import {createSeatCatalog,STORE_KEY,STATUS,reportState,readReports,changeReport,
 import {floorBounds,deskLayouts,atriumVoids,GROUND_LAYOUT,ELEVATOR_LAYOUT,TRANSPORT_CORE,upperFacilities,EXHIBITION_LAYOUT,STAIR_LAYOUT} from './spatial.js';
 import {FLOOR_INFO,floorRackRecords} from './library-layout.js';
 import {initSeatVoice,parseSeatDemand} from './seat-voice.js';
+import {cleanSeatSnapshot,decodeSeatSnapshot,modelNavigationURL,restoreSeatCandidates} from './seat-navigation.js';
 const $=id=>document.getElementById(id),catalog=createSeatCatalog(),params=new URLSearchParams(location.search),checkin=params.get('mode')==='checkin';
 let floor=0,selected=null,page=0,zoom=1,mapFocus=null,recommendations=[],storageOK=true,reports={},messageTimer,lastStamp='',view='map',demo=true,attempted=false;
 const pageSize=16,clientKey=STORE_KEY+'-client';
@@ -17,10 +18,24 @@ function time(t){return new Date(t).toLocaleTimeString('zh-CN',{hour:'2-digit',m
 function currentSeats(){return catalog.filter(s=>s.floor===floor&&(!$('regionFilter').value||s.region===$('regionFilter').value)&&(!$('stateFilter').value||reportState(s,reports[s.id]).kind===$('stateFilter').value));}
 function preferences(){return {subject:$('subject').value,floor:$('searchRange').value==='all'?0:floor,window:$('windowPreference').checked,power:$('powerPreference').checked,print:$('printPreference').checked};}
 function counts(n){const seats=catalog.filter(s=>s.floor===n),out={total:seats.length};for(const k of Object.keys(STATUS))out[k]=seats.filter(s=>reportState(s,reports[s.id]).kind===k).length;return out;}
+function navigationSnapshot(){
+ const form={};for(const id of ['subject','searchRange','regionFilter','stateFilter','duration','voiceText'])form[id]=$(id).value;
+ for(const id of ['windowPreference','powerPreference','printPreference'])form[id]=$(id).checked;
+ return cleanSeatSnapshot({version:1,checkin,floor,selected,page,zoom,view,attempted,mapFocus,form,
+  candidates:recommendations.map(r=>({id:r.seat.id,score:r.score,reasons:r.reasons,tradeoffs:r.tradeoffs})),
+  scroll:{x:window.scrollX||0,y:window.scrollY||0,mapX:$('mapStage').scrollLeft||0,mapY:$('mapStage').scrollTop||0}},catalog);
+}
+function bindModelNavigation(link,focusHash=''){
+ const update=()=>{const snapshot=navigationSnapshot();link.href=modelNavigationURL(focusHash,snapshot);
+  // 浏览器自己的“后退”也可恢复；显式返回链接另带快照，不依赖历史或存储权限。
+  try{history.replaceState({zhizuoSeatResume:snapshot},'',location.href);}catch{}
+ };
+ link.target='_self';link.onpointerdown=update;link.onclick=update;update();
+}
 function writeURL(){
  const p=new URLSearchParams();if(checkin)p.set('mode','checkin');if(selected)p.set('seat',selected);
  const url='嘉庚知座.html'+(p.toString()?'?'+p:'')+(floor?'#floor='+floor:'');
- try{history.replaceState(null,'',url);}catch{/* 文件浏览器不允许改地址时，页面内导航仍可使用。 */}
+ try{history.replaceState({zhizuoSeatResume:navigationSnapshot()},'',url);}catch{/* 文件浏览器不允许改地址时，页面内导航仍可使用。 */}
 }
 function selectFloor(n,keepSelected=false){
  floor=n;page=0;zoom=1;mapFocus=null;recommendations=[];attempted=false;if(!keepSelected)selected=null;
@@ -111,7 +126,7 @@ function drawDetail(){
  out.append(el('p','来源：'+(r?.source==='example'?'展示模式的示例登记':r?'读者主动登记':'暂无登记')+(state.at?' · 更新 '+time(state.at)+' · 到期 '+time(state.until):''),'small'));
  const links=el('div',undefined,'detail-actions');
   const locate=el('a','在座位图定位');locate.href='#planPanel';locate.onclick=e=>{e.preventDefault();locateSeat(s.id,'map');};
- const model=el('a','在三维中查看这个位置 ↗');model.href='建筑与五层展示.html#loc='+[s.floor,s.x,s.z].join(',');model.target='_blank';model.rel='noopener';links.append(locate,model);
+ const model=el('a','在三维中查看这个位置 →');bindModelNavigation(model,'#loc='+[s.floor,s.x,s.z].join(','));links.append(locate,model);
  if(!checkin){const a=el('a','我已到座，办理登记 →');a.href='嘉庚知座.html?mode=checkin&seat='+s.id+'#floor='+floor;links.append(a);}else links.append(button('到座登记操作 ↓',()=>$('checkinPanel').scrollIntoView({behavior:'smooth',block:'center'})));
  out.append(links);$('checkinTitle').textContent=s.floor+'F · '+s.label+' · 本人到座登记';
  $('checkinExplanation').textContent=s.dedicated?'这里是馆方固定专座，本机不办理资格或使用权。':'选择本人的实际到座状态。登记不会替代图书馆原有预约或签到；不要远程占座或代替别人登记。';
@@ -168,11 +183,12 @@ function drawPlan(){
 }
 function draw(){
  if(mapFocus?.priority&&mapFocus.ids.some(id=>!recommendations.some(r=>r.seat.id===id)))mapFocus=null;
+ bindModelNavigation($('modelOverviewLink'));
  lastStamp=JSON.stringify(reports)+'|'+catalog.map(s=>reportState(s,reports[s.id]).kind).join(',');
  drawOverview();$('landing').hidden=!!floor;$('floorView').hidden=!floor;$('checkinPanel').hidden=!checkin;$('recommendPanel').hidden=checkin;
  $('scopeNotice').textContent=demo?'展示模式 · 有人、离座等颜色来自示例记录，非馆内实时数据。可直接生成推荐；本人登记会保留。':'本人登记模式 · 只按本机有效登记初筛；没有记录的座位显示待核对。未连接全馆后台或正式预约。';
  if(!floor)return;
- $('floorTitle').textContent=floor+'F · '+FLOOR_INFO[floor-1].title;$('floorDescription').textContent=checkin?'这是本层到座登记界面。先选择座位，再核对现场和登记动作。':'座位图与列表切换查看；模型两侧临窗桌排均可参与偏好排序。';$('floorModel').href='建筑与五层展示.html#floor='+floor;
+ $('floorTitle').textContent=floor+'F · '+FLOOR_INFO[floor-1].title;$('floorDescription').textContent=checkin?'这是本层到座登记界面。先选择座位，再核对现场和登记动作。':'座位图与列表切换查看；模型两侧临窗桌排均可参与偏好排序。';bindModelNavigation($('floorModel'),'#floor='+floor);
  const c=counts(floor);$('floorStats').replaceChildren(el('span','模型椅位 '+c.total),el('span','离座登记 '+c.available),el('span','有人登记 '+c.occupied),el('span','暂离 '+c.away),el('span','待核对 '+c.unknown),el('span','馆方专座 '+c.protected));
  drawRecommendations();drawCards();drawDetail();drawPlan();drawView();
  $('scopeNotice').textContent=demo?'展示模式 · 有人、离座等颜色来自示例记录，非馆内实时数据。可直接生成推荐；本人登记会保留。':'本人登记模式 · 只按本机有效登记初筛；没有记录的座位显示待核对。未连接全馆后台或正式预约。';
@@ -206,6 +222,18 @@ const voiceControl=initSeatVoice({get:$,getCurrent:preferences,onConfirm:p=>{
  for(const [key,id] of [['window','windowPreference'],['power','powerPreference'],['print','printPreference']])if(p[key]!==undefined)$(id).checked=p[key];
  generate();
 }});
-if(demo&&!checkin)refreshExamples();draw();
+let restored=decodeSeatSnapshot(new URLSearchParams(location.hash.slice(1)).get('resume'),catalog);
+if(!restored)try{restored=cleanSeatSnapshot(history.state?.zhizuoSeatResume,catalog);}catch{}
+if(restored&&restored.checkin!==checkin)restored=null;
+if(restored){
+ ({floor,selected,page,zoom,view,attempted,mapFocus}=restored);
+ for(const id of ['subject','searchRange','regionFilter','stateFilter','duration','voiceText'])$(id).value=restored.form[id];
+ for(const id of ['windowPreference','powerPreference','printPreference'])$(id).checked=restored.form[id];
+ recommendations=restoreSeatCandidates(restored,catalog,reports,reportState);
+ $('physicalConfirm').checked=false;
+}else if(demo&&!checkin)refreshExamples();
+draw();
+if(restored){requestAnimationFrame(()=>{window.scrollTo(restored.scroll.x,restored.scroll.y);$('mapStage').scrollLeft=restored.scroll.mapX;$('mapStage').scrollTop=restored.scroll.mapY;});
+ notify(recommendations.length<restored.candidates.length?'已返回刚才选座；部分候选状态已变化或过期，已撤下，请重新比较。':'已返回刚才选座，楼层、筛选、候选和查看位置已恢复。');}
 // 暴露只读状态快照供内存事件检查，不包含匿名标识，也不提供绕过登记规则的入口。
 window.zhizuoSeatPage={parseDemand:parseSeatDemand,getState:()=>({floor,selected,checkin,demo,view,seatCount:catalog.length,page,region:$('regionFilter').value,recommendations:recommendations.map(r=>r.seat.id),mapFocus:mapFocus?{floor:mapFocus.floor,ids:[...mapFocus.ids]}:null,storageOK})};
