@@ -1,0 +1,35 @@
+{
+  "id": "R01",
+  "title": "早期柔性空间网页原型",
+  "source_fingerprint": "b086bb3c162ced79f1239896dbf2748f051dc5a330bcda3282dadcb4abe77a65",
+  "source_locations": [
+    "outputs/03_技术原型Demo"
+  ],
+  "files": [
+    {
+      "path": "index.html",
+      "original_sha256": "0b189b47a00bb713b5f02c197cd1845479afd5f6391e8db871340e2aad022d38",
+      "published_sha256": "0b189b47a00bb713b5f02c197cd1845479afd5f6391e8db871340e2aad022d38",
+      "source": "outputs/03_技术原型Demo/index.html",
+      "sanitized": false
+    },
+    {
+      "path": "区域输入示例.json",
+      "original_sha256": "fc8f8470a4461271d0c9bf9361d9c023b044dad9c4edcdd32048ccaeb9deee16",
+      "published_sha256": "fc8f8470a4461271d0c9bf9361d9c023b044dad9c4edcdd32048ccaeb9deee16",
+      "source": "outputs/03_技术原型Demo/区域输入示例.json",
+      "sanitized": false
+    }
+  ],
+  "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
+  "archived_on": "2026-10-22",
+  "file_changes_from_previous_archive_checkpoint": {
+    "added": [
+      "index.html",
+      "区域输入示例.json"
+    ],
+    "removed": [],
+    "modified": []
+  },
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+}
