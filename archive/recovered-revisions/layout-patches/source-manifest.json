@@ -1,0 +1,180 @@
+{
+  "archived_on": "2026-10-22",
+  "files": [
+    {
+      "file": "finalize_wood_reference.py",
+      "source": "work/zhizuo_unified/finalize_wood_reference.py",
+      "original_sha256": "185583f5d8b05c6b0ee2dbb23d0ee6a5a8d1e029782aa742e7f4548878d2137e",
+      "published_sha256": "185583f5d8b05c6b0ee2dbb23d0ee6a5a8d1e029782aa742e7f4548878d2137e"
+    },
+    {
+      "file": "finish_compact_sources.py",
+      "source": "work/zhizuo_unified/finish_compact_sources.py",
+      "original_sha256": "7ec4665cfb200663091587bf3024c6d3bcb066742947b887693a349a793a388e",
+      "published_sha256": "7ec4665cfb200663091587bf3024c6d3bcb066742947b887693a349a793a388e"
+    },
+    {
+      "file": "finish_orientation_sources.py",
+      "source": "work/zhizuo_unified/finish_orientation_sources.py",
+      "original_sha256": "850053b7cfa2d7e24c603a1082cd659a797fc73d6de74e1062b828ee7ccd6e07",
+      "published_sha256": "850053b7cfa2d7e24c603a1082cd659a797fc73d6de74e1062b828ee7ccd6e07"
+    },
+    {
+      "file": "finish_reader_delivery.py",
+      "source": "work/zhizuo_unified/finish_reader_delivery.py",
+      "original_sha256": "b7781804fdd69f4fc4e9f9148350a9635c703909c412aa9a077eebd576db446a",
+      "published_sha256": "c1eac6f10d4d7de6373d7cc41a9bdd62e36733fce57902f3ebcd55926dd5e020"
+    },
+    {
+      "file": "finish_reader_sources.py",
+      "source": "work/zhizuo_unified/finish_reader_sources.py",
+      "original_sha256": "baacb202b4c2483494d0271d559091f6dc3751f502e1bc4741388e3f36f8c660",
+      "published_sha256": "baacb202b4c2483494d0271d559091f6dc3751f502e1bc4741388e3f36f8c660"
+    },
+    {
+      "file": "finish_terminal_records.py",
+      "source": "work/zhizuo_unified/finish_terminal_records.py",
+      "original_sha256": "93eb00de9427f7e04fe887bc1b3e65e3b7cfc86d7d25982b6c9eb8e9a15266fe",
+      "published_sha256": "93eb00de9427f7e04fe887bc1b3e65e3b7cfc86d7d25982b6c9eb8e9a15266fe"
+    },
+    {
+      "file": "finish_viewer_delivery.py",
+      "source": "work/zhizuo_unified/finish_viewer_delivery.py",
+      "original_sha256": "3f52fc280ef0b28a32dc240ea18eefb116171c75a19f1865010f348265791cd6",
+      "published_sha256": "7a5d2bf96844e0b411f34852d2bfa3d72a5092809f8dc07a9ef0c005fb47afbe"
+    },
+    {
+      "file": "finish_viewer_sources.py",
+      "source": "work/zhizuo_unified/finish_viewer_sources.py",
+      "original_sha256": "d97d783a1caa52fc6c9bf964a53ee153cf397f7a4e4fdb283e1740fabc019d67",
+      "published_sha256": "d97d783a1caa52fc6c9bf964a53ee153cf397f7a4e4fdb283e1740fabc019d67"
+    },
+    {
+      "file": "finish_voice_entry.py",
+      "source": "work/zhizuo_unified/finish_voice_entry.py",
+      "original_sha256": "990c885f9de6c0035f29d784786350eff663ca37303d05635c2c6d98fc10b448",
+      "published_sha256": "990c885f9de6c0035f29d784786350eff663ca37303d05635c2c6d98fc10b448"
+    },
+    {
+      "file": "prepare_photo_delivery.py",
+      "source": "work/zhizuo_unified/prepare_photo_delivery.py",
+      "original_sha256": "72829fb662b64085a3b944b1e8dd284be2f59f5bdfec23521bfd463bf3386456",
+      "published_sha256": "09c4b965ec2887ab9748e52ca23d54f7de5e15b021c028cbe3687d913839147f"
+    },
+    {
+      "file": "prepare_rooms_delivery.py",
+      "source": "work/zhizuo_unified/prepare_rooms_delivery.py",
+      "original_sha256": "73a9d55a9c769f9e2dcf867fbb2c498326fb0b3fd5052632f84ae10c8494bb52",
+      "published_sha256": "73a9d55a9c769f9e2dcf867fbb2c498326fb0b3fd5052632f84ae10c8494bb52"
+    },
+    {
+      "file": "revise_axis_materials.py",
+      "source": "work/zhizuo_unified/revise_axis_materials.py",
+      "original_sha256": "58ac1d8ab5473d52e54109c48af49d4c56ac0ddf7a08352e9955d3376c65028f",
+      "published_sha256": "58ac1d8ab5473d52e54109c48af49d4c56ac0ddf7a08352e9955d3376c65028f"
+    },
+    {
+      "file": "revise_compact_labels.py",
+      "source": "work/zhizuo_unified/revise_compact_labels.py",
+      "original_sha256": "f6356ee5e5093998404d1a77dfd7a084064ac50a04cdc7b9fa01f03c9b79984d",
+      "published_sha256": "f6356ee5e5093998404d1a77dfd7a084064ac50a04cdc7b9fa01f03c9b79984d"
+    },
+    {
+      "file": "revise_floor_extent.py",
+      "source": "work/zhizuo_unified/revise_floor_extent.py",
+      "original_sha256": "a2ef4c69467c0fbf33eb660070a345654a90aaee2625e3a279a268b078fe56ff",
+      "published_sha256": "a2ef4c69467c0fbf33eb660070a345654a90aaee2625e3a279a268b078fe56ff"
+    },
+    {
+      "file": "revise_ground_rooms.py",
+      "source": "work/zhizuo_unified/revise_ground_rooms.py",
+      "original_sha256": "89a9b8b36f5adc6715bea4aadd9fcd634db90019768767c0acd68afec2979d93",
+      "published_sha256": "89a9b8b36f5adc6715bea4aadd9fcd634db90019768767c0acd68afec2979d93"
+    },
+    {
+      "file": "revise_presentation_20261018.py",
+      "source": "work/zhizuo_unified/revise_presentation_20261018.py",
+      "original_sha256": "0dab4cbb275600fdd555e8cd6640f6167c4c70709e0217f667da7a1333437c7e",
+      "published_sha256": "0dab4cbb275600fdd555e8cd6640f6167c4c70709e0217f667da7a1333437c7e"
+    },
+    {
+      "file": "revise_rear_depth.py",
+      "source": "work/zhizuo_unified/revise_rear_depth.py",
+      "original_sha256": "23a01bac46eb674588b59383978f8e017b3c75090c856f87324ad9dd98914753",
+      "published_sha256": "23a01bac46eb674588b59383978f8e017b3c75090c856f87324ad9dd98914753"
+    },
+    {
+      "file": "revise_terminal_span.py",
+      "source": "work/zhizuo_unified/revise_terminal_span.py",
+      "original_sha256": "36b36414a59ad92d980efa767209c137c519ac5afa6edcec440359a00670695b",
+      "published_sha256": "36b36414a59ad92d980efa767209c137c519ac5afa6edcec440359a00670695b"
+    },
+    {
+      "file": "sync_compact_materials.py",
+      "source": "work/zhizuo_unified/sync_compact_materials.py",
+      "original_sha256": "1f5b3fe919d53befa589bfd9df2e1386c8c5527fb7cd3bb4334eebc1a15f3248",
+      "published_sha256": "1f5b3fe919d53befa589bfd9df2e1386c8c5527fb7cd3bb4334eebc1a15f3248"
+    },
+    {
+      "file": "sync_lounge_text.py",
+      "source": "work/zhizuo_unified/sync_lounge_text.py",
+      "original_sha256": "d6dc3a0a626ee1235a5f7d2643cece70e2e2e43651da4be3ebb0b6a5bc8d7f24",
+      "published_sha256": "d6dc3a0a626ee1235a5f7d2643cece70e2e2e43651da4be3ebb0b6a5bc8d7f24"
+    },
+    {
+      "file": "sync_rear_depth_materials.py",
+      "source": "work/zhizuo_unified/sync_rear_depth_materials.py",
+      "original_sha256": "7eb92110c1b8d88afdc52177956cd69c9eb8677409353a3b115035282c4b4fd6",
+      "published_sha256": "7eb92110c1b8d88afdc52177956cd69c9eb8677409353a3b115035282c4b4fd6"
+    },
+    {
+      "file": "update_core_delivery_text.py",
+      "source": "work/zhizuo_unified/update_core_delivery_text.py",
+      "original_sha256": "9fc7c1a7e8ff048d66c2504b0d8d88f14dc0a52e8928169e64216f649d847f2a",
+      "published_sha256": "9fc7c1a7e8ff048d66c2504b0d8d88f14dc0a52e8928169e64216f649d847f2a"
+    },
+    {
+      "file": "update_current_ui.py",
+      "source": "work/zhizuo_unified/update_current_ui.py",
+      "original_sha256": "5ad2ad95fb5a64f3f2e0d4702bc3e078a43804e80708b0fff59f54b7ed1f4f9d",
+      "published_sha256": "9d4c4a767e5b4becafe79cea0de1c8920eea71eae2bb2c6bc5fb746bf98e5101"
+    },
+    {
+      "file": "update_delivery_notes.py",
+      "source": "work/zhizuo_unified/update_delivery_notes.py",
+      "original_sha256": "820d32a1965fde8538931ba31a6732edf643b1a4805a7b56670de27e7c7b599d",
+      "published_sha256": "820d32a1965fde8538931ba31a6732edf643b1a4805a7b56670de27e7c7b599d"
+    },
+    {
+      "file": "update_front_scene.py",
+      "source": "work/zhizuo_unified/update_front_scene.py",
+      "original_sha256": "06fd852d28e191d056314a28c429845560c96414659fc4f5926ade165e5e0fa8",
+      "published_sha256": "06fd852d28e191d056314a28c429845560c96414659fc4f5926ade165e5e0fa8"
+    },
+    {
+      "file": "update_ground_delivery.py",
+      "source": "work/zhizuo_unified/update_ground_delivery.py",
+      "original_sha256": "431a6806160a98df94a3bc90e9ac0076861f8a8764fbb10c9608a3c51c2119f7",
+      "published_sha256": "431a6806160a98df94a3bc90e9ac0076861f8a8764fbb10c9608a3c51c2119f7"
+    },
+    {
+      "file": "update_ground_facing_text.py",
+      "source": "work/zhizuo_unified/update_ground_facing_text.py",
+      "original_sha256": "df825a335d1291516284c03aea8fa6525f698b666cd250850e68b7e8df15ce0c",
+      "published_sha256": "df825a335d1291516284c03aea8fa6525f698b666cd250850e68b7e8df15ce0c"
+    },
+    {
+      "file": "update_upper_links.py",
+      "source": "work/zhizuo_unified/update_upper_links.py",
+      "original_sha256": "651370f8d4930cbdc6c3b2e13bf45ad2d98fd56e0072197803c1fe5fa0ad86f3",
+      "published_sha256": "651370f8d4930cbdc6c3b2e13bf45ad2d98fd56e0072197803c1fe5fa0ad86f3"
+    },
+    {
+      "file": "update_voice_materials.py",
+      "source": "work/zhizuo_unified/update_voice_materials.py",
+      "original_sha256": "72e954c1244056e9498d4a1ccdab68a85058f4344eb722e1cf389e402bd6727f",
+      "published_sha256": "72e954c1244056e9498d4a1ccdab68a85058f4344eb722e1cf389e402bd6727f"
+    }
+  ],
+  "scope": "现存修订脚本源码，只读归档；工作路径已脱敏，不作为当前工程的运行入口。"
+}
