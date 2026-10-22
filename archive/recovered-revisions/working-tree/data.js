@@ -1,7 +1,9 @@
 // 所有编号、座位坐标、设施属性、书目和路径都是假数据，不代表真实馆内状态。
 // 2025馆方导览只提供馆藏大类参考；没有提供这里的逐座坐标和实时接口。
+import {mapPosition,routePoints} from './spatial.js';
 export const SOURCES=[
  ['比赛要求','https://library.xujc.com/2026/0624/c4495a171029/page.htm'],
+ ['积分专座依据','https://library.xujc.com/_t1901/2026/0901/c5024a172493/page.htm'],
  ['选座规则','https://library.xujc.com/_t1901/zwyy/list.htm'],
  ['备考联盟规则','https://library.xujc.com/2026/0909/c5024a172696/page.htm'],
  ['馆藏布局参考','https://library.xujc.com/2025/0901/c4536a161543/page.htm'],
@@ -30,22 +32,28 @@ export function makeData(now) {
     graph[a]??=[];graph[b]??=[];
     graph[a].push({to:b,weight,accessible});graph[b].push({to:a,weight,accessible});
   };
+  const walk=(a,b)=>{
+    const points=routePoints([a,b],seats);
+    return points.slice(1).reduce((sum,p,i)=>sum+Math.abs(p.x-points[i].x)+Math.abs(p.z-points[i].z),0);
+  };
   for(let f=1;f<=5;f++){
     graph['hall'+f]=[];graph['books'+f]=[];
-    edge('hall'+f,'books'+f,8);
-    if(f>1){edge('hall'+(f-1),'hall'+f,12,false);edge('hall'+(f-1),'hall'+f,18,true);}
+    edge('hall'+f,'books'+f,walk('hall'+f,'books'+f));
+    graph['elevator'+f]=[];edge('hall'+f,'elevator'+f,walk('hall'+f,'elevator'+f));
+    if(f>1){edge('hall'+(f-1),'hall'+f,12,false);edge('elevator'+(f-1),'elevator'+f,18,true);}
     for(let i=1;i<=12;i++){
       const id=`S${f}-${String(i).padStart(2,'0')}`,node='seat'+id;
-      edge('hall'+f,node,3+(i%4)*2);
-      seats.push({id,node,floor:f,x:130+((i-1)%4)*130,y:110+Math.floor((i-1)/4)*100,
-        subject:SUBJECTS[f-1],policy:f===5&&i<=8?'exclusive':'ordinary',
+      const point=mapPosition({id,floor:f});
+      seats.push({id,node,floor:f,...point,
+        subject:SUBJECTS[f-1],policy:f===5?'exclusive':'ordinary',
         booking:i===3?'reserved':i===6?'away':'free',
         observed:i%5===0?'occupied':i===8?'items':i===11?'unknown':'clear',
         quality:i===11?.3:.95,obsAt:now,rulesAt:now,ruleOnline:true,
-        power:i%3!==1,window:i<=4,quiet:i%4!==0,disabled:i===12});
+        power:i%3!==1,window:f===1||i<=4,quiet:i%4!==0,disabled:i===12});
+      edge('hall'+f,node,walk('hall'+f,node));
     }
   }
-  edge('entry','hall1',3);edge('hall1','print',5);
+  edge('entry','hall1',walk('entry','hall1'));edge('hall1','print',walk('hall1','print'));
   return {seats,graph};
 }
 

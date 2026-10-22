@@ -106,7 +106,8 @@ export function recommend(seats, prefs, graph, resources, now) {
   // 排序分数表示相对偏好，不是“满意度概率”，也不是检测置信度。
   items.sort((a,b)=>b.score-a.score||a.seat.id.localeCompare(b.seat.id));
   if(!items.length)warnings.push('没有满足必须条件的候选。请主动调整条件，系统不会放宽使用权规则。');
-  return {items:items.slice(0,3),warnings,source};
+  // 最多显示四个优先位置；不足四个就显示实际数量，绝不为了填满界面放宽条件。
+  return {items:items.slice(0,4).map((item,index)=>({...item,rank:index+1})),warnings,source};
 }
 
 export function summarize(seats,now) {

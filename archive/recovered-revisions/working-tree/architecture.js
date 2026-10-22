@@ -1,8 +1,10 @@
 import * as THREE from 'three';
+import {createPhotoDetails} from './photo-details.js';
 
 // Photo-guided geometry. Dimensions and internal locations are schematic.
 export function buildExterior(parent, H) {
  const {group,box,cylinder,material,plant}=H;
+ const photo=createPhotoDetails(H);
  parent.userData={description:'Photo-guided Zhangzhou campus Main Building 3, schematic dimensions; floors 6-12 are administrative context, not added library area',reference:'https://arch.xmu.edu.cn/info/1013/13073.htm'};
  const roofGroups=[];
  function line(name,pts,r,col,root=parent){const curve=new THREE.CatmullRomCurve3(pts.map(p=>new THREE.Vector3(...p)));const m=new THREE.Mesh(new THREE.TubeGeometry(curve,Math.max(10,Math.min(24,pts.length*2)),r,6,false),material(col));m.name=name;m.castShadow=true;root.add(m);return m;}
@@ -98,25 +100,27 @@ export function buildExterior(parent, H) {
  // The west facade follows the official library photos, not a mirrored front facade.
  const rearLibrary=group(parent,'main_3_rear_library');rearLibrary.position.z=-46;
  rearLibrary.userData={library:true,description:'Main 3 west/rear library wing; photo-guided massing and 2025 guide orientation; estimated dimensions'};
- box(rearLibrary,'library_five_floor_body',40,21.4,44,0,10.55,0,'#e9e8df');
- box(rearLibrary,'library_granite_base',40.5,3.0,44.5,0,1.25,0,'#b8b9af');
+ // 一层柱廊留空，花形开口后面不再被整块建筑体遮住；高处仍保留馆舍体量。
+ box(rearLibrary,'library_five_floor_body',40,17.2,44,0,12.8,0,'#e9e8df');
+ box(rearLibrary,'library_granite_base',40.5,2.1,44.5,0,.9,0,'#b8b9af');
+ for(const x of [-7.4,7.4])box(rearLibrary,'rear_inner_white_pier',6,17.5,.70,x,12.95,-23.6,'#eeeadd');
+ for(const x of [-19.4,19.4])box(rearLibrary,'rear_outer_white_pier',2.7,21.8,.52,x,10.65,-22.10,'#eeeadd');
+ for(const [x,w] of [[-13.5,9.2],[0,5.7],[13.5,9.2]]){
+  box(rearLibrary,'rear_continuous_glass_bay',w,15.5,.13,x,11.8,-22.31,'#79958c');
+  for(let k=0;k<24;k++)box(rearLibrary,'rear_broad_horizontal_louver',w+.25,.13,.58,x,5.7+k*.53,-22.63,'#c7cabe');
+ }
  for(let f=0;f<5;f++){
   const y=1.5+f*4.15;
   box(rearLibrary,'rear_horizontal_floor_joint',40.4,.08,.08,0,y,-22.22,'#c7c8bd');
-  for(const x of [-16,0,16]){box(rearLibrary,'rear_white_pier',3.5,21.8,.52,x,10.65,-22.10,'#f2eee3');box(rearLibrary,'rear_pier_slit',1.5,.47,.10,x,y+1.1,-22.40,'#7d9790');}
-  for(const side of [-1,1]){
-   box(rearLibrary,'rear_glass_ventilation_bay',10.1,3.35,.13,side*8, y+.6,-22.31,'#79958c');
-   for(let k=0;k<7;k++)box(rearLibrary,'rear_horizontal_louver',10.45,.12,.35,side*8,y-.75+k*.45,-22.51,'#c4c9bc');
-  }
+  for(const x of [-7.4,7.4])if(y>4)box(rearLibrary,'rear_pier_slit',2.7,.22,.10,x,y+1.1,-24.0,'#7d9790');
   for(const x of [-20.20,20.20])for(const z of [-16,-9,-2,5,12,19]){
    box(rearLibrary,'library_side_vertical_pier',.38,21.6,1.1,x,10.6,z,'#edece1');
    box(rearLibrary,'library_side_glass',.12,3.1,4.0,x,y+.6,z+2.5,'#7d9790');
    for(let k=0;k<6;k++)box(rearLibrary,'library_side_louver',.30,.10,4.1,x,y-.5+k*.48,z+2.5,'#c6cabf');
   }
  }
- for(const x of [-5.6,5.6]){cylinder(rearLibrary,'west_portal_column',.45,4.25,x,2.0,-24.0,'#c4c4b7');box(rearLibrary,'portal_capital',1.25,.27,1.05,x,4.18,-24,'#e3dfd1');}
- box(rearLibrary,'west_library_portal',12.5,.38,3.4,0,4.52,-23.1,'#c9ccbf');
- box(rearLibrary,'west_library_glass_entry',8.5,3.15,.14,0,1.95,-22.56,'#759b92');
+ box(rearLibrary,'west_library_portal',5.8,.38,3.4,0,4.52,-23.1,'#c9ccbf');
+ box(rearLibrary,'west_library_glass_entry',5.5,3.15,.14,0,1.95,-22.56,'#759b92');
  for(const x of [-3,-1,1,3])box(rearLibrary,'west_entry_mullion',.07,3.0,.19,x,2,-22.69,'#d6d9cb');
  for(let i=0;i<5;i++)box(rearLibrary,'west_threshold_step',11.5,.16,.5,0,-.2+i*.16,-25.5+i*.48,'#c4c6b8');
  for(const x of [-16,0,16]){box(rearLibrary,'roof_pier_extension',3.5,2.7,3.0,x,22.45,-18.0,'#edece1');cylinder(rearLibrary,'roof_round_vent',.42,.08,x,23.15,-19.56,'#658079').rotation.x=Math.PI/2;}
@@ -124,6 +128,7 @@ export function buildExterior(parent, H) {
  roof('library_east_low_pavilion',43,21,4.0,23.3,0,12.1,rearLibrary);
  for(const x of [-16,-8,0,8,16])box(rearLibrary,'rear_exposed_roof_post',.42,3.4,.42,x,23.55,-20.7,'#916c4a');
  for(const x of [-21.9,21.9])for(const z of [-18,-8,2,12])plant(rearLibrary,x,z,1.55);
+ photo.exterior(rearLibrary);
  // Four five-storey companion blocks give the documented one-main/four-secondary context.
  for(const x of [-47,-31,31,47]){
   const block=group(parent,'five_floor_companion_context');

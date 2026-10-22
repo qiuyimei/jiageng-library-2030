@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {createPhotoDetails} from './photo-details.js';
 // West/library-facing landscape. Relationship follows official photographs;
 // shoreline, paving and signs are schematic, not surveyed construction details.
 export function buildLibraryEnvironment(parent,H){
@@ -18,11 +19,11 @@ export function buildLibraryEnvironment(parent,H){
  // A shoreline edge, restrained ripples and distant planting make the setting legible.
  for(const side of [-1,1]){box(g,'lake_stone_edge',38,.25,.8,side*37,-.8,-46,'#bdb7a5');for(let k=0;k<13;k++)plant(g,side*(53+Math.sin(k*.5)*2),-48-k*2.4,1.9);}
  for(let k=0;k<10;k++){const pts=[];for(let i=0;i<=20;i++)pts.push(new THREE.Vector3(-44+i*4.4,-1.105,-52-k*3+Math.sin(i*.4+k)*.26));const m=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),24,.018,4,false),material('#a1b6ab'));m.name='lake_surface_ripple';g.add(m);}
- for(const x of [-32,-16,16,32]){box(g,'shore_bench_seat',3,.12,.65,x,.12,-42,'#a99677');box(g,'shore_bench_back',3,.55,.09,x,.45,-41.7,'#a99677');for(const dx of [-1.2,1.2])box(g,'shore_bench_support',.13,.56,.5,x+dx,-.2,-42,'#697e71');}
  for(const x of [-42,-28,28,42]){cylinder(g,'walk_light',.075,3.4,x,1.1,-27,'#667c72');box(g,'walk_light_head',.65,.12,.4,x,2.84,-27,'#eee6cd');}
- function sign(text,w,h,x,y,z,name){const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=240;const ctx=canvas.getContext('2d');ctx.fillStyle='#e6dfce';ctx.fillRect(0,0,1600,240);ctx.fillStyle='#355b50';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='bold 94px Microsoft YaHei';ctx.fillText(text,800,120,1500);const tex=new THREE.CanvasTexture(canvas);tex.colorSpace=THREE.SRGBColorSpace;const mesh=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshStandardMaterial({map:tex,roughness:.82,side:THREE.DoubleSide}));mesh.rotation.y=Math.PI;mesh.position.set(x,y,z);mesh.name=name;parent.add(mesh);return mesh;}
+ function sign(text,w,h,x,y,z,name){if(typeof document==='undefined'){const mesh=new THREE.Mesh(new THREE.PlaneGeometry(w,h),material('#e6dfce',{side:THREE.DoubleSide}));mesh.rotation.y=Math.PI;mesh.position.set(x,y,z);mesh.name=name;parent.add(mesh);return mesh;}const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=240;const ctx=canvas.getContext('2d');ctx.fillStyle='#e6dfce';ctx.fillRect(0,0,1600,240);ctx.fillStyle='#355b50';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='bold 94px Microsoft YaHei';ctx.fillText(text,800,120,1500);const tex=new THREE.CanvasTexture(canvas);tex.colorSpace=THREE.SRGBColorSpace;const mesh=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshStandardMaterial({map:tex,roughness:.82,side:THREE.DoubleSide}));mesh.rotation.y=Math.PI;mesh.position.set(x,y,z);mesh.name=name;parent.add(mesh);return mesh;}
  sign('厦门大学嘉庚学院图书馆',12,1.8,0,5.6,-22.7,'library_entrance_name_sign');
  box(g,'library_wayfinding_monument',6,2.2,.42,-11,.48,-27,'#d8d1bd');sign('图书馆 · LIBRARY',5.6,1.0,-11,.7,-27.24,'library_west_wayfinding_sign');
  // The signs communicate the entrance; exact on-site lettering needs photo verification.
+ createPhotoDetails(H).landscape(g);
  return g;
 }

@@ -17,7 +17,7 @@ test('未来时间不可采用',()=>assert.equal(classify({...base(),obsAt:now+1
 test('规则接口离线降级',()=>assert.equal(classify({...base(),ruleOnline:false},now).kind,'unknown'));
 test('设施维护不推荐',()=>assert.equal(classify({...base(),disabled:true},now).kind,'unavailable'));
 const p={resource:'own',power:false,window:false,quiet:false,accessible:false,print:false,floor:0,priority:'walk'};
-test('推荐最多三个且全满足规则',()=>{const d=makeData(now),r=recommend(d.seats,p,d.graph,RESOURCES,now);assert.equal(r.items.length,3);for(const i of r.items)assert.equal(classify(i.seat,now).kind,'candidate');});
+test('推荐最多四个且全满足规则',()=>{const d=makeData(now),r=recommend(d.seats,p,d.graph,RESOURCES,now);assert.equal(r.items.length,4);assert.deepEqual(r.items.map(i=>i.rank),[1,2,3,4]);for(const i of r.items)assert.equal(classify(i.seat,now).kind,'candidate');});
 test('必须有插座',()=>{const d=makeData(now);for(const i of recommend(d.seats,{...p,power:true},d.graph,RESOURCES,now).items)assert.ok(i.seat.power);});
 test('无合规候选不放宽条件',()=>{const d=makeData(now);setScenario(d,'full',now);assert.equal(recommend(d.seats,p,d.graph,RESOURCES,now).items.length,0);});
 test('已借出和未知位置资料不编造动线',()=>{const d=makeData(now);for(const resource of ['loaned','unknown'])assert.equal(recommend(d.seats,{...p,resource},d.graph,RESOURCES,now).items.length,0);});
