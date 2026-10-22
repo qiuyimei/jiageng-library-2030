@@ -1,4 +1,4 @@
-import * as THREE from '../model3d_deps/node_modules/three/build/three.module.js';
+import * as THREE from 'three';
 
 // Photo-guided geometry. Dimensions and internal locations are schematic.
 export function buildExterior(parent, H) {

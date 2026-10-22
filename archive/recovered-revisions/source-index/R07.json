@@ -1,0 +1,99 @@
+{
+  "id": "R07",
+  "title": "五层三维交付源码",
+  "source_fingerprint": "af42c8cf2fa543438ad6076ad6c2a8eb4e7fd4d51e83b1b5339b1731ebdf3af5",
+  "source_locations": [
+    "outputs/06_三维空间设计/模型源码",
+    "outputs/08_本人学习与答辩资料/独立源码学习包/01_现有项目原样保存/06_三维空间设计/模型源码",
+    "work/final_integration_20261021/原仓库工作区备份/06_三维空间设计/模型源码",
+    "work/final_integration_20261021/原仓库工作区备份/08_本人学习与答辩资料/独立源码学习包/01_现有项目原样保存/06_三维空间设计/模型源码",
+    "work/manual_project/build_checks/original/src",
+    "work/model3d_v4/source_rebuild/模型源码",
+    "outputs/01_本人自存完整包.zip!/06_三维空间设计/模型源码",
+    "outputs/01_本人自存完整包.zip!/08_本人学习与答辩资料/独立源码学习包/01_现有项目原样保存/06_三维空间设计/模型源码",
+    "outputs/03_独立源码学习包.zip!/独立源码学习包/01_现有项目原样保存/06_三维空间设计/模型源码",
+    "outputs/11_嘉庚知座/01_嘉庚知座_本人完整保留包.zip!/本人保留/旧版归档/01_本人自存完整包.zip!/06_三维空间设计/模型源码",
+    "outputs/11_嘉庚知座/01_嘉庚知座_本人完整保留包.zip!/本人保留/旧版归档/01_本人自存完整包.zip!/08_本人学习与答辩资料/独立源码学习包/01_现有项目原样保存/06_三维空间设计/模型源码",
+    "outputs/11_嘉庚知座/本人保留/旧版归档/01_本人自存完整包.zip!/06_三维空间设计/模型源码",
+    "outputs/11_嘉庚知座/本人保留/旧版归档/01_本人自存完整包.zip!/08_本人学习与答辩资料/独立源码学习包/01_现有项目原样保存/06_三维空间设计/模型源码",
+    "outputs/参赛材料包_湖畔环境与全馆分层试点版_待本人录音与AIGC.zip!/参赛材料包_湖畔环境与全馆分层试点版/06_三维空间设计/模型源码",
+    "outputs/参赛材料完整审阅包_20261011_待本人录音与AIGC.zip!/嘉庚2030_完整材料审阅包/06_三维空间设计/模型源码"
+  ],
+  "files": [
+    {
+      "path": "architecture.js",
+      "original_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
+      "published_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
+      "source": "outputs/06_三维空间设计/模型源码/architecture.js",
+      "sanitized": false
+    },
+    {
+      "path": "build.cjs",
+      "original_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+      "published_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+      "source": "outputs/06_三维空间设计/模型源码/build.cjs",
+      "sanitized": false
+    },
+    {
+      "path": "floor-pilots.js",
+      "original_sha256": "3a8cc3e127b2b58cb805fa97d95c38b59ba8bdfd71f09d1080b4e35dbe962e18",
+      "published_sha256": "3a8cc3e127b2b58cb805fa97d95c38b59ba8bdfd71f09d1080b4e35dbe962e18",
+      "source": "outputs/06_三维空间设计/模型源码/floor-pilots.js",
+      "sanitized": false
+    },
+    {
+      "path": "library-environment.js",
+      "original_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
+      "published_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
+      "source": "outputs/06_三维空间设计/模型源码/library-environment.js",
+      "sanitized": false
+    },
+    {
+      "path": "library-layout.js",
+      "original_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "published_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "source": "outputs/06_三维空间设计/模型源码/library-layout.js",
+      "sanitized": false
+    },
+    {
+      "path": "package.json",
+      "original_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "published_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "source": "outputs/06_三维空间设计/模型源码/package.json",
+      "sanitized": false
+    },
+    {
+      "path": "scene.js",
+      "original_sha256": "265a4cf4912713ba62764e36c5b0fa3ce7b03cd205cc745a2f16f99caee3bf7e",
+      "published_sha256": "265a4cf4912713ba62764e36c5b0fa3ce7b03cd205cc745a2f16f99caee3bf7e",
+      "source": "outputs/06_三维空间设计/模型源码/scene.js",
+      "sanitized": false
+    },
+    {
+      "path": "viewer-template.html",
+      "original_sha256": "bc251503ad2478b336d7e292b4077944ae1d64b3759ebb419cc606a05ad4d71b",
+      "published_sha256": "bc251503ad2478b336d7e292b4077944ae1d64b3759ebb419cc606a05ad4d71b",
+      "source": "outputs/06_三维空间设计/模型源码/viewer-template.html",
+      "sanitized": false
+    }
+  ],
+  "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
+  "archived_on": "2026-10-22",
+  "file_changes_from_previous_archive_checkpoint": {
+    "added": [
+      "build.cjs",
+      "package.json"
+    ],
+    "removed": [
+      "build-viewer.cjs"
+    ],
+    "modified": [
+      "architecture.js",
+      "floor-pilots.js",
+      "library-environment.js",
+      "library-layout.js",
+      "scene.js"
+    ]
+  },
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+}

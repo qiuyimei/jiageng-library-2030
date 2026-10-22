@@ -1,4 +1,4 @@
-import * as THREE from '../model3d_deps/node_modules/three/build/three.module.js';
+import * as THREE from 'three';
 export const PILOT_INFO=[
  {n:1,title:'服务导览与高峰分流',location:'服务层候选区；一楼位置待现场核验',x:0,z:4,w:14,d:9,color:'#378a9a',normal:'集中咨询',active:'导览 / 咨询分流',trigger:'模拟咨询排队6人，启用第二个引导点。',action:'两台新增移动导览台分开，分别承接找书与咨询。排队线保持在候选区内。',protect:'不改变借阅总台、密集书库或出入口；现场核对平面后再选址。',metric:'排队等待、路线完成率、人工介入次数',phase:'第二阶段：先核对一楼服务平面'},
  {n:2,title:'阅读支持与无声结对',location:'南侧西端阅读边缘候选位',x:12,z:14.3,w:5,d:4,color:'#509981',normal:'独立研读',active:'无声结对',trigger:'模拟2名读者申请结对阅读，且候选桌位空闲。',action:'两张新增小桌并拢，用电子便签协作；需要说话时引导预约研讨室。',protect:'A—F馆藏、现有预约及阅读安静程度；书架和回廊不移动。',metric:'空闲桌利用率、干扰反馈、资源点击率',phase:'第二阶段：小范围阅读边缘试点'},

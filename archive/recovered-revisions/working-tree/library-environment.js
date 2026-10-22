@@ -1,4 +1,4 @@
-import * as THREE from '../model3d_deps/node_modules/three/build/three.module.js';
+import * as THREE from 'three';
 // West/library-facing landscape. Relationship follows official photographs;
 // shoreline, paving and signs are schematic, not surveyed construction details.
 export function buildLibraryEnvironment(parent,H){

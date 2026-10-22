@@ -1,6 +1,6 @@
-import * as THREE from '../model3d_deps/node_modules/three/build/three.module.js';
-import {OrbitControls} from '../model3d_deps/node_modules/three/examples/jsm/controls/OrbitControls.js';
-import {GLTFExporter} from '../model3d_deps/node_modules/three/examples/jsm/exporters/GLTFExporter.js';
+import * as THREE from 'three';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
+import {GLTFExporter} from 'three/examples/jsm/exporters/GLTFExporter.js';
 import {buildExterior,buildLibraryFloors,FLOOR_INFO} from './architecture.js';
 import {buildLibraryEnvironment} from './library-environment.js';
 import {buildFloorPilots,PILOT_INFO} from './floor-pilots.js';

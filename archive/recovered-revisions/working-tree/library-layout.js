@@ -1,4 +1,4 @@
-import * as THREE from '../model3d_deps/node_modules/three/build/three.module.js';
+import * as THREE from 'three';
 export const LAYOUT_REFERENCE='https://library.xujc.com/2025/0901/c4536a161543/page.htm';
 // Local coordinates follow the guide: east at the top (-Z), north on the left (-X).
 // The guide is a collection diagram, not a surveyed architectural or structural drawing.
