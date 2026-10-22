@@ -10,3 +10,9 @@ export function nextTourStop(state){const index=tourIndex(state);return index>=0
 export function usesPointPicking({view,linked,walking,distance,overviewDistance}){
  return linked||walking||view==='top'||distance<overviewDistance*.98;
 }
+// 只有空白处继续导览；模型上的近景点选负责聚焦，拖动和漫游都不翻页。
+export function canvasClickIntent({walking=false,dragged=false,hitsModel=false,inspect=false}){
+ if(walking||dragged)return 'ignore';
+ if(!hitsModel)return 'advance';
+ return inspect?'inspect':'ignore';
+}

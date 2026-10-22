@@ -12,7 +12,7 @@ import {PHOTO_REFERENCES} from './photo-reference.js';
 import {walkEntry,walkStairEntry,walkUpEntry,advanceWalk,EYE_HEIGHT,collectWalkObstacles} from './walk.js';
 import {createWalkSurroundings} from './walk-surroundings.js';
 import {createSceneLighting,LIGHT_PRESETS} from './lighting.js';
-import {MODEL_TOUR_STOPS,nextTourStop,usesPointPicking} from './model-tour.js';
+import {nextTourStop,usesPointPicking,canvasClickIntent} from './model-tour.js';
 import {EXPLODED_FLOOR_GAP,renderScale,explodedPose} from './model-presentation.js';
 import {seatReturnNavigation} from './seat-navigation.js';
 const $=id=>document.getElementById(id);
@@ -99,16 +99,14 @@ function initModel(){
  function refreshTourHint(){
   const next=nextTourStop({view,floor,expanded}),inspect=pointPicking();
   $('tourHint').hidden=walking;
-  const hint=inspect?'点选区域聚焦 · 拖动旋转 · 滚轮缩放':next?'单击继续 → '+next.title:'已到五楼 · 放大后可点选具体位置';
+  const hint=inspect?'点选区域聚焦 · 空白处继续 · 拖动旋转':next?'空白处单击 → '+next.title:'已到五楼 · 可切换楼层或点校园楼群';
   if($('tourHint').textContent!==hint)$('tourHint').textContent=hint;
-  $('tourNext').disabled=walking;
-  const caption=inspect?'返回本步全景':next?'下一步：'+next.title:'回到校园楼群';if($('tourNext').textContent!==caption)$('tourNext').textContent=caption;
  }
  function advanceTour(){
   const next=nextTourStop({view,floor,expanded});if(!next)return false;
   floor=next.floor;expanded=next.expanded;$('expand').checked=expanded;
   if(next.view==='cut')enterSeatView();setView(next.view);
-  $('viewStatus').textContent=next.title+'。总览单击继续；放大后点选具体位置。';return true;
+  $('viewStatus').textContent=next.title+'。空白处单击继续；放大后点选具体位置。';return true;
  }
  const labels=Array.from({length:90},()=>{const e=document.createElement('div');e.className='label';$('labels').append(e);return e;});
  const height=n=>(n-1)*(expanded?EXPLODED_FLOOR_GAP:floors.height);
@@ -143,26 +141,19 @@ function initModel(){
  };
  function enterSeatView(){showInformation=linked;labelOn=true;showRoof=false;showCeiling=false;$('informationLayer').checked=linked;$('labelToggle').checked=true;$('roofDetails').checked=false;$('ceilingDetails').checked=false;}
  // 建筑页点选只改变相机；只有从选座页接入的会话才会修改已知模拟椅位选择。
- const focusHistory=[];let wideExpanded=false;
+ let wideExpanded=false;
  function focusPoint(point,n){
   if(!point||!Number.isFinite(point.x+point.y+point.z)||!Number.isInteger(n)||n<1||n>5)return false;
   if(walking)stopWalk();
-  focusHistory.push({eye:camera.position.clone(),target:controls.target.clone(),floor,view,expanded,overviewDistance});if(focusHistory.length>12)focusHistory.shift();
   const localY=point.y-height(n),b=floorBounds(n),top=view==='top';
   floor=n;expanded=false;$('expand').checked=false;setView(top?'top':'cut');
   const target=new THREE.Vector3(Math.max(b.left+.5,Math.min(b.right-.5,point.x)),height(n)+Math.max(.8,Math.min(3,localY+.35)),Math.max(b.back+.5,Math.min(b.front-.5,point.z)));
   controls.target.copy(target);camera.position.copy(target).add(top?new THREE.Vector3(0,22,.001):new THREE.Vector3(10,10,13));controls.update();lighting.focus(height(n)+1,26,target.z);dirty=true;
-  $('focusBack').disabled=false;$('wideBack').disabled=false;$('viewStatus').textContent=`已聚焦${n}F所点区域；可继续拖动查看，或返回上一视角。`;return true;
+  $('viewStatus').textContent=`已聚焦${n}F所点区域；可拖动查看，或用楼层按钮重新查看本层。`;return true;
  }
- function previousFocus(){const p=focusHistory.pop();if(!p)return;floor=p.floor;expanded=p.expanded;$('expand').checked=expanded;setView(p.view);camera.position.copy(p.eye);controls.target.copy(p.target);overviewDistance=p.overviewDistance;controls.update();refreshTourHint();dirty=true;$('focusBack').disabled=!focusHistory.length;$('wideBack').disabled=!focusHistory.length;}
  function setWide(on){wideExpanded=on;document.body.classList.toggle('model-wide',on);$('wideTools').hidden=!on;$('wideView').textContent=on?'收起画面':'展开画面';resize();}
- $('focusBack').onclick=previousFocus;$('wideBack').onclick=previousFocus;
  $('wideView').onclick=()=>setWide(!wideExpanded);$('wideExit').onclick=()=>setWide(false);
  window.addEventListener('keydown',e=>{if(e.code==='Escape'&&wideExpanded&&!walking)setWide(false);});
- $('tourNext').onclick=()=>{
-  if(pointPicking()){if(view==='top'){floor=0;expanded=true;$('expand').checked=true;setView('cut');}else setView(view);return;}
-  if(!advanceTour()){floor=0;expanded=false;$('expand').checked=false;setView('campus');}
- };
  for(const id of ['campus','rear','cut','top'])$(id).onclick=()=>{if(['cut','top'].includes(id))enterSeatView();if(id==='cut'){floor=0;expanded=true;}if(id==='campus'||id==='rear'){floor=0;expanded=false;}if(id==='top'&&!floor)floor=4;$('expand').checked=expanded;setView(id);};
  document.querySelectorAll('[data-floor]').forEach(b=>b.onclick=()=>{if(walking){placeWalker(Number(b.dataset.floor)||3);return;}enterSeatView();floor=Number(b.dataset.floor);expanded=!floor;$('expand').checked=expanded;setView(view==='top'?'top':'cut');});
  function showFacility(kind){
@@ -178,7 +169,7 @@ function initModel(){
  $('expand').onchange=()=>{expanded=$('expand').checked;setView(view);};$('furniture').onchange=()=>{showFurniture=$('furniture').checked;updateScene();};
  $('roofDetails').onchange=()=>{showRoof=$('roofDetails').checked;updateScene();};$('ceilingDetails').onchange=()=>{showCeiling=$('ceilingDetails').checked;updateScene();};
  $('informationLayer').onchange=()=>{showInformation=$('informationLayer').checked;updateScene();};
- $('labelToggle').onchange=()=>{labelOn=$('labelToggle').checked;dirty=true;};$('resetView').onclick=()=>walking?placeWalker(floor):setView(view);
+ $('labelToggle').onchange=()=>{labelOn=$('labelToggle').checked;dirty=true;};
  // 展示预设也写回滑块，避免界面数值与实际灯光不一致。
  const lightIds={azimuth:'lightAzimuth',elevation:'lightElevation',sun:'lightSun',ambient:'lightAmbient',exposure:'lightExposure'};
  function applyLight(){const raw={shadows:$('lightShadows').checked};for(const [key,id]of Object.entries(lightIds)){raw[key]=Number($(id).value);$(id+'Value').textContent=$(id).value+(key==='azimuth'||key==='elevation'?'°':'');}lighting.apply(raw);dirty=true;}
@@ -262,19 +253,24 @@ function initModel(){
  renderer.domElement.addEventListener('pointerup',e=>{
    if(walking)return;
    const down=start;start=null;if(!down||down.moved||Math.hypot(e.clientX-down.x,e.clientY-down.y)>5)return;
-   if(!pointPicking()){if(!advanceTour())$('viewStatus').textContent='已到五楼。滚轮放大后可点选位置，或从按钮返回校园楼群。';return;}
+   scene.updateMatrixWorld(true);camera.updateMatrixWorld();
    const rect=host.getBoundingClientRect();raycaster.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,1-(e.clientY-rect.top)/rect.height*2),camera);
+   let hit=null,marker=null;
    if(['cut','top'].includes(view)){
-     scene.updateMatrixWorld(true);camera.updateMatrixWorld();
      const pickables=[];floorsRoot.traverseVisible(o=>{if(o.isMesh&&o.name!=='guide_function_tint')pickables.push(o);});
-     const hit=raycaster.intersectObjects(pickables,false)[0];
-     const marker=showInformation?raycaster.intersectObjects(layer.markers.filter(m=>m.visible),true)[0]:null;
+     hit=raycaster.intersectObjects(pickables,false)[0];
+     marker=showInformation?raycaster.intersectObjects(layer.markers.filter(m=>m.visible),true)[0]:null;
+   }else if(view==='campus'||view==='rear')hit=raycaster.intersectObject(view==='campus'?campus:rear,true)[0];
+   const intent=canvasClickIntent({hitsModel:!!(hit||marker),inspect:pointPicking()});
+   if(intent==='advance'){if(!advanceTour())$('viewStatus').textContent='本段已浏览完，可切换楼层或点“校园楼群”重新开始。';return;}
+   if(intent!=='inspect')return;
+   if(['cut','top'].includes(view)){
      if(linked&&marker&&(!hit||marker.distance<=hit.distance+1)){choose(marker.object.userData.seatId);const s=data.seats.find(s=>s.id===selected);focusPoint(seatPosition(s,expanded),s.floor);return;}
      if(hit){let p=hit.object;while(p&&!p.userData.floor)p=p.parent;const n=Number(p?.userData.floor);if(n)focusPoint(hit.point,n);return;}
    }
    // 建筑外观放大后，点选只拉近所点建筑，不能误触发下一步。
    if(view==='campus'||view==='rear'){
-    const hit=raycaster.intersectObject(view==='campus'?campus:rear,true)[0];if(hit){const before=camera.position.clone().sub(controls.target),distance=before.length();controls.target.copy(hit.point);camera.position.copy(hit.point).add(before.normalize().multiplyScalar(Math.max(8,Math.min(55,distance*.6))));controls.update();dirty=true;}
+    if(hit){const before=camera.position.clone().sub(controls.target),distance=before.length();controls.target.copy(hit.point);camera.position.copy(hit.point).add(before.normalize().multiplyScalar(Math.max(8,Math.min(55,distance*.6))));controls.update();dirty=true;}
    }
  });
  renderer.domElement.addEventListener('wheel',()=>{dirty=true;refreshTourHint();});
@@ -321,7 +317,7 @@ function initModel(){
    labels.forEach((el,i)=>{const row=entries[i];if(!row){el.style.display='none';return;}const p=row.p.project(camera);el.textContent=row.text;el.style.borderColor=row.color;el.style.fontSize='10px';el.style.transform='translate(-50%,-50%)';el.style.left=(p.x*.5+.5)*host.clientWidth+'px';el.style.top=(-p.y*.5+.5)*host.clientHeight+'px';el.style.display=Math.abs(p.x)<1&&Math.abs(p.y)<1&&p.z<1?'block':'none';});
    requestAnimationFrame(animate);
  }requestAnimationFrame(animate);
- window.zhizuoModel={choose,setView,startWalk,stopWalk,focusPoint,previousFocus,getState:()=>({view,floor,selected,candidates:plan.items.map(i=>i.seat.id),markers:layer.markers.length,expanded,walking,wideExpanded,showInformation,labelOn,pointPicking:pointPicking(),focusTarget:controls.target.toArray()})};
+ window.zhizuoModel={choose,setView,startWalk,stopWalk,focusPoint,getState:()=>({view,floor,selected,candidates:plan.items.map(i=>i.seat.id),markers:layer.markers.length,expanded,walking,wideExpanded,showInformation,labelOn,pointPicking:pointPicking(),focusTarget:controls.target.toArray()})};
 }
 try{initModel();}catch(error){
  console.warn('三维初始化失败',error);
