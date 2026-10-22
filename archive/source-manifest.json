@@ -1,0 +1,377 @@
+{
+  "archived_on": "2026-10-22",
+  "method": "现存文件归档，保留内容摘要与校验；不重建已不存在的版本，不追溯伪造Git日期。",
+  "files": [
+    {
+      "source": "work/model3d_v2/scene_v1_backup.js",
+      "published": "archive/model-evolution/00-block-study/scene.js",
+      "original_sha256": "d315974c737501113b4fa834815e972a450eb656d916c17adb8fd01f8b1f4078",
+      "published_sha256": "d315974c737501113b4fa834815e972a450eb656d916c17adb8fd01f8b1f4078",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v2/template_v1_backup.html",
+      "published": "archive/model-evolution/00-block-study/viewer-template.html",
+      "original_sha256": "31d3d2fed1d8a055320ff7149aa216d2574281cb19614a4d689a81eba43fe3b2",
+      "published_sha256": "31d3d2fed1d8a055320ff7149aa216d2574281cb19614a4d689a81eba43fe3b2",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v2/source_rebuild/模型源码/architecture.js",
+      "published": "archive/model-evolution/01-exterior-study/architecture.js",
+      "original_sha256": "f24612f6d528e530c301b51ef1ae751d4a7776c6f748243cbb3769c5f2dad712",
+      "published_sha256": "f24612f6d528e530c301b51ef1ae751d4a7776c6f748243cbb3769c5f2dad712",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v2/source_rebuild/模型源码/build.cjs",
+      "published": "archive/model-evolution/01-exterior-study/build.cjs",
+      "original_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+      "published_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v2/source_rebuild/模型源码/package.json",
+      "published": "archive/model-evolution/01-exterior-study/package.json",
+      "original_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "published_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v2/source_rebuild/模型源码/scene.js",
+      "published": "archive/model-evolution/01-exterior-study/scene.js",
+      "original_sha256": "dbc0ee470fc2902ea0aabf69c437a39ddfe717a0f91bf005e04568c17d874eea",
+      "published_sha256": "dbc0ee470fc2902ea0aabf69c437a39ddfe717a0f91bf005e04568c17d874eea",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v2/source_rebuild/模型源码/viewer-template.html",
+      "published": "archive/model-evolution/01-exterior-study/viewer-template.html",
+      "original_sha256": "4fa88d4bb2513f6b963f016d67fdbcfa3e7f3dcaf2377edc609a10a8edd33d5b",
+      "published_sha256": "4fa88d4bb2513f6b963f016d67fdbcfa3e7f3dcaf2377edc609a10a8edd33d5b",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v3/source_rebuild/模型源码/architecture.js",
+      "published": "archive/model-evolution/02-library-rear-study/architecture.js",
+      "original_sha256": "1d99525155d0d2f90e07aa54ea3649c7c6c229086823e4cc20bcff5bcb49a08c",
+      "published_sha256": "1d99525155d0d2f90e07aa54ea3649c7c6c229086823e4cc20bcff5bcb49a08c",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v3/source_rebuild/模型源码/build.cjs",
+      "published": "archive/model-evolution/02-library-rear-study/build.cjs",
+      "original_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+      "published_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v3/source_rebuild/模型源码/library-layout.js",
+      "published": "archive/model-evolution/02-library-rear-study/library-layout.js",
+      "original_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "published_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v3/source_rebuild/模型源码/package.json",
+      "published": "archive/model-evolution/02-library-rear-study/package.json",
+      "original_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "published_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v3/source_rebuild/模型源码/scene.js",
+      "published": "archive/model-evolution/02-library-rear-study/scene.js",
+      "original_sha256": "152ec42274c2bb3be9d7d5fe01ded16ca60d9af04e983ca743d951ad08f4edae",
+      "published_sha256": "152ec42274c2bb3be9d7d5fe01ded16ca60d9af04e983ca743d951ad08f4edae",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v3/source_rebuild/模型源码/viewer-template.html",
+      "published": "archive/model-evolution/02-library-rear-study/viewer-template.html",
+      "original_sha256": "700870827eccd610fbab87ac5c24cca97b45e8cf57af03793802c7be6abe9a66",
+      "published_sha256": "700870827eccd610fbab87ac5c24cca97b45e8cf57af03793802c7be6abe9a66",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v4/source_rebuild/模型源码/architecture.js",
+      "published": "archive/model-evolution/03-five-floor-study/architecture.js",
+      "original_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
+      "published_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v4/source_rebuild/模型源码/build.cjs",
+      "published": "archive/model-evolution/03-five-floor-study/build.cjs",
+      "original_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+      "published_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v4/source_rebuild/模型源码/floor-pilots.js",
+      "published": "archive/model-evolution/03-five-floor-study/floor-pilots.js",
+      "original_sha256": "3a8cc3e127b2b58cb805fa97d95c38b59ba8bdfd71f09d1080b4e35dbe962e18",
+      "published_sha256": "3a8cc3e127b2b58cb805fa97d95c38b59ba8bdfd71f09d1080b4e35dbe962e18",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v4/source_rebuild/模型源码/library-environment.js",
+      "published": "archive/model-evolution/03-five-floor-study/library-environment.js",
+      "original_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
+      "published_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v4/source_rebuild/模型源码/library-layout.js",
+      "published": "archive/model-evolution/03-five-floor-study/library-layout.js",
+      "original_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "published_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v4/source_rebuild/模型源码/package.json",
+      "published": "archive/model-evolution/03-five-floor-study/package.json",
+      "original_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "published_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v4/source_rebuild/模型源码/scene.js",
+      "published": "archive/model-evolution/03-five-floor-study/scene.js",
+      "original_sha256": "265a4cf4912713ba62764e36c5b0fa3ce7b03cd205cc745a2f16f99caee3bf7e",
+      "published_sha256": "265a4cf4912713ba62764e36c5b0fa3ce7b03cd205cc745a2f16f99caee3bf7e",
+      "sanitized": false
+    },
+    {
+      "source": "work/model3d_v4/source_rebuild/模型源码/viewer-template.html",
+      "published": "archive/model-evolution/03-five-floor-study/viewer-template.html",
+      "original_sha256": "bc251503ad2478b336d7e292b4077944ae1d64b3759ebb419cc606a05ad4d71b",
+      "published_sha256": "bc251503ad2478b336d7e292b4077944ae1d64b3759ebb419cc606a05ad4d71b",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/revise_axis_materials.py",
+      "published": "archive/layout-refinement/scripts/revise_axis_materials.py",
+      "original_sha256": "58ac1d8ab5473d52e54109c48af49d4c56ac0ddf7a08352e9955d3376c65028f",
+      "published_sha256": "58ac1d8ab5473d52e54109c48af49d4c56ac0ddf7a08352e9955d3376c65028f",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/revise_floor_extent.py",
+      "published": "archive/layout-refinement/scripts/revise_floor_extent.py",
+      "original_sha256": "a2ef4c69467c0fbf33eb660070a345654a90aaee2625e3a279a268b078fe56ff",
+      "published_sha256": "a2ef4c69467c0fbf33eb660070a345654a90aaee2625e3a279a268b078fe56ff",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/revise_ground_rooms.py",
+      "published": "archive/layout-refinement/scripts/revise_ground_rooms.py",
+      "original_sha256": "89a9b8b36f5adc6715bea4aadd9fcd634db90019768767c0acd68afec2979d93",
+      "published_sha256": "89a9b8b36f5adc6715bea4aadd9fcd634db90019768767c0acd68afec2979d93",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/revise_rear_depth.py",
+      "published": "archive/layout-refinement/scripts/revise_rear_depth.py",
+      "original_sha256": "23a01bac46eb674588b59383978f8e017b3c75090c856f87324ad9dd98914753",
+      "published_sha256": "23a01bac46eb674588b59383978f8e017b3c75090c856f87324ad9dd98914753",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/revise_terminal_span.py",
+      "published": "archive/layout-refinement/scripts/revise_terminal_span.py",
+      "original_sha256": "36b36414a59ad92d980efa767209c137c519ac5afa6edcec440359a00670695b",
+      "published_sha256": "36b36414a59ad92d980efa767209c137c519ac5afa6edcec440359a00670695b",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/update_ground_facing_text.py",
+      "published": "archive/layout-refinement/scripts/update_ground_facing_text.py",
+      "original_sha256": "df825a335d1291516284c03aea8fa6525f698b666cd250850e68b7e8df15ce0c",
+      "published_sha256": "df825a335d1291516284c03aea8fa6525f698b666cd250850e68b7e8df15ce0c",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/finish_orientation_sources.py",
+      "published": "archive/layout-refinement/scripts/finish_orientation_sources.py",
+      "original_sha256": "850053b7cfa2d7e24c603a1082cd659a797fc73d6de74e1062b828ee7ccd6e07",
+      "published_sha256": "850053b7cfa2d7e24c603a1082cd659a797fc73d6de74e1062b828ee7ccd6e07",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/finish_compact_sources.py",
+      "published": "archive/layout-refinement/scripts/finish_compact_sources.py",
+      "original_sha256": "7ec4665cfb200663091587bf3024c6d3bcb066742947b887693a349a793a388e",
+      "published_sha256": "7ec4665cfb200663091587bf3024c6d3bcb066742947b887693a349a793a388e",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/prepare_collision_delivery.py",
+      "published": "archive/layout-refinement/scripts/prepare_collision_delivery.py",
+      "original_sha256": "01fbded9ba0ef4bdef8ee668ac5f6c920eece5229fa8a8b36a8e64610db61e22",
+      "published_sha256": "01fbded9ba0ef4bdef8ee668ac5f6c920eece5229fa8a8b36a8e64610db61e22",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/prepare_rear_review.py",
+      "published": "archive/layout-refinement/scripts/prepare_rear_review.py",
+      "original_sha256": "5fe529fcfbbbe52ecf8863087723b9a606c838beaea945efa7870005a8c186c4",
+      "published_sha256": "5fe529fcfbbbe52ecf8863087723b9a606c838beaea945efa7870005a8c186c4",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/final_core_camera.py",
+      "published": "archive/layout-refinement/scripts/final_core_camera.py",
+      "original_sha256": "43f5b2b4bb0e066d7caa7f0f1d9296fa64738ad642fc7fc9c72312d82f3e3bc1",
+      "published_sha256": "43f5b2b4bb0e066d7caa7f0f1d9296fa64738ad642fc7fc9c72312d82f3e3bc1",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/final_upper_evidence.py",
+      "published": "archive/layout-refinement/scripts/final_upper_evidence.py",
+      "original_sha256": "1bb64b32c0078ae21b95de9a3e1f8fb6ef162c350057814b23bf14070b24ca4d",
+      "published_sha256": "1bb64b32c0078ae21b95de9a3e1f8fb6ef162c350057814b23bf14070b24ca4d",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/upper-layout-check.json",
+      "published": "archive/layout-refinement/evidence/upper-layout-check.json",
+      "original_sha256": "ef5366702fe76b301b5a52115f87bf14a09945bb3f921bd7ecd02a8093709f64",
+      "published_sha256": "ef5366702fe76b301b5a52115f87bf14a09945bb3f921bd7ecd02a8093709f64",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/reader-geometry-check.json",
+      "published": "archive/layout-refinement/evidence/reader-geometry-check.json",
+      "original_sha256": "c44437749e07e25a90ff7f8b4c243c02fe0258b6dec75c1f3aa6515e3213a102",
+      "published_sha256": "c44437749e07e25a90ff7f8b4c243c02fe0258b6dec75c1f3aa6515e3213a102",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/reader-release-check.json",
+      "published": "archive/layout-refinement/evidence/reader-release-check.json",
+      "original_sha256": "74cff0507fdd33e44677d4eb0af8a73580652b86cfaf2c068a60263fbd27b784",
+      "published_sha256": "74cff0507fdd33e44677d4eb0af8a73580652b86cfaf2c068a60263fbd27b784",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/terminal-placement-check.json",
+      "published": "archive/layout-refinement/evidence/terminal-placement-check.json",
+      "original_sha256": "657cf0df3faa5f6f0e6e8d8ae11fbbdf85543f865d6fa40d0d3abb647726c730",
+      "published_sha256": "657cf0df3faa5f6f0e6e8d8ae11fbbdf85543f865d6fa40d0d3abb647726c730",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/layout-research-audit.json",
+      "published": "archive/layout-refinement/evidence/layout-research-audit.json",
+      "original_sha256": "d8d107c04ffd1a96163283b39eb9596edd9ec6589e4926c6c6ca3138bb457d01",
+      "published_sha256": "d8d107c04ffd1a96163283b39eb9596edd9ec6589e4926c6c6ca3138bb457d01",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/overlap-audit.json",
+      "published": "archive/layout-refinement/evidence/overlap-audit.json",
+      "original_sha256": "89c517162358b96054fb31f3091f9bb7d1c0f19d0642754f2f75fb75c556d759",
+      "published_sha256": "89c517162358b96054fb31f3091f9bb7d1c0f19d0642754f2f75fb75c556d759",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/app.js",
+      "published": "archive/seat-service-evolution/early-research/app.js",
+      "original_sha256": "1a9c1f40540d875f932f0ef9063a9abf27f3aba4f55f96643381101cb4fb8fc3",
+      "published_sha256": "1a9c1f40540d875f932f0ef9063a9abf27f3aba4f55f96643381101cb4fb8fc3",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/data.js",
+      "published": "archive/seat-service-evolution/early-research/data.js",
+      "original_sha256": "878b96ccad7769cdace77018298b5c35f3839100c57d3ca972306e96f0db50a3",
+      "published_sha256": "878b96ccad7769cdace77018298b5c35f3839100c57d3ca972306e96f0db50a3",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/engine.js",
+      "published": "archive/seat-service-evolution/early-research/engine.js",
+      "original_sha256": "59aed88135ca7ef1ea1a197074051448e27823030c27eb2594e45eeb1aaca8d5",
+      "published_sha256": "59aed88135ca7ef1ea1a197074051448e27823030c27eb2594e45eeb1aaca8d5",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/tests.js",
+      "published": "archive/seat-service-evolution/early-research/tests.js",
+      "original_sha256": "b5e3c0c8233bb35f6b6382f22ddf32588b87f07696055d84e01517e72991d42e",
+      "published_sha256": "b5e3c0c8233bb35f6b6382f22ddf32588b87f07696055d84e01517e72991d42e",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/model.js",
+      "published": "archive/seat-service-evolution/early-research/model.js",
+      "original_sha256": "18e166ae29608a03c5572c42b6e1cbd34ef4b701302b4b7e945ae05d82a4173f",
+      "published_sha256": "18e166ae29608a03c5572c42b6e1cbd34ef4b701302b4b7e945ae05d82a4173f",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/library-layout.js",
+      "published": "archive/seat-service-evolution/early-research/library-layout.js",
+      "original_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "published_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/template.html",
+      "published": "archive/seat-service-evolution/early-research/template.html",
+      "original_sha256": "6724a35abcea0b23909ea4cb42952ec1d655ea09c973c94ef192348d91dda3ab",
+      "published_sha256": "6724a35abcea0b23909ea4cb42952ec1d655ea09c973c94ef192348d91dda3ab",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/model-template.html",
+      "published": "archive/seat-service-evolution/early-research/model-template.html",
+      "original_sha256": "0ec33a131c8f592ba35b30b015bab6852f82207728819db49643d16539859655",
+      "published_sha256": "0ec33a131c8f592ba35b30b015bab6852f82207728819db49643d16539859655",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/package.json",
+      "published": "archive/seat-service-evolution/early-research/package.json",
+      "original_sha256": "3259b632ee44793c0f4e20ff9fbb523458208187a015c736c7cbafabfaa903a0",
+      "published_sha256": "3259b632ee44793c0f4e20ff9fbb523458208187a015c736c7cbafabfaa903a0",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/build.cjs",
+      "published": "archive/seat-service-evolution/early-research/build.cjs",
+      "original_sha256": "fbe6340c041700f5bb08eebc7dc287d8d79f54849cfb1beaf3fcf62663e60f61",
+      "published_sha256": "fbe6340c041700f5bb08eebc7dc287d8d79f54849cfb1beaf3fcf62663e60f61",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/tour_20261021/navigation-check.json",
+      "published": "archive/seat-service-evolution/evidence/navigation-check.json",
+      "original_sha256": "504e94caa09491d11d319508906be5678856b991ba44f095779dcce053127e44",
+      "published_sha256": "504e94caa09491d11d319508906be5678856b991ba44f095779dcce053127e44",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/tour_20261021/tour-sequence-check.json",
+      "published": "archive/seat-service-evolution/evidence/tour-sequence-check.json",
+      "original_sha256": "e2a256ca18362ae040db2adb1b237ed1d72fa3c94a3d37e344f17a86fcbbb68b",
+      "published_sha256": "e2a256ca18362ae040db2adb1b237ed1d72fa3c94a3d37e344f17a86fcbbb68b",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/tour_20261021/toolbar-check.json",
+      "published": "archive/seat-service-evolution/evidence/toolbar-check.json",
+      "original_sha256": "f8d34fa805dccbf8ceed4c9c35203155e7a8a95d470f6f5764abc25dd10b2eaf",
+      "published_sha256": "f8d34fa805dccbf8ceed4c9c35203155e7a8a95d470f6f5764abc25dd10b2eaf",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/tour_20261021/history-ui-check.json",
+      "published": "archive/seat-service-evolution/evidence/history-ui-check.json",
+      "original_sha256": "22049e3fe80f1253352ecd798b7cc0cc5a86add0a71e6df321039f7b8cf4d76e",
+      "published_sha256": "22049e3fe80f1253352ecd798b7cc0cc5a86add0a71e6df321039f7b8cf4d76e",
+      "sanitized": false
+    }
+  ]
+}

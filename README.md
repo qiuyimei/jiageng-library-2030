@@ -89,7 +89,7 @@ python src/voice_server.py --root .
 2. 与馆方核对真实座号、政策和布局，再做只读接口与稳定 SeatID。
 3. 如开展共享试点，增加服务端认证、事务、冲突处理和审计；正式预约仍由权威系统决定。
 
-项目说明先看[项目总览](docs/项目总览.pdf)，技术链见[架构与验证](docs/ARCHITECTURE.md)。完整本人学习手册与私人研究资料保留在集成包。阶段记录见 [CHANGELOG.md](CHANGELOG.md)。
+项目说明先看[项目总览](docs/项目总览.pdf)，技术链见[架构与验证](docs/ARCHITECTURE.md)。完整本人学习手册与私人研究资料保留在集成包。阶段记录见 [CHANGELOG.md](CHANGELOG.md)，详细改进、历史源码和证据入口见[项目演进档案](docs/history/README.md)。
 
 ## 权利与素材
 
