@@ -101,7 +101,7 @@ function initModel(){
  function refreshTourHint(){
   const next=nextTourStop({view,floor,expanded}),inspect=pointPicking();
   $('tourHint').hidden=walking;
-  const hint=inspect?'点选区域聚焦 · 空白处继续 · 拖动旋转':next?'空白处单击 → '+next.title:'已到五楼 · 可切换楼层或点校园楼群';
+  const hint=inspect?'点选区域聚焦'+(next?' · 空白处继续':'')+' · 拖动旋转':next?'空白处单击 → '+next.title:'已到五楼 · 可切换楼层或点校园楼群';
   if($('tourHint').textContent!==hint)$('tourHint').textContent=hint;
  }
  function advanceTour(){
@@ -156,8 +156,14 @@ function initModel(){
  function setWide(on){wideExpanded=on;document.body.classList.toggle('model-wide',on);$('wideTools').hidden=!on;$('wideView').textContent=on?'收起画面':'展开画面';resize();}
  $('wideView').onclick=()=>setWide(!wideExpanded);$('wideExit').onclick=()=>setWide(false);
  window.addEventListener('keydown',e=>{if(!historyPlayer.isOpen()&&e.code==='Escape'&&wideExpanded&&!walking)setWide(false);});
- for(const id of ['campus','rear','cut','top'])$(id).onclick=()=>{if(['cut','top'].includes(id))enterSeatView();if(id==='cut'){floor=0;expanded=true;}if(id==='campus'||id==='rear'){floor=0;expanded=false;}if(id==='top'&&!floor)floor=4;$('expand').checked=expanded;setView(id);};
- document.querySelectorAll('[data-floor]').forEach(b=>b.onclick=()=>{if(walking){placeWalker(Number(b.dataset.floor)||3);return;}enterSeatView();floor=Number(b.dataset.floor);expanded=!floor;$('expand').checked=expanded;setView(view==='top'?'top':'cut');});
+ for(const id of ['campus','rear','cut','top'])$(id).onclick=()=>{
+  if(['cut','top'].includes(id))enterSeatView();
+  // “空间模型”先看正常叠放的整体；下一次空白点击才拉开五层。
+  if(id==='cut'||id==='campus'||id==='rear'){floor=0;expanded=false;}
+  if(id==='top'){if(!floor)floor=1;expanded=false;}
+  $('expand').checked=expanded;setView(id);
+ };
+ document.querySelectorAll('[data-floor]').forEach(b=>b.onclick=()=>{if(walking){placeWalker(Number(b.dataset.floor)||3);return;}enterSeatView();floor=Number(b.dataset.floor);expanded=false;$('expand').checked=false;setView(floor&&view==='top'?'top':'cut');});
  function showFacility(kind){
   enterSeatView();expanded=false;showFurniture=true;showInformation=false;labelOn=true;showRoof=false;showCeiling=false;
   floor=kind==='culture'?4:kind==='periodicals'?5:1;$('photoPanel').hidden=true;$('expand').checked=false;$('furniture').checked=true;$('informationLayer').checked=false;
