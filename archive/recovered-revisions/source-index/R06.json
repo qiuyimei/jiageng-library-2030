@@ -1,0 +1,75 @@
+{
+  "id": "R06",
+  "title": "三维制作工作备份",
+  "source_fingerprint": "54034501ae22bfe27077e4a7ad08fefeb7b40b39c234d9a69dadf6e472902599",
+  "source_locations": [
+    "work/model3d"
+  ],
+  "files": [
+    {
+      "path": "architecture.js",
+      "original_sha256": "05703410f50c4340d42dc1e5ea91b2b7aa4f842f2945cd640abbc6848aff26c9",
+      "published_sha256": "05703410f50c4340d42dc1e5ea91b2b7aa4f842f2945cd640abbc6848aff26c9",
+      "source": "work/model3d/architecture.js",
+      "sanitized": false
+    },
+    {
+      "path": "build-viewer.cjs",
+      "original_sha256": "a7ec296241a32971709de6b02663dac2f6147216edd766347bb297181b02413d",
+      "published_sha256": "a7ec296241a32971709de6b02663dac2f6147216edd766347bb297181b02413d",
+      "source": "work/model3d/build-viewer.cjs",
+      "sanitized": false
+    },
+    {
+      "path": "floor-pilots.js",
+      "original_sha256": "ab236d5052f28a1e7c6471c9c9ac4abea15b9be9badc8a8238bb5a13f57e62f8",
+      "published_sha256": "ab236d5052f28a1e7c6471c9c9ac4abea15b9be9badc8a8238bb5a13f57e62f8",
+      "source": "work/model3d/floor-pilots.js",
+      "sanitized": false
+    },
+    {
+      "path": "library-environment.js",
+      "original_sha256": "94690ab18ec90c225a9e89796ad636d518b8f980f3db8848a0dc843e500af2ad",
+      "published_sha256": "94690ab18ec90c225a9e89796ad636d518b8f980f3db8848a0dc843e500af2ad",
+      "source": "work/model3d/library-environment.js",
+      "sanitized": false
+    },
+    {
+      "path": "library-layout.js",
+      "original_sha256": "62b39cfd1d6d0f3f57a258175c04b4d0d93b59cafc9af9da788aa2e78b655e2c",
+      "published_sha256": "62b39cfd1d6d0f3f57a258175c04b4d0d93b59cafc9af9da788aa2e78b655e2c",
+      "source": "work/model3d/library-layout.js",
+      "sanitized": false
+    },
+    {
+      "path": "scene.js",
+      "original_sha256": "cb455798857ff35c7ceadb18fb2a5019e6cfd346922a26d61d6ab3226d5c0f9e",
+      "published_sha256": "cb455798857ff35c7ceadb18fb2a5019e6cfd346922a26d61d6ab3226d5c0f9e",
+      "source": "work/model3d/scene.js",
+      "sanitized": false
+    },
+    {
+      "path": "viewer-template.html",
+      "original_sha256": "bc251503ad2478b336d7e292b4077944ae1d64b3759ebb419cc606a05ad4d71b",
+      "published_sha256": "bc251503ad2478b336d7e292b4077944ae1d64b3759ebb419cc606a05ad4d71b",
+      "source": "work/model3d/viewer-template.html",
+      "sanitized": false
+    }
+  ],
+  "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
+  "archived_on": "2026-10-22",
+  "file_changes_from_previous_archive_checkpoint": {
+    "added": [
+      "build-viewer.cjs",
+      "floor-pilots.js",
+      "library-environment.js"
+    ],
+    "removed": [],
+    "modified": [
+      "architecture.js",
+      "scene.js",
+      "viewer-template.html"
+    ]
+  },
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+}

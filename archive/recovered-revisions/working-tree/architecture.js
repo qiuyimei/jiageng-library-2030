@@ -127,9 +127,13 @@ export function buildExterior(parent, H) {
  // Four five-storey companion blocks give the documented one-main/four-secondary context.
  for(const x of [-47,-31,31,47]){
   const block=group(parent,'five_floor_companion_context');
-  box(block,'white_teaching_block',12.5,18.6,35,x,9.2,-1,'#e9e7dc');
-  for(let n=0;n<5;n++)for(const dx of [-4.2,-1.4,1.4,4.2])box(block,'companion_window',1.25,2.2,.09,x+dx,1.8+n*3.5,16.58,'#8b9d96');
-  roof('companion_east_sea_breeze_pavilion',14,15,3.4,20.5,x,10.8);roof('companion_rear_pavilion',14,16,3.4,20.5,x,-12.0);
+  block.userData={building:({'-47':'主一','-31':'主二','31':'主四','47':'主五'})[x],longitudinalExtent:[-68,23],estimated:true};
+  box(block,'white_teaching_block',12.5,18.6,91,x,9.2,-22.5,'#e9e7dc');
+  for(let n=0;n<5;n++){
+   for(const dx of [-4.2,-1.4,1.4,4.2])for(const zz of [23.06,-68.06])box(block,'companion_end_window',1.25,2.2,.09,x+dx,1.8+n*3.5,zz,'#8b9d96');
+   for(let zz=-64;zz<23;zz+=5.3)for(const side of [-1,1]){box(block,'companion_side_window',.09,2.2,2.1,x+side*6.29,1.8+n*3.5,zz,'#8b9d96');box(block,'companion_side_pier',.2,18.6,.48,x+side*6.32,9.2,zz+2.5,'#efece2');}
+  }
+  for(const [i,zz] of [14,-8,-31,-59].entries())roof('companion_longitudinal_pavilion_'+i,14,23.5,3.4,20.5,x,zz,block);
  }
  // Landscape is deliberately subordinate to the architectural profile.
  for(const x of [-55,-24,24,55])for(const z of [28,41])plant(parent,x,z,2.1);
