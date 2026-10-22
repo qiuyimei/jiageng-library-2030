@@ -1,0 +1,97 @@
+{
+  "id": "R10",
+  "title": "安静服务探索源码",
+  "source_fingerprint": "20ddbc6b98a01bc6ae72607cb60ff6905d92da535aff9787d8fc7ea89034e718",
+  "source_locations": [
+    "outputs/10_安静优先重设计/本人保留/原型源码",
+    "outputs/10_安静优先重设计/嘉庚静读导航_本人保留_新版复核包.zip!/本人保留/原型源码",
+    "outputs/11_嘉庚知座/01_嘉庚知座_本人完整保留包.zip!/本人保留/旧版归档/嘉庚静读导航_本人保留_新版复核包.zip!/本人保留/原型源码",
+    "outputs/11_嘉庚知座/本人保留/旧版归档/嘉庚静读导航_本人保留_新版复核包.zip!/本人保留/原型源码"
+  ],
+  "files": [
+    {
+      "path": "architecture.js",
+      "original_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
+      "published_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
+      "source": "outputs/10_安静优先重设计/本人保留/原型源码/architecture.js",
+      "sanitized": false
+    },
+    {
+      "path": "build.cjs",
+      "original_sha256": "f16bb38d97fd9e999ca7ee0aeca830b82b1f9b6d9d64b45d5a2436508ae18887",
+      "published_sha256": "f16bb38d97fd9e999ca7ee0aeca830b82b1f9b6d9d64b45d5a2436508ae18887",
+      "source": "outputs/10_安静优先重设计/本人保留/原型源码/build.cjs",
+      "sanitized": false
+    },
+    {
+      "path": "library-environment.js",
+      "original_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
+      "published_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
+      "source": "outputs/10_安静优先重设计/本人保留/原型源码/library-environment.js",
+      "sanitized": false
+    },
+    {
+      "path": "library-layout.js",
+      "original_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "published_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "source": "outputs/10_安静优先重设计/本人保留/原型源码/library-layout.js",
+      "sanitized": false
+    },
+    {
+      "path": "package.json",
+      "original_sha256": "aacf5a08f516effe27d45067612ce0b08caf33bd20ed17d7bfa3ece379bd8fb2",
+      "published_sha256": "aacf5a08f516effe27d45067612ce0b08caf33bd20ed17d7bfa3ece379bd8fb2",
+      "source": "outputs/10_安静优先重设计/本人保留/原型源码/package.json",
+      "sanitized": false
+    },
+    {
+      "path": "scene.js",
+      "original_sha256": "9d218e96735a2e643af78bf2d54bb597dc7da5d03a1669f907613fee8cd3f43f",
+      "published_sha256": "9d218e96735a2e643af78bf2d54bb597dc7da5d03a1669f907613fee8cd3f43f",
+      "source": "outputs/10_安静优先重设计/本人保留/原型源码/scene.js",
+      "sanitized": false
+    },
+    {
+      "path": "service.js",
+      "original_sha256": "360faa68694f89faca9e11dcef873b3e2d79d48afa36304db21963a3f7585092",
+      "published_sha256": "360faa68694f89faca9e11dcef873b3e2d79d48afa36304db21963a3f7585092",
+      "source": "outputs/10_安静优先重设计/本人保留/原型源码/service.js",
+      "sanitized": false
+    },
+    {
+      "path": "verify.js",
+      "original_sha256": "9278bef096e63366bb63c1fc122f663ca38e69b84da38668e2a001c34ed9c351",
+      "published_sha256": "9278bef096e63366bb63c1fc122f663ca38e69b84da38668e2a001c34ed9c351",
+      "source": "outputs/10_安静优先重设计/本人保留/原型源码/verify.js",
+      "sanitized": false
+    },
+    {
+      "path": "viewer-template.html",
+      "original_sha256": "19d61c36842129c24475b320fd04953e00b73068051d0596bca76e217dbd153b",
+      "published_sha256": "19d61c36842129c24475b320fd04953e00b73068051d0596bca76e217dbd153b",
+      "source": "outputs/10_安静优先重设计/本人保留/原型源码/viewer-template.html",
+      "sanitized": false
+    }
+  ],
+  "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
+  "archived_on": "2026-10-22",
+  "file_changes_from_previous_archive_checkpoint": {
+    "added": [
+      "service.js",
+      "verify.js"
+    ],
+    "removed": [
+      "floor-pilots.js"
+    ],
+    "modified": [
+      "architecture.js",
+      "build.cjs",
+      "library-environment.js",
+      "library-layout.js",
+      "package.json",
+      "scene.js",
+      "viewer-template.html"
+    ]
+  },
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+}

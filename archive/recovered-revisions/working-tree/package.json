@@ -1,9 +1,11 @@
 {
-  "name": "jiageng-flexible-library-concept",
+  "name": "jiageng-quiet-navigation",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "type": "module",
   "scripts": {
-    "build": "node build.cjs"
+    "build": "node build.cjs",
+    "verify": "node verify.js"
   },
   "dependencies": {
     "three": "0.180.0"
