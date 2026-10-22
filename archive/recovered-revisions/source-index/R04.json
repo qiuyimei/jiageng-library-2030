@@ -12,42 +12,48 @@
       "original_sha256": "1d99525155d0d2f90e07aa54ea3649c7c6c229086823e4cc20bcff5bcb49a08c",
       "published_sha256": "1d99525155d0d2f90e07aa54ea3649c7c6c229086823e4cc20bcff5bcb49a08c",
       "source": "work/model3d_v3/source_rebuild/模型源码/architecture.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "080072d1e2a0da0d88d99552257959545995c7b98cd7362d38ce065f8f351395"
     },
     {
       "path": "build.cjs",
       "original_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
       "published_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
       "source": "work/model3d_v3/source_rebuild/模型源码/build.cjs",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "fb54de687cd413a3eaef82963bb14316221c25b575c145025452a8f9d3d42bd3"
     },
     {
       "path": "library-layout.js",
       "original_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
       "published_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
       "source": "work/model3d_v3/source_rebuild/模型源码/library-layout.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "7957008fdd52112efcaccc82ba7e246088f2b389a357d54e0a41bcc5169a7819"
     },
     {
       "path": "package.json",
       "original_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
       "published_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
       "source": "work/model3d_v3/source_rebuild/模型源码/package.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "f2b1f34eddd22cdee7029a5dfd284d091e045d1c8a05517ecf666da43ecca0ab"
     },
     {
       "path": "scene.js",
       "original_sha256": "152ec42274c2bb3be9d7d5fe01ded16ca60d9af04e983ca743d951ad08f4edae",
       "published_sha256": "152ec42274c2bb3be9d7d5fe01ded16ca60d9af04e983ca743d951ad08f4edae",
       "source": "work/model3d_v3/source_rebuild/模型源码/scene.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "5c0f8406821c93ea95e1ba9c982997d7bbb2eac57e8d5680e47b1371a2fee712"
     },
     {
       "path": "viewer-template.html",
       "original_sha256": "700870827eccd610fbab87ac5c24cca97b45e8cf57af03793802c7be6abe9a66",
       "published_sha256": "700870827eccd610fbab87ac5c24cca97b45e8cf57af03793802c7be6abe9a66",
       "source": "work/model3d_v3/source_rebuild/模型源码/viewer-template.html",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "a7759b663ad64c9df5cc79b01bfc811197a87e3a9d93b8da012df4a9e335d1dd"
     }
   ],
   "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
@@ -63,5 +69,7 @@
       "viewer-template.html"
     ]
   },
-  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。",
+  "checkpoint_git_commit": "09f147868e8ff18de5c66ca47b973fcccc7b6d09",
+  "hash_scope": "original_sha256为原件字节；published_sha256为脱敏后的工作副本；git_blob_sha256为该检查点实际提交的Git内容（可能规范为LF换行）。"
 }

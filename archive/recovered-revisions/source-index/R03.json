@@ -12,35 +12,40 @@
       "original_sha256": "f24612f6d528e530c301b51ef1ae751d4a7776c6f748243cbb3769c5f2dad712",
       "published_sha256": "f24612f6d528e530c301b51ef1ae751d4a7776c6f748243cbb3769c5f2dad712",
       "source": "work/model3d_v2/source_rebuild/模型源码/architecture.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "c76a827373134dd81d03e4dbe23cc1f8cf81772217cd7f58d87e0c165552b564"
     },
     {
       "path": "build.cjs",
       "original_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
       "published_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
       "source": "work/model3d_v2/source_rebuild/模型源码/build.cjs",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "fb54de687cd413a3eaef82963bb14316221c25b575c145025452a8f9d3d42bd3"
     },
     {
       "path": "package.json",
       "original_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
       "published_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
       "source": "work/model3d_v2/source_rebuild/模型源码/package.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "f2b1f34eddd22cdee7029a5dfd284d091e045d1c8a05517ecf666da43ecca0ab"
     },
     {
       "path": "scene.js",
       "original_sha256": "dbc0ee470fc2902ea0aabf69c437a39ddfe717a0f91bf005e04568c17d874eea",
       "published_sha256": "dbc0ee470fc2902ea0aabf69c437a39ddfe717a0f91bf005e04568c17d874eea",
       "source": "work/model3d_v2/source_rebuild/模型源码/scene.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "19b6d7945fc8e3fc2920f8dfc969438cf9dd52c602384e7c558f6eeb0d4e0e95"
     },
     {
       "path": "viewer-template.html",
       "original_sha256": "4fa88d4bb2513f6b963f016d67fdbcfa3e7f3dcaf2377edc609a10a8edd33d5b",
       "published_sha256": "4fa88d4bb2513f6b963f016d67fdbcfa3e7f3dcaf2377edc609a10a8edd33d5b",
       "source": "work/model3d_v2/source_rebuild/模型源码/viewer-template.html",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "dc87a0740e9445761263e21f367874f3b34e631d537f39a1ef20cf7d384f818c"
     }
   ],
   "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
@@ -55,5 +60,7 @@
       "viewer-template.html"
     ]
   },
-  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。",
+  "checkpoint_git_commit": "fae2e371b4a6166408e65d21814d50b416be9b47",
+  "hash_scope": "original_sha256为原件字节；published_sha256为脱敏后的工作副本；git_blob_sha256为该检查点实际提交的Git内容（可能规范为LF换行）。"
 }

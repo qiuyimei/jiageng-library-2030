@@ -11,294 +11,336 @@
       "original_sha256": "315d4066b4232a57f283a117ce50170fe22381ec9032672a6f534a4cbfbdef87",
       "published_sha256": "315d4066b4232a57f283a117ce50170fe22381ec9032672a6f534a4cbfbdef87",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/app.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "a98f703399c4ac084b1061789439a8d0cf62c54915b6d44240962185add4b669"
     },
     {
       "path": "architecture.js",
       "original_sha256": "6a53910030dc235c3349127ca99205e9aa74e54178719c742a6ed14d8c3c6110",
       "published_sha256": "6a53910030dc235c3349127ca99205e9aa74e54178719c742a6ed14d8c3c6110",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/architecture.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "54807536568c178c1085b9631aea5642b93b85ebcd601a33ba6b0ebad8bebaec"
     },
     {
       "path": "build.cjs",
       "original_sha256": "f6c263311bf7487033834a2435e2a2ad1e1b819abe261f369a6a81276fab590c",
       "published_sha256": "f6c263311bf7487033834a2435e2a2ad1e1b819abe261f369a6a81276fab590c",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/build.cjs",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "e4be79f3684c07b141fbb938fdc816666a71901e2bfddfc2fea46b261eb3d298"
     },
     {
       "path": "data.js",
       "original_sha256": "317cc224ac974d0d12c6668883da8e4a276325354761f361309a60c841b5e45e",
       "published_sha256": "317cc224ac974d0d12c6668883da8e4a276325354761f361309a60c841b5e45e",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/data.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "5c821897f629470e2db0a0bd7d2c9287fc1bd4c09eee489ba827872f7dd15e3b"
     },
     {
       "path": "download_model.py",
       "original_sha256": "7ae4056c3795fa5af0d518d8d3225f7558478bf5f8a10df4f540e2bd0f123cd3",
       "published_sha256": "7ae4056c3795fa5af0d518d8d3225f7558478bf5f8a10df4f540e2bd0f123cd3",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/download_model.py",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "4a44e5ea83b2fcad8780b4cf5b55bca5bf4cf282b7ba38f1bfca4c4cfa13795e"
     },
     {
       "path": "engine.js",
       "original_sha256": "26350129d7e603a158f1162bd7481cb2e430d0b8fed08c7da6d3bf783baf33fd",
       "published_sha256": "26350129d7e603a158f1162bd7481cb2e430d0b8fed08c7da6d3bf783baf33fd",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/engine.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "ad7d6a07d444213cc3cde7bd59edd9ad84028c3a809ae8d8720f7b5b6d24045b"
     },
     {
       "path": "export-scene.cjs",
       "original_sha256": "4a472e1347a94b1e4143854132dc7e3e24780de327afd1483c7c013bfb64d13d",
       "published_sha256": "4a472e1347a94b1e4143854132dc7e3e24780de327afd1483c7c013bfb64d13d",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/export-scene.cjs",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "4a472e1347a94b1e4143854132dc7e3e24780de327afd1483c7c013bfb64d13d"
     },
     {
       "path": "export_states.js",
       "original_sha256": "b31d71b55c6e27c1bc81ab332409a5afe585746a099e799b6ebb13ecda3a29ac",
       "published_sha256": "b31d71b55c6e27c1bc81ab332409a5afe585746a099e799b6ebb13ecda3a29ac",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/export_states.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "22cf513bc7e6d88813cb770522ea835d71fdcdcc56fdb5e639b6305cada0186c"
     },
     {
       "path": "fixtures/blank-output.json",
       "original_sha256": "5940da41156ad33d039accb0091c926afe4e9112218ed4cb4fe88a5bbe2b2e2a",
       "published_sha256": "5940da41156ad33d039accb0091c926afe4e9112218ed4cb4fe88a5bbe2b2e2a",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/fixtures/blank-output.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "a496a9007ac4ff77e803dd500c188ba185a96e864f27f3ac92e795e81b8ee6c7"
     },
     {
       "path": "fixtures/regions.json",
       "original_sha256": "2949fef4658bb7bed90e7a500ca6083fa91791582266a82ae0e4959c8762483d",
       "published_sha256": "2949fef4658bb7bed90e7a500ca6083fa91791582266a82ae0e4959c8762483d",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/fixtures/regions.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "7e5c7afb7d7c612c8a4a68e9ea0114e2fce62602aaac02f2d793bceb7ffc27df"
     },
     {
       "path": "layout-walk-tests.js",
       "original_sha256": "68ba5de4362ebf8c84450d71b076f0f221f182f94a29b5d72f5948a8a74b0072",
       "published_sha256": "68ba5de4362ebf8c84450d71b076f0f221f182f94a29b5d72f5948a8a74b0072",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/layout-walk-tests.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "ca31d9339a6d9052dae066fec2ac4d6f724da72b4cb2ba677d422dc0e5bbf135"
     },
     {
       "path": "library-environment.js",
       "original_sha256": "a2f611dea6b001981cab557d223152523cb4eaa4ed0781953d78ba8566abba1e",
       "published_sha256": "a2f611dea6b001981cab557d223152523cb4eaa4ed0781953d78ba8566abba1e",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/library-environment.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "0ed5493daff44b4032602b2026230fd0d3db20dbfb892e26d9454726ed56e8b1"
     },
     {
       "path": "library-layout.js",
       "original_sha256": "8fad3069ea50620502649ac67582ab99dc40c08342165bbad4465f1e2021514d",
       "published_sha256": "8fad3069ea50620502649ac67582ab99dc40c08342165bbad4465f1e2021514d",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/library-layout.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "61fb926bc6cdbf6788cb8a5e5770856c85fb1de1d938e7b7bc1ca1e910954f63"
     },
     {
       "path": "lighting.js",
       "original_sha256": "e11dad8a93e7c6515253b3c30f37705da27b316b0a972fc775ddbce3cc318745",
       "published_sha256": "e11dad8a93e7c6515253b3c30f37705da27b316b0a972fc775ddbce3cc318745",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/lighting.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "e11dad8a93e7c6515253b3c30f37705da27b316b0a972fc775ddbce3cc318745"
     },
     {
       "path": "model-helpers.js",
       "original_sha256": "fe0a24275dc2d22a6578597bc6ee818a56bb5329c548466c260cd1e588e5825b",
       "published_sha256": "fe0a24275dc2d22a6578597bc6ee818a56bb5329c548466c260cd1e588e5825b",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/model-helpers.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "fe0a24275dc2d22a6578597bc6ee818a56bb5329c548466c260cd1e588e5825b"
     },
     {
       "path": "model-history.js",
       "original_sha256": "e6ee8a3be3cc3ff8cd4524af982cc9873d11397f0566aadc5cc9a57bab942be7",
       "published_sha256": "e6ee8a3be3cc3ff8cd4524af982cc9873d11397f0566aadc5cc9a57bab942be7",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/model-history.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "e6ee8a3be3cc3ff8cd4524af982cc9873d11397f0566aadc5cc9a57bab942be7"
     },
     {
       "path": "model-presentation.js",
       "original_sha256": "1ee62f220c0490ff1e444021bfacd8d69c666be7ad0e89f1e9f9512a24f2dc8c",
       "published_sha256": "1ee62f220c0490ff1e444021bfacd8d69c666be7ad0e89f1e9f9512a24f2dc8c",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/model-presentation.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "1ee62f220c0490ff1e444021bfacd8d69c666be7ad0e89f1e9f9512a24f2dc8c"
     },
     {
       "path": "model-template.html",
       "original_sha256": "4dc4edcda69c9fa8f9c7b3bf59940c4b746fd5d338ddf516c82e048f3cedfc4f",
       "published_sha256": "4dc4edcda69c9fa8f9c7b3bf59940c4b746fd5d338ddf516c82e048f3cedfc4f",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/model-template.html",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "4f5abc12b3f29250b631b0c6f1ba899786767c205e1d44b84197666090710db7"
     },
     {
       "path": "model-tour.js",
       "original_sha256": "7a1daa575d7718e1fbe26efe729ee370d90f9ec23c7747dae6e6240ea8860f34",
       "published_sha256": "7a1daa575d7718e1fbe26efe729ee370d90f9ec23c7747dae6e6240ea8860f34",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/model-tour.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "7a1daa575d7718e1fbe26efe729ee370d90f9ec23c7747dae6e6240ea8860f34"
     },
     {
       "path": "model.js",
       "original_sha256": "e6d000e8e683eb0258917bf7166d900cb75251c07ba3c5ce0927f66703ebb906",
       "published_sha256": "e6d000e8e683eb0258917bf7166d900cb75251c07ba3c5ce0927f66703ebb906",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/model.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "84eff973ee12161c691272b858a7238bb91b3e52fef46d08d630924f28228289"
     },
     {
       "path": "models/model-manifest.json",
       "original_sha256": "0e55310ccc8e71f61781ca4e5a5b49c026d505bd2aee49d1e70cd0896850f0e4",
       "published_sha256": "0e55310ccc8e71f61781ca4e5a5b49c026d505bd2aee49d1e70cd0896850f0e4",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/models/model-manifest.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "b5e696c780211a11b9207f84720ba4236d7ec14536130bc48ceacc7cdc79cc8c"
     },
     {
       "path": "package.json",
       "original_sha256": "c1cc49bb6ff8b5f0bc2f806b8584c0fd81bea8c5bef0cca53018dac06d7175f3",
       "published_sha256": "c1cc49bb6ff8b5f0bc2f806b8584c0fd81bea8c5bef0cca53018dac06d7175f3",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/package.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "c1cc49bb6ff8b5f0bc2f806b8584c0fd81bea8c5bef0cca53018dac06d7175f3"
     },
     {
       "path": "photo-details.js",
       "original_sha256": "f4d73114268096b2c206f5d6561f15921f5c0f13d3784ce22c17e2b499151075",
       "published_sha256": "f4d73114268096b2c206f5d6561f15921f5c0f13d3784ce22c17e2b499151075",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/photo-details.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "d7f26934148d0392829997ba49c2efa70d13819dcf21c47ddf17b1f980375732"
     },
     {
       "path": "photo-reference.js",
       "original_sha256": "fd1c3ddd21c91ffd9642990fdd709c8d60396969e66175b44fa900cede748bf4",
       "published_sha256": "fd1c3ddd21c91ffd9642990fdd709c8d60396969e66175b44fa900cede748bf4",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/photo-reference.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "cbf6b786f76e5c97d4c631d4e27c80b2d65a757bac45ccb694922443e000e7e3"
     },
     {
       "path": "requirements.txt",
       "original_sha256": "04d98861d9c10a95c67d3802d56475b91c52571de9338a7851cf21d002366482",
       "published_sha256": "04d98861d9c10a95c67d3802d56475b91c52571de9338a7851cf21d002366482",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/requirements.txt",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "d7a1f2e22c4be539e91d4bd97239b41f9fa575ac7b1fa03099b292aadb88b9c1"
     },
     {
       "path": "run-layout-walk-tests.cjs",
       "original_sha256": "327a2da70922ad54d1556e3b312c1fa58df53d2750476b0ef497408631c66fef",
       "published_sha256": "327a2da70922ad54d1556e3b312c1fa58df53d2750476b0ef497408631c66fef",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/run-layout-walk-tests.cjs",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "327a2da70922ad54d1556e3b312c1fa58df53d2750476b0ef497408631c66fef"
     },
     {
       "path": "scene-export.js",
       "original_sha256": "59b567731a6ff7feeb1cc659a4c30419c214b8924d07ef063eaca94beaa7a3c0",
       "published_sha256": "59b567731a6ff7feeb1cc659a4c30419c214b8924d07ef063eaca94beaa7a3c0",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/scene-export.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "4f64a40f10477e25466e99fdcdb5b60bd08e6ceae8530a6b4e941d274d0d0867"
     },
     {
       "path": "seat-navigation.js",
       "original_sha256": "83ab6fee00d0518ed0fb27e852da0fb3b26c13fe36b578e291db0b00670e1dc3",
       "published_sha256": "83ab6fee00d0518ed0fb27e852da0fb3b26c13fe36b578e291db0b00670e1dc3",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/seat-navigation.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "83ab6fee00d0518ed0fb27e852da0fb3b26c13fe36b578e291db0b00670e1dc3"
     },
     {
       "path": "seat-page.html",
       "original_sha256": "aabc97a1cf4822669b718fa41c3da79395774cbd8dd61a6805f2f2cf835bd576",
       "published_sha256": "aabc97a1cf4822669b718fa41c3da79395774cbd8dd61a6805f2f2cf835bd576",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/seat-page.html",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "b61bd80cfba495e585837c931a758a5288d4d29916c70253151c8d9f25ccafa0"
     },
     {
       "path": "seat-page.js",
       "original_sha256": "0276455c29f5c0c34c652819ba8fa8b50b46fd05eada0531f39b4141438bb9db",
       "published_sha256": "0276455c29f5c0c34c652819ba8fa8b50b46fd05eada0531f39b4141438bb9db",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/seat-page.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "8e241a2ed6c0a9a660d25b5e6a391a3a358573bedaf79231a3611d7b64501a94"
     },
     {
       "path": "seat-status-tests.js",
       "original_sha256": "3ab8c871f76edfd2de4babf79c4d660d62285067dbbfb93348d94b55a3cae0b0",
       "published_sha256": "3ab8c871f76edfd2de4babf79c4d660d62285067dbbfb93348d94b55a3cae0b0",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/seat-status-tests.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "3ab8c871f76edfd2de4babf79c4d660d62285067dbbfb93348d94b55a3cae0b0"
     },
     {
       "path": "seat-status.js",
       "original_sha256": "62088526a16267a24b7c593c961fecb12e8555a95d81aea042bcafba89e25ba8",
       "published_sha256": "62088526a16267a24b7c593c961fecb12e8555a95d81aea042bcafba89e25ba8",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/seat-status.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "62088526a16267a24b7c593c961fecb12e8555a95d81aea042bcafba89e25ba8"
     },
     {
       "path": "seat-voice.js",
       "original_sha256": "27c562e596a275e748ec10bc4f18b78b182bd6360902e5e6a33774c00af8d421",
       "published_sha256": "27c562e596a275e748ec10bc4f18b78b182bd6360902e5e6a33774c00af8d421",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/seat-voice.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "3a7df61ff1362d2bcb00e9321823cb1b5ca2dccfbe9ee33c080806a7f8a5e928"
     },
     {
       "path": "space-layer.js",
       "original_sha256": "e3a77faf12dc8b446bbfe0722750229ac8cee8364f02458fffa24d2913adb022",
       "published_sha256": "e3a77faf12dc8b446bbfe0722750229ac8cee8364f02458fffa24d2913adb022",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/space-layer.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "e3a77faf12dc8b446bbfe0722750229ac8cee8364f02458fffa24d2913adb022"
     },
     {
       "path": "spatial-tests.js",
       "original_sha256": "4f17b9d2c8465e4526fc4fcd9685ef3166716777b23e69debf23a9da902260d8",
       "published_sha256": "4f17b9d2c8465e4526fc4fcd9685ef3166716777b23e69debf23a9da902260d8",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/spatial-tests.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "1bb48f3cea1b735fb51c945466cb28b3c5788743161fec5f1c9b416264dfca0c"
     },
     {
       "path": "spatial.js",
       "original_sha256": "587b9c42a0c6e3754ef9c4200b1108f5ec42cb944ab44d69fa1dadde88e9bb31",
       "published_sha256": "587b9c42a0c6e3754ef9c4200b1108f5ec42cb944ab44d69fa1dadde88e9bb31",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/spatial.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "445c529bed23f14d82c8ea7223abb6c822d4f8f437cb2618f24c0b1e6e258a56"
     },
     {
       "path": "template.html",
       "original_sha256": "640a52dbed7e5850fc6657f618a5ab14b343a3eee487057cbeb789c0dc78c9b5",
       "published_sha256": "640a52dbed7e5850fc6657f618a5ab14b343a3eee487057cbeb789c0dc78c9b5",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/template.html",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "74b07d3b4992e60a624b516af70ec033eeff0ce5c45037baae6021263a4edc5f"
     },
     {
       "path": "tests.js",
       "original_sha256": "86ba9f16fb1caaea8e63868674987d76039936696da15aded3a27f232fd60f52",
       "published_sha256": "86ba9f16fb1caaea8e63868674987d76039936696da15aded3a27f232fd60f52",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/tests.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "8200c1ead49fe6fde0f601af1e2fffa3f3e17fe7e0b8f88c1b789266c47eedd5"
     },
     {
       "path": "vision.py",
       "original_sha256": "c2f9fc490dd59405e9893703d0b14238410a91111d97accdde3a88ef1e226473",
       "published_sha256": "c2f9fc490dd59405e9893703d0b14238410a91111d97accdde3a88ef1e226473",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/vision.py",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "14f098e780fb1ee54113713754125bcb0fe79c5a2e1e8e5fe06e735ed8d8d5c5"
     },
     {
       "path": "walk-surroundings.js",
       "original_sha256": "418c1e47b1bca86987bb2da8edb4261c3565a85783864d6d15bea537b0b7f977",
       "published_sha256": "418c1e47b1bca86987bb2da8edb4261c3565a85783864d6d15bea537b0b7f977",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/walk-surroundings.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "418c1e47b1bca86987bb2da8edb4261c3565a85783864d6d15bea537b0b7f977"
     },
     {
       "path": "walk-tests.js",
       "original_sha256": "0cb62c8d710e851d9515903f5510ebb25059f0a3284276ee6fd73db7acff85a5",
       "published_sha256": "0cb62c8d710e851d9515903f5510ebb25059f0a3284276ee6fd73db7acff85a5",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/walk-tests.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "ff262521ac3cdcab9ad11425bd8d4d050478ba44801428499288d98c8c19c68d"
     },
     {
       "path": "walk.js",
       "original_sha256": "22579fd538b9dbfc4600a533fdf1ce2131c1f531bfedc1dd2f348c6885648a14",
       "published_sha256": "22579fd538b9dbfc4600a533fdf1ce2131c1f531bfedc1dd2f348c6885648a14",
       "source": "work/final_integration_20261021/过期交付压缩包/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包/walk.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "22579fd538b9dbfc4600a533fdf1ce2131c1f531bfedc1dd2f348c6885648a14"
     }
   ],
   "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
@@ -312,5 +354,7 @@
       "model.js"
     ]
   },
-  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。",
+  "checkpoint_git_commit": "f1cedc783524116c247cdbf86e049cb2df3afa8e",
+  "hash_scope": "original_sha256为原件字节；published_sha256为脱敏后的工作副本；git_blob_sha256为该检查点实际提交的Git内容（可能规范为LF换行）。"
 }

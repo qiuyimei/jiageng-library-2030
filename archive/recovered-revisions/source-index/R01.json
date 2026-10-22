@@ -11,14 +11,16 @@
       "original_sha256": "0b189b47a00bb713b5f02c197cd1845479afd5f6391e8db871340e2aad022d38",
       "published_sha256": "0b189b47a00bb713b5f02c197cd1845479afd5f6391e8db871340e2aad022d38",
       "source": "outputs/03_技术原型Demo/index.html",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "46bff44c683633987f5547cc0fcde057c8cb968abd8bc2dc5067269de62a6504"
     },
     {
       "path": "区域输入示例.json",
       "original_sha256": "fc8f8470a4461271d0c9bf9361d9c023b044dad9c4edcdd32048ccaeb9deee16",
       "published_sha256": "fc8f8470a4461271d0c9bf9361d9c023b044dad9c4edcdd32048ccaeb9deee16",
       "source": "outputs/03_技术原型Demo/区域输入示例.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "fc8f8470a4461271d0c9bf9361d9c023b044dad9c4edcdd32048ccaeb9deee16"
     }
   ],
   "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
@@ -31,5 +33,7 @@
     "removed": [],
     "modified": []
   },
-  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。",
+  "checkpoint_git_commit": "4573f9df19caa5763efcbee035cb786b6c89569d",
+  "hash_scope": "original_sha256为原件字节；published_sha256为脱敏后的工作副本；git_blob_sha256为该检查点实际提交的Git内容（可能规范为LF换行）。"
 }

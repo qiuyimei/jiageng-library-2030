@@ -18,56 +18,64 @@
       "original_sha256": "f11472084336035b9740da1298b3bb9db97a3088068a6e70de8a56b2cae6507d",
       "published_sha256": "f11472084336035b9740da1298b3bb9db97a3088068a6e70de8a56b2cae6507d",
       "source": "outputs/09_项目说明与零基础复刻/完整项目/06_三维空间设计/模型源码/architecture.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "f11472084336035b9740da1298b3bb9db97a3088068a6e70de8a56b2cae6507d"
     },
     {
       "path": "build.cjs",
       "original_sha256": "16eba2162be485c94163044ddd25f3403f533c38af313290d5a3dd09547403c8",
       "published_sha256": "16eba2162be485c94163044ddd25f3403f533c38af313290d5a3dd09547403c8",
       "source": "outputs/09_项目说明与零基础复刻/完整项目/06_三维空间设计/模型源码/build.cjs",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "16eba2162be485c94163044ddd25f3403f533c38af313290d5a3dd09547403c8"
     },
     {
       "path": "floor-pilots.js",
       "original_sha256": "d883560bc5152ca84e9a159f6696698a8be36b534afb38e8f879b760d62856e4",
       "published_sha256": "d883560bc5152ca84e9a159f6696698a8be36b534afb38e8f879b760d62856e4",
       "source": "outputs/09_项目说明与零基础复刻/完整项目/06_三维空间设计/模型源码/floor-pilots.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "d883560bc5152ca84e9a159f6696698a8be36b534afb38e8f879b760d62856e4"
     },
     {
       "path": "library-environment.js",
       "original_sha256": "4a4697379340c3fbe82c895b9238574417307cb651bc402f62df065ad42cc59f",
       "published_sha256": "4a4697379340c3fbe82c895b9238574417307cb651bc402f62df065ad42cc59f",
       "source": "outputs/09_项目说明与零基础复刻/完整项目/06_三维空间设计/模型源码/library-environment.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "4a4697379340c3fbe82c895b9238574417307cb651bc402f62df065ad42cc59f"
     },
     {
       "path": "library-layout.js",
       "original_sha256": "abb761b88507d07af28ffc39a4abe45f53c542fc19e9e30f7b994e669c09d41a",
       "published_sha256": "abb761b88507d07af28ffc39a4abe45f53c542fc19e9e30f7b994e669c09d41a",
       "source": "outputs/09_项目说明与零基础复刻/完整项目/06_三维空间设计/模型源码/library-layout.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "abb761b88507d07af28ffc39a4abe45f53c542fc19e9e30f7b994e669c09d41a"
     },
     {
       "path": "package.json",
       "original_sha256": "8a529b4a028577f8336dfd12cd178129941d6f75057f0e1347f34968da7f5cf9",
       "published_sha256": "8a529b4a028577f8336dfd12cd178129941d6f75057f0e1347f34968da7f5cf9",
       "source": "outputs/09_项目说明与零基础复刻/完整项目/06_三维空间设计/模型源码/package.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "8a529b4a028577f8336dfd12cd178129941d6f75057f0e1347f34968da7f5cf9"
     },
     {
       "path": "scene.js",
       "original_sha256": "37b86e4cbb7dfc099a46bbc183be356520a56e7835a53ae960ed47cd0789317b",
       "published_sha256": "37b86e4cbb7dfc099a46bbc183be356520a56e7835a53ae960ed47cd0789317b",
       "source": "outputs/09_项目说明与零基础复刻/完整项目/06_三维空间设计/模型源码/scene.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "37b86e4cbb7dfc099a46bbc183be356520a56e7835a53ae960ed47cd0789317b"
     },
     {
       "path": "viewer-template.html",
       "original_sha256": "830288450be6b2ad6bc88e747cc4655b8a71b993644be0a2a4991acaddc3c58a",
       "published_sha256": "830288450be6b2ad6bc88e747cc4655b8a71b993644be0a2a4991acaddc3c58a",
       "source": "outputs/09_项目说明与零基础复刻/完整项目/06_三维空间设计/模型源码/viewer-template.html",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "830288450be6b2ad6bc88e747cc4655b8a71b993644be0a2a4991acaddc3c58a"
     }
   ],
   "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
@@ -86,5 +94,7 @@
       "viewer-template.html"
     ]
   },
-  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。",
+  "checkpoint_git_commit": "9a1bd699db40f161dc74e0d57f50635d5e0c0d08",
+  "hash_scope": "original_sha256为原件字节；published_sha256为脱敏后的工作副本；git_blob_sha256为该检查点实际提交的Git内容（可能规范为LF换行）。"
 }

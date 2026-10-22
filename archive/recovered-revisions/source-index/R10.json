@@ -14,63 +14,72 @@
       "original_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
       "published_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
       "source": "outputs/10_安静优先重设计/本人保留/原型源码/architecture.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "8d206a4cff5229c049de0f0436fa80295638f8da7819fa84b93d99f1b1fe2616"
     },
     {
       "path": "build.cjs",
       "original_sha256": "f16bb38d97fd9e999ca7ee0aeca830b82b1f9b6d9d64b45d5a2436508ae18887",
       "published_sha256": "f16bb38d97fd9e999ca7ee0aeca830b82b1f9b6d9d64b45d5a2436508ae18887",
       "source": "outputs/10_安静优先重设计/本人保留/原型源码/build.cjs",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "f16bb38d97fd9e999ca7ee0aeca830b82b1f9b6d9d64b45d5a2436508ae18887"
     },
     {
       "path": "library-environment.js",
       "original_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
       "published_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
       "source": "outputs/10_安静优先重设计/本人保留/原型源码/library-environment.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "2bdfc1c8b73ca1d99d4c774a9da9cac754612fee2b1c181336d954ab2102b43c"
     },
     {
       "path": "library-layout.js",
       "original_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
       "published_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
       "source": "outputs/10_安静优先重设计/本人保留/原型源码/library-layout.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "7957008fdd52112efcaccc82ba7e246088f2b389a357d54e0a41bcc5169a7819"
     },
     {
       "path": "package.json",
       "original_sha256": "aacf5a08f516effe27d45067612ce0b08caf33bd20ed17d7bfa3ece379bd8fb2",
       "published_sha256": "aacf5a08f516effe27d45067612ce0b08caf33bd20ed17d7bfa3ece379bd8fb2",
       "source": "outputs/10_安静优先重设计/本人保留/原型源码/package.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "363f423af3638191201b18e6c60cac9cd2058f258ff30ab6a7d20f7e62618ed6"
     },
     {
       "path": "scene.js",
       "original_sha256": "9d218e96735a2e643af78bf2d54bb597dc7da5d03a1669f907613fee8cd3f43f",
       "published_sha256": "9d218e96735a2e643af78bf2d54bb597dc7da5d03a1669f907613fee8cd3f43f",
       "source": "outputs/10_安静优先重设计/本人保留/原型源码/scene.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "9d218e96735a2e643af78bf2d54bb597dc7da5d03a1669f907613fee8cd3f43f"
     },
     {
       "path": "service.js",
       "original_sha256": "360faa68694f89faca9e11dcef873b3e2d79d48afa36304db21963a3f7585092",
       "published_sha256": "360faa68694f89faca9e11dcef873b3e2d79d48afa36304db21963a3f7585092",
       "source": "outputs/10_安静优先重设计/本人保留/原型源码/service.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "360faa68694f89faca9e11dcef873b3e2d79d48afa36304db21963a3f7585092"
     },
     {
       "path": "verify.js",
       "original_sha256": "9278bef096e63366bb63c1fc122f663ca38e69b84da38668e2a001c34ed9c351",
       "published_sha256": "9278bef096e63366bb63c1fc122f663ca38e69b84da38668e2a001c34ed9c351",
       "source": "outputs/10_安静优先重设计/本人保留/原型源码/verify.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "9278bef096e63366bb63c1fc122f663ca38e69b84da38668e2a001c34ed9c351"
     },
     {
       "path": "viewer-template.html",
       "original_sha256": "19d61c36842129c24475b320fd04953e00b73068051d0596bca76e217dbd153b",
       "published_sha256": "19d61c36842129c24475b320fd04953e00b73068051d0596bca76e217dbd153b",
       "source": "outputs/10_安静优先重设计/本人保留/原型源码/viewer-template.html",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "19d61c36842129c24475b320fd04953e00b73068051d0596bca76e217dbd153b"
     }
   ],
   "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
@@ -93,5 +102,7 @@
       "viewer-template.html"
     ]
   },
-  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。",
+  "checkpoint_git_commit": "d1b339529cb43cc6562b1e0b29ae374cbe047e8c",
+  "hash_scope": "original_sha256为原件字节；published_sha256为脱敏后的工作副本；git_blob_sha256为该检查点实际提交的Git内容（可能规范为LF换行）。"
 }

@@ -13,133 +13,152 @@
       "original_sha256": "1a9c1f40540d875f932f0ef9063a9abf27f3aba4f55f96643381101cb4fb8fc3",
       "published_sha256": "1a9c1f40540d875f932f0ef9063a9abf27f3aba4f55f96643381101cb4fb8fc3",
       "source": "work/zhizuo_build/app.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "1a9c1f40540d875f932f0ef9063a9abf27f3aba4f55f96643381101cb4fb8fc3"
     },
     {
       "path": "architecture.js",
       "original_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
       "published_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
       "source": "work/zhizuo_build/architecture.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "8d206a4cff5229c049de0f0436fa80295638f8da7819fa84b93d99f1b1fe2616"
     },
     {
       "path": "build.cjs",
       "original_sha256": "fbe6340c041700f5bb08eebc7dc287d8d79f54849cfb1beaf3fcf62663e60f61",
       "published_sha256": "fbe6340c041700f5bb08eebc7dc287d8d79f54849cfb1beaf3fcf62663e60f61",
       "source": "work/zhizuo_build/build.cjs",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "fbe6340c041700f5bb08eebc7dc287d8d79f54849cfb1beaf3fcf62663e60f61"
     },
     {
       "path": "data.js",
       "original_sha256": "878b96ccad7769cdace77018298b5c35f3839100c57d3ca972306e96f0db50a3",
       "published_sha256": "878b96ccad7769cdace77018298b5c35f3839100c57d3ca972306e96f0db50a3",
       "source": "work/zhizuo_build/data.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "878b96ccad7769cdace77018298b5c35f3839100c57d3ca972306e96f0db50a3"
     },
     {
       "path": "download_model.py",
       "original_sha256": "4a44e5ea83b2fcad8780b4cf5b55bca5bf4cf282b7ba38f1bfca4c4cfa13795e",
       "published_sha256": "4a44e5ea83b2fcad8780b4cf5b55bca5bf4cf282b7ba38f1bfca4c4cfa13795e",
       "source": "work/zhizuo_build/download_model.py",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "4a44e5ea83b2fcad8780b4cf5b55bca5bf4cf282b7ba38f1bfca4c4cfa13795e"
     },
     {
       "path": "engine.js",
       "original_sha256": "59aed88135ca7ef1ea1a197074051448e27823030c27eb2594e45eeb1aaca8d5",
       "published_sha256": "59aed88135ca7ef1ea1a197074051448e27823030c27eb2594e45eeb1aaca8d5",
       "source": "work/zhizuo_build/engine.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "59aed88135ca7ef1ea1a197074051448e27823030c27eb2594e45eeb1aaca8d5"
     },
     {
       "path": "export_states.js",
       "original_sha256": "c850e83e8d14335298b250c60c4e1dbc87d504d0c85d837fd01d96b7f635b58d",
       "published_sha256": "c850e83e8d14335298b250c60c4e1dbc87d504d0c85d837fd01d96b7f635b58d",
       "source": "work/zhizuo_build/export_states.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "c850e83e8d14335298b250c60c4e1dbc87d504d0c85d837fd01d96b7f635b58d"
     },
     {
       "path": "fixtures/blank-output.json",
       "original_sha256": "5940da41156ad33d039accb0091c926afe4e9112218ed4cb4fe88a5bbe2b2e2a",
       "published_sha256": "5940da41156ad33d039accb0091c926afe4e9112218ed4cb4fe88a5bbe2b2e2a",
       "source": "work/zhizuo_build/fixtures/blank-output.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "a496a9007ac4ff77e803dd500c188ba185a96e864f27f3ac92e795e81b8ee6c7"
     },
     {
       "path": "fixtures/regions.json",
       "original_sha256": "2949fef4658bb7bed90e7a500ca6083fa91791582266a82ae0e4959c8762483d",
       "published_sha256": "2949fef4658bb7bed90e7a500ca6083fa91791582266a82ae0e4959c8762483d",
       "source": "work/zhizuo_build/fixtures/regions.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "7e5c7afb7d7c612c8a4a68e9ea0114e2fce62602aaac02f2d793bceb7ffc27df"
     },
     {
       "path": "library-environment.js",
       "original_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
       "published_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
       "source": "work/zhizuo_build/library-environment.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "2bdfc1c8b73ca1d99d4c774a9da9cac754612fee2b1c181336d954ab2102b43c"
     },
     {
       "path": "library-layout.js",
       "original_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
       "published_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
       "source": "work/zhizuo_build/library-layout.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "7957008fdd52112efcaccc82ba7e246088f2b389a357d54e0a41bcc5169a7819"
     },
     {
       "path": "model-template.html",
       "original_sha256": "0ec33a131c8f592ba35b30b015bab6852f82207728819db49643d16539859655",
       "published_sha256": "0ec33a131c8f592ba35b30b015bab6852f82207728819db49643d16539859655",
       "source": "work/zhizuo_build/model-template.html",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "0ec33a131c8f592ba35b30b015bab6852f82207728819db49643d16539859655"
     },
     {
       "path": "model.js",
       "original_sha256": "18e166ae29608a03c5572c42b6e1cbd34ef4b701302b4b7e945ae05d82a4173f",
       "published_sha256": "18e166ae29608a03c5572c42b6e1cbd34ef4b701302b4b7e945ae05d82a4173f",
       "source": "work/zhizuo_build/model.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "1044b82ed1812c7989c39be3a16d609b89efbac4330f2d18dc48f6c0a5fd8b8c"
     },
     {
       "path": "models/model-manifest.json",
       "original_sha256": "0e55310ccc8e71f61781ca4e5a5b49c026d505bd2aee49d1e70cd0896850f0e4",
       "published_sha256": "0e55310ccc8e71f61781ca4e5a5b49c026d505bd2aee49d1e70cd0896850f0e4",
       "source": "work/zhizuo_build/models/model-manifest.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "b5e696c780211a11b9207f84720ba4236d7ec14536130bc48ceacc7cdc79cc8c"
     },
     {
       "path": "package.json",
       "original_sha256": "3259b632ee44793c0f4e20ff9fbb523458208187a015c736c7cbafabfaa903a0",
       "published_sha256": "3259b632ee44793c0f4e20ff9fbb523458208187a015c736c7cbafabfaa903a0",
       "source": "work/zhizuo_build/package.json",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "3259b632ee44793c0f4e20ff9fbb523458208187a015c736c7cbafabfaa903a0"
     },
     {
       "path": "requirements.txt",
       "original_sha256": "d7a1f2e22c4be539e91d4bd97239b41f9fa575ac7b1fa03099b292aadb88b9c1",
       "published_sha256": "d7a1f2e22c4be539e91d4bd97239b41f9fa575ac7b1fa03099b292aadb88b9c1",
       "source": "work/zhizuo_build/requirements.txt",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "d7a1f2e22c4be539e91d4bd97239b41f9fa575ac7b1fa03099b292aadb88b9c1"
     },
     {
       "path": "template.html",
       "original_sha256": "6724a35abcea0b23909ea4cb42952ec1d655ea09c973c94ef192348d91dda3ab",
       "published_sha256": "6724a35abcea0b23909ea4cb42952ec1d655ea09c973c94ef192348d91dda3ab",
       "source": "work/zhizuo_build/template.html",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "6724a35abcea0b23909ea4cb42952ec1d655ea09c973c94ef192348d91dda3ab"
     },
     {
       "path": "tests.js",
       "original_sha256": "b5e3c0c8233bb35f6b6382f22ddf32588b87f07696055d84e01517e72991d42e",
       "published_sha256": "b5e3c0c8233bb35f6b6382f22ddf32588b87f07696055d84e01517e72991d42e",
       "source": "work/zhizuo_build/tests.js",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "b5e3c0c8233bb35f6b6382f22ddf32588b87f07696055d84e01517e72991d42e"
     },
     {
       "path": "vision.py",
       "original_sha256": "14f098e780fb1ee54113713754125bcb0fe79c5a2e1e8e5fe06e735ed8d8d5c5",
       "published_sha256": "14f098e780fb1ee54113713754125bcb0fe79c5a2e1e8e5fe06e735ed8d8d5c5",
       "source": "work/zhizuo_build/vision.py",
-      "sanitized": false
+      "sanitized": false,
+      "git_blob_sha256": "14f098e780fb1ee54113713754125bcb0fe79c5a2e1e8e5fe06e735ed8d8d5c5"
     }
   ],
   "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
@@ -172,5 +191,7 @@
       "package.json"
     ]
   },
-  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。",
+  "checkpoint_git_commit": "df39dff421810a0c978a396c648bd24da8f0e396",
+  "hash_scope": "original_sha256为原件字节；published_sha256为脱敏后的工作副本；git_blob_sha256为该检查点实际提交的Git内容（可能规范为LF换行）。"
 }
