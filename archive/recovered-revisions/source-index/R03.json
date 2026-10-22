@@ -1,0 +1,59 @@
+{
+  "id": "R03",
+  "title": "外观研究重建备份",
+  "source_fingerprint": "205b10114b3224a1d11b1d87a2758cf591faf287abef17dd6068f8d95c31de88",
+  "source_locations": [
+    "work/model3d_v2/source_rebuild/模型源码",
+    "outputs/参赛材料包_嘉庚外观与五层剖切版_待本人录音与AIGC.zip!/参赛材料包_嘉庚外观与五层剖切版/06_三维空间设计/模型源码"
+  ],
+  "files": [
+    {
+      "path": "architecture.js",
+      "original_sha256": "f24612f6d528e530c301b51ef1ae751d4a7776c6f748243cbb3769c5f2dad712",
+      "published_sha256": "f24612f6d528e530c301b51ef1ae751d4a7776c6f748243cbb3769c5f2dad712",
+      "source": "work/model3d_v2/source_rebuild/模型源码/architecture.js",
+      "sanitized": false
+    },
+    {
+      "path": "build.cjs",
+      "original_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+      "published_sha256": "0a05392b9ef09091f0d0c4fbff317a21988801cb02270a24bb3130c05a224d6b",
+      "source": "work/model3d_v2/source_rebuild/模型源码/build.cjs",
+      "sanitized": false
+    },
+    {
+      "path": "package.json",
+      "original_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "published_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "source": "work/model3d_v2/source_rebuild/模型源码/package.json",
+      "sanitized": false
+    },
+    {
+      "path": "scene.js",
+      "original_sha256": "dbc0ee470fc2902ea0aabf69c437a39ddfe717a0f91bf005e04568c17d874eea",
+      "published_sha256": "dbc0ee470fc2902ea0aabf69c437a39ddfe717a0f91bf005e04568c17d874eea",
+      "source": "work/model3d_v2/source_rebuild/模型源码/scene.js",
+      "sanitized": false
+    },
+    {
+      "path": "viewer-template.html",
+      "original_sha256": "4fa88d4bb2513f6b963f016d67fdbcfa3e7f3dcaf2377edc609a10a8edd33d5b",
+      "published_sha256": "4fa88d4bb2513f6b963f016d67fdbcfa3e7f3dcaf2377edc609a10a8edd33d5b",
+      "source": "work/model3d_v2/source_rebuild/模型源码/viewer-template.html",
+      "sanitized": false
+    }
+  ],
+  "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
+  "archived_on": "2026-10-22",
+  "file_changes_from_previous_archive_checkpoint": {
+    "added": [
+      "architecture.js"
+    ],
+    "removed": [],
+    "modified": [
+      "scene.js",
+      "viewer-template.html"
+    ]
+  },
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+}
