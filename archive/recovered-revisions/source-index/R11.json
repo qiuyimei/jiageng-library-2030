@@ -1,0 +1,176 @@
+{
+  "id": "R11",
+  "title": "智能选座初期研究",
+  "source_fingerprint": "16f78fbb2e73db7ec9e0b68b933c725ab1d5bf47b8a650454777d598d7074a80",
+  "source_locations": [
+    "outputs/11_嘉庚知座/本人保留/代码包",
+    "work/zhizuo_build",
+    "outputs/11_嘉庚知座/01_嘉庚知座_本人完整保留包.zip!/本人保留/代码包"
+  ],
+  "files": [
+    {
+      "path": "app.js",
+      "original_sha256": "1a9c1f40540d875f932f0ef9063a9abf27f3aba4f55f96643381101cb4fb8fc3",
+      "published_sha256": "1a9c1f40540d875f932f0ef9063a9abf27f3aba4f55f96643381101cb4fb8fc3",
+      "source": "work/zhizuo_build/app.js",
+      "sanitized": false
+    },
+    {
+      "path": "architecture.js",
+      "original_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
+      "published_sha256": "6e3b39e686afcc1227663dd2d30e5fad7e88d0d417f3ebea832fe41e2db394f7",
+      "source": "work/zhizuo_build/architecture.js",
+      "sanitized": false
+    },
+    {
+      "path": "build.cjs",
+      "original_sha256": "fbe6340c041700f5bb08eebc7dc287d8d79f54849cfb1beaf3fcf62663e60f61",
+      "published_sha256": "fbe6340c041700f5bb08eebc7dc287d8d79f54849cfb1beaf3fcf62663e60f61",
+      "source": "work/zhizuo_build/build.cjs",
+      "sanitized": false
+    },
+    {
+      "path": "data.js",
+      "original_sha256": "878b96ccad7769cdace77018298b5c35f3839100c57d3ca972306e96f0db50a3",
+      "published_sha256": "878b96ccad7769cdace77018298b5c35f3839100c57d3ca972306e96f0db50a3",
+      "source": "work/zhizuo_build/data.js",
+      "sanitized": false
+    },
+    {
+      "path": "download_model.py",
+      "original_sha256": "4a44e5ea83b2fcad8780b4cf5b55bca5bf4cf282b7ba38f1bfca4c4cfa13795e",
+      "published_sha256": "4a44e5ea83b2fcad8780b4cf5b55bca5bf4cf282b7ba38f1bfca4c4cfa13795e",
+      "source": "work/zhizuo_build/download_model.py",
+      "sanitized": false
+    },
+    {
+      "path": "engine.js",
+      "original_sha256": "59aed88135ca7ef1ea1a197074051448e27823030c27eb2594e45eeb1aaca8d5",
+      "published_sha256": "59aed88135ca7ef1ea1a197074051448e27823030c27eb2594e45eeb1aaca8d5",
+      "source": "work/zhizuo_build/engine.js",
+      "sanitized": false
+    },
+    {
+      "path": "export_states.js",
+      "original_sha256": "c850e83e8d14335298b250c60c4e1dbc87d504d0c85d837fd01d96b7f635b58d",
+      "published_sha256": "c850e83e8d14335298b250c60c4e1dbc87d504d0c85d837fd01d96b7f635b58d",
+      "source": "work/zhizuo_build/export_states.js",
+      "sanitized": false
+    },
+    {
+      "path": "fixtures/blank-output.json",
+      "original_sha256": "5940da41156ad33d039accb0091c926afe4e9112218ed4cb4fe88a5bbe2b2e2a",
+      "published_sha256": "5940da41156ad33d039accb0091c926afe4e9112218ed4cb4fe88a5bbe2b2e2a",
+      "source": "work/zhizuo_build/fixtures/blank-output.json",
+      "sanitized": false
+    },
+    {
+      "path": "fixtures/regions.json",
+      "original_sha256": "2949fef4658bb7bed90e7a500ca6083fa91791582266a82ae0e4959c8762483d",
+      "published_sha256": "2949fef4658bb7bed90e7a500ca6083fa91791582266a82ae0e4959c8762483d",
+      "source": "work/zhizuo_build/fixtures/regions.json",
+      "sanitized": false
+    },
+    {
+      "path": "library-environment.js",
+      "original_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
+      "published_sha256": "f544608a8cacd9b3e09d4bd142970afbe436e6e07a5dfff40bc44419954553fa",
+      "source": "work/zhizuo_build/library-environment.js",
+      "sanitized": false
+    },
+    {
+      "path": "library-layout.js",
+      "original_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "published_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "source": "work/zhizuo_build/library-layout.js",
+      "sanitized": false
+    },
+    {
+      "path": "model-template.html",
+      "original_sha256": "0ec33a131c8f592ba35b30b015bab6852f82207728819db49643d16539859655",
+      "published_sha256": "0ec33a131c8f592ba35b30b015bab6852f82207728819db49643d16539859655",
+      "source": "work/zhizuo_build/model-template.html",
+      "sanitized": false
+    },
+    {
+      "path": "model.js",
+      "original_sha256": "18e166ae29608a03c5572c42b6e1cbd34ef4b701302b4b7e945ae05d82a4173f",
+      "published_sha256": "18e166ae29608a03c5572c42b6e1cbd34ef4b701302b4b7e945ae05d82a4173f",
+      "source": "work/zhizuo_build/model.js",
+      "sanitized": false
+    },
+    {
+      "path": "models/model-manifest.json",
+      "original_sha256": "0e55310ccc8e71f61781ca4e5a5b49c026d505bd2aee49d1e70cd0896850f0e4",
+      "published_sha256": "0e55310ccc8e71f61781ca4e5a5b49c026d505bd2aee49d1e70cd0896850f0e4",
+      "source": "work/zhizuo_build/models/model-manifest.json",
+      "sanitized": false
+    },
+    {
+      "path": "package.json",
+      "original_sha256": "3259b632ee44793c0f4e20ff9fbb523458208187a015c736c7cbafabfaa903a0",
+      "published_sha256": "3259b632ee44793c0f4e20ff9fbb523458208187a015c736c7cbafabfaa903a0",
+      "source": "work/zhizuo_build/package.json",
+      "sanitized": false
+    },
+    {
+      "path": "requirements.txt",
+      "original_sha256": "d7a1f2e22c4be539e91d4bd97239b41f9fa575ac7b1fa03099b292aadb88b9c1",
+      "published_sha256": "d7a1f2e22c4be539e91d4bd97239b41f9fa575ac7b1fa03099b292aadb88b9c1",
+      "source": "work/zhizuo_build/requirements.txt",
+      "sanitized": false
+    },
+    {
+      "path": "template.html",
+      "original_sha256": "6724a35abcea0b23909ea4cb42952ec1d655ea09c973c94ef192348d91dda3ab",
+      "published_sha256": "6724a35abcea0b23909ea4cb42952ec1d655ea09c973c94ef192348d91dda3ab",
+      "source": "work/zhizuo_build/template.html",
+      "sanitized": false
+    },
+    {
+      "path": "tests.js",
+      "original_sha256": "b5e3c0c8233bb35f6b6382f22ddf32588b87f07696055d84e01517e72991d42e",
+      "published_sha256": "b5e3c0c8233bb35f6b6382f22ddf32588b87f07696055d84e01517e72991d42e",
+      "source": "work/zhizuo_build/tests.js",
+      "sanitized": false
+    },
+    {
+      "path": "vision.py",
+      "original_sha256": "14f098e780fb1ee54113713754125bcb0fe79c5a2e1e8e5fe06e735ed8d8d5c5",
+      "published_sha256": "14f098e780fb1ee54113713754125bcb0fe79c5a2e1e8e5fe06e735ed8d8d5c5",
+      "source": "work/zhizuo_build/vision.py",
+      "sanitized": false
+    }
+  ],
+  "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
+  "archived_on": "2026-10-22",
+  "file_changes_from_previous_archive_checkpoint": {
+    "added": [
+      "app.js",
+      "data.js",
+      "download_model.py",
+      "engine.js",
+      "export_states.js",
+      "fixtures/blank-output.json",
+      "fixtures/regions.json",
+      "model-template.html",
+      "model.js",
+      "models/model-manifest.json",
+      "requirements.txt",
+      "template.html",
+      "tests.js",
+      "vision.py"
+    ],
+    "removed": [
+      "scene.js",
+      "service.js",
+      "verify.js",
+      "viewer-template.html"
+    ],
+    "modified": [
+      "build.cjs",
+      "package.json"
+    ]
+  },
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+}

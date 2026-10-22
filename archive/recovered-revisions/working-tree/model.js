@@ -2,47 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {buildExterior, buildLibraryFloors, FLOOR_INFO} from './architecture.js';
 import {buildLibraryEnvironment} from './library-environment.js';
-import {createPlan, SOURCES} from './service.js';
-
-// DOM 是页面上的元素树；id 和 HTML 中的 id 要保持一致。
-const $ = id => document.getElementById(id), host = $('viewport');
-let currentPlan=null;
-let showFloor=()=>{}; // 无WebGL时仍可生成任务卡，不让三维失败阻断文字服务。
-
-function drawPlan(plan) {
-  currentPlan=plan;
-  const card=$('plan');card.replaceChildren();card.hidden=false;card.dataset.mode=plan.mode;
-  const h=document.createElement('h3');h.textContent=plan.title;card.append(h);
-  const ol=document.createElement('ol');
-  for(const text of plan.steps){const li=document.createElement('li');li.textContent=text;ol.append(li);}card.append(ol);
-  for(const text of plan.cautions){const p=document.createElement('p');p.className='notice';p.textContent=text;card.append(p);}
-  const links=document.createElement('div');links.className='source-links';
-  for(const key of plan.sources){const source=SOURCES[key],a=document.createElement('a');a.textContent=source.title;a.href=source.url;a.target='_blank';a.rel='noopener';links.append(a);}card.append(links);
-  $('savePlan').disabled=false;
-  showFloor(plan.floor,plan.zone);
-}
-function runTask(){
-  $('planError').textContent='';
-  try{drawPlan(createPlan({task:$('task').value,topic:$('topic').value,subject:$('subject').value,speaking:$('speaking').checked,condition:$('condition').value}));}
-  catch(error){$('planError').textContent=error.message;}
-}
-$('taskForm').addEventListener('submit',event=>{event.preventDefault();runTask();});
-// 输入一旦改变，旧任务卡就失效；避免显示旧主题对应的定位。
-for(const id of ['task','topic','subject','speaking','condition']) $(id).addEventListener('input',()=>{
-  currentPlan=null;$('plan').hidden=true;$('savePlan').disabled=true;showFloor(0,null);
-});
-const examples={book:{task:'book',topic:'第一次找软件工程相关资料',subject:'software',speaking:false,condition:'normal'},group:{task:'group',topic:'三个人需要讨论课程分工',subject:'auto',speaking:true,condition:'full'},culture:{task:'culture',topic:'我想了解红树学人的研究资料',subject:'auto',speaking:false,condition:'normal'}};
-document.querySelectorAll('[data-example]').forEach(button=>button.onclick=()=>{
-  const ex=examples[button.dataset.example];for(const key of ['task','topic','subject','condition'])$(key).value=ex[key];$('speaking').checked=ex.speaking;runTask();
-});
-function clearPlan(){currentPlan=null;$('topic').value='';$('plan').hidden=true;$('savePlan').disabled=true;$('planError').textContent='';showFloor(0,null);}
-$('clearPlan').onclick=clearPlan;
-$('savePlan').onclick=()=>{
-  if(!currentPlan)return;
-  const text=[currentPlan.title,'本地规则演示；无真实预约或库存。',...currentPlan.steps.map((s,i)=>`${i+1}. ${s}`),...currentPlan.cautions,...currentPlan.sources.map(k=>`${SOURCES[k].title}：${SOURCES[k].url}`)].join('\n\n');
-  const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='静读任务卡.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
-};
-
+const $=id=>document.getElementById(id),host=$('viewport');let showFloor=()=>{};
 function initModel(){
  const scene=new THREE.Scene();scene.background=new THREE.Color('#e9e7df');
  const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
@@ -99,11 +59,16 @@ function initModel(){
  }
  function selectFloor(n,zone=null){floor=Math.max(0,Math.min(5,Number(n)||0));selectedZone=zone;setView(view==='top'?'top':'cut');}
  showFloor=selectFloor;
+ // 只接受父页面发来的、范围为1到5的楼层消息，不接受字符串脚本。
+ window.addEventListener('message',event=>{
+  if(event.source!==window.parent || event.data?.type!=='zhizuo-floor')return;
+  const n=event.data.floor;if(Number.isInteger(n)&&n>=1&&n<=5)selectFloor(n);
+ });
  for(const id of ['campus','rear','cut','top'])$(id).onclick=()=>{if(id==='top'&&!floor)floor=3;setView(id);};
  document.querySelectorAll('[data-floor]').forEach(b=>b.onclick=()=>selectFloor(b.dataset.floor));
  $('resetView').onclick=()=>setView(view);$('expand').onchange=()=>{expanded=$('expand').checked;setView(view);};
  $('furniture').onchange=()=>{showFurniture=$('furniture').checked;sync();};$('labelToggle').onchange=()=>{labelOn=$('labelToggle').checked;dirty=true;};
- $('snapshot').onclick=()=>{renderer.render(scene,camera);renderer.domElement.toBlob(blob=>{if(!blob)return;const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=`静读导航_${view}_${floor||'五层'}.png`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('viewStatus').textContent='已发起保存效果图；任务卡文字不包含在三维截图内。';});};
+ $('snapshot').onclick=()=>{renderer.render(scene,camera);renderer.domElement.toBlob(blob=>{if(!blob)return;const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=`嘉庚知座_${view}_${floor||'五层'}.png`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('viewStatus').textContent='已发起保存效果图；任务卡文字不包含在三维截图内。';});};
  const raycaster=new THREE.Raycaster();let start=null;
  renderer.domElement.addEventListener('pointerdown',e=>start={x:e.clientX,y:e.clientY});
  renderer.domElement.addEventListener('pointerup',e=>{if(!start||Math.hypot(e.clientX-start.x,e.clientY-start.y)>5)return;const rect=host.getBoundingClientRect();raycaster.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,1-(e.clientY-rect.top)/rect.height*2),camera);
@@ -120,9 +85,8 @@ function initModel(){
  }requestAnimationFrame(animate);
  // 调试接口用于验证家具的局部位置不变。楼层拉开是模型观看方式，不是搬楼板。
  function furnitureSignature(){return floors.storeys.map(f=>{const items=[];f.furniture.traverse(o=>{items.push([o.name,...o.position.toArray(),...o.rotation.toArray().slice(0,3)]);});return items;});}
- window.quietModel={selectFloor,setView,getState:()=>({view,floor,selectedZone,visibleFloors:floors.storeys.filter(f=>f.root.visible).map(f=>f.info.n),expanded,showFurniture,triangles:renderer.info.render.triangles,furnitureSignature:furnitureSignature(),hasMovingFurniture:false})};
+ window.zhizuoModel={selectFloor,setView,getState:()=>({view,floor,selectedZone,visibleFloors:floors.storeys.filter(f=>f.root.visible).map(f=>f.info.n),expanded,showFurniture,triangles:renderer.info.render.triangles,furnitureSignature:furnitureSignature(),hasMovingFurniture:false})};
 }
-try{initModel();}catch(error){document.body.classList.add('no3d');$('modelError').textContent='三维显示暂不可用。你仍可生成文字任务卡并查看官方入口。';$('snapshot').disabled=true;showFloor=n=>{
+try{initModel();}catch(error){document.body.classList.add('no3d');$('modelError').textContent='三维显示暂不可用。可点击楼层查看分区文字，或返回主页面查看候选。';$('snapshot').disabled=true;showFloor=n=>{
  const info=FLOOR_INFO.find(f=>f.n===n);$('floorTitle').textContent=info?`${n}F · ${info.title}`:'楼层文字参考';$('floorSummary').textContent=info?info.summary:'模型仅用于导览参考，当前状态未核验。';$('floorText').textContent=info?info.zones.map(z=>z.label).join(' · '):'';
 };document.querySelectorAll('[data-floor]').forEach(b=>b.onclick=()=>showFloor(+b.dataset.floor));}
-window.quietService={createPlan,getPlan:()=>currentPlan,clearPlan};
