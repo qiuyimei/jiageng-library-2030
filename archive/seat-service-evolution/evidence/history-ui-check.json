@@ -1,0 +1,8 @@
+{
+  "controller_cases": 8,
+  "lazy_video": true,
+  "close_pauses": true,
+  "six_main_buttons_unchanged": true,
+  "render_paused_while_dialog_open": true,
+  "scope": "独立控制器和模板静态检查，未进行浏览器弹窗实测"
+}

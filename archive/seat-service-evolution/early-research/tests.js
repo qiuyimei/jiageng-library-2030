@@ -1,0 +1,32 @@
+// 自动测试执行真实规则函数，不访问图书馆系统，也不伪造用户实测。
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {classify,recommend,shortest,route,reserveDemo,recheck,MAX_AGE,summarize} from './engine.js';
+import {makeData,setScenario,RESOURCES} from './data.js';
+const now=1780000000000;
+let count=0;
+function test(name,fn){fn();console.log('PASS '+name);count++;}
+const base=()=>({...makeData(now).seats.find(s=>s.id==='S2-01')});
+test('无人检测且规则允许才形成候选',()=>assert.equal(classify(base(),now).kind,'candidate'));
+for(const booking of ['reserved','away'])test(booking+' 不因无人或离线释放',()=>assert.equal(classify({...base(),booking,ruleOnline:false,observed:'clear'},now).kind,'protected'));
+test('专座不会向普通会话开放',()=>assert.equal(classify({...base(),policy:'exclusive'},now).kind,'protected'));
+for(const observed of ['occupied','items','unknown','bad'])test('观测 '+observed,()=>assert.notEqual(classify({...base(),observed},now).kind,'candidate'));
+for(const q of [0.2,NaN,Infinity,2,-1])test('非法或低质量 '+q,()=>assert.equal(classify({...base(),quality:q},now).kind,'unknown'));
+test('90秒边界及过期',()=>{assert.equal(classify(base(),now+MAX_AGE).kind,'candidate');assert.equal(classify(base(),now+MAX_AGE+1).kind,'unknown');});
+test('未来时间不可采用',()=>assert.equal(classify({...base(),obsAt:now+1},now).kind,'unknown'));
+test('规则接口离线降级',()=>assert.equal(classify({...base(),ruleOnline:false},now).kind,'unknown'));
+test('设施维护不推荐',()=>assert.equal(classify({...base(),disabled:true},now).kind,'unavailable'));
+const p={resource:'own',power:false,window:false,quiet:false,accessible:false,print:false,floor:0,priority:'walk'};
+test('推荐最多三个且全满足规则',()=>{const d=makeData(now),r=recommend(d.seats,p,d.graph,RESOURCES,now);assert.equal(r.items.length,3);for(const i of r.items)assert.equal(classify(i.seat,now).kind,'candidate');});
+test('必须有插座',()=>{const d=makeData(now);for(const i of recommend(d.seats,{...p,power:true},d.graph,RESOURCES,now).items)assert.ok(i.seat.power);});
+test('无合规候选不放宽条件',()=>{const d=makeData(now);setScenario(d,'full',now);assert.equal(recommend(d.seats,p,d.graph,RESOURCES,now).items.length,0);});
+test('已借出和未知位置资料不编造动线',()=>{const d=makeData(now);for(const resource of ['loaned','unknown'])assert.equal(recommend(d.seats,{...p,resource},d.graph,RESOURCES,now).items.length,0);});
+test('指定阅览范围作为硬限制',()=>{const d=makeData(now),r=recommend(d.seats,{...p,resource:'special'},d.graph,RESOURCES,now);assert.ok(r.items.length);assert.ok(r.items.every(i=>i.seat.floor===3));assert.ok(r.warnings.length);});
+test('最短路、不可达、少楼梯',()=>{const g={a:[{to:'b',weight:1,accessible:false},{to:'c',weight:3,accessible:true}],b:[],c:[{to:'b',weight:4,accessible:true}],z:[]};assert.equal(shortest(g,'a','b').cost,1);assert.equal(shortest(g,'a','b',true).cost,7);assert.equal(shortest(g,'a','z'),null);});
+test('真实计算打印与书架访问顺序',()=>{const d=makeData(now),r=route(d.graph,['print','books4'],'seatS4-01',true);assert.ok(r);assert.ok(r.path.includes('print')&&r.path.includes('books4'));});
+test('确认前复查并阻止占用位置',()=>{const d=makeData(now),s=d.seats.find(s=>s.id==='S2-01');s.observed='occupied';assert.equal(reserveDemo(d.seats,s.id,now).ok,false);});
+test('确认后冲突保留预约记录',()=>{const d=makeData(now),s=d.seats.find(s=>s.id==='S2-01');assert.ok(reserveDemo(d.seats,s.id,now).ok);s.observed='occupied';assert.ok(recheck(d.seats,s.id,now).conflict);assert.equal(s.booking,'mine');});
+test('五层计数总和等于全部座位',()=>{const d=makeData(now);assert.equal(summarize(d.seats,now).reduce((n,r)=>n+r.total,0),60);});
+test('HTML必需id存在且不重复',()=>{const html=fs.readFileSync(new URL('./template.html',import.meta.url),'utf8'),ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);assert.equal(new Set(ids).size,ids.length);const app=fs.readFileSync(new URL('./app.js',import.meta.url),'utf8');for(const m of app.matchAll(/\$\('([^']+)'\)/g))assert.ok(ids.includes(m[1]),'缺少 '+m[1]);});
+fs.writeFileSync(new URL('./test-results.json',import.meta.url),JSON.stringify({passed:count,date:new Date().toISOString(),scope:'纯逻辑与静态DOM核对，未进行浏览器操作或馆内实测'},null,2));
+console.log('TOTAL '+count);

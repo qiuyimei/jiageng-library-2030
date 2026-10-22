@@ -1,0 +1,103 @@
+{
+  "archived_on": "2026-10-22",
+  "files": [
+    {
+      "source": "work/zhizuo_build/app.js",
+      "published": "archive/seat-service-evolution/early-research/app.js",
+      "original_sha256": "1a9c1f40540d875f932f0ef9063a9abf27f3aba4f55f96643381101cb4fb8fc3",
+      "published_sha256": "1a9c1f40540d875f932f0ef9063a9abf27f3aba4f55f96643381101cb4fb8fc3",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/data.js",
+      "published": "archive/seat-service-evolution/early-research/data.js",
+      "original_sha256": "878b96ccad7769cdace77018298b5c35f3839100c57d3ca972306e96f0db50a3",
+      "published_sha256": "878b96ccad7769cdace77018298b5c35f3839100c57d3ca972306e96f0db50a3",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/engine.js",
+      "published": "archive/seat-service-evolution/early-research/engine.js",
+      "original_sha256": "59aed88135ca7ef1ea1a197074051448e27823030c27eb2594e45eeb1aaca8d5",
+      "published_sha256": "59aed88135ca7ef1ea1a197074051448e27823030c27eb2594e45eeb1aaca8d5",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/tests.js",
+      "published": "archive/seat-service-evolution/early-research/tests.js",
+      "original_sha256": "b5e3c0c8233bb35f6b6382f22ddf32588b87f07696055d84e01517e72991d42e",
+      "published_sha256": "b5e3c0c8233bb35f6b6382f22ddf32588b87f07696055d84e01517e72991d42e",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/model.js",
+      "published": "archive/seat-service-evolution/early-research/model.js",
+      "original_sha256": "18e166ae29608a03c5572c42b6e1cbd34ef4b701302b4b7e945ae05d82a4173f",
+      "published_sha256": "18e166ae29608a03c5572c42b6e1cbd34ef4b701302b4b7e945ae05d82a4173f",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/library-layout.js",
+      "published": "archive/seat-service-evolution/early-research/library-layout.js",
+      "original_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "published_sha256": "8a2239d7f89549ca389e03122eb213ed6de3c9bd0a36ce4713d02a9e9ae00027",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/template.html",
+      "published": "archive/seat-service-evolution/early-research/template.html",
+      "original_sha256": "6724a35abcea0b23909ea4cb42952ec1d655ea09c973c94ef192348d91dda3ab",
+      "published_sha256": "6724a35abcea0b23909ea4cb42952ec1d655ea09c973c94ef192348d91dda3ab",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/model-template.html",
+      "published": "archive/seat-service-evolution/early-research/model-template.html",
+      "original_sha256": "0ec33a131c8f592ba35b30b015bab6852f82207728819db49643d16539859655",
+      "published_sha256": "0ec33a131c8f592ba35b30b015bab6852f82207728819db49643d16539859655",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/package.json",
+      "published": "archive/seat-service-evolution/early-research/package.json",
+      "original_sha256": "3259b632ee44793c0f4e20ff9fbb523458208187a015c736c7cbafabfaa903a0",
+      "published_sha256": "3259b632ee44793c0f4e20ff9fbb523458208187a015c736c7cbafabfaa903a0",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_build/build.cjs",
+      "published": "archive/seat-service-evolution/early-research/build.cjs",
+      "original_sha256": "fbe6340c041700f5bb08eebc7dc287d8d79f54849cfb1beaf3fcf62663e60f61",
+      "published_sha256": "fbe6340c041700f5bb08eebc7dc287d8d79f54849cfb1beaf3fcf62663e60f61",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/tour_20261021/navigation-check.json",
+      "published": "archive/seat-service-evolution/evidence/navigation-check.json",
+      "original_sha256": "504e94caa09491d11d319508906be5678856b991ba44f095779dcce053127e44",
+      "published_sha256": "504e94caa09491d11d319508906be5678856b991ba44f095779dcce053127e44",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/tour_20261021/tour-sequence-check.json",
+      "published": "archive/seat-service-evolution/evidence/tour-sequence-check.json",
+      "original_sha256": "e2a256ca18362ae040db2adb1b237ed1d72fa3c94a3d37e344f17a86fcbbb68b",
+      "published_sha256": "e2a256ca18362ae040db2adb1b237ed1d72fa3c94a3d37e344f17a86fcbbb68b",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/tour_20261021/toolbar-check.json",
+      "published": "archive/seat-service-evolution/evidence/toolbar-check.json",
+      "original_sha256": "f8d34fa805dccbf8ceed4c9c35203155e7a8a95d470f6f5764abc25dd10b2eaf",
+      "published_sha256": "f8d34fa805dccbf8ceed4c9c35203155e7a8a95d470f6f5764abc25dd10b2eaf",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/tour_20261021/history-ui-check.json",
+      "published": "archive/seat-service-evolution/evidence/history-ui-check.json",
+      "original_sha256": "22049e3fe80f1253352ecd798b7cc0cc5a86add0a71e6df321039f7b8cf4d76e",
+      "published_sha256": "22049e3fe80f1253352ecd798b7cc0cc5a86add0a71e6df321039f7b8cf4d76e",
+      "sanitized": false
+    }
+  ]
+}
