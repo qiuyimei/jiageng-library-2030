@@ -1,0 +1,192 @@
+--- 01-exterior-study/scene.js
++++ 03-five-floor-study/scene.js
+@@ -2,12 +2,14 @@
+ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
+ import {GLTFExporter} from 'three/examples/jsm/exporters/GLTFExporter.js';
+ import {buildExterior,buildLibraryFloors,FLOOR_INFO} from './architecture.js';
++import {buildLibraryEnvironment} from './library-environment.js';
++import {buildFloorPilots,PILOT_INFO} from './floor-pilots.js';
+ const $=id=>document.getElementById(id),host=$('viewport');
+ const scene=new THREE.Scene();scene.background=new THREE.Color('#e9e7df');
+ let renderer;
+ try{renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});}catch(e){$('fallback').style.display='flex';throw e;}
+ renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;host.prepend(renderer.domElement);
+-const camera=new THREE.PerspectiveCamera(38,1,.1,300);const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.08;controls.maxPolarAngle=Math.PI*.47;controls.minDistance=20;controls.maxDistance=240;
++const camera=new THREE.PerspectiveCamera(38,1,.1,600);const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.08;controls.maxPolarAngle=Math.PI*.47;controls.minDistance=20;controls.maxDistance=360;
+ scene.add(new THREE.HemisphereLight('#fbf8ee','#abb9ac',2.4));const sun=new THREE.DirectionalLight('#fff5df',3);sun.position.set(-18,40,24);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-80,right:80,top:80,bottom:-80,near:1,far:160});sun.shadow.bias=-.0002;scene.add(sun);
+ const mats={};function material(color,opts={}){const k=color+JSON.stringify(opts);return mats[k]??=new THREE.MeshStandardMaterial({color,roughness:.78,...opts});}
+ function box(parent,name,w,h,d,x,y,z,color,opts={}){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material(color,opts));m.name=name;m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
+@@ -16,7 +18,7 @@
+ function group(parent,name){const g=new THREE.Group();g.name=name;parent.add(g);return g;}
+ const interior=group(scene,'concept_interior');const exterior=group(scene,'jiageng_building_impression');exterior.visible=false;
+ interior.userData={description:'A-D concept zones, not a measured floor plan',units:'conceptual meters'};exterior.userData={description:'Architectural impression, not a surveyed reconstruction; upper tower not assigned to library'};
+-box(scene,'ground',150,.2,150,0,-1.7,0,'#e4e4d8');
++box(scene,'ground',260,.2,340,0,-1.7,-35,'#e4e4d8');
+ function plant(parent,x,z,scale=1){const p=group(parent,'planter');p.position.set(x,0,z);p.scale.setScalar(scale);cylinder(p,'terracotta_pot',.35,.6,0,.3,0,'#b99d79',.48);cylinder(p,'stem',.035,1.2,0,1.0,0,'#6c7350');for(let i=0;i<5;i++){const a=i*2.3;sphere(p,'foliage',.38,Math.cos(a)*.28,1.25+i*.12,Math.sin(a)*.28,'#6e9270');}return p;}
+ function chair(parent,x,z,rot=0,col='#738f86'){const g=group(parent,'chair');g.position.set(x,0,z);g.rotation.y=rot;box(g,'seat',.64,.12,.63,0,.56,0,col);box(g,'back',.64,.62,.10,0,.92,-.27,col);for(const a of [-.24,.24])for(const b of [-.23,.23])box(g,'leg',.045,.5,.045,a,.25,b,'#68736d');return g;}
+ function table(parent,x,z,w=2.5,d=1.3){const g=group(parent,'table');g.position.set(x,0,z);box(g,'oak_worktop',w,.13,d,0,.83,0,'#cbb891');for(const a of [-w/2+.18,w/2-.18])for(const b of [-d/2+.15,d/2-.15])box(g,'table_leg',.08,.77,.08,a,.39,b,'#a2aaa0');return g;}
+@@ -55,89 +57,85 @@
+ for(const z of [4.2,7.0,11.5]){const a=new THREE.Mesh(new THREE.ConeGeometry(.16,.38,3),material('#acb799'));a.rotation.x=Math.PI/2;a.position.set(1.8,.22,z);interior.add(a);}
+ const helpers={group,box,cylinder,material,plant,chair,table};
+ const exteriorDetails=buildExterior(exterior,helpers);
++buildLibraryEnvironment(exteriorDetails.rearLibrary,helpers);
++const libraryExterior=exteriorDetails.rearLibrary.clone(true);libraryExterior.name='main_3_library_rear_only';libraryExterior.position.z=0;libraryExterior.visible=false;scene.add(libraryExterior);
+ const buildingFloors=group(scene,'five_floor_library_cutaway');buildingFloors.visible=false;
+ const floorModel=buildLibraryFloors(buildingFloors,helpers);
+-let floorSelection=0,expanded=false,showFurniture=true,showSkylight=false;
+-function floorOffset(n){return (n-1)*(expanded?9.0:floorModel.height);}
+-function isFloorView(){return view==='floors'||view==='floorPlan';}
+-function syncFloorVisibility(){for(const f of floorModel.storeys){f.root.visible=floorSelection===0||f.info.n===floorSelection;f.root.position.y=floorOffset(f.info.n);f.furniture.visible=showFurniture;}floorModel.skylight.visible=showSkylight&&floorSelection===0&&!expanded;}
+-// All geometry and texture-free materials can be exported as portable GLB.
+-let mode='reading',pending=false,cooldown=false,view='exterior',progress=0,targetProgress=0,labelsOn=true,selected='B';
+-const descriptions={A:'24席概念容量。固定静音区始终保留安静阅读用途，桌椅与隔断不随B区转换。',B:'12席概念容量。分散桌组可汇成研讨桌；馆员确认后才演示布局改变。隔断属于待验证的声学设计假设。',C:'8席概念容量。特色馆藏阅读与资源入口衔接；保留无视觉采集的选择。',D:'8席概念容量。独立预约研讨室；既有预约不被其他小组的空间申请覆盖。'};
+-const labelPoints={A:new THREE.Vector3(-11,2.8,-8),B:new THREE.Vector3(11,2.8,-8),C:new THREE.Vector3(-11,2.4,9.5),D:new THREE.Vector3(11,2.4,9.5)};
+-for(const key of Object.keys(labelPoints)){const el=document.createElement('div');el.className='model-label';el.dataset.label=key;el.innerHTML='<b>'+key+' '+({A:'固定静音',B:'可转换学习',C:'特色馆藏',D:'预约研讨'}[key])+'</b>'; $('labelsLayer').append(el);}
+-function toast(text){$('toast').textContent=text;$('toast').style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').style.display='none',3000);}
+-function status(text,kind='normal'){$('status').textContent=text;$('status').dataset.kind=kind;}
+-function blockReason(){if($('objection').checked)return'邻近读者提出异议：本次不转换，请馆员进一步沟通。';if($('reserved').checked)return'B区已有有效预约：保护已有安排，本次不转换。';if(cooldown)return'当前处于600秒模拟冷却期，请先推进冷却时间。';return'';}
++
++const pilots=buildFloorPilots(floorModel.storeys,helpers);
++let floorSelection=0,expanded=false,showFurniture=true,showSkylight=false,view='exterior',proposalOn=false,labelsOn=true,renderDirty=true;
++const pilotStates=pilots.map(()=>({active:false,pending:false,cooldown:false,progress:0,target:0,objection:false,reserved:false,message:'选择本层方案，查看常态与目标用途。',kind:'normal'}));
++const current=()=>floorSelection?pilotStates[floorSelection-1]:null;
++const info=()=>floorSelection?PILOT_INFO[floorSelection-1]:null;
++function floorOffset(n){return (n-1)*(expanded?9:floorModel.height);}
++function isFloorView(){return ['floors','pilot','floorPlan'].includes(view);}
++function isArchitectureView(){return view==='exterior'||view==='library';}
++function syncFloorVisibility(){renderDirty=true;for(const f of floorModel.storeys){f.root.visible=!floorSelection||f.info.n===floorSelection;f.root.position.y=floorOffset(f.info.n);f.furniture.visible=showFurniture;for(const m of f.structural.children)if(m.name.includes('beam'))m.visible=(!proposalOn&&view!=='floorPlan')||!showFurniture;const p=pilots[f.info.n-1];p.root.visible=proposalOn&&showFurniture;for(const old of p.replaced)old.visible=!proposalOn;}floorModel.skylight.visible=showSkylight&&!floorSelection&&!expanded;}
++function toast(t){$('toast').textContent=t;$('toast').style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').style.display='none',3000);}
++function status(t,kind='normal'){const st=current();if(st){st.message=t;st.kind=kind;}$('status').textContent=t;$('status').dataset.kind=kind;}
++function blockReason(){const st=current();return !st?'请先选择一至五楼中的一个试点。':st.objection?'邻近读者有异议，停止本次变更，由馆员沟通。':st.reserved?'本次候选资源已有预约，保留原安排。':st.cooldown?'正在模拟冷却期，推进10分钟后可再申请。':'';}
+ function syncUI(){
+- $('approve').disabled=!pending;$('restore').disabled=mode!=='discussion';$('request').disabled=mode==='discussion';$('reading').classList.toggle('active',mode==='reading');$('advance').hidden=!cooldown;
+- const floorMode=isFloorView();$('floorBar').hidden=!floorMode;$('floorPanel').hidden=!floorMode;$('pilotPanel').hidden=floorMode||view==='exterior';$('pilotConditions').hidden=floorMode||view==='exterior';$('pilotZones').hidden=floorMode||view==='exterior';$('architecturePanel').hidden=view!=='exterior';
+- $('legend').style.display=view==='interior'||view==='top'?'block':'none';$('floorLegend').hidden=!floorMode;
+- document.querySelectorAll('[data-floor]').forEach(e=>{const active=Number(e.dataset.floor)===floorSelection;e.classList.toggle('active',active);e.setAttribute('aria-pressed',String(active));});
+- $('explode').textContent=expanded?'合拢楼层':'分层展开';$('explode').disabled=floorSelection!==0;$('skylight').disabled=floorSelection!==0||expanded;$('floorPilot').hidden=floorSelection!==3;
+- const selectedFloor=FLOOR_INFO.find(f=>f.n===floorSelection);
+- $('floorHeading').textContent=selectedFloor?['','一楼','二楼','三楼','四楼','五楼'][floorSelection]+' · '+selectedFloor.title:'五层整体剖切';
+- $('floorDescription').textContent=selectedFloor?selectedFloor.summary:'去除外墙和屋盖，直接查看一至五楼的柱梁、回廊、中庭与中央台阶。可点楼层按钮，也可点模型中的楼层。';
+- $('floorTags').textContent=selectedFloor?selectedFloor.tags.join(' · '):'点击1F—5F，单独查看该层内部；分层展开查看上下层关系。';
+- $('viewTitle').textContent=floorMode?$('floorHeading').textContent:view==='exterior'?'嘉庚主楼外观':pending?'研讨建议 · 等待确认':mode==='discussion'?'馆员确认后的研讨布局':cooldown?'恢复阅读 · 模拟冷却中':'柔性学习试点 · 阅读布局';
+- $('viewDescription').textContent=floorMode?(floorSelection===0?(expanded?'楼层已拉开，便于观察每一层。':'五层保持叠合，屋顶和外墙已移除。'):'其余楼层已隐藏；可以直接查看本层内部，并切换平面俯瞰。'):view==='exterior'?'依据漳州校区官方照片细化重檐、翘脊、架空支撑、白色竖向立面与连廊。':pending?'家具仍保持阅读布局；建议通过审核后才执行。':mode==='discussion'?'B区桌组汇合，概念隔断展开；A区与其他区域、主通道保持原有用途。':'52席方案试点示意；与整栋馆舍的楼层功能示意分别展示。';
++ const floorMode=isFloorView(),st=current(),p=info(),f=FLOOR_INFO.find(f=>f.n===floorSelection);
++ $('floorBar').hidden=!floorMode;$('floorPanel').hidden=!floorMode;$('pilotPanel').hidden=!floorMode||!proposalOn;$('pilotConditions').hidden=!floorMode||!proposalOn||!st;$('pilotZones').hidden=!floorMode||!proposalOn;$('architecturePanel').hidden=!isArchitectureView();
++ $('approve').disabled=!st?.pending;$('restore').disabled=!st?.active;$('request').disabled=!st||st.active;$('reading').disabled=!st;$('advance').hidden=!st?.cooldown;
++ $('reading').textContent=p?p.normal:'常态用途';$('request').textContent=p?'生成'+p.active+'建议':'选择楼层后生成建议';$('reading').classList.toggle('active',!!st&&!st.active);
++ $('objection').checked=!!st?.objection;$('reserved').checked=!!st?.reserved;$('status').textContent=st?st.message:'全馆方案总览：点击楼层，查看位置与转换流程。';$('status').dataset.kind=st?st.kind:'normal';
++ $('pilotHeading').textContent=p?p.n+'F · '+p.title:'一至五楼 · 分层试点';
++ $('pilotLocation').textContent=p?'拟议位置：'+p.location:'每层按用途制定方案；彩色边界为候选试点范围。';
++ $('pilotFacts').innerHTML=p?'<b>触发情境</b><p>'+p.trigger+'</p><b>方案动作</b><p>'+p.action+'</p><b>保护条件</b><p>'+p.protect+'</p><b>评估指标</b><p>'+p.metric+'</p><b>推进顺序</b><p>'+p.phase+'</p>':PILOT_INFO.map(q=>'<p><b>'+q.n+'F '+q.title+'</b><br>'+q.normal+' → '+q.active+'</p>').join('');
++ $('architectureHeading').textContent=view==='library'?'图书馆 · 馆舍与湖畔环境':'主一至主五 · 完整楼群';
++ $('architectureDescription').textContent=view==='library'?'保留主三后部馆舍及入口标识、平台、湖岸和绿化。湖畔全景、入口近景均可查看；点击馆舍进入内部剖切。':'主一、主二、主四、主五的纵深与主三完整纵深对齐。转到背面可看湖畔关系，点击中央主三进入图书馆。';
++ for(const id of ['libraryBack','lakeView','entryView','enterCutaway'])$(id).hidden=view!=='library';$('locateLibrary').hidden=view==='library';$('campusBack').hidden=view==='library';$('facadeFront').hidden=view==='library';
++ $('breadcrumb').textContent=floorMode?'校园楼群 › 主三背面图书馆 › '+(floorSelection?floorSelection+'F':'五层总览')+(proposalOn?' › 本层方案':' › 馆藏参照'):view==='library'?'校园楼群 › 主三背面图书馆与湖畔':'校园楼群 · 点主三进入图书馆';
++ $('legend').hidden=true;$('floorLegend').hidden=!floorMode;$('floorLegend').innerHTML='东上西下 / 北左南右 · 2025馆藏分区参照<br>'+(proposalOn?'彩色边界 = 拟议试点；桌椅数量与选址为示意':'柱梁与尺寸为示意 · 点击方案试点查看设计叠加');
++ document.querySelectorAll('[data-floor]').forEach(e=>{const a=+e.dataset.floor===floorSelection;e.classList.toggle('active',a);e.setAttribute('aria-pressed',String(a));});
++ $('explode').textContent=expanded?'合拢楼层':'分层展开';$('explode').disabled=!!floorSelection;$('skylight').disabled=!!floorSelection||expanded;$('floorPilot').hidden=!floorSelection;$('floorPilot').textContent=proposalOn?'查看本层馆藏参照':'叠加本层试点方案';
++ $('floorHeading').textContent=f?floorSelection+'F · '+f.title:'五层整体剖切';$('floorDescription').textContent=f?f.summary:'按2025版馆藏导览分别建立二至五楼；一楼仅概念示意。可点选楼层、展开或看骨架。';$('floorTags').textContent=f?f.tags.join(' · '):'从同一楼层模型切换剖切、方案、俯瞰';
++ $('collectionList').innerHTML=f?f.zones.map(z=>'<span style="border-left:3px solid '+z.color+'">'+z.label+'</span>').join(''):'选择楼层，查看馆藏与本层试点。';
++ $('viewTitle').textContent=floorMode?(proposalOn?(p?p.n+'F '+p.title+' · '+(st.active?p.active:st.pending?'等待确认':p.normal):'全馆五层方案总览'):$('floorHeading').textContent):view==='library'?'图书馆与湖畔平台':'嘉庚主楼群 · 完整纵深';
++ $('viewDescription').textContent=floorMode?(proposalOn?(p?p.action:'各层试点叠加于同一剖切模型，选一层可操作；候选位置需现场核验。'):'剖切与俯瞰使用同一楼层。馆藏参照和拟议设计可以切换对照。'):view==='library'?'湖面、平台、步行道、入口和馆舍组成完整场景。几何尺度与标识为展示示意。':'从楼与主三共用前后端纵深；背面湖畔可旋转查看。';
++ for(const id of ['interior','exterior','library','floors','top'])$(id).classList.toggle('active',id==='interior'?floorMode&&proposalOn&&view!=='floorPlan':id==='top'?view==='floorPlan':id==='floors'?floorMode&&!proposalOn&&view!=='floorPlan':id===view);
+ }
+-function applyTransforms(t){for(const item of moving){item.object.position.lerpVectors(item.read,item.discuss,t);item.object.rotation.y=item.readRot+(item.discussRot-item.readRot)*t;}partition.visible=t>.02;partition.scale.y=.2+.8*t;people.visible=t>.85;}
+ function setView(v){
+- if(v==='top'&&isFloorView())v='floorPlan';view=v;interior.visible=v==='interior'||v==='top';exterior.visible=v==='exterior';buildingFloors.visible=isFloorView();
+- for(const id of ['interior','exterior','floors','top'])$(id).classList.toggle('active',id===v||(id==='top'&&v==='floorPlan'));syncFloorVisibility();
+- if(v==='exterior'){camera.position.set(112,70,142);controls.target.set(0,20,1);}
+- else if(isFloorView()){
+-  const yy=floorSelection?floorOffset(floorSelection):expanded?17:9;
+-  if(v==='floorPlan'){camera.position.set(0,yy+79,.3);controls.target.set(0,yy,0);}
+-  else if(floorSelection){camera.position.set(44,yy+36,58);controls.target.set(0,yy+1.0,0);}
+-  else{camera.position.set(61,expanded?67:47,77);controls.target.set(0,expanded?18:10,0);}
+- }else if(v==='top'){camera.position.set(0,59,1);controls.target.set(0,0,0);}else{camera.position.set(38,35,43);controls.target.set(0,0,-1);}
++ if(v==='interior'||v==='pilot'){proposalOn=true;if(v==='interior'&&!floorSelection)floorSelection=3;v='pilot';}
++ else if(v==='floors')proposalOn=false;
++ else if(v==='top'){if(!floorSelection)floorSelection=3;v='floorPlan';}
++ view=v;interior.visible=false;exterior.visible=v==='exterior';libraryExterior.visible=v==='library';buildingFloors.visible=isFloorView();syncFloorVisibility();
++ if(v==='exterior'){camera.position.set(130,106,175);controls.target.set(0,16,-28);}
++ else if(v==='library'){camera.position.set(78,58,-125);controls.target.set(0,8,-26);}
++ else if(isFloorView()){const y=floorSelection?floorOffset(floorSelection):expanded?17:9;if(v==='floorPlan'){camera.position.set(0,y+93,.001);controls.target.set(0,y,0);}else if(floorSelection){camera.position.set(44,y+36,58);controls.target.set(0,y+1,0);}else{camera.position.set(61,expanded?67:47,77);controls.target.set(0,expanded?18:10,0);}}
+  controls.update();syncUI();
+ }
+-function setFloor(n){floorSelection=Number(n);if(!Number.isInteger(floorSelection)||floorSelection<0||floorSelection>5)floorSelection=0;setView(view==='floorPlan'?'floorPlan':'floors');}
+-$('interior').onclick=()=>setView('interior');$('exterior').onclick=()=>setView('exterior');$('floors').onclick=()=>{floorSelection=0;setView('floors');};$('top').onclick=()=>setView(isFloorView()?'floorPlan':'top');$('reset').onclick=()=>setView(view);
+-document.querySelectorAll('[data-floor]').forEach(el=>el.onclick=()=>setFloor(el.dataset.floor));
+-$('explode').onclick=()=>{expanded=!expanded;setView('floors');};
+-$('furniture').onchange=()=>{showFurniture=$('furniture').checked;syncFloorVisibility();};
+-$('skylight').onchange=()=>{showSkylight=$('skylight').checked;syncFloorVisibility();};
+-$('floorPilot').onclick=()=>setView('interior');
+-$('atriumView').onclick=()=>{floorSelection=0;expanded=false;setView('floors');camera.position.set(0,5.8,17.8);controls.target.set(0,10,-16);controls.update();};
+-$('facadeFront').onclick=()=>{setView('exterior');camera.position.set(0,31,154);controls.target.set(0,23,0);controls.update();};
+-$('roofDetail').onclick=()=>{setView('exterior');camera.position.set(39,62,49);controls.target.set(0,40,-3);controls.update();};
+-// Raycast only floor geometry; dragging rotates without unexpectedly selecting a floor.
+-const raycaster=new THREE.Raycaster();let pointerStart=null;
+-renderer.domElement.addEventListener('pointerdown',e=>{pointerStart={x:e.clientX,y:e.clientY};});
+-renderer.domElement.addEventListener('pointerup',e=>{if(!isFloorView()||!pointerStart||Math.hypot(e.clientX-pointerStart.x,e.clientY-pointerStart.y)>5)return;const r=renderer.domElement.getBoundingClientRect();raycaster.setFromCamera(new THREE.Vector2((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1),camera);const hits=raycaster.intersectObjects(floorModel.storeys.filter(f=>f.root.visible).map(f=>f.root),true);if(hits[0]){let o=hits[0].object;while(o&&!o.userData.floor)o=o.parent;if(o)setFloor(o.userData.floor);}});
+-$('labels').onclick=()=>{labelsOn=!labelsOn;$('labels').setAttribute('aria-pressed',String(labelsOn));};
+-$('reading').onclick=()=>{pending=false;mode='reading';cooldown=false;targetProgress=0;status('已重置为常态阅读的演示初始状态。');syncUI();};
+-$('request').onclick=()=>{const reason=blockReason();if(reason){pending=false;status(reason,'blocked');}else{pending=true;status('建议已生成：B区满足本次预设条件。馆员确认后，再演示桌组与隔断变化。','pending');}syncUI();};
+-$('approve').onclick=()=>{const reason=blockReason();if(reason){pending=false;status(reason,'blocked');syncUI();return;}if(!pending)return;pending=false;mode='discussion';targetProgress=1;status('馆员已确认这次模拟转换。家具动画用于说明设计，真实调整需要工作人员实施。');syncUI();};
+-$('restore').onclick=()=>{pending=false;mode='reading';cooldown=true;targetProgress=0;status('已模拟连续无人300秒：恢复阅读用途，并进入600秒冷却期。');syncUI();};
+-$('advance').onclick=()=>{cooldown=false;status('已推进模拟时钟600秒，冷却结束，可以再次提出研讨建议。');syncUI();};
+-for(const id of ['objection','reserved'])$(id).onchange=()=>{if(pending){pending=false;status('条件发生变化，旧建议已失效，请重新生成。','blocked');}else if(mode==='discussion'&&$(id).checked)status('研讨进行中出现新约束：请馆员接管现场安排；页面不会自动搬动家具。','blocked');syncUI();};
+-function selectZone(key){selected=key;$('zoneDetail').textContent=descriptions[key];document.querySelectorAll('[data-zone]').forEach(el=>el.classList.toggle('active',el.dataset.zone===key));document.querySelectorAll('[data-label]').forEach(el=>el.classList.toggle('selected',el.dataset.label===key));}
+-document.querySelectorAll('[data-zone]').forEach(el=>el.onclick=()=>selectZone(el.dataset.zone));
+-function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+-$('snapshot').onclick=()=>{renderer.render(scene,camera);renderer.domElement.toBlob(blob=>download(blob,isFloorView()?'嘉庚图书馆_'+(floorSelection?floorSelection+'F':'五层整体')+'_'+(expanded?'展开':'剖切')+'.png':'嘉庚2030_'+view+'_'+mode+'.png'),'image/png');};
+-function exportName(){return view==='exterior'?'嘉庚建筑意象.glb':isFloorView()?(floorSelection?'图书馆_'+floorSelection+'楼_空间剖切.glb':expanded?'图书馆_五层展开.glb':'图书馆_五层整体剖切.glb'):mode==='discussion'?'空间研讨配置.glb':'空间常态阅读.glb';}
+-async function exportGLB(){let root;if(view==='exterior')root=exterior;else if(isFloorView()){root=floorSelection?floorModel.storeys[floorSelection-1].root.clone(true):buildingFloors;if(floorSelection)root.position.y=0;}else root=interior;return await new GLTFExporter().parseAsync(root,{binary:true,onlyVisible:true});}
+-$('export').onclick=async()=>{try{$('export').disabled=true;const data=await exportGLB();download(new Blob([data],{type:'model/gltf-binary'}),exportName());toast('已导出当前三维模型');}catch(e){toast('导出失败：'+e.message);console.error(e);}finally{$('export').disabled=false;}};
+-function resize(){const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();}
+-new ResizeObserver(resize).observe(host);resize();selectZone('B');setView('exterior');applyTransforms(0);
+-const floorLabels=[];
+-for(const f of floorModel.storeys){const el=document.createElement('button');el.className='model-label floor-model-label';el.dataset.floorLabel=f.info.n;el.textContent=f.info.n+'F · '+f.info.title;el.onclick=()=>setFloor(f.info.n);$('labelsLayer').append(el);floorLabels.push({el,n:f.info.n});}
+-const functionLabels=[];for(let i=0;i<4;i++){const el=document.createElement('div');el.className='model-label function-label';$('labelsLayer').append(el);functionLabels.push(el);}
+-function positionLabel(el,pos,visible){const p=pos.clone().project(camera);el.style.left=((p.x*.5+.5)*host.clientWidth)+'px';el.style.top=((-p.y*.5+.5)*host.clientHeight)+'px';el.style.display=(visible&&labelsOn&&p.z<1&&Math.abs(p.x)<1.05&&Math.abs(p.y)<1.05)?'block':'none';}
+-let last=performance.now();function animate(now){const dt=Math.min((now-last)/1000,.08);last=now;if(Math.abs(targetProgress-progress)<.002)progress=targetProgress;else progress+=(targetProgress-progress)*Math.min(1,dt*2.8);applyTransforms(progress);controls.update();renderer.render(scene,camera);
+- for(const el of document.querySelectorAll('[data-label]'))positionLabel(el,labelPoints[el.dataset.label],view==='interior'||view==='top');
+- for(const l of floorLabels)positionLabel(l.el,new THREE.Vector3(-20.5,floorOffset(l.n)+1.25,20),isFloorView()&&(floorSelection===0||floorSelection===l.n));
+- const info=FLOOR_INFO.find(f=>f.n===floorSelection);
+- const anchors=({1:[[10,13],[-12,-7],[10,5],[12,-10]],2:[[-12,-9],[0,21],[12,11],[-6,0]],3:[[-12,-8],[0,21],[12,15],[12,3]],4:[[-12,-9],[12,21],[-12,21],[12,11]],5:[[0,21],[-12,-9],[12,0],[12,13]]})[floorSelection]||[[-12,-9],[12,-11],[-12,13],[12,7]];
+- for(let i=0;i<4;i++){if(info)functionLabels[i].textContent=info.tags[i];positionLabel(functionLabels[i],new THREE.Vector3(anchors[i][0],floorOffset(floorSelection)+2.5,anchors[i][1]),isFloorView()&&floorSelection>0&&showFurniture);}
+- requestAnimationFrame(animate);
+-}requestAnimationFrame(animate);
+-function focusB(){setView('interior');camera.position.set(24,19,15);controls.target.set(11,.4,-4);controls.update();}
+-function floorPickPoint(n){const r=host.getBoundingClientRect(),p=new THREE.Vector3(15,floorOffset(n)+.25,22).project(camera);return{x:r.left+(p.x*.5+.5)*r.width,y:r.top+(-p.y*.5+.5)*r.height};}
+-window.modelApp={setView,setFloor,exportGLB,exportName,focusB,getState:()=>({mode,pending,cooldown,view,progress,selected,floorSelection,expanded,showFurniture,showSkylight,visibleFloors:floorModel.storeys.filter(f=>f.root.visible).map(f=>f.info.n),floorHeights:floorModel.storeys.map(f=>f.root.position.y),floorObjects:floorModel.storeys.map(f=>({n:f.info.n,title:f.info.title,childCount:f.root.children.length,furnitureVisible:f.furniture.visible})),meshCount:renderer.info.render.triangles,roofFeatures:{curvedOrangeRoofs:exteriorDetails.roofGroups.length,photoGuided:true},ASeats:24,BSeats:12,CSeats:8,DSeats:8,movableTables:moving.map(m=>m.object.position.toArray()),quietZoneSignature:zoneA.children.map(m=>m.position.toArray()),routeSignature:interior.getObjectByName('main_route').position.toArray()})};
+-window.modelApp.floorPickPoint=floorPickPoint;
++function setFloor(n){floorSelection=Math.max(0,Math.min(5,Number(n)||0));setView(view==='floorPlan'&&floorSelection?'floorPlan':proposalOn?'pilot':'floors');}
++function goCamera(v,pos,target){setView(v);camera.position.set(...pos);controls.target.set(...target);controls.update();}
++for(const id of ['interior','exterior','library','top'])$(id).onclick=()=>setView(id);
++ $('floors').onclick=()=>{floorSelection=0;setView('floors');};$('reset').onclick=()=>setView(view);$('locateLibrary').onclick=()=>setView('library');$('enterCutaway').onclick=()=>{floorSelection=0;setView('floors');};
++ $('campusBack').onclick=()=>goCamera('exterior',[114,96,-190],[0,15,-45]);$('libraryBack').onclick=()=>goCamera('library',[0,23,-85],[0,14,-1]);$('lakeView').onclick=()=>goCamera('library',[52,22,-88],[0,10,-29]);$('entryView').onclick=()=>goCamera('library',[21,10,-44],[0,6,-22]);$('facadeFront').onclick=()=>goCamera('exterior',[0,40,192],[0,21,-12]);
++ $('roofDetail').onclick=()=>view==='library'?goCamera('library',[40,47,-54],[0,24,-8]):goCamera('exterior',[39,62,49],[0,40,-3]);
++ document.querySelectorAll('[data-floor]').forEach(el=>el.onclick=()=>setFloor(el.dataset.floor));$('explode').onclick=()=>{expanded=!expanded;setView(proposalOn?'pilot':'floors');};$('furniture').onchange=()=>{showFurniture=$('furniture').checked;syncFloorVisibility();};$('skylight').onchange=()=>{showSkylight=$('skylight').checked;syncFloorVisibility();};$('floorPilot').onclick=()=>setView(proposalOn?'floors':'pilot');
++ $('atriumView').onclick=()=>{floorSelection=0;expanded=false;goCamera('floors',[0,5.8,17.8],[0,10,-16]);};
++ $('reading').onclick=()=>{const st=current();if(!st)return;Object.assign(st,{active:false,pending:false,cooldown:false,target:0});status('已重置本层常态用途。此按钮为演示复位。');syncUI();};
++ $('pilotFocus').onclick=()=>{const q=info();if(!q)return;setView('pilot');renderDirty=true;const y=floorOffset(q.n),d=q.n===5?32:q.n===3?23:q.n===1?20:14;camera.position.set(q.x+d*.68,y+d*.76,q.z+d);controls.target.set(q.x,y+.8,q.z);controls.update();};
++ $('request').onclick=()=>{const st=current();if(!st)return;const reason=blockReason();st.pending=!reason;status(reason||'建议已生成：'+info().active+'。尚未执行，请馆员核对候选范围和安静要求。',reason?'blocked':'pending');syncUI();};
++ $('approve').onclick=()=>{const st=current();if(!st?.pending)return;const reason=blockReason();st.pending=false;if(reason)status(reason,'blocked');else{st.active=true;st.target=1;status('馆员已确认：'+info().active+'。'+(floorSelection===5?'仅显示静音提示，桌椅和有效预约保持不变。':'本次只演示新增试点设施；实际调整由工作人员实施。'));}syncUI();};
++ $('restore').onclick=()=>{const st=current();if(!st)return;Object.assign(st,{active:false,pending:false,cooldown:true,target:0});status('已模拟连续无人5分钟：恢复本层常态，并进入10分钟冷却期。');syncUI();};$('advance').onclick=()=>{const st=current();if(st){st.cooldown=false;status('已推进模拟时钟10分钟，可再次申请。');syncUI();}};
++ for(const id of ['objection','reserved'])$(id).onchange=()=>{const st=current();if(!st)return;st[id]=$(id).checked;if(st.pending){st.pending=false;status('条件改变，旧建议失效，需要重新核对。','blocked');}else if(st.active&&st[id])status('出现新约束：馆员接管，模型不会自动移动进行中的设施。','blocked');syncUI();};
++ $('labels').onclick=()=>{labelsOn=!labelsOn;$('labels').setAttribute('aria-pressed',String(labelsOn));};
++ const raycaster=new THREE.Raycaster();let pointerStart=null;renderer.domElement.addEventListener('pointerdown',e=>pointerStart={x:e.clientX,y:e.clientY});renderer.domElement.addEventListener('pointerup',e=>{if(!pointerStart||Math.hypot(e.clientX-pointerStart.x,e.clientY-pointerStart.y)>5)return;const r=renderer.domElement.getBoundingClientRect();raycaster.setFromCamera(new THREE.Vector2((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1),camera);if(isFloorView()){const hit=raycaster.intersectObjects(floorModel.storeys.filter(f=>f.root.visible).map(f=>f.root),true)[0];if(hit){let o=hit.object;while(o&&!o.userData.floor)o=o.parent;if(o)setFloor(o.userData.floor);}}else if(view==='exterior'){const hit=raycaster.intersectObject(exterior,true)[0];if(hit){let o=hit.object;while(o&&!o.userData.main3)o=o.parent;if(o)setView('library');}}else if(view==='library'){const hit=raycaster.intersectObject(libraryExterior,true)[0];if(hit&&!hit.object.name.includes('lake')&&!hit.object.name.includes('shore')){floorSelection=0;setView('floors');}}});
++ function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
++ function exportName(){return view==='exterior'?'嘉庚建筑意象.glb':view==='library'?'主三背面_图书馆外观.glb':proposalOn?(floorSelection?'图书馆_'+floorSelection+'楼_试点'+(current().active?'启用':'常态')+'.glb':'图书馆_五层试点总览.glb'):floorSelection?'图书馆_'+floorSelection+'楼_空间剖切.glb':expanded?'图书馆_五层展开.glb':'图书馆_五层整体剖切.glb';}
++ async function exportGLB(){let root=view==='exterior'?exterior:view==='library'?libraryExterior:floorSelection?floorModel.storeys[floorSelection-1].root.clone(true):buildingFloors;if(floorSelection&&isFloorView())root.position.y=0;return new GLTFExporter().parseAsync(root,{binary:true,onlyVisible:true});}
++ $('export').onclick=async()=>{try{$('export').disabled=true;download(new Blob([await exportGLB()],{type:'model/gltf-binary'}),exportName());toast('当前场景已导出');}catch(e){toast('导出失败：'+e.message);console.error(e);}finally{$('export').disabled=false;}};
++ $('snapshot').onclick=()=>{renderer.render(scene,camera);renderer.domElement.toBlob(b=>download(b,exportName().replace('.glb','.png')),'image/png');};
++ function resize(){renderDirty=true;renderer.setSize(host.clientWidth,host.clientHeight);camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();}new ResizeObserver(resize).observe(host);resize();setView('exterior');
++ const floorLabels=floorModel.storeys.map(f=>{const el=document.createElement('button');el.className='model-label floor-model-label';el.textContent=f.info.n+'F · '+f.info.title;el.onclick=()=>setFloor(f.info.n);$('labelsLayer').append(el);return {el,n:f.info.n};});
++ const functionLabels=Array.from({length:18},()=>{const el=document.createElement('div');el.className='model-label function-label';$('labelsLayer').append(el);return el;});
++ const pilotLabels=pilots.map(p=>{const el=document.createElement('button');el.className='model-label pilot-model-label';el.textContent=p.info.n+'F 拟议 · '+p.info.title;el.onclick=()=>{floorSelection=p.info.n;setView('pilot');};$('labelsLayer').append(el);return el;});
++ const main3Label=document.createElement('button');main3Label.className='model-label floor-model-label';main3Label.textContent='主三 · 进入背面图书馆';main3Label.onclick=()=>setView('library');$('labelsLayer').append(main3Label);
++ const directions=[['东区',0,-27],['北区',-22,0],['南区',22,0],['西区',0,26]].map(([text,x,z])=>{const el=document.createElement('div');el.className='model-label direction-label';el.textContent=text;$('labelsLayer').append(el);return {el,x,z};});
++ function positionLabel(el,pos,visible){const p=pos.project(camera);el.style.left=((p.x*.5+.5)*host.clientWidth)+'px';el.style.top=((-p.y*.5+.5)*host.clientHeight)+'px';el.style.display=visible&&labelsOn&&p.z<1&&Math.abs(p.x)<1.02&&Math.abs(p.y)<1.02?'block':'none';}
++ let last=performance.now();function animate(now){const dt=Math.min((now-last)/1000,.08);last=now;let animated=false;for(let i=0;i<pilots.length;i++){const st=pilotStates[i];if(st.progress!==st.target)animated=true;st.progress=Math.abs(st.target-st.progress)<.002?st.target:st.progress+(st.target-st.progress)*Math.min(1,dt*2.8);pilots[i].apply(st.progress);}const cameraChanged=controls.update();if(animated||cameraChanged||renderDirty){renderer.render(scene,camera);renderDirty=false;}for(const l of floorLabels)positionLabel(l.el,new THREE.Vector3(-20.5,floorOffset(l.n)+1.25,20),isFloorView()&&(!floorSelection||floorSelection===l.n));const f=FLOOR_INFO.find(f=>f.n===floorSelection);for(let i=0;i<functionLabels.length;i++){const zone=f?.zones[i];functionLabels[i].textContent=zone?.label||'';positionLabel(functionLabels[i],new THREE.Vector3(zone?.x||0,floorOffset(floorSelection)+2.5,zone?.z||0),isFloorView()&&floorSelection>0&&showFurniture&&!!zone);}for(let i=0;i<pilots.length;i++){const p=pilots[i].info;positionLabel(pilotLabels[i],new THREE.Vector3(p.x,floorOffset(p.n)+3.4,p.z),isFloorView()&&proposalOn&&showFurniture&&(!floorSelection||floorSelection===p.n));}for(const d of directions)positionLabel(d.el,new THREE.Vector3(d.x,floorOffset(floorSelection)+.4,d.z),isFloorView()&&!!floorSelection);positionLabel(main3Label,new THREE.Vector3(0,26,17),view==='exterior');requestAnimationFrame(animate);}requestAnimationFrame(animate);
++ function signature(root){const a=[];root.traverse(o=>{if(o.isMesh)a.push([o.name,...o.position.toArray(),...o.rotation.toArray().slice(0,3)]);});return a;}
++ window.modelApp={setView,setFloor,exportGLB,exportName,getState:()=>({view,proposalOn,floorSelection,expanded,showFurniture,showSkylight,visibleFloors:floorModel.storeys.filter(f=>f.root.visible).map(f=>f.info.n),floorHeights:floorModel.storeys.map(f=>f.root.position.y),mode:current()?.active?'active':'normal',pending:!!current()?.pending,cooldown:!!current()?.cooldown,progress:current()?.progress||0,pilotStates:pilotStates.map(s=>({...s})),pilotInfo:PILOT_INFO,movableTables:floorSelection?pilots[floorSelection-1].moving.map(m=>m.object.position.toArray()):[],protectedSignature:floorModel.storeys.map(f=>({n:f.info.n,structure:signature(f.structural),collections:signature(f.furniture)})),meshCount:renderer.info.render.triangles})};
++ window.modelApp.getArchitectureState=()=>({campusVisible:exterior.visible,libraryOnlyVisible:libraryExterior.visible,companions:exterior.children.filter(x=>x.name==='five_floor_companion_context').map(g=>({name:g.userData.building,extent:g.userData.longitudinalExtent})),main3Extent:[-68,23],environmentNames:libraryExterior.getObjectByName('library_lakeside_environment').children.map(m=>m.name),hasEntranceSign:!!libraryExterior.getObjectByName('library_entrance_name_sign')});
++ window.modelApp.floorPickPoint=n=>{const r=host.getBoundingClientRect(),p=new THREE.Vector3(15,floorOffset(n)+.25,19).project(camera);return{x:r.left+(p.x*.5+.5)*r.width,y:r.top+(-p.y*.5+.5)*r.height};};
