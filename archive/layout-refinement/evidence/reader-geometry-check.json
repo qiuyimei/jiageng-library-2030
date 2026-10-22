@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-18",
+  "checked_physical_model_chairs": 1052,
+  "perFloor": [
+    {
+      "floor": 1,
+      "physical_reading_chairs": 104,
+      "matched_book_racks": 0
+    },
+    {
+      "floor": 2,
+      "physical_reading_chairs": 208,
+      "matched_book_racks": 130
+    },
+    {
+      "floor": 3,
+      "physical_reading_chairs": 220,
+      "matched_book_racks": 130
+    },
+    {
+      "floor": 4,
+      "physical_reading_chairs": 208,
+      "matched_book_racks": 130
+    },
+    {
+      "floor": 5,
+      "physical_reading_chairs": 312,
+      "matched_book_racks": 80
+    }
+  ],
+  "arrangementChecks": [
+    {
+      "floor": 2,
+      "north_south_horizontal": true,
+      "bookcases_per_bay": 12,
+      "desks_each_side": 2,
+      "east_vertical_bookcases": 24,
+      "east_chairs_separated_from_rear_shelves": true,
+      "fifth_floor_south_keeps_exam_desks": false
+    },
+    {
+      "floor": 3,
+      "north_south_horizontal": true,
+      "bookcases_per_bay": 12,
+      "desks_each_side": 2,
+      "east_vertical_bookcases": 24,
+      "east_chairs_separated_from_rear_shelves": true,
+      "fifth_floor_south_keeps_exam_desks": false
+    },
+    {
+      "floor": 4,
+      "north_south_horizontal": true,
+      "bookcases_per_bay": 12,
+      "desks_each_side": 2,
+      "east_vertical_bookcases": 24,
+      "east_chairs_separated_from_rear_shelves": true,
+      "fifth_floor_south_keeps_exam_desks": false
+    },
+    {
+      "floor": 5,
+      "north_south_horizontal": true,
+      "bookcases_per_bay": 12,
+      "desks_each_side": 2,
+      "east_vertical_bookcases": 24,
+      "east_chairs_separated_from_rear_shelves": true,
+      "fifth_floor_south_keeps_exam_desks": true
+    }
+  ],
+  "scope": "三维实体阅览椅与新分层页面目录逐个核对；实际馆内座位清单、尺寸和浏览器尚未验收"
+}

@@ -1,0 +1,131 @@
+{
+  "archived_on": "2026-10-22",
+  "files": [
+    {
+      "source": "work/zhizuo_unified/revise_axis_materials.py",
+      "published": "archive/layout-refinement/scripts/revise_axis_materials.py",
+      "original_sha256": "58ac1d8ab5473d52e54109c48af49d4c56ac0ddf7a08352e9955d3376c65028f",
+      "published_sha256": "58ac1d8ab5473d52e54109c48af49d4c56ac0ddf7a08352e9955d3376c65028f",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/revise_floor_extent.py",
+      "published": "archive/layout-refinement/scripts/revise_floor_extent.py",
+      "original_sha256": "a2ef4c69467c0fbf33eb660070a345654a90aaee2625e3a279a268b078fe56ff",
+      "published_sha256": "a2ef4c69467c0fbf33eb660070a345654a90aaee2625e3a279a268b078fe56ff",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/revise_ground_rooms.py",
+      "published": "archive/layout-refinement/scripts/revise_ground_rooms.py",
+      "original_sha256": "89a9b8b36f5adc6715bea4aadd9fcd634db90019768767c0acd68afec2979d93",
+      "published_sha256": "89a9b8b36f5adc6715bea4aadd9fcd634db90019768767c0acd68afec2979d93",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/revise_rear_depth.py",
+      "published": "archive/layout-refinement/scripts/revise_rear_depth.py",
+      "original_sha256": "23a01bac46eb674588b59383978f8e017b3c75090c856f87324ad9dd98914753",
+      "published_sha256": "23a01bac46eb674588b59383978f8e017b3c75090c856f87324ad9dd98914753",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/revise_terminal_span.py",
+      "published": "archive/layout-refinement/scripts/revise_terminal_span.py",
+      "original_sha256": "36b36414a59ad92d980efa767209c137c519ac5afa6edcec440359a00670695b",
+      "published_sha256": "36b36414a59ad92d980efa767209c137c519ac5afa6edcec440359a00670695b",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/update_ground_facing_text.py",
+      "published": "archive/layout-refinement/scripts/update_ground_facing_text.py",
+      "original_sha256": "df825a335d1291516284c03aea8fa6525f698b666cd250850e68b7e8df15ce0c",
+      "published_sha256": "df825a335d1291516284c03aea8fa6525f698b666cd250850e68b7e8df15ce0c",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/finish_orientation_sources.py",
+      "published": "archive/layout-refinement/scripts/finish_orientation_sources.py",
+      "original_sha256": "850053b7cfa2d7e24c603a1082cd659a797fc73d6de74e1062b828ee7ccd6e07",
+      "published_sha256": "850053b7cfa2d7e24c603a1082cd659a797fc73d6de74e1062b828ee7ccd6e07",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/finish_compact_sources.py",
+      "published": "archive/layout-refinement/scripts/finish_compact_sources.py",
+      "original_sha256": "7ec4665cfb200663091587bf3024c6d3bcb066742947b887693a349a793a388e",
+      "published_sha256": "7ec4665cfb200663091587bf3024c6d3bcb066742947b887693a349a793a388e",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/prepare_collision_delivery.py",
+      "published": "archive/layout-refinement/scripts/prepare_collision_delivery.py",
+      "original_sha256": "01fbded9ba0ef4bdef8ee668ac5f6c920eece5229fa8a8b36a8e64610db61e22",
+      "published_sha256": "01fbded9ba0ef4bdef8ee668ac5f6c920eece5229fa8a8b36a8e64610db61e22",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/prepare_rear_review.py",
+      "published": "archive/layout-refinement/scripts/prepare_rear_review.py",
+      "original_sha256": "5fe529fcfbbbe52ecf8863087723b9a606c838beaea945efa7870005a8c186c4",
+      "published_sha256": "5fe529fcfbbbe52ecf8863087723b9a606c838beaea945efa7870005a8c186c4",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/final_core_camera.py",
+      "published": "archive/layout-refinement/scripts/final_core_camera.py",
+      "original_sha256": "43f5b2b4bb0e066d7caa7f0f1d9296fa64738ad642fc7fc9c72312d82f3e3bc1",
+      "published_sha256": "43f5b2b4bb0e066d7caa7f0f1d9296fa64738ad642fc7fc9c72312d82f3e3bc1",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/final_upper_evidence.py",
+      "published": "archive/layout-refinement/scripts/final_upper_evidence.py",
+      "original_sha256": "1bb64b32c0078ae21b95de9a3e1f8fb6ef162c350057814b23bf14070b24ca4d",
+      "published_sha256": "1bb64b32c0078ae21b95de9a3e1f8fb6ef162c350057814b23bf14070b24ca4d",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/upper-layout-check.json",
+      "published": "archive/layout-refinement/evidence/upper-layout-check.json",
+      "original_sha256": "ef5366702fe76b301b5a52115f87bf14a09945bb3f921bd7ecd02a8093709f64",
+      "published_sha256": "ef5366702fe76b301b5a52115f87bf14a09945bb3f921bd7ecd02a8093709f64",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/reader-geometry-check.json",
+      "published": "archive/layout-refinement/evidence/reader-geometry-check.json",
+      "original_sha256": "c44437749e07e25a90ff7f8b4c243c02fe0258b6dec75c1f3aa6515e3213a102",
+      "published_sha256": "c44437749e07e25a90ff7f8b4c243c02fe0258b6dec75c1f3aa6515e3213a102",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/reader-release-check.json",
+      "published": "archive/layout-refinement/evidence/reader-release-check.json",
+      "original_sha256": "74cff0507fdd33e44677d4eb0af8a73580652b86cfaf2c068a60263fbd27b784",
+      "published_sha256": "74cff0507fdd33e44677d4eb0af8a73580652b86cfaf2c068a60263fbd27b784",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/terminal-placement-check.json",
+      "published": "archive/layout-refinement/evidence/terminal-placement-check.json",
+      "original_sha256": "657cf0df3faa5f6f0e6e8d8ae11fbbdf85543f865d6fa40d0d3abb647726c730",
+      "published_sha256": "657cf0df3faa5f6f0e6e8d8ae11fbbdf85543f865d6fa40d0d3abb647726c730",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/layout-research-audit.json",
+      "published": "archive/layout-refinement/evidence/layout-research-audit.json",
+      "original_sha256": "d8d107c04ffd1a96163283b39eb9596edd9ec6589e4926c6c6ca3138bb457d01",
+      "published_sha256": "d8d107c04ffd1a96163283b39eb9596edd9ec6589e4926c6c6ca3138bb457d01",
+      "sanitized": false
+    },
+    {
+      "source": "work/zhizuo_unified/overlap-audit.json",
+      "published": "archive/layout-refinement/evidence/overlap-audit.json",
+      "original_sha256": "89c517162358b96054fb31f3091f9bb7d1c0f19d0642754f2f75fb75c556d759",
+      "published_sha256": "89c517162358b96054fb31f3091f9bb7d1c0f19d0642754f2f75fb75c556d759",
+      "sanitized": false
+    }
+  ]
+}

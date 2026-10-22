@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-18",
+  "reader_status_rules": {
+    "passed": 27,
+    "model_chairs": 1012,
+    "per_floor_model_chairs": {
+      "1": 104,
+      "2": 192,
+      "3": 212,
+      "4": 184,
+      "5": 320
+    },
+    "scope": "同源模型椅位与本机自主登记规则；不是实际全馆座位统计、跨设备同步或浏览器验收"
+  },
+  "reader_page_memory_events": {
+    "passed": 41,
+    "scope": "实际打包脚本的内存DOM和语音回调替身检查；非真实浏览器、麦克风或跨设备同步验收"
+  },
+  "physical_model_match": {
+    "date": "2026-10-18",
+    "checked_physical_model_chairs": 1012,
+    "perFloor": [
+      {
+        "floor": 1,
+        "physical_reading_chairs": 104,
+        "matched_book_racks": 0
+      },
+      {
+        "floor": 2,
+        "physical_reading_chairs": 192,
+        "matched_book_racks": 58
+      },
+      {
+        "floor": 3,
+        "physical_reading_chairs": 212,
+        "matched_book_racks": 58
+      },
+      {
+        "floor": 4,
+        "physical_reading_chairs": 184,
+        "matched_book_racks": 58
+      },
+      {
+        "floor": 5,
+        "physical_reading_chairs": 320,
+        "matched_book_racks": 40
+      }
+    ],
+    "arrangementChecks": [
+      {
+        "floor": 2,
+        "north_south_horizontal": true,
+        "bookcases_per_row": 4,
+        "desks_each_side": 2,
+        "east_vertical_bookcases": 16,
+        "east_chairs_separated_from_rear_shelves": true,
+        "fifth_floor_south_keeps_exam_desks": false
+      },
+      {
+        "floor": 3,
+        "north_south_horizontal": true,
+        "bookcases_per_row": 4,
+        "desks_each_side": 2,
+        "east_vertical_bookcases": 16,
+        "east_chairs_separated_from_rear_shelves": true,
+        "fifth_floor_south_keeps_exam_desks": false
+      },
+      {
+        "floor": 4,
+        "north_south_horizontal": true,
+        "bookcases_per_row": 4,
+        "desks_each_side": 2,
+        "east_vertical_bookcases": 16,
+        "east_chairs_separated_from_rear_shelves": true,
+        "fifth_floor_south_keeps_exam_desks": false
+      },
+      {
+        "floor": 5,
+        "north_south_horizontal": true,
+        "bookcases_per_row": 4,
+        "desks_each_side": 2,
+        "east_vertical_bookcases": 16,
+        "east_chairs_separated_from_rear_shelves": true,
+        "fifth_floor_south_keeps_exam_desks": true
+      }
+    ],
+    "scope": "三维实体阅览椅与新分层页面目录逐个核对；实际馆内座位清单、尺寸和浏览器尚未验收"
+  },
+  "hub": "00_打开查看.html",
+  "entry_pages": [
+    "Demo/建筑与五层展示.html",
+    "Demo/嘉庚知座.html",
+    "Demo/到座登记.html",
+    "Demo/规则与感知技术演示.html"
+  ],
+  "scope": "模型椅位非真实统计；读者申报非传感确认；本机保存非全馆共享；无浏览器验收",
+  "state_source": "主动登记或展示模式示例，未启用摄像头",
+  "ownership": "本机匿名标识仅演示本人操作，不是校内认证",
+  "expired_state": "unknown",
+  "evidence": "独立27项登记规则、41项新界面内存事件；同源模型实体交叉与通道检查；三张设计图及三张一楼几何图已人工查看",
+  "browser_checked": false
+}
