@@ -15,7 +15,9 @@ import {createSceneLighting,LIGHT_PRESETS} from './lighting.js';
 import {nextTourStop,usesPointPicking,canvasClickIntent} from './model-tour.js';
 import {EXPLODED_FLOOR_GAP,renderScale,explodedPose} from './model-presentation.js';
 import {seatReturnNavigation} from './seat-navigation.js';
+import {initModelHistory} from './model-history.js';
 const $=id=>document.getElementById(id);
+const historyPlayer=initModelHistory();
 const modelHash=(window.location?.hash||'').split('&')[0],returnToSeat=seatReturnNavigation(window.location?.hash);
 for(const id of ['returnSeatLink','wideReturnSeatLink'])if(returnToSeat){$(id).hidden=false;$(id).href=returnToSeat;}
 let data=makeData(Date.now()),selected=null,floor=0,expanded=false,view='campus',plan=null,linked=false;
@@ -153,7 +155,7 @@ function initModel(){
  }
  function setWide(on){wideExpanded=on;document.body.classList.toggle('model-wide',on);$('wideTools').hidden=!on;$('wideView').textContent=on?'收起画面':'展开画面';resize();}
  $('wideView').onclick=()=>setWide(!wideExpanded);$('wideExit').onclick=()=>setWide(false);
- window.addEventListener('keydown',e=>{if(e.code==='Escape'&&wideExpanded&&!walking)setWide(false);});
+ window.addEventListener('keydown',e=>{if(!historyPlayer.isOpen()&&e.code==='Escape'&&wideExpanded&&!walking)setWide(false);});
  for(const id of ['campus','rear','cut','top'])$(id).onclick=()=>{if(['cut','top'].includes(id))enterSeatView();if(id==='cut'){floor=0;expanded=true;}if(id==='campus'||id==='rear'){floor=0;expanded=false;}if(id==='top'&&!floor)floor=4;$('expand').checked=expanded;setView(id);};
  document.querySelectorAll('[data-floor]').forEach(b=>b.onclick=()=>{if(walking){placeWalker(Number(b.dataset.floor)||3);return;}enterSeatView();floor=Number(b.dataset.floor);expanded=!floor;$('expand').checked=expanded;setView(view==='top'?'top':'cut');});
  function showFacility(kind){
@@ -224,7 +226,7 @@ function initModel(){
  renderer.domElement.style.touchAction='none';
  const keyMove={KeyW:'forward',ArrowUp:'forward',KeyS:'back',ArrowDown:'back',KeyA:'left',ArrowLeft:'left',KeyD:'right',ArrowRight:'right'};
  window.addEventListener('keydown',e=>{
-  if(!walking)return;
+  if(!walking||historyPlayer.isOpen())return;
   if(e.code==='Escape'){e.preventDefault();stopWalk();return;}
   if(/INPUT|SELECT|TEXTAREA|BUTTON/.test(e.target?.tagName||''))return;
   if(keyMove[e.code]){e.preventDefault();held.add(keyMove[e.code]);}
@@ -296,7 +298,10 @@ function initModel(){
  const initialFacility=modelHash.match(/^#facility=(entrance|cafe|culture|periodicals)$/)?.[1];if(initialFacility)showFacility(initialFacility);
  let lastFrame=performance.now();
  function animate(){
-   const nowFrame=performance.now(),dt=Math.min(.05,Math.max(0,(nowFrame-lastFrame)/1000));lastFrame=nowFrame;tickWalk(dt);
+   const nowFrame=performance.now(),dt=Math.min(.05,Math.max(0,(nowFrame-lastFrame)/1000));lastFrame=nowFrame;
+   // 观看历史录屏时暂停三维重绘和漫游，避免两个画面同时消耗显卡。
+   if(historyPlayer.isOpen()){held.clear();lookDrag=null;requestAnimationFrame(animate);return;}
+   tickWalk(dt);
    const moved=walking?false:controls.update();refreshTourHint();if(moved||dirty){renderer.render(scene,camera);dirty=false;}
    const entries=[];
    if(['cut','top'].includes(view)&&labelOn){
@@ -326,4 +331,4 @@ try{initModel();}catch(error){
  setView=v=>{view=v;textPanel();};for(const id of ['campus','rear','cut','top'])$(id).onclick=()=>setView(id);document.querySelectorAll('[data-floor]').forEach(b=>b.onclick=()=>{floor=Number(b.dataset.floor);textPanel();});textPanel();
 }
 if(window.parent!==window)window.parent.postMessage({type:'zhizuo-ready'},'*');
-setInterval(()=>{compute(generated);textPanel();updateScene();},5000);
+setInterval(()=>{if(historyPlayer.isOpen())return;compute(generated);textPanel();updateScene();},5000);
