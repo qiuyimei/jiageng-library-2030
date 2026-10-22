@@ -1,16 +1,49 @@
+/* 中文学习注释副本  原始项目请见01目录
+主楼群、屋顶与后部图书馆建模；末尾转导出FLOOR_INFO和buildLibraryFloors，不是在这里训练视觉模型。
+*/
 import * as THREE from 'three';
 
 // Photo-guided geometry. Dimensions and internal locations are schematic.
-export function buildExterior(parent, H) {
+export 
+/* buildExterior
+职责：创建完整校园与后部馆舍
+输入：parent和H中的几何辅助函数
+结果：返回roofGroups/detailCount/rearLibrary/main3Parts
+注意：外观估计与照片参照，不用于工程；高部只作背景。 */
+function buildExterior(parent, H) {
  const {group,box,cylinder,material,plant}=H;
  parent.userData={description:'Photo-guided Zhangzhou campus Main Building 3, schematic dimensions; floors 6-12 are administrative context, not added library area',reference:'https://arch.xmu.edu.cn/info/1013/13073.htm'};
  const roofGroups=[];
- function line(name,pts,r,col,root=parent){const curve=new THREE.CatmullRomCurve3(pts.map(p=>new THREE.Vector3(...p)));const m=new THREE.Mesh(new THREE.TubeGeometry(curve,Math.max(10,Math.min(24,pts.length*2)),r,6,false),material(col));m.name=name;m.castShadow=true;root.add(m);return m;}
- function beam(root,name,a,b,w,col){const p=new THREE.Vector3(...a),q=new THREE.Vector3(...b);const m=new THREE.Mesh(new THREE.BoxGeometry(w,p.distanceTo(q),w),material(col));m.position.copy(p).add(q).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),q.clone().sub(p).normalize());m.name=name;m.castShadow=true;root.add(m);return m;}
- function roof(name,w,d,pitch,base,x,z,root=parent){
+ 
+/* line
+职责：沿曲线创建细管构件
+输入：点列pts、半径r、材质色与父节点
+结果：CatmullRomCurve3加TubeGeometry后加入对象树
+注意：用于檐口瓦纹等，不是结构或声学求解。 */
+function line(name,pts,r,col,root=parent){const curve=new THREE.CatmullRomCurve3(pts.map(p=>new THREE.Vector3(...p)));const m=new THREE.Mesh(new THREE.TubeGeometry(curve,Math.max(10,Math.min(24,pts.length*2)),r,6,false),material(col));m.name=name;m.castShadow=true;root.add(m);return m;}
+ 
+/* beam
+职责：用两点定义方向梁
+输入：起止a/b、宽w和颜色
+结果：按距离建Box，再用四元数对齐
+注意：两点重合时方向无意义，新增配置应检查长度。 */
+function beam(root,name,a,b,w,col){const p=new THREE.Vector3(...a),q=new THREE.Vector3(...b);const m=new THREE.Mesh(new THREE.BoxGeometry(w,p.distanceTo(q),w),material(col));m.position.copy(p).add(q).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),q.clone().sub(p).normalize());m.name=name;m.castShadow=true;root.add(m);return m;}
+ 
+/* roof
+职责：生成曲面屋盖与檐脊细节
+输入：宽深、坡高、基准位置与父组
+结果：两侧网格、瓦纹、翘檐、屋脊与支撑组合
+注意：嵌套height决定形态，材质DoubleSide不是实体厚度。 */
+function roof(name,w,d,pitch,base,x,z,root=parent){
   const g=group(root,name);g.position.set(x,base,z);roofGroups.push(g);
   const nx=36,nz=16;
-  function height(u,v){return pitch*Math.pow(1-v,.79)+1.55*Math.pow(Math.abs(u),9)*(.78+.22*v)+.32*v*v;}
+  
+/* height
+职责：计算屋面顶点高度
+输入：横向u与坡向v，以及pitch
+结果：返回高度标量供屋面与檐线使用
+注意：高次abs(u)主要强调端部上翘；不是实测屋面公式。 */
+function height(u,v){return pitch*Math.pow(1-v,.79)+1.55*Math.pow(Math.abs(u),9)*(.78+.22*v)+.32*v*v;}
   for(const side of [-1,1]){
    const arr=[],uv=[],ind=[];
    for(let i=0;i<=nx;i++)for(let j=0;j<=nz;j++){const u=i/nx*2-1,v=j/nz;arr.push(u*w/2,height(u,v),side*v*d/2);uv.push(i/nx,j/nz);}

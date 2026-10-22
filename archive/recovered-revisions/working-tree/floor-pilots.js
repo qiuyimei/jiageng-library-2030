@@ -1,3 +1,6 @@
+/* 中文学习注释副本  原始项目请见01目录
+五层PILOT_INFO服务设计配置，以及新增设施和常态启用位置。p.apply箭头函数完成插值与提示对象可见性。
+*/
 import * as THREE from 'three';
 export const PILOT_INFO=[
  {n:1,title:'服务导览与高峰分流',location:'服务层候选区；一楼位置待现场核验',x:0,z:4,w:14,d:9,color:'#378a9a',normal:'集中咨询',active:'导览 / 咨询分流',trigger:'模拟咨询排队6人，启用第二个引导点。',action:'两台新增移动导览台分开，分别承接找书与咨询。排队线保持在候选区内。',protect:'不改变借阅总台、密集书库或出入口；现场核对平面后再选址。',metric:'排队等待、路线完成率、人工介入次数',phase:'第二阶段：先核对一楼服务平面'},
@@ -6,9 +9,21 @@ export const PILOT_INFO=[
  {n:4,title:'学科检索与项目协作',location:'南侧技术类馆藏旁阅读边缘候选位',x:12,z:17,w:5,d:2.6,color:'#837ea5',normal:'个人检索',active:'项目检索协作',trigger:'模拟课程小组需要建筑、计算机等跨类资料。',action:'新增检索小桌并拢，资源屏由单主题切换为项目清单；保持无声协作。',protect:'J/K与工程技术馆藏、东侧文化交流功能及通道；讨论仍需预约房间。',metric:'检索任务成功率、学科资源访问、馆员反馈',phase:'第三阶段：联合学科馆员完善资源清单'},
  {n:5,title:'安静备考与预约保护',location:'东侧备考联盟；保留原有桌椅布局',x:0,z:-14,w:27,d:15,color:'#78965e',normal:'固定安静备考',active:'静音席位引导',trigger:'模拟备考高峰，显示空闲候选席位及预约保护。',action:'只开启桌边无声提示：绿色为本次可选，金色为有效预约；不移动备考桌椅。',protect:'备考用途、有效预约、原有桌椅与安静环境；五楼不转换为研讨空间。',metric:'找座耗时、预约冲突、安静满意度',phase:'第二阶段：先做席位信息提示'}
 ];
-export function buildFloorPilots(storeys,H){
+export 
+/* buildFloorPilots
+职责：为每层添加候选试点
+输入：storeys、H与PILOT_INFO
+结果：返回pilots数组和各层apply方法
+注意：proposal:true/surveyed:false；三楼replaced有可见性替换。 */
+function buildFloorPilots(storeys,H){
  const {group,box,table,chair}=H;const pilots=[];
- function move(p,obj,x,z,tx,tz,rot=0,tr=rot){obj.position.set(x,0,z);obj.rotation.y=rot;p.moving.push({object:obj,read:new THREE.Vector3(x,0,z),active:new THREE.Vector3(tx,0,tz),readRot:rot,activeRot:tr});}
+ 
+/* move
+职责：保存单个设施两种布局
+输入：对象、常态/目标X Z与角度
+结果：将初始姿态设为常态，追加到p.moving
+注意：所有坐标相对该层组；椅子和展板也在moving里。 */
+function move(p,obj,x,z,tx,tz,rot=0,tr=rot){obj.position.set(x,0,z);obj.rotation.y=rot;p.moving.push({object:obj,read:new THREE.Vector3(x,0,z),active:new THREE.Vector3(tx,0,tz),readRot:rot,activeRot:tr});}
  for(const info of PILOT_INFO){const floor=storeys[info.n-1],root=group(floor.root,'proposed_floor_'+info.n+'_pilot');root.visible=false;root.userData={proposal:true,surveyed:false,title:info.title,location:info.location};const p={info,root,moving:[],activeObjects:[],replaced:[]};
   box(root,'proposed_candidate_zone',info.w,.026,info.d,info.x,.225,info.z,info.color,{transparent:true,opacity:.28});
   for(const dz of [-info.d/2,info.d/2])box(root,'proposed_zone_border',info.w,.026,.08,info.x,.24,info.z+dz,info.color);

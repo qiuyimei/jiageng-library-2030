@@ -1,3 +1,6 @@
+/* 中文学习注释副本  原始项目请见01目录
+FLOOR_INFO、馆藏分区、楼板轮廓、中庭、结构示意和家具。z箭头函数只帮助生成区域记录。
+*/
 import * as THREE from 'three';
 export const LAYOUT_REFERENCE='https://library.xujc.com/2025/0901/c4536a161543/page.htm';
 // Local coordinates follow the guide: east at the top (-Z), north on the left (-X).
@@ -15,9 +18,21 @@ export const FLOOR_INFO=[
   z('备考联盟区',0,-14,27,15,'#a9bc8b','study'),z('报纸',-12,-3.5,8,2,'#c9be68'),z('现刊',-12,1,8,5,'#d7c757'),z('2019—2024 过刊',-12,6.5,8,5,'#83b7ac'),z('外文原版书 YY/YW',-12,13,8,6,'#759b84'),z('2013—2018 过刊',-5,20,9,3,'#c8966c'),z('2015年至今过报',5,20,9,3,'#84b7c7')]}
 ];
 
-export function buildLibraryFloors(parent,H){
+export 
+/* buildLibraryFloors
+职责：创建五层内部与结构示意
+输入：parent、H、FLOOR_INFO
+结果：返回storeys、height=4.8与可选skylight
+注意：楼层数组顺序与n-1关联，首层平面未核对。 */
+function buildLibraryFloors(parent,H){
  const {group,box,cylinder,material,chair,table}=H,height=4.8,storeys=[];
- function slab(root,info){
+ 
+/* slab
+职责：按楼层轮廓创建楼板与中庭洞口
+输入：楼层info及root
+结果：Shape与holes拉伸为楼板Mesh
+注意：轮廓和洞口为示意，没有导入CAD或结构计算。 */
+function slab(root,info){
   const shape=new THREE.Shape();let pts=[[-18,-22],[18,-22],[18,20],[11,20],[11,22],[-11,22],[-11,20],[-18,20]];
   if(info.n===4)pts=[[-18,-22],[-11,-22],[-11,-23],[-6,-23],[-6,-25],[6,-25],[6,-23],[11,-23],[11,-22],[18,-22],[18,22],[-18,22]];
   if(info.n===5)pts=[[-18,-20],[-14,-20],[-14,-22],[-7,-22],[-7,-24],[7,-24],[7,-22],[14,-22],[14,-20],[18,-20],[18,22],[6,22],[6,24],[-6,24],[-6,22],[-18,22]];
@@ -25,9 +40,27 @@ export function buildLibraryFloors(parent,H){
   if(info.n>1){const back=({2:-17,3:-11,4:-7,5:-5})[info.n],front=16,w=6.1;const hole=new THREE.Path();hole.moveTo(-w,-back);hole.lineTo(w,-back);hole.lineTo(w,-front);hole.lineTo(-w,-front);hole.closePath();shape.holes.push(hole);}
   const geo=new THREE.ExtrudeGeometry(shape,{depth:.25,bevelEnabled:false});geo.rotateX(-Math.PI/2);const mesh=new THREE.Mesh(geo,material('#e9e4d7'));mesh.position.y=-.1;mesh.name='guide_outline_floor_slab';mesh.receiveShadow=true;root.add(mesh);
  }
- function rail(root,x,z,w,d){box(root,'atrium_rail_top',w,.065,d,x,1.15,z,'#57746a');box(root,'atrium_rail_lower',w,.035,d,x,.65,z,'#688177');}
- function rack(root,x,z,w=3,rot=0){const r=group(root,'guide_book_rack');r.position.set(x,0,z);r.rotation.y=rot;box(r,'rack_back',w,2.15,.08,0,1.22,-.28,'#bca47f');for(const xx of [-w/2,w/2])box(r,'rack_upright',.08,2.15,.62,xx,1.22,0,'#c7b78e');for(let row=0;row<4;row++){const yy=.23+row*.51;box(r,'shelf',w,.06,.64,0,yy,0,'#baa782');for(let col=0;col<5;col++)box(r,'book_cluster',w/5-.03,.31,.37,-w*.4+col*w/5,yy+.20,.03,['#789587','#ba9c70','#8faab5','#bc8775','#9d99b0'][(row+col)%5]);}return r;}
- function furnishZone(root,zone){const g=group(root,'guide_zone_'+zone.label);g.userData.zone=zone.label;box(g,'guide_function_tint',zone.w,.032,zone.d,zone.x,.18,zone.z,zone.color,{transparent:true,opacity:.55});
+ 
+/* rail
+职责：创建栏杆横向构件
+输入：位置与宽深
+结果：加入上横杆与下横杆
+注意：栏杆示意不能当实际高度或安全规范证明。 */
+function rail(root,x,z,w,d){box(root,'atrium_rail_top',w,.065,d,x,1.15,z,'#57746a');box(root,'atrium_rail_lower',w,.035,d,x,.65,z,'#688177');}
+ 
+/* rack
+职责：组合展示书架
+输入：位置、宽度与旋转
+结果：背板立柱层板及彩色书组，返回组
+注意：书数与图书真实条目不对应，便于看分区。 */
+function rack(root,x,z,w=3,rot=0){const r=group(root,'guide_book_rack');r.position.set(x,0,z);r.rotation.y=rot;box(r,'rack_back',w,2.15,.08,0,1.22,-.28,'#bca47f');for(const xx of [-w/2,w/2])box(r,'rack_upright',.08,2.15,.62,xx,1.22,0,'#c7b78e');for(let row=0;row<4;row++){const yy=.23+row*.51;box(r,'shelf',w,.06,.64,0,yy,0,'#baa782');for(let col=0;col<5;col++)box(r,'book_cluster',w/5-.03,.31,.37,-w*.4+col*w/5,yy+.20,.03,['#789587','#ba9c70','#8faab5','#bc8775','#9d99b0'][(row+col)%5]);}return r;}
+ 
+/* furnishZone
+职责：按功能区类型填充示意设施
+输入：zone中的kind、边界与位置
+结果：创建色块、书架或学习/展览/服务对象
+注意：自动排数不是现场容量；未知kind走服务示意分支。 */
+function furnishZone(root,zone){const g=group(root,'guide_zone_'+zone.label);g.userData.zone=zone.label;box(g,'guide_function_tint',zone.w,.032,zone.d,zone.x,.18,zone.z,zone.color,{transparent:true,opacity:.55});
   if(zone.kind==='books'){
    if(zone.w<4){for(let k=0;k<Math.max(1,Math.floor(zone.d/3));k++)rack(g,zone.x,zone.z+(k-(Math.max(1,Math.floor(zone.d/3))-1)/2)*2.5,Math.min(2.9,zone.w-.5));}
    else{const rows=Math.max(1,Math.floor(zone.d/3.3)),cols=zone.w>12?4:zone.w>7?2:1;for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)rack(g,zone.x+(c-(cols-1)/2)*Math.min(3.6,zone.w/cols),zone.z+(r-(rows-1)/2)*2.6,Math.min(2.9,zone.w/cols-.4));}

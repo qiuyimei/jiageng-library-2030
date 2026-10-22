@@ -1,0 +1,88 @@
+{
+  "id": "R08",
+  "title": "三维源码注释学习版",
+  "source_fingerprint": "e2c800bafd537997ed919bc905726cd399b79c5b98907fd1b62500c95655225a",
+  "source_locations": [
+    "outputs/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示",
+    "work/final_integration_20261021/原仓库工作区备份/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示",
+    "work/manual_project/build_checks/annotated/src",
+    "outputs/01_本人自存完整包.zip!/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示",
+    "outputs/03_独立源码学习包.zip!/独立源码学习包/04_中文注释源码/三维展示",
+    "outputs/11_嘉庚知座/01_嘉庚知座_本人完整保留包.zip!/本人保留/旧版归档/01_本人自存完整包.zip!/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示",
+    "outputs/11_嘉庚知座/本人保留/旧版归档/01_本人自存完整包.zip!/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示"
+  ],
+  "files": [
+    {
+      "path": "architecture.js",
+      "original_sha256": "3d9eaada6690c1311eaf36489f5599a34f50f7282aab4288ea49ba9c6b7ba69f",
+      "published_sha256": "3d9eaada6690c1311eaf36489f5599a34f50f7282aab4288ea49ba9c6b7ba69f",
+      "source": "outputs/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示/architecture.js",
+      "sanitized": false
+    },
+    {
+      "path": "build.cjs",
+      "original_sha256": "8672136fda10358029ae2a28059a1f01d1140bf03d0ffe022ebcd25b03cb06ca",
+      "published_sha256": "8672136fda10358029ae2a28059a1f01d1140bf03d0ffe022ebcd25b03cb06ca",
+      "source": "outputs/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示/build.cjs",
+      "sanitized": false
+    },
+    {
+      "path": "floor-pilots.js",
+      "original_sha256": "9ec9cb42aaf157cc8a622db07c8e1f36b9e73fb49b9efb9d93c61cd17d6ed4f8",
+      "published_sha256": "9ec9cb42aaf157cc8a622db07c8e1f36b9e73fb49b9efb9d93c61cd17d6ed4f8",
+      "source": "outputs/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示/floor-pilots.js",
+      "sanitized": false
+    },
+    {
+      "path": "library-environment.js",
+      "original_sha256": "5a10a6c67cce37f6c65860f01a8c34bffbb729b272ea96254e950effd485c6cb",
+      "published_sha256": "5a10a6c67cce37f6c65860f01a8c34bffbb729b272ea96254e950effd485c6cb",
+      "source": "outputs/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示/library-environment.js",
+      "sanitized": false
+    },
+    {
+      "path": "library-layout.js",
+      "original_sha256": "0a5929ccb1a9651d975247f71162f0523e6cd268896e5e850a5078ae81a2035d",
+      "published_sha256": "0a5929ccb1a9651d975247f71162f0523e6cd268896e5e850a5078ae81a2035d",
+      "source": "outputs/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示/library-layout.js",
+      "sanitized": false
+    },
+    {
+      "path": "package.json",
+      "original_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "published_sha256": "0e27d2e5416b84f23ab91b859e821883629b9de7fd9f69dec43700e37bcb50a1",
+      "source": "outputs/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示/package.json",
+      "sanitized": false
+    },
+    {
+      "path": "scene.js",
+      "original_sha256": "fc59ecff3fd8c972322efde57e3df4a2a8b723001ad9b4c34b739d67411863a0",
+      "published_sha256": "fc59ecff3fd8c972322efde57e3df4a2a8b723001ad9b4c34b739d67411863a0",
+      "source": "outputs/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示/scene.js",
+      "sanitized": false
+    },
+    {
+      "path": "viewer-template.html",
+      "original_sha256": "e079f9c3783cdc5d42ad8115084566e5bb0e066344a7c89cc8f7116150c01b8c",
+      "published_sha256": "e079f9c3783cdc5d42ad8115084566e5bb0e066344a7c89cc8f7116150c01b8c",
+      "source": "outputs/08_本人学习与答辩资料/独立源码学习包/04_中文注释源码/三维展示/viewer-template.html",
+      "sanitized": false
+    }
+  ],
+  "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
+  "archived_on": "2026-10-22",
+  "file_changes_from_previous_archive_checkpoint": {
+    "added": [],
+    "removed": [],
+    "modified": [
+      "architecture.js",
+      "build.cjs",
+      "floor-pilots.js",
+      "library-environment.js",
+      "library-layout.js",
+      "scene.js",
+      "viewer-template.html"
+    ]
+  },
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+}
