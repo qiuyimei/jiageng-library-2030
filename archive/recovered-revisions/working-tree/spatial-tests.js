@@ -12,7 +12,7 @@ test('60座位平面与三维同源、各层坐标不重复',()=>{
    assert.equal(new Set(seats.map(s=>seatLabel(s))).size,12);for(const s of seats){const p=seatPosition(s);assert.ok(seatLabel(s).startsWith(seatRegionAt(p.x,p.z,f)));}if(f>1)assert.deepEqual([...new Set(seats.map(s=>seatLabel(s)[0]))].sort(),['东','北','南'].sort());assert.equal(seats[0].id,'S'+f+'-01');
    const bounds=floorBounds(f);assert.equal(bounds.left,-bounds.right,'以前台x=0为轴，左右必须等宽');assert.equal(bounds.left,floorBounds(1).left);assert.equal(bounds.right,floorBounds(1).right);
    for(const s of seats){const p=seatPosition(s);assert.ok((Math.abs(p.x)>6.1||f===5&&p.z<-5)&&p.x>bounds.left&&p.x<bounds.right);assert.deepEqual({x:s.x,y:s.y},mapPosition(s));}
-   if(f>1){const wc=upperFacilities(f).toilets.find(t=>t.x<0);assert.equal(wc.x,GROUND_LAYOUT.toilet.x);assert.equal(wc.z,GROUND_LAYOUT.toilet.z);}
+   if(f>1){const wc=upperFacilities(f).toilets.find(t=>t.x<0);assert.ok(Math.abs((wc.x-wc.w/2)-(GROUND_LAYOUT.toilet.x-GROUND_LAYOUT.toilet.w/2))<.02);assert.ok(Math.abs((wc.z+wc.d/2)-(GROUND_LAYOUT.toilet.z+GROUND_LAYOUT.toilet.d/2))<.02);}
  }
 });
 test('五层展开只改变高度，编号与平面位置保留',()=>{

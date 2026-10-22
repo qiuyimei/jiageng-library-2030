@@ -1,0 +1,318 @@
+{
+  "id": "R13",
+  "title": "统一方案中间交付源码",
+  "source_fingerprint": "26ee718e604eb791d76ce18810ade661d5d12fd901c21aa66d64804ce2597529",
+  "source_locations": [
+    "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包",
+    "work/material_archive_20261019/01_嘉庚知座_本人完整包_统一方案_04.zip!/本人保留/代码包",
+    "work/material_archive_20261019/01_嘉庚知座_本人完整包_统一方案_05.zip!/本人保留/代码包",
+    "work/material_archive_20261019/01_嘉庚知座_本人完整包_统一方案_06.zip!/本人保留/代码包",
+    "work/material_archive_20261019/01_嘉庚知座_本人完整包_统一方案_07.zip!/本人保留/代码包",
+    "work/material_archive_20261019/01_嘉庚知座_本人完整包_统一方案_40页更新前.zip!/本人保留/代码包",
+    "work/material_archive_20261019/01_嘉庚知座_本人完整包_统一方案_40页更新前_02.zip!/本人保留/代码包",
+    "work/material_archive_20261019/01_嘉庚知座_本人完整包_统一方案_40页更新前_03.zip!/本人保留/代码包",
+    "work/material_archive_20261019/01_嘉庚知座_本人完整包_统一方案_40页更新前_04.zip!/本人保留/代码包",
+    "work/material_archive_20261019/01_嘉庚知座_本人完整包_统一方案_40页更新前_05.zip!/本人保留/代码包",
+    "work/material_archive_20261021/01_嘉庚知座_本人完整包_统一方案.zip!/本人保留/代码包",
+    "work/material_archive_20261021/01_嘉庚知座_本人完整包_统一方案_2.zip!/本人保留/代码包",
+    "work/material_archive_20261021/01_嘉庚知座_本人完整包_统一方案_3.zip!/本人保留/代码包",
+    "work/material_archive_20261021/01_嘉庚知座_本人完整包_统一方案_4.zip!/本人保留/代码包"
+  ],
+  "files": [
+    {
+      "path": "app.js",
+      "original_sha256": "315d4066b4232a57f283a117ce50170fe22381ec9032672a6f534a4cbfbdef87",
+      "published_sha256": "315d4066b4232a57f283a117ce50170fe22381ec9032672a6f534a4cbfbdef87",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/app.js",
+      "sanitized": false
+    },
+    {
+      "path": "architecture.js",
+      "original_sha256": "6a53910030dc235c3349127ca99205e9aa74e54178719c742a6ed14d8c3c6110",
+      "published_sha256": "6a53910030dc235c3349127ca99205e9aa74e54178719c742a6ed14d8c3c6110",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/architecture.js",
+      "sanitized": false
+    },
+    {
+      "path": "build.cjs",
+      "original_sha256": "f6c263311bf7487033834a2435e2a2ad1e1b819abe261f369a6a81276fab590c",
+      "published_sha256": "f6c263311bf7487033834a2435e2a2ad1e1b819abe261f369a6a81276fab590c",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/build.cjs",
+      "sanitized": false
+    },
+    {
+      "path": "data.js",
+      "original_sha256": "317cc224ac974d0d12c6668883da8e4a276325354761f361309a60c841b5e45e",
+      "published_sha256": "317cc224ac974d0d12c6668883da8e4a276325354761f361309a60c841b5e45e",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/data.js",
+      "sanitized": false
+    },
+    {
+      "path": "download_model.py",
+      "original_sha256": "7ae4056c3795fa5af0d518d8d3225f7558478bf5f8a10df4f540e2bd0f123cd3",
+      "published_sha256": "7ae4056c3795fa5af0d518d8d3225f7558478bf5f8a10df4f540e2bd0f123cd3",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/download_model.py",
+      "sanitized": false
+    },
+    {
+      "path": "engine.js",
+      "original_sha256": "26350129d7e603a158f1162bd7481cb2e430d0b8fed08c7da6d3bf783baf33fd",
+      "published_sha256": "26350129d7e603a158f1162bd7481cb2e430d0b8fed08c7da6d3bf783baf33fd",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/engine.js",
+      "sanitized": false
+    },
+    {
+      "path": "export-scene.cjs",
+      "original_sha256": "4a472e1347a94b1e4143854132dc7e3e24780de327afd1483c7c013bfb64d13d",
+      "published_sha256": "4a472e1347a94b1e4143854132dc7e3e24780de327afd1483c7c013bfb64d13d",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/export-scene.cjs",
+      "sanitized": false
+    },
+    {
+      "path": "export_states.js",
+      "original_sha256": "b31d71b55c6e27c1bc81ab332409a5afe585746a099e799b6ebb13ecda3a29ac",
+      "published_sha256": "b31d71b55c6e27c1bc81ab332409a5afe585746a099e799b6ebb13ecda3a29ac",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/export_states.js",
+      "sanitized": false
+    },
+    {
+      "path": "fixtures/blank-output.json",
+      "original_sha256": "5940da41156ad33d039accb0091c926afe4e9112218ed4cb4fe88a5bbe2b2e2a",
+      "published_sha256": "5940da41156ad33d039accb0091c926afe4e9112218ed4cb4fe88a5bbe2b2e2a",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/fixtures/blank-output.json",
+      "sanitized": false
+    },
+    {
+      "path": "fixtures/regions.json",
+      "original_sha256": "2949fef4658bb7bed90e7a500ca6083fa91791582266a82ae0e4959c8762483d",
+      "published_sha256": "2949fef4658bb7bed90e7a500ca6083fa91791582266a82ae0e4959c8762483d",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/fixtures/regions.json",
+      "sanitized": false
+    },
+    {
+      "path": "layout-walk-tests.js",
+      "original_sha256": "68ba5de4362ebf8c84450d71b076f0f221f182f94a29b5d72f5948a8a74b0072",
+      "published_sha256": "68ba5de4362ebf8c84450d71b076f0f221f182f94a29b5d72f5948a8a74b0072",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/layout-walk-tests.js",
+      "sanitized": false
+    },
+    {
+      "path": "library-environment.js",
+      "original_sha256": "a2f611dea6b001981cab557d223152523cb4eaa4ed0781953d78ba8566abba1e",
+      "published_sha256": "a2f611dea6b001981cab557d223152523cb4eaa4ed0781953d78ba8566abba1e",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/library-environment.js",
+      "sanitized": false
+    },
+    {
+      "path": "library-layout.js",
+      "original_sha256": "8fad3069ea50620502649ac67582ab99dc40c08342165bbad4465f1e2021514d",
+      "published_sha256": "8fad3069ea50620502649ac67582ab99dc40c08342165bbad4465f1e2021514d",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/library-layout.js",
+      "sanitized": false
+    },
+    {
+      "path": "lighting.js",
+      "original_sha256": "e11dad8a93e7c6515253b3c30f37705da27b316b0a972fc775ddbce3cc318745",
+      "published_sha256": "e11dad8a93e7c6515253b3c30f37705da27b316b0a972fc775ddbce3cc318745",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/lighting.js",
+      "sanitized": false
+    },
+    {
+      "path": "model-helpers.js",
+      "original_sha256": "fe0a24275dc2d22a6578597bc6ee818a56bb5329c548466c260cd1e588e5825b",
+      "published_sha256": "fe0a24275dc2d22a6578597bc6ee818a56bb5329c548466c260cd1e588e5825b",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/model-helpers.js",
+      "sanitized": false
+    },
+    {
+      "path": "model-template.html",
+      "original_sha256": "441c77c7c9d97b41df87b873987420c1a75cf0c66729066e375c7870105f01e9",
+      "published_sha256": "441c77c7c9d97b41df87b873987420c1a75cf0c66729066e375c7870105f01e9",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/model-template.html",
+      "sanitized": false
+    },
+    {
+      "path": "model-tour.js",
+      "original_sha256": "85deda6891c01b02f9d000e2e46180588b79a5cf8bb5615674866db781272e1b",
+      "published_sha256": "85deda6891c01b02f9d000e2e46180588b79a5cf8bb5615674866db781272e1b",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/model-tour.js",
+      "sanitized": false
+    },
+    {
+      "path": "model.js",
+      "original_sha256": "8b640d3ba1af47b77bdf1e647eac0eb3fd80a69440a791ebcb12428de4cb1bec",
+      "published_sha256": "8b640d3ba1af47b77bdf1e647eac0eb3fd80a69440a791ebcb12428de4cb1bec",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/model.js",
+      "sanitized": false
+    },
+    {
+      "path": "models/model-manifest.json",
+      "original_sha256": "0e55310ccc8e71f61781ca4e5a5b49c026d505bd2aee49d1e70cd0896850f0e4",
+      "published_sha256": "0e55310ccc8e71f61781ca4e5a5b49c026d505bd2aee49d1e70cd0896850f0e4",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/models/model-manifest.json",
+      "sanitized": false
+    },
+    {
+      "path": "package.json",
+      "original_sha256": "c1cc49bb6ff8b5f0bc2f806b8584c0fd81bea8c5bef0cca53018dac06d7175f3",
+      "published_sha256": "c1cc49bb6ff8b5f0bc2f806b8584c0fd81bea8c5bef0cca53018dac06d7175f3",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/package.json",
+      "sanitized": false
+    },
+    {
+      "path": "photo-details.js",
+      "original_sha256": "f4d73114268096b2c206f5d6561f15921f5c0f13d3784ce22c17e2b499151075",
+      "published_sha256": "f4d73114268096b2c206f5d6561f15921f5c0f13d3784ce22c17e2b499151075",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/photo-details.js",
+      "sanitized": false
+    },
+    {
+      "path": "photo-reference.js",
+      "original_sha256": "fd1c3ddd21c91ffd9642990fdd709c8d60396969e66175b44fa900cede748bf4",
+      "published_sha256": "fd1c3ddd21c91ffd9642990fdd709c8d60396969e66175b44fa900cede748bf4",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/photo-reference.js",
+      "sanitized": false
+    },
+    {
+      "path": "requirements.txt",
+      "original_sha256": "04d98861d9c10a95c67d3802d56475b91c52571de9338a7851cf21d002366482",
+      "published_sha256": "04d98861d9c10a95c67d3802d56475b91c52571de9338a7851cf21d002366482",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/requirements.txt",
+      "sanitized": false
+    },
+    {
+      "path": "run-layout-walk-tests.cjs",
+      "original_sha256": "327a2da70922ad54d1556e3b312c1fa58df53d2750476b0ef497408631c66fef",
+      "published_sha256": "327a2da70922ad54d1556e3b312c1fa58df53d2750476b0ef497408631c66fef",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/run-layout-walk-tests.cjs",
+      "sanitized": false
+    },
+    {
+      "path": "scene-export.js",
+      "original_sha256": "d533bfe9c3f2022c687ce31f87c6c5b927e0add42eff4ed10dfa0e0eb87baa80",
+      "published_sha256": "d533bfe9c3f2022c687ce31f87c6c5b927e0add42eff4ed10dfa0e0eb87baa80",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/scene-export.js",
+      "sanitized": false
+    },
+    {
+      "path": "seat-page.html",
+      "original_sha256": "3965353cedc2f54daa513056306e84637c964f8a93906cf6e989fe2af502b804",
+      "published_sha256": "3965353cedc2f54daa513056306e84637c964f8a93906cf6e989fe2af502b804",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/seat-page.html",
+      "sanitized": false
+    },
+    {
+      "path": "seat-page.js",
+      "original_sha256": "3082ebbbfc83ad86b5d108d56a9125da3c7665577bb42f76d86a761f08fb59d6",
+      "published_sha256": "3082ebbbfc83ad86b5d108d56a9125da3c7665577bb42f76d86a761f08fb59d6",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/seat-page.js",
+      "sanitized": false
+    },
+    {
+      "path": "seat-status-tests.js",
+      "original_sha256": "3ab8c871f76edfd2de4babf79c4d660d62285067dbbfb93348d94b55a3cae0b0",
+      "published_sha256": "3ab8c871f76edfd2de4babf79c4d660d62285067dbbfb93348d94b55a3cae0b0",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/seat-status-tests.js",
+      "sanitized": false
+    },
+    {
+      "path": "seat-status.js",
+      "original_sha256": "62088526a16267a24b7c593c961fecb12e8555a95d81aea042bcafba89e25ba8",
+      "published_sha256": "62088526a16267a24b7c593c961fecb12e8555a95d81aea042bcafba89e25ba8",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/seat-status.js",
+      "sanitized": false
+    },
+    {
+      "path": "seat-voice.js",
+      "original_sha256": "27c562e596a275e748ec10bc4f18b78b182bd6360902e5e6a33774c00af8d421",
+      "published_sha256": "27c562e596a275e748ec10bc4f18b78b182bd6360902e5e6a33774c00af8d421",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/seat-voice.js",
+      "sanitized": false
+    },
+    {
+      "path": "space-layer.js",
+      "original_sha256": "e3a77faf12dc8b446bbfe0722750229ac8cee8364f02458fffa24d2913adb022",
+      "published_sha256": "e3a77faf12dc8b446bbfe0722750229ac8cee8364f02458fffa24d2913adb022",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/space-layer.js",
+      "sanitized": false
+    },
+    {
+      "path": "spatial-tests.js",
+      "original_sha256": "4f17b9d2c8465e4526fc4fcd9685ef3166716777b23e69debf23a9da902260d8",
+      "published_sha256": "4f17b9d2c8465e4526fc4fcd9685ef3166716777b23e69debf23a9da902260d8",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/spatial-tests.js",
+      "sanitized": false
+    },
+    {
+      "path": "spatial.js",
+      "original_sha256": "54ceacd6be64734d4c441902093fbcc2b5b2b649cc18243e47725acb45d1ca2d",
+      "published_sha256": "54ceacd6be64734d4c441902093fbcc2b5b2b649cc18243e47725acb45d1ca2d",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/spatial.js",
+      "sanitized": false
+    },
+    {
+      "path": "template.html",
+      "original_sha256": "640a52dbed7e5850fc6657f618a5ab14b343a3eee487057cbeb789c0dc78c9b5",
+      "published_sha256": "640a52dbed7e5850fc6657f618a5ab14b343a3eee487057cbeb789c0dc78c9b5",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/template.html",
+      "sanitized": false
+    },
+    {
+      "path": "tests.js",
+      "original_sha256": "86ba9f16fb1caaea8e63868674987d76039936696da15aded3a27f232fd60f52",
+      "published_sha256": "86ba9f16fb1caaea8e63868674987d76039936696da15aded3a27f232fd60f52",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/tests.js",
+      "sanitized": false
+    },
+    {
+      "path": "vision.py",
+      "original_sha256": "c2f9fc490dd59405e9893703d0b14238410a91111d97accdde3a88ef1e226473",
+      "published_sha256": "c2f9fc490dd59405e9893703d0b14238410a91111d97accdde3a88ef1e226473",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/vision.py",
+      "sanitized": false
+    },
+    {
+      "path": "walk-surroundings.js",
+      "original_sha256": "418c1e47b1bca86987bb2da8edb4261c3565a85783864d6d15bea537b0b7f977",
+      "published_sha256": "418c1e47b1bca86987bb2da8edb4261c3565a85783864d6d15bea537b0b7f977",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/walk-surroundings.js",
+      "sanitized": false
+    },
+    {
+      "path": "walk-tests.js",
+      "original_sha256": "0cb62c8d710e851d9515903f5510ebb25059f0a3284276ee6fd73db7acff85a5",
+      "published_sha256": "0cb62c8d710e851d9515903f5510ebb25059f0a3284276ee6fd73db7acff85a5",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/walk-tests.js",
+      "sanitized": false
+    },
+    {
+      "path": "walk.js",
+      "original_sha256": "22579fd538b9dbfc4600a533fdf1ce2131c1f531bfedc1dd2f348c6885648a14",
+      "published_sha256": "22579fd538b9dbfc4600a533fdf1ce2131c1f531bfedc1dd2f348c6885648a14",
+      "source": "outputs/12_嘉庚知座_统一方案/01_嘉庚知座_本人完整包_统一方案/本人保留/代码包/walk.js",
+      "sanitized": false
+    }
+  ],
+  "ordering": "按材料家族整理的阅读顺序，不表示已确认的逐日开发时间",
+  "archived_on": "2026-10-22",
+  "file_changes_from_previous_archive_checkpoint": {
+    "added": [
+      "layout-walk-tests.js",
+      "model-tour.js",
+      "run-layout-walk-tests.cjs",
+      "walk-surroundings.js"
+    ],
+    "removed": [],
+    "modified": [
+      "library-layout.js",
+      "model-template.html",
+      "model.js",
+      "photo-details.js",
+      "scene-export.js",
+      "spatial-tests.js",
+      "spatial.js",
+      "walk.js"
+    ]
+  },
+  "note": "现存资料的集中归档；编号为阅读顺序。文件集合、注释与功能差异均可形成检查点，不等同当时发布的版本。"
+}

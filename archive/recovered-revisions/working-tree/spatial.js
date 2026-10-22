@@ -17,13 +17,15 @@ export const EXHIBITION_LAYOUT={floor:3,x:0,z:-8,width:14.8,depth:20,
 // 以前台中心x=0为统一中轴；两侧外边界相距相等，不再让一楼和上层宽度不一致。
 export const LIBRARY_FOOTPRINT={axisX:0,halfWidth:34.4,front:34,groundBack:-52.6,upperBack:-78.6};
 // 2026-10-17本人修订：上层新增后区缩短，一楼不动；保留同一井道后方的有限空间，不强求电梯在数学中点。
-// 厕所逐层共用同一组坐标。一楼按此前确认只保留左厕，上层有左右两处；不编造室内洁具。
-export const TOILET_LAYOUT=[-1,1].map(side=>({x:side*(LIBRARY_FOOTPRINT.halfWidth-3.4),z:30.75,w:6.5,d:6.2,doorRotation:Math.PI}));
+// 本人2026-10-19确认：每层每个厕所都占原角落四格（横纵各两格）。
+// 外侧边界仍贴原角落，不向楼外扩；一楼保留左厕，上层两侧各一处。
+export const TOILET_GRID={w:6.5,d:6.2,columns:2,rows:2};
+export const TOILET_LAYOUT=[-1,1].map(side=>({x:side*(LIBRARY_FOOTPRINT.halfWidth-.15-TOILET_GRID.w),z:LIBRARY_FOOTPRINT.front-.15-TOILET_GRID.d,w:TOILET_GRID.w*2,d:TOILET_GRID.d*2,doorRotation:Math.PI}));
 export const GROUND_LAYOUT={windowX:-31.4,deskZ:[-44,-36,-28,-20,-12,-4,4,12],frontZ:34,hallZ:20.5,
  // 右侧柜群放到服务台后；左侧柜群保留。专座区与闭架书库是不同用途。
  // 左侧柜群与窗边桌排一起向后补长；柜数只用于表现空间，不是现场资产清单。
  // 左侧阅览和柜库向后接至上层相同纵深；只延展外形，不虚构真实座号与柜数。
- compactBlocks:[{x:-21.7,z:-17,w:5,d:60},{x:0,z:-16.8,w:7.2,d:50.4}],
+ compactBlocks:[{x:-24,z:-18.7,w:8,d:66,columns:6},{x:0,z:-16.8,w:7.2,d:50.4,columns:4}],
  // 本人2026-10-18补充：服务台后的中央黑色区域两侧为柱间实墙，不是敞开的柱廊。
  // 两道墙沿x=±6.2的原柱线连接；前端停在服务台后，保留入口及中庭梯的接近空间。
  partitions:[-6.2,6.2].map(x=>({x,z:-20.6,w:.18,d:63.2})),
@@ -32,7 +34,8 @@ export const GROUND_LAYOUT={windowX:-31.4,deskZ:[-44,-36,-28,-20,-12,-4,4,12],fr
  // 本人补充：打印和专座向大厅内侧移，原右翼长条区域用于咖啡厅。
  dedicated:{x:13.9,z:-14.75,w:6.4,d:55.5,rows:[-37,-31,-25,-19,-13,-7,-1,5,11]},
  printers:[10.2,12.4,14.6,16.8].map(x=>({x,z:16})),printPoint:{x:13.5,z:18},rightBoundaryZ:LIBRARY_FOOTPRINT.groundBack,
- toilet:TOILET_LAYOUT[0],
+ // 一楼与上层读取同一四格尺寸和左侧角落坐标，避免各处单独修改。
+ toilet:{...TOILET_LAYOUT[0]},
  // 咖啡厅在一楼右侧，由本人确认且馆方2026活动通知证实存在；尺寸和陈设只作示意。
  cafe:{x:26.8,z:-8.9,w:11.6,d:49.2,label:'咖啡厅',verifiedUse:true},
  // 房号与用途来自本人最新现场说明；门宽、家具和尺寸均为示意，工作室不参与选座。
@@ -90,7 +93,7 @@ export function upperFacilities(floor){
   {x:-27,z:-5,w:10,d:6,label:'现刊',color:'#d7c757'},
   {x:-27,z:4,w:10,d:6,label:'2019—2024 过刊',color:'#83b7ac'},
   {x:-27,z:14,w:10,d:8,label:'外文原版书 YY/YW',color:'#759b84'},
-  {x:-15.5,z:27,w:15,d:6,label:'2013—2018 过刊',color:'#c8966c'},
+  {x:-13.9,z:27,w:13,d:6,label:'2013—2018 过刊',color:'#c8966c'},
   {x:1.5,z:27,w:15,d:6,label:'2015年至今过报',color:'#84b7c7'}]:[];
  for(const area of periodicals){const rows=Math.max(1,Math.floor(area.d/3.3)),cols=area.w>12?4:2;for(let row=0;row<rows;row++)for(let col=0;col<cols;col++)racks.push({x:area.x+(col-(cols-1)/2)*Math.min(3.6,area.w/cols),z:area.z+(row-(rows-1)/2)*2.6,w:2.9,periodical:true});}
  if(floor<5){
@@ -144,42 +147,52 @@ function assignRegionalSamples(floor,list){
  [choose('北',-10.8,0),choose('南',10.8,0),choose('东',-10.8,-55)].forEach((d,i)=>{if(d)d.sample=i;});
  return list;
 }
-// 2026-10-19本人现场修订：南北翼横向书架成组，东端竖向藏书与阅览边带分开。
+// 本人现场修订：南北翼为密集的多排横向书架，东端竖向藏书与阅览边带分开。
 // 坐标仅表达相对布局；书架、桌椅和平面图共用这些参数，不据此声称馆内实测数量。
 export const READING_BAY_LAYOUT={
- wingRows:[-35,-22,-8,6],rackXs:[16.2,19,21.8,24.6],rackWidth:2.6,
+ wingRows:[-35,-22,-8,6],wingRackOffsets:[-3,0,3],rackXs:[16.2,19,21.8,24.6],rackWidth:2.6,
  innerDeskX:10.8,windowDeskX:31.4,deskOffsets:[-2.6,2.6],
- eastRackXs:[-21.8,-15.8,-9.8,-3.8,3.8,9.8,15.8,21.8],eastRackZs:[-69.4,-74.2],eastRackWidth:4.4,
- outerAisleX:27.4,rearAisleX:20.4,eastShelfFront:-67.2
+ eastRackXs:[-21.8,-15.8,-9.8,-3.8,3.8,9.8,15.8,21.8],eastRackZs:[-68.6,-72,-75.4],eastRackWidth:3.2,
+ eastDeskXs:[-23.7,-16.8,-10,-3.3,3.3,10,16.8,23.7],eastDeskZs:[-55.8,-62.9],
+ outerAisleX:27.4,rearAisleX:20.4,eastShelfFront:-66.9
 };
+// 用桌面及四把椅子共同占地判断交界处是否拥挤，而不是只比较桌子的中心点。
+// 留出额外间隔后，东区补位才不会与已摆好的南北桌排贴靠或交叉。
+export function deskFootprint(d){
+ const x=Math.max(d.w/2,d.dx+.38),z=Math.max(d.d/2,d.dz+.6),a=d.rotation||0;
+ return {x:d.x,z:d.z,hx:Math.abs(Math.cos(a))*x+Math.abs(Math.sin(a))*z,hz:Math.abs(Math.sin(a))*x+Math.abs(Math.cos(a))*z};
+}
+export function desksConflict(a,b,gap=1.1){
+ const p=deskFootprint(a),q=deskFootprint(b);return Math.abs(p.x-q.x)<p.hx+q.hx+gap&&Math.abs(p.z-q.z)<p.hz+q.hz+gap;
+}
 function groupedUpperDesks(floor){
  const p=READING_BAY_LAYOUT,list=[];
- const add=(x,z,extra={})=>list.push({x,z,w:5,d:1.65,dx:1.15,dz:1.3,sample:null,partition:false,...extra});
+ const add=(x,z,extra={})=>list.push({x,z,w:5,d:1.65,dx:1.15,dz:1.3,sample:null,partition:false,rotation:0,placementPriority:'南北',...extra});
  // 每组书架的内侧、靠窗侧各两张桌子；两桌沿通道排列，不挤到书架之间。
  for(const side of [-1,1])for(const row of p.wingRows)for(const x of [p.innerDeskX,p.windowDeskX])for(const dz of p.deskOffsets){
-  const nearExhibition=floor===3&&row===-22&&x===p.innerDeskX;
-  add(side*(nearExhibition?13.8:x),row+(nearExhibition?Math.sign(dz)*3:dz),{wingBay:true,baySide:side,bayRow:row,windowBand:x===p.windowDeskX});
+  add(side*x,row+dz,{wingBay:true,baySide:side,bayRow:row,windowBand:x===p.windowDeskX});
  }
- for(const side of [-1,1])for(const x of [p.innerDeskX,p.windowDeskX])add(side*x,20.5,{windowBand:x===p.windowDeskX});
- // 东区桌椅沿中央长方形区域的两边和端部排布；最深处独立留给书架。
- for(const x of [-10.8,10.8])for(const z of [-55.5,-60,-64.5])add(x,z,{eastReadingEdge:true,partition:floor===5});
- for(const x of [-3.5,3.5])for(const z of [-55.5,-63])add(x,z,{eastReadingEdge:true,partition:floor===5});
- if(floor!==4)for(const x of [-23.7,23.7])add(x,-55.5,{eastReadingEdge:true,partition:floor===5});
- if(floor===3){
-  // 木雕之后的四张纵向桌继续保留，展厅、楼梯出口和展品位置均不改变。
-  for(const x of [-9.6,-3.2,3.2,9.6])add(x,EXHIBITION_LAYOUT.rearSeatingZ,{w:3.6,d:1.2,dz:.86,rotation:Math.PI/2,rearRow:true});
-  add(0,-33,{eastReadingEdge:true});
- }
+ // 前角四格厕所占据原窗边桌的位置；这两桌沿同一排内移，保留z=17连廊和厕所入口。
+ for(const side of [-1,1]){add(side*p.innerDeskX,20.5,{windowBand:false});add(side*17.6,23.5,{windowBand:false});}
  if(floor===5){
   // 五楼保留大量备考桌及报刊阅览，不把整层替换成普通书库。
   const exam={w:3,d:1.65,dx:.7,dz:1.2,partition:true};
-  for(const x of [-17,17])add(x,-55.5,exam);
-  for(const x of [-25,-17,17,25])add(x,-62.6,exam);
   for(const x of [-3.8,3.8])for(const z of [-28,-36,-44,-50])add(x,z,exam);
   for(const side of [-1,1])for(const x of [p.innerDeskX,p.windowDeskX])for(const z of [-14.8,13.2])add(side*x,z,{windowBand:x===p.windowDeskX});
   for(const x of [16.8,24])for(const z of [-35,-23.5,-6.8,6])add(x,z,exam);
   for(const x of [-p.innerDeskX,-p.windowDeskX])add(x,-42,{windowBand:x===-p.windowDeskX});
  }
+ // 先完成南北区，再尝试东区补位。东区桌长边与东区竖向书架平行。
+ // 三楼交界处保留南北桌排，靠近它们的东区桌自动让位；不挪动展厅与楼梯。
+ const addEast=(x,z,extra={})=>{
+  const d={x,z,w:5,d:1.65,dx:1.15,dz:1.3,sample:null,partition:floor===5,rotation:Math.PI/2,eastReadingEdge:true,placementPriority:'东区补位',...extra};
+  if(!list.some(other=>desksConflict(d,other)))list.push(d);
+ };
+ if(floor===3){
+  for(const x of [-9.6,-3.2,3.2,9.6])addEast(x,EXHIBITION_LAYOUT.rearSeatingZ,{w:3.6,d:1.2,dz:.86,rearRow:true,partition:false});
+  addEast(0,-33,{partition:false});
+ }
+ for(const x of p.eastDeskXs)for(const z of p.eastDeskZs)addEast(x,z,floor===5?{w:3,dx:.7,dz:1.2}:{});
  return assignRegionalSamples(floor,list);
 }
 export function deskLayouts(floor){

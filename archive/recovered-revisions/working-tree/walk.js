@@ -3,7 +3,7 @@ import {FLOOR_HEIGHT,STAIR_LAYOUT,atriumVoids,GROUND_LAYOUT,TRANSPORT_CORE,floor
 export const EYE_HEIGHT=1.65;
 export const WALK_RADIUS=.20;
 // 浏览器和离线几何验证共用障碍名；包围盒来自最终摆放的真实对象。
-export const WALK_OBSTACLE_NAMES=new Set(['reading_desk','chair','table','guide_book_rack','upper_toilet','seminar_wall','seminar_lintel','upper_rear_wall_lockers','photo_red_wood_service_counter','photo_white_storage_lockers','ceramic_tree_display','armillary_display','photo_information_kiosk','photo_abstract_wood_sculpture','photo_white_lounge_sofas','photo_exhibition_potted_plant','photo_blue_exhibition_board','white_atrium_column','photo_atrium_granite_pilaster','third_floor_low_stone_exhibit_edge','compact_storage_cabinet','schematic_printer','user_elevator_landing','ground_nonlibrary_boundary_wall','ground_wood_sofa','ground_small_display_shelf','ground_toilet','transport_core_white_wall','transport_core_stone_dado','transport_core_dark_skirt']);
+export const WALK_OBSTACLE_NAMES=new Set(['reading_desk','chair','table','guide_book_rack','upper_toilet','seminar_wall','seminar_lintel','upper_rear_wall_lockers','photo_red_wood_service_counter','photo_white_storage_lockers','ceramic_tree_display','armillary_display','photo_information_kiosk','photo_abstract_wood_sculpture','photo_white_lounge_sofas','photo_exhibition_potted_plant','photo_blue_exhibition_board','white_atrium_column','photo_atrium_granite_pilaster','third_floor_low_stone_exhibit_edge','compact_storage_cabinet','schematic_printer','user_elevator_landing','ground_nonlibrary_boundary_wall','ground_wood_sofa','ground_small_display_shelf','ground_toilet_wall','ground_toilet_basin','ground_toilet_stall','transport_core_white_wall','transport_core_stone_dado','transport_core_dark_skirt']);
 export function collectWalkObstacles(root,Box3){
  root.updateMatrixWorld(true);const out=[];
  root.traverse(o=>{if(WALK_OBSTACLE_NAMES.has(o.name)||o.name.startsWith('reading_chair_')){const b=new Box3().setFromObject(o);out.push({name:o.name,minX:b.min.x,maxX:b.max.x,minY:b.min.y,maxY:b.max.y,minZ:b.min.z,maxZ:b.max.z});}});
@@ -23,6 +23,10 @@ export function walkStairEntry(floor){
  if(floor<2)return null;
  return {x:4.65,z:STAIR_LAYOUT[floor-1].end-.45,y:(floor-1)*FLOOR_HEIGHT+.15,floor};
 }
+export function walkUpEntry(floor){
+ if(floor>=5)return null;
+ return {x:4.65,z:STAIR_LAYOUT[floor].start+.45,y:(floor-1)*FLOOR_HEIGHT+.15,floor};
+}
 export function walkSurface(x,z,feetY){
  // 先用全馆外框做快速排除，随后按脚底所在楼层检查该层边界。
  if(x < floorBounds(3).left+.7||x>floorBounds(3).right-.7||z < floorBounds(3).back+.4||z>GROUND_LAYOUT.frontZ-.3)return null;
@@ -37,14 +41,22 @@ export function walkSurface(x,z,feetY){
   }else if(z<cs.back&&z>=cs.landingBack+.05&&x>=cs.leftX-.5&&x<=cs.rightX+.5)y=base+FLOOR_HEIGHT/2;
   if(y!==null&&Math.abs(y-feetY)<.48)stairs.push({y,floor:Math.min(5,Math.floor((y-.15+.01)/FLOOR_HEIGHT)+1),onStairs:true});
  }
+ let insideStairVolume=false;
  for(const [level,c] of Object.entries(STAIR_LAYOUT)){
   const floor=Number(level),base=(floor-1)*FLOOR_HEIGHT+.15;
   // 步行仅走普通梯；扶梯和中央展陈退台只展示外形。
-  if(Math.abs(Math.abs(x)-4.65)>.52||z<c.end||z>c.start)continue;
-  const y=base+(c.start-z)/(c.start-c.end)*FLOOR_HEIGHT;
-  if(Math.abs(y-feetY)<.48)stairs.push({y,floor:Math.min(5,Math.floor((y-.15+.01)/FLOOR_HEIGHT)+1),onStairs:true});
+  if(z<c.end||z>c.start)continue;
+  // 普通梯与一至二楼扶梯均有可走的坡面；踏板边缘不能退回底层平地而穿进楼梯。
+  for(const lane of [{x:4.65,width:1.45},...(c.escalator?[{x:5.82,width:.72}]:[])]){
+   const offset=Math.abs(Math.abs(x)-lane.x);
+   if(offset<lane.width/2+WALK_RADIUS&&feetY>=base-.3&&feetY<=base+FLOOR_HEIGHT+.3)insideStairVolume=true;
+   if(offset>lane.width/2-WALK_RADIUS)continue;
+   const y=base+(c.start-z)/(c.start-c.end)*FLOOR_HEIGHT;
+   if(Math.abs(y-feetY)<.48)stairs.push({y,floor:Math.min(5,Math.floor((y-.15+.01)/FLOOR_HEIGHT)+1),onStairs:true});
+  }
  }
  if(stairs.length)return stairs.sort((a,b)=>Math.abs(a.y-feetY)-Math.abs(b.y-feetY))[0];
+ if(insideStairVolume)return null;
  const surfaces=[];
  for(let floor=1;floor<=5;floor++){
   const y=(floor-1)*FLOOR_HEIGHT+.15;if(Math.abs(y-feetY)>.36)continue;

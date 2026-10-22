@@ -54,13 +54,14 @@ function resolveRackPlacement(r,floor){
 export function floorRackRecords(floor){
  if(floor===1)return [];
  const info=FLOOR_INFO.find(i=>i.n===floor),p=READING_BAY_LAYOUT,out=[];
- // 南北书架长边沿X横排：一排四个端板书架，沿Z形成多个阅读组。
+ // 每个阅读组的中央放三排书架，每排由多个架段组成；四组不再只各有一条架线。
  for(const side of [-1,1]){
   if(floor===5&&side>0)continue; // 五楼南翼保持备考阅览，北翼为报刊/外文馆藏。
   const sources=floor===5?upperFacilities(5).periodicals:info.zones.filter(z=>z.kind==='books'&&Math.sign(z.x)===side);
-  for(const [rowIndex,depth] of p.wingRows.entries())for(const x of p.rackXs){
+  for(const [rowIndex,bank] of p.wingRows.entries())for(const offset of p.wingRackOffsets)for(const x of p.rackXs){
+   const depth=bank+offset;
    const label=floor===5?sources[rowIndex%sources.length]?.label:sources.slice().sort((a,b)=>Math.abs(a.z-depth)-Math.abs(b.z-depth))[0]?.label;
-   out.push({x:side*x,z:depth,w:p.rackWidth,rotation:0,label:label||'馆藏书架',layoutRegion:side<0?'北':'南',bankRow:depth});
+   out.push({x:side*x,z:depth,w:p.rackWidth,rotation:0,label:label||'馆藏书架',layoutRegion:side<0?'北':'南',bankRow:bank,shelfRow:depth});
   }
  }
  // 东区最深处才是书架，长边沿Z竖排；桌椅不插在这些书架之间。
@@ -81,6 +82,7 @@ function rackWestLabel(r){return r.x<0?'2013—2018 过刊':'2015年至今过报
 
 export function buildLibraryFloors(parent,H){
  const {group,box,cylinder,material,chair,table}=H,height=4.8,storeys=[],photo=createPhotoDetails(H);
+ const rackBlueprints=new Map();
  function slab(root,info){
   const shape=new THREE.Shape();let pts=[[-18,-22],[18,-22],[18,20],[11,20],[11,22],[-11,22],[-11,20],[-18,20]];
   if(info.n===4)pts=[[-18,-22],[-11,-22],[-11,-23],[-6,-23],[-6,-25],[6,-25],[6,-23],[11,-23],[11,-22],[18,-22],[18,22],[-18,22]];
@@ -97,6 +99,8 @@ export function buildLibraryFloors(parent,H){
   // 两处西侧书架绕开柱脚；四楼技术架与样本桌留开，馆藏大类及左右两翼不变。
   let ancestor=root;while(ancestor&&!ancestor.userData.floor)ancestor=ancestor.parent;const floor=ancestor?.userData.floor;
   const resolved=resolveRackPlacement({x,z,w},floor);if(!resolved)return null;({x,z,w}=resolved);
+  // 同宽书架共用装配几何；增加书架排数时不重复创建成千上万份书脊几何。
+  if(rackBlueprints.has(w)){const r=rackBlueprints.get(w).clone(true);r.position.set(x,0,z);r.rotation.y=rot;root.add(r);return r;}
   const r=group(root,'guide_book_rack');r.position.set(x,0,z);r.rotation.y=rot;
   const spineGroups=new Map();
   // 深棕色端板和黑色钢架参考已提供的阅览区照片；不据此改动馆藏位置。
@@ -119,7 +123,7 @@ export function buildLibraryFloors(parent,H){
   }
   // 同一书架同色书脊合并为一个Mesh，降低细化后每帧的绘制次数。
   for(const [color,geometries] of spineGroups){const mesh=new THREE.Mesh(mergeGeometries(geometries,false),material(color));mesh.name='schematic_book_spines';r.add(mesh);geometries.forEach(geometry=>geometry.dispose());}
-  return r;
+  rackBlueprints.set(w,r);return r;
  }
  function furnishZone(root,source){
   // 馆藏只按大类相对方位参考；侧边书架压缩到外缘，给照片中的长桌阅览带留出空间。

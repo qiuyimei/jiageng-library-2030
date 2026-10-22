@@ -305,7 +305,7 @@ export function createPhotoDetails(H){
   for(const b of GROUND_LAYOUT.compactBlocks){
    const block=group(g,'ground_compact_storage_block');block.position.set(b.x,0,b.z);block.userData={role:'compact_storage',w:b.w,d:b.d};
    box(block,'compact_storage_floor',b.w,.025,b.d,0,.18,0,'#c4cbd0');
-   const length=5.2,rows=Math.floor(b.d/6),count=4;
+   const length=5.2,rows=Math.floor(b.d/6),count=b.columns||4;
    for(let row=0;row<rows;row++){
     const zz=(row-(rows-1)/2)*6;
     for(let i=0;i<count;i++){
@@ -343,11 +343,31 @@ export function createPhotoDetails(H){
   sign(rack,'图书推荐  示意',2.3,.20,0,1.91,.10,'#dedfce','#475d57');
   }
   const t=GROUND_LAYOUT.toilet,wc=group(g,'ground_toilet');wc.position.set(t.x,0,t.z);wc.userData={source:'用户确认左侧窗边阅览前方；室内细节未测'};
-  // 只表现房间外轮廓与入口，不推断内部洁具、男女分区或无障碍配置。
-  box(wc,'toilet_room_shell',t.w,2.65,t.d,0,1.48,0,'#d1d7d3');
+  // 外框按本人描述扩大为角落两乘两格。内部是可进入的陈设示意，未取得内部实景测绘。
+  wc.userData.interior='schematic, not photo verified';
+  box(wc,'ground_toilet_floor',t.w,.035,t.d,0,.18,0,'#b9b5a4');
+  for(const x of [-t.w/2,t.w/2])box(wc,'ground_toilet_wall',.18,4.2,t.d,x,2.25,0,'#deddd2');
+  box(wc,'ground_toilet_wall',t.w,4.2,.18,0,2.25,t.d/2,'#deddd2');
+  // 门洞保留真实几何开口，避免再把整个房间当成不透明方块。
+  const doorWidth=1.7,wallWidth=(t.w-doorWidth)/2;
+  for(const side of [-1,1])box(wc,'ground_toilet_wall',wallWidth,4.2,.18,side*(doorWidth/2+wallWidth/2),2.25,-t.d/2,'#deddd2');
+  box(wc,'ground_toilet_wall',doorWidth,1.2,.18,0,3.75,-t.d/2,'#deddd2');
+  for(let x=-t.w/2+1;x<t.w/2;x+=1.6)box(wc,'ground_toilet_tile_joint',.012,.005,t.d-.2,x,.204,0,'#969b8d');
+  for(let z=-t.d/2+1;z<t.d/2;z+=1.6)box(wc,'ground_toilet_tile_joint',t.w-.2,.005,.012,0,.204,z,'#969b8d');
+  const basin=group(wc,'ground_toilet_basin');basin.position.set(-t.w/2+1.4,0,0);
+  box(basin,'warm_basin_cabinet',1.4,.72,5.8,0,.62,0,'#9c907a');
+  box(basin,'stone_basin_counter',1.55,.12,6,0,1.05,0,'#c6cec5');
+  for(const z of [-1.8,0,1.8]){box(basin,'white_washbasin',.95,.12,1.05,0,1.15,z,'#edf0e5');cylinder(basin,'basin_tap',.035,.22,-.42,1.34,z,'#9eafb0');box(wc,'mirror_glass',.045,1.3,1.4,-t.w/2+.14,2.05,z,'#9dbbb6',{metalness:.7,roughness:.2});}
+  for(const z of [-2,1.4,4.5]){
+   const stall=group(wc,'ground_toilet_stall');stall.position.set(t.w/2-1.6,0,z);
+   for(const dz of [-1.45,1.45])box(stall,'stall_partition',2.6,2.1,.09,0,1.45,dz,'#bfc9c1');
+   box(stall,'stall_door',.09,1.95,2.6,-1.3,1.4,0,'#98aba5');
+   box(stall,'stall_handle',.08,.06,.24,-1.37,1.3,-.7,'#d5dbd2');
+  }
   // 阅览桌在厕所后方（-Z），入口开在这一侧，朝向桌排而不是横向朝前厅。
-  const door=box(wc,'toilet_door',1.05,2.2,.045,0,1.30,-t.d/2-.035,'#859b98');door.userData={normal:[0,0,-1]};
+  const door=box(wc,'toilet_door',1.05,2.2,.045,-doorWidth/2-.08,1.30,-t.d/2+.56,'#859b98');door.rotation.y=Math.PI/2;door.userData={normal:[0,0,-1],open:true};
   sign(wc,'WC  洗手间',1.65,.32,0,2.55,-t.d/2-.07,'#4c776e','#f4f4e8',t.doorRotation);
+  sign(wc,'内部陈设示意',2.5,.3,0,2.9,t.d/2-.13,'#cbd8ce','#47645b',Math.PI);
   // 一楼公众可达通道在右侧电梯后终止；后方建筑不作为馆内座位或资源区。
   // 一楼左右后沿已由本人确认齐平；移除旧的中途截断墙，避免阻挡新增区域。
   // 咖啡厅作为实际功能区补入，家具数量、吧台设备和材质没有现场依据，明确标注为示意。
@@ -416,7 +436,7 @@ export function createPhotoDetails(H){
  }
  function upperRooms(parent,floor){
   const layout=upperFacilities(floor),g=group(parent,'user_upper_facilities');
-  // 与一楼同样只画厕所外轮廓，不编造内部洁具或真实性别分区。
+  // 各层同为四格厕所；上层仅画围合外轮廓，不编造内部洁具或真实性别分区。
   for(const t of layout.toilets){const wc=group(g,'upper_toilet');wc.position.set(t.x,0,t.z);wc.userData={floor,source:'本人确认上层两侧均有厕所；具体尺寸未测绘'};box(wc,'toilet_room_shell',t.w,2.65,t.d,0,1.48,0,'#d1d7d3');box(wc,'toilet_door',1.05,2.2,.045,0,1.30,-t.d/2-.035,'#859b98');sign(wc,'WC 洗手间',1.7,.32,0,2.55,-t.d/2-.07,'#4c776e','#f4f4e8',Math.PI);}
   // 研讨室门洞朝前方公共通道，墙体独立碰撞，不能把整个房间当不可进入的实心盒子。
   for(const r of layout.rooms){const room=group(g,'upper_seminar_room');room.position.set(r.x,0,r.z);room.userData={floor,source:'2025官方图外围房间带；几何分段不是实际房间清单，当前用途与门位待核验'};

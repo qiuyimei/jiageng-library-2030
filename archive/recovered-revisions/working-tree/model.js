@@ -9,10 +9,12 @@ import {buildSeatLayer} from './space-layer.js';
 import {createHelpers} from './model-helpers.js';
 import {displayZone,floorRackRecords} from './library-layout.js';
 import {PHOTO_REFERENCES} from './photo-reference.js';
-import {walkEntry,walkStairEntry,advanceWalk,EYE_HEIGHT,collectWalkObstacles} from './walk.js';
+import {walkEntry,walkStairEntry,walkUpEntry,advanceWalk,EYE_HEIGHT,collectWalkObstacles} from './walk.js';
+import {createWalkSurroundings} from './walk-surroundings.js';
 import {createSceneLighting,LIGHT_PRESETS} from './lighting.js';
+import {MODEL_TOUR_STOPS,nextTourStop,usesPointPicking} from './model-tour.js';
 const $=id=>document.getElementById(id);
-let data=makeData(Date.now()),selected=null,floor=0,expanded=false,view='cut',plan=null,linked=false;
+let data=makeData(Date.now()),selected=null,floor=0,expanded=false,view='campus',plan=null,linked=false;
 let generated=true;
 let showInformation=false;
 let walking=false;
@@ -80,6 +82,7 @@ function initModel(){
  controls.enableDamping=true;controls.minPolarAngle=.05;controls.maxPolarAngle=Math.PI*.88;controls.minDistance=2.5;controls.maxDistance=360;
  const lighting=createSceneLighting(scene,renderer);
  const H=createHelpers(),{group}=H;
+ const walkScenery=createWalkSurroundings(scene,H),overviewBackground=scene.background.clone();
  const campus=group(scene,'campus');const details=buildExterior(campus,H);buildLibraryEnvironment(details.rearLibrary,H);
  const rear=details.rearLibrary.clone(true);rear.position.z=0;scene.add(rear);
  const floorsRoot=group(scene,'library_cutaway'),floors=buildLibraryFloors(floorsRoot,H),overlay=group(scene,'zhizuo_information');
@@ -87,6 +90,22 @@ function initModel(){
  // 不透明实体投射并接收阴影。玻璃和细小叶片不投影，以免玻璃被错误地画成实墙。
  scene.traverse(o=>{if(o.isMesh){o.castShadow=!o.material.transparent&&!/leaf|stem|spines|flute/.test(o.name);o.receiveShadow=!o.material.transparent;}});
  let showFurniture=true,labelOn=true,showRoof=false,showCeiling=false,dirty=true,layer=null;
+ let overviewDistance=1;
+ const pointPicking=()=>usesPointPicking({view,linked,walking,distance:camera.position.distanceTo(controls.target),overviewDistance});
+ function refreshTourHint(){
+  const next=nextTourStop({view,floor,expanded}),inspect=pointPicking();
+  $('tourHint').hidden=walking;
+  const hint=inspect?'点选区域聚焦 · 拖动旋转 · 滚轮缩放':next?'单击继续 → '+next.title:'已到五楼 · 放大后可点选具体位置';
+  if($('tourHint').textContent!==hint)$('tourHint').textContent=hint;
+  $('tourNext').disabled=walking;
+  const caption=inspect?'返回本步全景':next?'下一步：'+next.title:'回到校园楼群';if($('tourNext').textContent!==caption)$('tourNext').textContent=caption;
+ }
+ function advanceTour(){
+  const next=nextTourStop({view,floor,expanded});if(!next)return false;
+  floor=next.floor;expanded=next.expanded;$('expand').checked=expanded;
+  if(next.view==='cut')enterSeatView();setView(next.view);
+  $('viewStatus').textContent=next.title+'。总览单击继续；放大后点选具体位置。';return true;
+ }
  const labels=Array.from({length:90},()=>{const e=document.createElement('div');e.className='label';$('labels').append(e);return e;});
  const height=n=>(n-1)*(expanded?9:floors.height);
  function disposeOverlay(){
@@ -96,8 +115,8 @@ function initModel(){
  updateScene=()=>{
    const b=floorBounds(floor||3),indoor=['cut','top'].includes(view);
    lighting.focus(floor?height(floor)+1:12,indoor?Math.max(42,(b.front-b.back)/2+10):view==='campus'?150:75,indoor?(b.front+b.back)/2:0);
-   dirty=true;renderer.shadowMap.needsUpdate=true;campus.visible=view==='campus';rear.visible=view==='rear';floorsRoot.visible=['cut','top'].includes(view);overlay.visible=floorsRoot.visible&&showInformation;
-   for(const f of floors.storeys){f.root.visible=walking||!floor||f.info.n===floor;f.root.position.y=height(f.info.n);f.furniture.visible=showFurniture;
+   dirty=true;renderer.shadowMap.needsUpdate=true;walkScenery.visible=walking;campus.visible=view==='campus';rear.visible=view==='rear';floorsRoot.visible=['cut','top'].includes(view);overlay.visible=floorsRoot.visible&&showInformation;
+   for(const f of floors.storeys){f.root.visible=walking?Math.abs(f.info.n-floor)<=1:!floor||f.info.n===floor;f.root.position.y=height(f.info.n);f.furniture.visible=showFurniture;
      f.ceiling.visible=showFurniture&&showCeiling&&view!=='top';
      for(const m of f.structural.children)if(m.name.includes('beam'))m.visible=view!=='top'&&!showFurniture;
    }
@@ -111,11 +130,11 @@ function initModel(){
  setView=v=>{
    const requestedFloor=floor;if(walking)stopWalk(false);floor=requestedFloor;
    view=v;updateScene();const y=floor?height(floor):expanded?18:9;
-   if(v==='campus'){camera.position.set(130,106,175);controls.target.set(0,16,-28);}
+   if(v==='campus'){camera.position.set(0,82,280);controls.target.set(0,16,-28);}
    else if(v==='rear'){camera.position.set(78,58,-125);controls.target.set(0,8,-26);}
    else if(v==='top'){const b=floorBounds(floor||3),x=(b.left+b.right)/2,z=(b.back+b.front)/2,dist=Math.max((b.right-b.left)/Math.max(.6,camera.aspect),b.front-b.back)/(2*Math.tan(camera.fov*Math.PI/360))*1.12;camera.position.set(x,y+dist,z+.001);controls.target.set(x,y,z);}
    else{const b=floorBounds(floor||3),x=(b.left+b.right)/2,depth=b.front-b.back;camera.position.set(floor===1?80:x+depth*.68,y+(expanded&&!floor?90:floor===1?52:depth*.55),floor===1?104:(b.front+b.back)/2+depth*.88);controls.target.set(x,y+1,floor===1?6:(b.front+b.back)/2);}
-   controls.update();dirty=true;
+   controls.update();overviewDistance=camera.position.distanceTo(controls.target);refreshTourHint();dirty=true;
  };
  function enterSeatView(){showInformation=linked;labelOn=true;showRoof=false;showCeiling=false;$('informationLayer').checked=linked;$('labelToggle').checked=true;$('roofDetails').checked=false;$('ceilingDetails').checked=false;}
  // 建筑页点选只改变相机；只有从选座页接入的会话才会修改已知模拟椅位选择。
@@ -123,20 +142,24 @@ function initModel(){
  function focusPoint(point,n){
   if(!point||!Number.isFinite(point.x+point.y+point.z)||!Number.isInteger(n)||n<1||n>5)return false;
   if(walking)stopWalk();
-  focusHistory.push({eye:camera.position.clone(),target:controls.target.clone(),floor,view,expanded});if(focusHistory.length>12)focusHistory.shift();
+  focusHistory.push({eye:camera.position.clone(),target:controls.target.clone(),floor,view,expanded,overviewDistance});if(focusHistory.length>12)focusHistory.shift();
   const localY=point.y-height(n),b=floorBounds(n),top=view==='top';
   floor=n;expanded=false;$('expand').checked=false;setView(top?'top':'cut');
   const target=new THREE.Vector3(Math.max(b.left+.5,Math.min(b.right-.5,point.x)),height(n)+Math.max(.8,Math.min(3,localY+.35)),Math.max(b.back+.5,Math.min(b.front-.5,point.z)));
   controls.target.copy(target);camera.position.copy(target).add(top?new THREE.Vector3(0,22,.001):new THREE.Vector3(10,10,13));controls.update();lighting.focus(height(n)+1,26,target.z);dirty=true;
   $('focusBack').disabled=false;$('wideBack').disabled=false;$('viewStatus').textContent=`已聚焦${n}F所点区域；可继续拖动查看，或返回上一视角。`;return true;
  }
- function previousFocus(){const p=focusHistory.pop();if(!p)return;floor=p.floor;expanded=p.expanded;$('expand').checked=expanded;setView(p.view);camera.position.copy(p.eye);controls.target.copy(p.target);controls.update();dirty=true;$('focusBack').disabled=!focusHistory.length;$('wideBack').disabled=!focusHistory.length;}
+ function previousFocus(){const p=focusHistory.pop();if(!p)return;floor=p.floor;expanded=p.expanded;$('expand').checked=expanded;setView(p.view);camera.position.copy(p.eye);controls.target.copy(p.target);overviewDistance=p.overviewDistance;controls.update();refreshTourHint();dirty=true;$('focusBack').disabled=!focusHistory.length;$('wideBack').disabled=!focusHistory.length;}
  function setWide(on){wideExpanded=on;document.body.classList.toggle('model-wide',on);$('wideTools').hidden=!on;$('wideView').textContent=on?'收起画面':'展开画面';resize();}
  $('focusBack').onclick=previousFocus;$('wideBack').onclick=previousFocus;
  $('wideView').onclick=()=>setWide(!wideExpanded);$('wideExit').onclick=()=>setWide(false);
  window.addEventListener('keydown',e=>{if(e.code==='Escape'&&wideExpanded&&!walking)setWide(false);});
- for(const id of ['campus','rear','cut','top'])$(id).onclick=()=>{if(['cut','top'].includes(id))enterSeatView();if(id==='top'&&!floor)floor=4;setView(id);};
- document.querySelectorAll('[data-floor]').forEach(b=>b.onclick=()=>{if(walking){placeWalker(Number(b.dataset.floor)||3);return;}enterSeatView();floor=Number(b.dataset.floor);setView(view==='top'?'top':'cut');});
+ $('tourNext').onclick=()=>{
+  if(pointPicking()){if(view==='top'){floor=0;expanded=true;$('expand').checked=true;setView('cut');}else setView(view);return;}
+  if(!advanceTour()){floor=0;expanded=false;$('expand').checked=false;setView('campus');}
+ };
+ for(const id of ['campus','rear','cut','top'])$(id).onclick=()=>{if(['cut','top'].includes(id))enterSeatView();if(id==='cut'){floor=0;expanded=true;}if(id==='campus'||id==='rear'){floor=0;expanded=false;}if(id==='top'&&!floor)floor=4;$('expand').checked=expanded;setView(id);};
+ document.querySelectorAll('[data-floor]').forEach(b=>b.onclick=()=>{if(walking){placeWalker(Number(b.dataset.floor)||3);return;}enterSeatView();floor=Number(b.dataset.floor);expanded=!floor;$('expand').checked=expanded;setView(view==='top'?'top':'cut');});
  function showFacility(kind){
   enterSeatView();expanded=false;showFurniture=true;showInformation=false;labelOn=true;showRoof=false;showCeiling=false;
   floor=kind==='culture'?4:kind==='periodicals'?5:1;$('photoPanel').hidden=true;$('expand').checked=false;$('furniture').checked=true;$('informationLayer').checked=false;
@@ -169,6 +192,7 @@ function initModel(){
  function startWalk(){
   savedView={view,floor,expanded,showFurniture,labelOn,showRoof,showCeiling,showInformation,eye:camera.position.clone(),target:controls.target.clone()};
   walking=true;view='cut';expanded=false;showFurniture=true;labelOn=false;showRoof=true;showCeiling=true;showInformation=false;
+  scene.background.set('#c2d5dd');
   controls.enabled=false;camera.fov=68;camera.updateProjectionMatrix();
   $('expand').checked=false;$('furniture').checked=true;$('labelToggle').checked=false;$('roofDetails').checked=true;$('ceilingDetails').checked=true;$('informationLayer').checked=false;
   $('furniture').disabled=true;
@@ -176,7 +200,7 @@ function initModel(){
   placeWalker(floor||3);renderer.domElement.focus();
  }
  function stopWalk(restore=true){
-  if(!walking)return;walking=false;held.clear();lookDrag=null;controls.enabled=true;camera.fov=38;camera.updateProjectionMatrix();
+  if(!walking)return;walking=false;scene.background.copy(overviewBackground);held.clear();lookDrag=null;controls.enabled=true;camera.fov=38;camera.updateProjectionMatrix();
   $('walkToggle').textContent='自己走 · 第一人称';$('walkToggle').classList.toggle('active',false);$('walkToggle').setAttribute('aria-pressed','false');$('walkPad').hidden=true;
   $('furniture').disabled=false;
   if(savedView){({view,floor,expanded,showFurniture,labelOn,showRoof,showCeiling,showInformation}=savedView);camera.position.copy(savedView.eye);controls.target.copy(savedView.target);controls.update();}
@@ -189,6 +213,11 @@ function initModel(){
   walker=p;yaw=Math.PI;pitch=-.10;held.clear();walkCamera();
   $('walkStatus').textContent=`${floor}F 下楼口 · 按W/前进沿普通梯下到${floor-1}F；拖动可转向旁边座位区`;
   renderer.domElement.focus();
+ };
+ $('walkUp').onclick=()=>{
+  const p=walkUpEntry(floor);if(!p){$('walkStatus').textContent='五楼已是本馆最上层。';return;}
+  walker=p;yaw=0;pitch=.08;held.clear();walkCamera();
+  $('walkStatus').textContent=`${floor}F 上楼口 · 按W/前进沿普通梯走到${floor+1}F`;renderer.domElement.focus();
  };
  $('walkExit').onclick=()=>stopWalk();renderer.domElement.tabIndex=0;
  renderer.domElement.style.touchAction='none';
@@ -213,14 +242,17 @@ function initModel(){
   if(!walking)return;let forward=Number(held.has('forward'))-Number(held.has('back')),side=Number(held.has('right'))-Number(held.has('left'));
   const norm=Math.hypot(forward,side);if(!norm)return;forward/=norm;side/=norm;
   const speed=2.6*dt,dx=(-Math.sin(yaw)*forward+Math.cos(yaw)*side)*speed,dz=(-Math.cos(yaw)*forward-Math.sin(yaw)*side)*speed;
-  const previousFloor=floor;walker=advanceWalk(walker,dx,dz,obstacles);floor=walker.floor;if(floor!==previousFloor)textPanel();walkCamera();
+  const previousFloor=floor;walker=advanceWalk(walker,dx,dz,obstacles);floor=walker.floor;if(floor!==previousFloor)updateScene();walkCamera();
   $('walkStatus').textContent=`${floor}F${walker.onStairs?' · 楼梯上':''} · 拖动转头，WASD / 方向键移动，Esc退出`;
  }
  const raycaster=new THREE.Raycaster();let start=null;
- renderer.domElement.addEventListener('pointerdown',e=>start={x:e.clientX,y:e.clientY});
+ renderer.domElement.addEventListener('pointerdown',e=>start=e.button===undefined||e.button===0?{x:e.clientX,y:e.clientY,moved:false}:null);
+ renderer.domElement.addEventListener('pointermove',e=>{if(start&&Math.hypot(e.clientX-start.x,e.clientY-start.y)>5)start.moved=true;});
+ renderer.domElement.addEventListener('pointercancel',()=>start=null);
  renderer.domElement.addEventListener('pointerup',e=>{
    if(walking)return;
-   if(!start||Math.hypot(e.clientX-start.x,e.clientY-start.y)>5)return;
+   const down=start;start=null;if(!down||down.moved||Math.hypot(e.clientX-down.x,e.clientY-down.y)>5)return;
+   if(!pointPicking()){if(!advanceTour())$('viewStatus').textContent='已到五楼。滚轮放大后可点选位置，或从按钮返回校园楼群。';return;}
    const rect=host.getBoundingClientRect();raycaster.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,1-(e.clientY-rect.top)/rect.height*2),camera);
    if(['cut','top'].includes(view)){
      scene.updateMatrixWorld(true);camera.updateMatrixWorld();
@@ -230,11 +262,14 @@ function initModel(){
      if(linked&&marker&&(!hit||marker.distance<=hit.distance+1)){choose(marker.object.userData.seatId);const s=data.seats.find(s=>s.id===selected);focusPoint(seatPosition(s,expanded),s.floor);return;}
      if(hit){let p=hit.object;while(p&&!p.userData.floor)p=p.parent;const n=Number(p?.userData.floor);if(n)focusPoint(hit.point,n);return;}
    }
-   if(view==='campus'){const hit=raycaster.intersectObject(campus,true)[0];if(hit){let p=hit.object;while(p&&!p.userData.main3)p=p.parent;if(p)setView('rear');}}
-   else if(view==='rear'){const hit=raycaster.intersectObject(rear,true)[0];if(hit&&!/lake|shore|walk|ground/.test(hit.object.name)){floor=0;setView('cut');}}
+   // 建筑外观放大后，点选只拉近所点建筑，不能误触发下一步。
+   if(view==='campus'||view==='rear'){
+    const hit=raycaster.intersectObject(view==='campus'?campus:rear,true)[0];if(hit){const before=camera.position.clone().sub(controls.target),distance=before.length();controls.target.copy(hit.point);camera.position.copy(hit.point).add(before.normalize().multiplyScalar(Math.max(8,Math.min(55,distance*.6))));controls.update();dirty=true;}
+   }
  });
+ renderer.domElement.addEventListener('wheel',()=>{dirty=true;refreshTourHint();});
  function resize(){renderer.setSize(host.clientWidth,host.clientHeight);camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();dirty=true;}
- new ResizeObserver(resize).observe(host);resize();setView('cut');
+ new ResizeObserver(resize).observe(host);resize();setView('campus');
  // 按照片直接定位近景；内部相机高度随楼层改变，避免观察三楼时仍停在一楼。
  showPhotoDetail=id=>{
   const ref=PHOTO_REFERENCES.find(r=>r.id===id);if(!ref)return;
@@ -255,7 +290,7 @@ function initModel(){
  let lastFrame=performance.now();
  function animate(){
    const nowFrame=performance.now(),dt=Math.min(.05,Math.max(0,(nowFrame-lastFrame)/1000));lastFrame=nowFrame;tickWalk(dt);
-   const moved=walking?false:controls.update();if(moved||dirty){renderer.render(scene,camera);dirty=false;}
+   const moved=walking?false:controls.update();refreshTourHint();if(moved||dirty){renderer.render(scene,camera);dirty=false;}
    const entries=[];
    if(['cut','top'].includes(view)&&labelOn){
      for(const s of data.seats.filter(s=>floor&&s.floor===floor)){
@@ -275,7 +310,7 @@ function initModel(){
    labels.forEach((el,i)=>{const row=entries[i];if(!row){el.style.display='none';return;}const p=row.p.project(camera);el.textContent=row.text;el.style.borderColor=row.color;el.style.fontSize='10px';el.style.transform='translate(-50%,-50%)';el.style.left=(p.x*.5+.5)*host.clientWidth+'px';el.style.top=(-p.y*.5+.5)*host.clientHeight+'px';el.style.display=Math.abs(p.x)<1&&Math.abs(p.y)<1&&p.z<1?'block':'none';});
    requestAnimationFrame(animate);
  }requestAnimationFrame(animate);
- window.zhizuoModel={choose,setView,startWalk,stopWalk,focusPoint,previousFocus,getState:()=>({view,floor,selected,candidates:plan.items.map(i=>i.seat.id),markers:layer.markers.length,expanded,walking,wideExpanded,showInformation,labelOn,focusTarget:controls.target.toArray()})};
+ window.zhizuoModel={choose,setView,startWalk,stopWalk,focusPoint,previousFocus,getState:()=>({view,floor,selected,candidates:plan.items.map(i=>i.seat.id),markers:layer.markers.length,expanded,walking,wideExpanded,showInformation,labelOn,pointPicking:pointPicking(),focusTarget:controls.target.toArray()})};
 }
 try{initModel();}catch(error){
  console.warn('三维初始化失败',error);
