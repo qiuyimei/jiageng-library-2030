@@ -1,3 +1,29 @@
+<!-- project-showcase:start -->
+<p align="center"><img src="docs/showcase/cover.svg" width="100%" alt="嘉庚知座 · 智慧图书馆、选座原型与汇报材料" /></p>
+<p align="center"><b>空间规划 · 选座交互 · 资料归档</b></p>
+<p align="center"><a href="#作品画面">看作品</a>　 ·　 <a href="ITERATION_HISTORY.md">历次迭代</a>　 ·　 <a href="https://github.com/qiuyimei/jiageng-library-2030/archive/refs/heads/main.zip">下载源码</a>　 ·　 <a href="https://github.com/qiuyimei/codex-old-deliverables-20261031#作品图录">全部作品</a></p>
+
+**嘉庚知座** · 智慧图书馆、选座原型与汇报材料。
+
+## 作品画面
+
+<table><tr><td width="50%" align="center" valign="top"><a href="docs/showcase/preview-01.png"><img src="docs/showcase/preview-01.png" width="355" alt="五层空间规划" /></a><br/><sub>五层空间规划</sub></td><td width="50%" align="center" valign="top"><a href="docs/showcase/preview-02.png"><img src="docs/showcase/preview-02.png" width="390" alt="选座界面与列表" /></a><br/><sub>选座界面与列表</sub></td></tr></table>
+
+## 从这里开始
+
+| 想做什么 | 入口 |
+| --- | --- |
+| 查看每次迭代、日期与改动 | [历史版本目录](ITERATION_HISTORY.md) |
+| 下载当前完整源码 | [当前版本 ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/refs/heads/main.zip) |
+| 下载发布包、查看已有附件 | [Releases 发布页](https://github.com/qiuyimei/jiageng-library-2030/releases) |
+| 浏览当前工程 | [仓库文件](.) |
+
+<!-- project-showcase:end -->
+
+---
+
+## 使用与项目说明
+
 # 嘉庚知座
 
 面向 2030 年的图书馆智能选座与学习资源联动原型。先表达本次学习需要，比较有依据的候选，再通过单层座位图和三维空间找到位置，到现场本人核对并登记。
@@ -105,3 +131,4 @@ python src/voice_server.py --root .
 项目设计、代码与创意素材的权利分别按各自权利人及相关条款处理。仓库未额外授予整体开源许可；第三方许可保留在 `licenses/` 与源代码说明中。个人研究素材和参赛提交材料的公开范围不由本仓库的可访问性自动扩展。
 
 历史源码可直接按[21组恢复检查点](archive/recovered-revisions/README.md)查看具体文件、差异及来源。
+
