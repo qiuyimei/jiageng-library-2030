@@ -2,7 +2,7 @@
 from pathlib import Path
 import os,sys,json,io,wave,time,secrets,threading,argparse,mimetypes
 from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer
-from urllib.parse import urlsplit,unquote
+from urllib.parse import urlsplit,unquote,quote
 
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE/'依赖'))
@@ -35,7 +35,7 @@ def transcribe_wav(data):
         text=json.loads(recognizer.FinalResult()).get('text','')
     return ''.join(text.split())
 
-def serve(root,port=8766,idle_seconds=600):
+def serve(root,port=8766,idle_seconds=600,on_ready=None):
     root=Path(root).resolve();token=secrets.token_urlsafe(24)
     state={'last':time.monotonic(),'stop':False}
     origins={f'http://127.0.0.1:{port}',f'http://localhost:{port}'}
@@ -82,9 +82,10 @@ def serve(root,port=8766,idle_seconds=600):
     server=ThreadingHTTPServer(('127.0.0.1',port),Handler);server.timeout=.5
     # 等响应线程收尾后再退出，避免结束接口的JSON在Windows被截断。
     server.daemon_threads=False
-    print(f'嘉庚知座本地语音：http://127.0.0.1:{port}/Demo/嘉庚知座.html#floor=2',flush=True)
+    print(f'嘉庚知座本地语音：http://127.0.0.1:{port}/'+quote('Demo/嘉庚知座.html')+'#floor=2',flush=True)
     print('只监听本机；10分钟无操作自动停止。',flush=True)
     try:
+        if on_ready is not None:on_ready()
         while not state['stop'] and time.monotonic()-state['last']<idle_seconds:server.handle_request()
     finally:server.server_close()
 if __name__=='__main__':
