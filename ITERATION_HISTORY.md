@@ -1,0 +1,55 @@
+# 嘉庚知座 · 历史迭代源码
+
+本页在 2026-11-11 对照本地原始 Git 仓库、完整历史备份及 GitHub 现有记录整理。
+每行都指向真实提交及该版本完整源码。既有提交保留原来的哈希和日期；从未提交的源码另标为“恢复快照”，恢复提交使用实际补传日期。
+
+共 **35 次提交/恢复快照**。源码位于分支和标签中，而不是仅有说明文档。
+
+- [全部迭代标签](https://github.com/qiuyimei/jiageng-library-2030/tags)
+- [全部历史分支](https://github.com/qiuyimei/jiageng-library-2030/branches)
+- [已有版本附件](https://github.com/qiuyimei/jiageng-library-2030/releases)
+
+## 逐次迭代
+
+| 时间（原记录） | 改动说明 | 源码 | 下载 |
+|---|---|---|---|
+| 2026-10-11 22:22:24 | Archive Jiageng Library 2030 design, prototype, models and learning guide | [1dfaa57400](https://github.com/qiuyimei/jiageng-library-2030/tree/1dfaa57400a11326a5bb7052deaf672b11a23a95) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/1dfaa57400a11326a5bb7052deaf672b11a23a95.zip) |
+| 2026-10-21 07:50:00 | Unify seat selection prototype, 3D navigation and project documentation | [6945aaa440](https://github.com/qiuyimei/jiageng-library-2030/tree/6945aaa440229a6996c1aa09259dee4790afab41) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/6945aaa440229a6996c1aa09259dee4790afab41.zip) |
+| 2026-10-22 13:24:35 | Archive preserved stages of the library model and source diffs | [6a81e3b7aa](https://github.com/qiuyimei/jiageng-library-2030/tree/6a81e3b7aa3014f9cd41aac1d3f097cbfa6b319e) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/6a81e3b7aa3014f9cd41aac1d3f097cbfa6b319e.zip) |
+| 2026-10-22 13:24:36 | Record floor layout corrections and geometry evidence | [27020beefd](https://github.com/qiuyimei/jiageng-library-2030/tree/27020beefd31953cc20c6fd391e6d9306d9e4196) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/27020beefd31953cc20c6fd391e6d9306d9e4196.zip) |
+| 2026-10-22 13:24:37 | Document project milestones and link the historical source archive | [656934e0cb](https://github.com/qiuyimei/jiageng-library-2030/tree/656934e0cb8f045d7acfceed2b4c78be5c12ed2a) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/656934e0cb8f045d7acfceed2b4c78be5c12ed2a.zip) |
+| 2026-10-22 13:24:37 | Archive seat service evolution and interaction checks | [744282e73d](https://github.com/qiuyimei/jiageng-library-2030/tree/744282e73d97afa0ed6f108289311a8a123ef14e) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/744282e73d97afa0ed6f108289311a8a123ef14e.zip) |
+| 2026-10-22 14:11:53 | Archive recovered checkpoint R01: 早期柔性空间网页原型 | [4573f9df19](https://github.com/qiuyimei/jiageng-library-2030/tree/4573f9df19caa5763efcbee035cb786b6c89569d) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/4573f9df19caa5763efcbee035cb786b6c89569d.zip) |
+| 2026-10-22 14:11:54 | Archive recovered checkpoint R04: 图书馆背面研究备份 | [09f147868e](https://github.com/qiuyimei/jiageng-library-2030/tree/09f147868e8ff18de5c66ca47b973fcccc7b6d09) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/09f147868e8ff18de5c66ca47b973fcccc7b6d09.zip) |
+| 2026-10-22 14:11:54 | Archive recovered checkpoint R02: 早期三维展示源码 | [9929d558ba](https://github.com/qiuyimei/jiageng-library-2030/tree/9929d558ba7405a3ee07febc8b1afa7e3a7d9a0e) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/9929d558ba7405a3ee07febc8b1afa7e3a7d9a0e.zip) |
+| 2026-10-22 14:11:54 | Archive recovered checkpoint R05: 五层研究局部备份 | [b9ea5f97e7](https://github.com/qiuyimei/jiageng-library-2030/tree/b9ea5f97e7a5282d81c7df423599e911a8b273c9) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/b9ea5f97e7a5282d81c7df423599e911a8b273c9.zip) |
+| 2026-10-22 14:11:54 | Archive recovered checkpoint R03: 外观研究重建备份 | [fae2e371b4](https://github.com/qiuyimei/jiageng-library-2030/tree/fae2e371b4a6166408e65d21814d50b416be9b47) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/fae2e371b4a6166408e65d21814d50b416be9b47.zip) |
+| 2026-10-22 14:11:55 | Archive recovered checkpoint R06: 三维制作工作备份 | [7380d6db8b](https://github.com/qiuyimei/jiageng-library-2030/tree/7380d6db8b214dbb602cc42abaf27b8b98328b78) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/7380d6db8b214dbb602cc42abaf27b8b98328b78.zip) |
+| 2026-10-22 14:11:55 | Archive recovered checkpoint R07: 五层三维交付源码 | [b652aca4d4](https://github.com/qiuyimei/jiageng-library-2030/tree/b652aca4d4560bb10899205626b3a4aedf0b6614) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/b652aca4d4560bb10899205626b3a4aedf0b6614.zip) |
+| 2026-10-22 14:11:55 | Archive recovered checkpoint R08: 三维源码注释学习版 | [fffe340f1e](https://github.com/qiuyimei/jiageng-library-2030/tree/fffe340f1e713929e0abaaad378f08b7d89d6d72) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/fffe340f1e713929e0abaaad378f08b7d89d6d72.zip) |
+| 2026-10-22 14:11:56 | Archive recovered checkpoint R09: 从零复刻课程中的三维源码 | [9a1bd699db](https://github.com/qiuyimei/jiageng-library-2030/tree/9a1bd699db40f161dc74e0d57f50635d5e0c0d08) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/9a1bd699db40f161dc74e0d57f50635d5e0c0d08.zip) |
+| 2026-10-22 14:11:56 | Archive recovered checkpoint R10: 安静服务探索源码 | [d1b339529c](https://github.com/qiuyimei/jiageng-library-2030/tree/d1b339529cb43cc6562b1e0b29ae374cbe047e8c) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/d1b339529cb43cc6562b1e0b29ae374cbe047e8c.zip) |
+| 2026-10-22 14:11:56 | Archive recovered checkpoint R11: 智能选座初期研究 | [df39dff421](https://github.com/qiuyimei/jiageng-library-2030/tree/df39dff421810a0c978a396c648bd24da8f0e396) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/df39dff421810a0c978a396c648bd24da8f0e396.zip) |
+| 2026-10-22 14:11:57 | Archive recovered checkpoint R12: 统一方案早期归档源码 | [69ad175d7f](https://github.com/qiuyimei/jiageng-library-2030/tree/69ad175d7f6acaecc29b2c65eb71f2a9b01aeb5c) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/69ad175d7f6acaecc29b2c65eb71f2a9b01aeb5c.zip) |
+| 2026-10-22 14:11:57 | Archive recovered checkpoint R13: 统一方案中间交付源码 | [ccac811dfd](https://github.com/qiuyimei/jiageng-library-2030/tree/ccac811dfdbc7791738ed86176913c5a9a940dd4) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/ccac811dfdbc7791738ed86176913c5a9a940dd4.zip) |
+| 2026-10-22 14:11:58 | Archive recovered checkpoint R16: 材料归档第8份中的源码 | [01be17e8a5](https://github.com/qiuyimei/jiageng-library-2030/tree/01be17e8a5cda7cebd327c480b66de3310be2a4d) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/01be17e8a5cda7cebd327c480b66de3310be2a4d.zip) |
+| 2026-10-22 14:11:58 | Archive recovered checkpoint R14: 材料归档第5份中的源码 | [c61aef4650](https://github.com/qiuyimei/jiageng-library-2030/tree/c61aef465020d7ca984582ef35ffcbbf57cad7f8) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/c61aef465020d7ca984582ef35ffcbbf57cad7f8.zip) |
+| 2026-10-22 14:11:58 | Archive recovered checkpoint R15: 材料归档第7份中的源码 | [eb6887733f](https://github.com/qiuyimei/jiageng-library-2030/tree/eb6887733f1703f4a1de3053c97d636db7b43ea7) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/eb6887733f1703f4a1de3053c97d636db7b43ea7.zip) |
+| 2026-10-22 14:11:59 | Archive recovered checkpoint R17: 材料归档第9份中的源码 | [64e370d3df](https://github.com/qiuyimei/jiageng-library-2030/tree/64e370d3df583ef38de8de6b6c82272a61a805e5) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/64e370d3df583ef38de8de6b6c82272a61a805e5.zip) |
+| 2026-10-22 14:11:59 | Archive recovered checkpoint R18: 首次整合交付中的源码 | [f1cedc7835](https://github.com/qiuyimei/jiageng-library-2030/tree/f1cedc783524116c247cdbf86e049cb2df3afa8e) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/f1cedc783524116c247cdbf86e049cb2df3afa8e.zip) |
+| 2026-10-22 14:11:59 | Archive recovered checkpoint R19: 统一方案制作工作源码 | [f92a607cdc](https://github.com/qiuyimei/jiageng-library-2030/tree/f92a607cdc7c6dc2e7b330b7944465762c03c0c8) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/f92a607cdc7c6dc2e7b330b7944465762c03c0c8.zip) |
+| 2026-10-22 14:12:00 | Archive recovered checkpoint R21: 当前可复刻工程源码 | [009d57b017](https://github.com/qiuyimei/jiageng-library-2030/tree/009d57b01711e97a085be60bb39dc7d6446e65fc) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/009d57b01711e97a085be60bb39dc7d6446e65fc.zip) |
+| 2026-10-22 14:12:00 | Archive recovered checkpoint R20: 本人目录中的源码副本 | [bd3e037c86](https://github.com/qiuyimei/jiageng-library-2030/tree/bd3e037c86d692e43e94adad413bc99f2b1830f7) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/bd3e037c86d692e43e94adad413bc99f2b1830f7.zip) |
+| 2026-10-22 14:12:01 | Archive retained layout and interaction revision scripts | [16886030c3](https://github.com/qiuyimei/jiageng-library-2030/tree/16886030c31c9ec75277c6b5462b74816e517ab0) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/16886030c31c9ec75277c6b5462b74816e517ab0.zip) |
+| 2026-10-22 14:12:01 | Index recovered checkpoints, material revisions and provenance | [e3ba5b89ff](https://github.com/qiuyimei/jiageng-library-2030/tree/e3ba5b89ff92a9545393fefea7177b9c265038d7) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/e3ba5b89ff92a9545393fefea7177b9c265038d7.zip) |
+| 2026-10-22 14:13:56 | Record canonical Git content hashes for recovered checkpoints | [57cbb0ddb1](https://github.com/qiuyimei/jiageng-library-2030/tree/57cbb0ddb14616486f995b1dbac365e78f7c3b90) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/57cbb0ddb14616486f995b1dbac365e78f7c3b90.zip) |
+| 2026-11-10 17:44:06 | Archive current local project work and delivered materials (2026-11-10) | [af9ce67064](https://github.com/qiuyimei/jiageng-library-2030/tree/af9ce670648e00a7d014d3d28f3259a7333cc0ab) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/af9ce670648e00a7d014d3d28f3259a7333cc0ab.zip) |
+| 2026-11-10 18:07:38 | Add formal report presentation and PDF preview | [d5d051a793](https://github.com/qiuyimei/jiageng-library-2030/tree/d5d051a793c8e76afdb05ce1a3b77ce21b80c19a) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/d5d051a793c8e76afdb05ce1a3b77ce21b80c19a.zip) |
+| 2026-11-10 18:17:33 | Record exact source and deliverable checksums | [01fe562451](https://github.com/qiuyimei/jiageng-library-2030/tree/01fe56245139a4528bc2cffc8e04378a132893d3) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/01fe56245139a4528bc2cffc8e04378a132893d3.zip) |
+| 2026-11-10 18:17:59 | Archive verified local project and preserve existing history (2026-11-10) | [26f11df064](https://github.com/qiuyimei/jiageng-library-2030/tree/26f11df064778c54b4b86a8c713a5d0ef9514e96) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/26f11df064778c54b4b86a8c713a5d0ef9514e96.zip) |
+| 2026-11-10 20:04:19 | Remove out-of-scope reports and presentation materials from latest project archive | [ef2328ff61](https://github.com/qiuyimei/jiageng-library-2030/tree/ef2328ff61f19b6e9670ad13cf4ad95d78eb38b8) | [ZIP](https://github.com/qiuyimei/jiageng-library-2030/archive/ef2328ff61f19b6e9670ad13cf4ad95d78eb38b8.zip) |
+
+## 核验
+
+本次推送后逐条读取远端引用，核对每个迭代标签和历史分支的对象哈希。
+未保留源码的过去操作不会被虚构成历史版本。运行依赖、账户凭据、缓存及无关独立文档不属于本次新增源码快照。
