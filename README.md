@@ -18,6 +18,10 @@
 | 下载发布包、查看已有附件 | [Releases 发布页](https://github.com/qiuyimei/jiageng-library-2030/releases) |
 | 浏览当前工程 | [仓库文件](.) |
 
+<!-- final-delivery:20261111 -->
+
+> **最终完整版资料：** [完整工程、详细文档与影片](https://github.com/qiuyimei/jiageng-library-2030/releases/tag/final-delivery-20261111)
+
 <!-- project-showcase:end -->
 
 ---
