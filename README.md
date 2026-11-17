@@ -1,7 +1,7 @@
 <!-- project-showcase:start -->
 <p align="center"><img src="docs/showcase/cover.svg" width="100%" alt="嘉庚知座 · 智慧图书馆、选座原型与汇报材料" /></p>
 <p align="center"><b>空间规划 · 选座交互 · 资料归档</b></p>
-<p align="center"><a href="#作品画面">看作品</a>　 ·　 <a href="ITERATION_HISTORY.md">历次迭代</a>　 ·　 <a href="https://github.com/qiuyimei/jiageng-library-2030/archive/refs/heads/main.zip">下载源码</a>　 ·　 <a href="https://github.com/qiuyimei/codex-old-deliverables-20261031#作品图录">全部作品</a></p>
+<p align="center"><a href="#作品画面">看作品</a>　 ·　 <a href="ITERATION_HISTORY.md">历次迭代</a>　 ·　 <a href="https://github.com/qiuyimei/jiageng-library-2030/archive/refs/heads/main.zip">下载源码</a>　 ·　 <a href="https://github.com/qiuyimei/project-collection#作品图录">全部作品</a></p>
 
 **嘉庚知座** · 智慧图书馆、选座原型与汇报材料。
 
